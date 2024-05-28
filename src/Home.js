@@ -10,7 +10,7 @@ function Home() {
               <h2>Our First Release</h2>
               <p>
               This is ColorParty.  Willie has been working a bit in circles and finally Ma got 
-              fed up and said "You can't estimate worth a shit" and so he came up with this.  It's a right
+              fed up and said "You can't estimate worth a doodoo" and so he came up with this.  It's a right
               fun family game, just like our site, perfectly great at church parties and raves alike.
               </p>
               <p>
