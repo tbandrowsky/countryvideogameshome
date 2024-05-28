@@ -1,0 +1,49 @@
+
+.App {
+}
+
+.pagebackground {
+    width: 50%;
+    display: inline-block;
+    flex-flow: column;
+    align-items: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: floralwhite;
+    padding-left: 10px;
+    padding-right: 10px;
+    border:1px solid #38423655;
+    padding-top:22px;
+}
+
+.App-header {
+    background: linear-gradient( #313150, #313150 13%, #101020 100% );
+    min-height: 100px;
+    vertical-align: middle;
+    font-size: 34px;
+    color: white;
+    padding-left: 16px;
+    text-align: left;
+    font-family: 'Open Sans', 'Arial', Arial, sans-serif
+}
+
+H1 {
+    margin: 0px;
+    margin-bottom:14px;
+    font-size:32pt;
+    font-family:'Magneto Bold', 'Brush Script MT', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    border-bottom:1px double black;
+}
+
+H2 {
+    margin: 0px;
+    font-family:Cooper,Algerian,Georgia, 'Times New Roman', Times, serif;
+}
+
+.signature {
+    margin: 0px;
+    font-size: 32pt;
+    font-family: 'Magneto Bold', 'Brush Script MT', Cambria, Cochin, Georgia, Times, Times New Roman, serif
+}
+

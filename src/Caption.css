@@ -1,0 +1,16 @@
+.Caption {
+    background: linear-gradient( #313150, #313150 13%, #101020 100% );
+    text-align: center;
+    font-size: 34px;    
+    color: white;
+    font-family: 'Open Sans', 'Arial', Arial, sans-serif;
+    margin-top:0px;
+    width:100vw;
+    height:100px;
+}
+
+.Caption div {
+    margin:0px;
+}
+
+
