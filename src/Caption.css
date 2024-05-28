@@ -1,16 +1,26 @@
 .Caption {
     background: linear-gradient( #313150, #313150 13%, #101020 100% );
     text-align: center;
-    font-size: 34px;    
     color: white;
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
     margin-top:0px;
     width:100vw;
-    height:100px;
+    height:110px;
 }
 
 .Caption div {
     margin:0px;
 }
 
+.countrytitle1 {
+    font-size: 34px;
+    margin: 0px;
+}
 
+.countrytitle2 {
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
