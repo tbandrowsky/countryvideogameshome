@@ -1,5 +1,4 @@
 import './App.css';
-import Caption from './Caption';
 import screencap3release1 from './images/screencap3release1.png'
 import { Link } from "react-router-dom";
 

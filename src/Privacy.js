@@ -1,4 +1,3 @@
-import Caption from './Caption';
 
 function Privacy() {
   return (

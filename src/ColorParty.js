@@ -1,4 +1,3 @@
-import Caption from './Caption';
 import colorparty1 from './images/colorparty1.png'
 import colorparty3 from './images/colorparty3.png'
 import cameradisconnected from './images/cameradisconnected.png'

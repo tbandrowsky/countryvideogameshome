@@ -1,4 +1,3 @@
-import Caption from './Caption';
 
 function About() {
   return (
