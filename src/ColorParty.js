@@ -1,5 +1,7 @@
 import cameradisconnected from './images/cameradisconnected.png'
 import cameranotfoundstartup from './images/cameranotfoundstartup.png'
+import screencap1release1 from './images/screencap1release1.png'
+import screencap1release3 from './images/screencap3release1.png'
 
 function ColorParty() {
   return (
@@ -17,10 +19,10 @@ function ColorParty() {
       <p>Color Party is great for any gathering, or just killing time making 
       some art on your own.</p>
       <p>
-        <img src="./screencaprelease1.png" alt="Color Party Screen"/>
+        <img src={screencap1release3} alt="Color Party Screen"/>
       </p>
       <p>
-         <img src="./screencap2release1.png" alt="Color Party Screen"/>
+         <img src={screencap1release1} alt="Color Party Screen"/>
       </p>
       <h2>
       We worked on that Camera.
