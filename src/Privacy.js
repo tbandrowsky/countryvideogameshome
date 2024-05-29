@@ -7,12 +7,14 @@ function Privacy() {
       We don't give a doodoo about your life.  We just want money.
       </h2>
       <p>
-      We don't want it so bad that we're going to ship you some piece of doodoo spyware. We don't mine your stuff to 
-      send it off to some AI sales guy.  We don't want it so bad we'll start showing bulldoodoo links 
-      to other people's stuff and maybe worst of all to more piece of doodoo spyware.  If you want to go somewhere, you already know how.
-      If we want to build a guide we'd build one that doesn't suck.  But that's a lot work and we'd just get 
-      bored with that.  We're not collecting anything right now.  We're way more artists than that, of all kinds by the way, 
-      hanging together to see what happens.
+      Now, we don't want your money so bad that we're going to ship you some piece of doodoo spyware. 
+      We don't want your money so bad that we'd t mine your stuff to 
+      send it off to some AI sales guy.  
+      We don't want it so bad we'll start showing bulldoodoo links 
+      to other people's stuff and maybe worst of all to more piece of doodoo spyware.  
+      </p>
+      <p>
+      We just don't collected your data and we don't ship spy stuff to collect it.
       </p>
       <p>
       So if I may say in my Willie Otis way, we don't really give a doodoo about your doodoo because we've got enough doodoo of our own.  
