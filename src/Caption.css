@@ -5,7 +5,7 @@
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
     margin-top:0px;
     width:100vw;
-    height:150px;
+    height:180px;
 }
 
 .Caption div {
@@ -13,7 +13,7 @@
 }
 
 .countrytitle1 {
-    font-size: 34px;
+    font-size: 56px;
     margin: 0px;
 }
 
@@ -40,4 +40,11 @@ a {
     border: 2px solid #38423655;
     padding: 8px;
     color: aliceblue;
+}
+
+a:hover {
+    background-color: #55565044;
+    border: 2px solid #48524655;
+    padding: 8px;
+    color: white;
 }
