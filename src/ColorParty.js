@@ -6,7 +6,7 @@ import screencap1release3 from './images/screencap3release1.png'
 function ColorParty() {
   return (
       <div class="pagebackground">
-      <h1>Check out Color Party</h1>
+      <h1>Color Party</h1>
       <h2>
       Great fun for churches and raves alike.
       </h2>

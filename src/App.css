@@ -10,11 +10,10 @@
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
-    background-color: floralwhite;
-    padding-left: 10px;
-    padding-right: 10px;
+    background-color: #22223055;
     border:1px solid #38423655;
-    padding-top:22px;
+    padding:22px;
+    color:aliceblue;
 }
 
 .App-header {
@@ -31,8 +30,8 @@
 H1 {
     margin: 0px;
     margin-bottom:14px;
-    font-size:32pt;
-    font-family:'Magneto Bold', 'Brush Script MT', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-size:28pt;
+    font-family:'Open Sans', 'Arial', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     border-bottom:1px double black;
 }
 
@@ -43,7 +42,39 @@ H2 {
 
 .signature {
     margin: 0px;
-    font-size: 32pt;
+    font-size: 28pt;
     font-family: 'Magneto Bold', 'Brush Script MT', Cambria, Cochin, Georgia, Times, Times New Roman, serif
 }
 
+.background-bottom {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.background-layer1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: image('images/starbackground.png') no-repeat center center;
+}
+
+.background-layer2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: image('images/transparent4x5deer.png') no-repeat center center;
+}
+
+.background-children {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
