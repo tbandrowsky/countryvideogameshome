@@ -2,7 +2,8 @@
 function Privacy() {
   return (
       <div class="pagebackground">
-      <h1>The Willie Otis Country Video Games Privacy Policy</h1>
+      <h1>Country Video Games Privacy Policy</h1>
+      <h2>By Willie Otis</h2>
       <h2>
       We don't give a doodoo about your life.  We just want money.
       </h2>
