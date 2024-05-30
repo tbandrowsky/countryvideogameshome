@@ -1,3 +1,5 @@
+import './App.css'
+
 import cameradisconnected from './images/cameradisconnected.png'
 import cameranotfoundstartup from './images/cameranotfoundstartup.png'
 import screencap1release1 from './images/screencap1release1.png'
@@ -9,7 +11,10 @@ function ColorParty() {
       <h1>Color Party</h1>
       <h2>
       Great fun for churches and raves alike.
-      </h2>
+          </h2>
+          <br />
+      <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
+          <br />
       <p>
       Put on that web came and fire up Color Party and you've got yourself
       a room full of people with something to do.  See, they are all looking 

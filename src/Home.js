@@ -8,6 +8,9 @@ function Home() {
           <div class="colorparty">
               <h1>Announcing</h1>
               <h2>Our First Release</h2>
+              <br />
+              <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
+              <br />
               <p>
               This is ColorParty.  Willie has been working a bit in circles and finally Ma got 
               fed up and said "You can't estimate worth a doodoo" and so he came up with this.  It's a right
