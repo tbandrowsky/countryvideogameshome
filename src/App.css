@@ -11,7 +11,7 @@
     margin-left: 5%;
     margin-right: 5%;
     background-color: #222230CC;
-    border:1px solid #3842365AA;
+    border:1px solid #342365AA;
     padding:22px;
     color:aliceblue;
 }
@@ -51,15 +51,26 @@ H2 {
     height: 100%;
 }
 
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .background-layer1 {
+    animation: rotateBackground 60s linear infinite;
     position: absolute;
-    left: 0vw;
-    top: 0vh;
-    width: 100vw;
-    height: 100vh;
-    border: 8px solid pink;
+    left: -50vw;
+    top: -50vh;
+    width: 250vw;
+    height: 250vh;
+    border: 8px solid #00000060;
     background-image: url('images/starbackground.png');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
