@@ -1,7 +1,5 @@
 import './App.css';
-import screencap3release1 from './images/screencap3release1.png'
 import colorpartystore from './images/colorpartymsstore.png'
-import { Link } from "react-router-dom";
 
 function Home() {
   return (

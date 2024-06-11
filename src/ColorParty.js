@@ -1,9 +1,6 @@
 import './App.css'
 
-import cameradisconnected from './images/cameradisconnected.png'
-import cameranotfoundstartup from './images/cameranotfoundstartup.png'
 import screencap1release1 from './images/screencap1release1.png'
-import screencap1release3 from './images/screencap3release1.png'
 
 function ColorParty() {
   return (
