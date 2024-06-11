@@ -6,10 +6,7 @@ const Background = ({children}) => {
         <div class="background-bottom">
             <div class="background-layer-container">
                 <div class="background-layer1">
-                    <img src={backimage} alt="spinning background, stars" />
-                </div>
-                <div class="background-layer1b">
-                    <img src={backimage} alt="spinning background, stars" />
+                    <img src={backimage} alt="spinning background, stars"/>
                 </div>
             </div>
             <div class="background-layer3"></div>

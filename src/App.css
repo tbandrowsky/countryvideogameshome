@@ -54,21 +54,20 @@ H2 {
 
 @keyframes rotateBackground {
     from {
-        transform: rotate(0deg);
+        transform: scale(2,2) rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform: scale(2,2) rotate(360deg);
     }
 }
 
 .background-layer1 {
-    animation: rotateBackground 25s infinite;
+    animation: rotateBackground 120s infinite;
+    transform-origin: 50% 50%;
     position: absolute;
-    left: 000vw;
-    top: 000vh;
-    width: 100vw;
-    height: 100vh;
+    left: 50px;
+    top: 600px;
 }
 
 
@@ -76,7 +75,7 @@ H2 {
     position: absolute;
     left: 0vw;
     top: 0vh;
-    width: 200vw;
+    width: 100vw;
     height: 200vh;
     border: 8px solid #00000060;
     overflow:clip;
