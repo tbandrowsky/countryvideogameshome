@@ -24,25 +24,17 @@ function ColorParty() {
       <p>Color Party is great for any gathering, or just killing time making 
       some art on your own.</p>
       <p>
-        <img src={screencap1release3} alt="Color Party Screen"/>
-      </p>
-      <p>
          <img src={screencap1release1} alt="Color Party Screen"/>
       </p>
       <h2>
       We worked on that Camera.
       </h2>
       <p>
-      How is it that so many applications have a hard time finding your camera?
-      We tried to make it so that Color Party just fires up, and, you can plug in 
-      your web camera any time you want and it should work.
+      Color Party detects when you plug in or remove web cameras, and does what it can. 
+      No fumbling with a bunch of settings. Color Party just give you a list of cameras,
+      and then you pick which one you want to display.
       </p>
-      <p>
-        <img src={cameradisconnected} alt="Camera Disconnected"/>
-      </p>
-      <p>
-        <img src={cameranotfoundstartup} alt="Camera Not Found"/>
-       </p>
+      <p>Color Party is simple!</p>
       </div>
   );
 }

@@ -63,7 +63,7 @@ H2 {
 }
 
 .background-layer1 {
-    animation: rotateBackground 120s infinite;
+    animation: rotateBackground 240s infinite;
     transform-origin: 50% 50%;
     position: absolute;
     left: 50px;

@@ -1,27 +1,26 @@
 import './App.css';
 import screencap3release1 from './images/screencap3release1.png'
+import colorpartystore from './images/colorpartymsstore.png'
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
       <div class="pagebackground">
           <div class="colorparty">
-              <h1>Announcing</h1>
-              <h2>Our First Release</h2>
-              <br />
+              <h2>Color Party Outside</h2>
+              <br/>
               <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
-              <br />
+              <p>Willie built a projection screen on Russellville Rd in Bowling Green, KY, and used Color Party to make 
+              light shows out of the traffic to test it out.</p>
+               <iframe width="560" height="315" src="https://www.youtube.com/embed/bd6F8wUNgQ4?si=uR6m5DDIzBgaEZiI&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               <br/>
+               <br/>
               <p>
-              This is ColorParty.  Willie has been working a bit in circles and finally Ma got 
-              fed up and said "You can't estimate worth a doodoo" and so he came up with this.  It's a right
-              fun family game, just like our site, perfectly great at church parties and raves alike.
+              You can get this at the Microsoft Store on your Windows PC, to which, we are greatly appreciative, 
+              and we say out here "Windows is the best", down here. 
               </p>
               <p>
-              You can get this at the Microsoft Store, to which, we are greatly appreciative, 
-              and we say out here "Windows is the best", down here.
-              </p>
-              <p>
-              <Link to="/ColorParty"><img src={screencap3release1} alt="Color Party Screen Shot"/></Link>
+              <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N"><img src={colorpartystore} width="500" alt="Color Party in Windows Store"/></a>
               </p>
           </div>
       </div>
