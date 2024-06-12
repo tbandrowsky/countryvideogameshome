@@ -13,12 +13,12 @@ function ColorParty() {
       <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
           <br />
       <p>
-      Put on that web came and fire up Color Party and you've got yourself
-      a room full of people with something to do.  See, they are all looking 
-      at themselves dancing with that one camera so its a screen, and then,
-      they might start talking to each other.
-      </p>
-      <p>Color Party is great for any gathering, or just killing time making 
+              Color Party is an app for Windows you can get from the Microsoft Store.  Color Party reads 
+              whatever web cams you have connected, and produces a live light show on screen (or an attacked projector), 
+              of everything moving on the camera.
+          </p>
+          <p>Color Party is quite fun.</p>
+      <p>Color Party is great for any gathering, killing time, or making 
       some art on your own.</p>
       <p>
          <img src={screencap1release1} alt="Color Party Screen"/>
