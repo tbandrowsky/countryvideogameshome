@@ -5,7 +5,7 @@ function Home() {
   return (
       <div class="pagebackground">
           <div class="colorparty">
-              <h1>Outdoor Color Party</h1>
+              <h1>Outdoor COLOR PARTY</h1>
               <br/>
               <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
               <p>Willie built a projection screen on Russellville Rd in Bowling Green, KY, and used Color Party to make 

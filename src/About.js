@@ -3,7 +3,7 @@ function About() {
   return (
       <div class="pagebackground">
       <h1>
-      About Country Video Games
+      About COUNTRY VIDEO GAMES
       </h1>
       <h2>We're in Kentucky</h2>
       <h2>With these people</h2>

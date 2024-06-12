@@ -31,15 +31,17 @@
 
 H1 {
     margin: 0px;
-    margin-bottom:14px;
-    font-size:28pt;
-    font-family:'Open Sans', 'Arial', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-    border-bottom:1px double black;
+    margin-bottom: 14px;
+    font-size: 24pt;
+    font-family: 'Open Sans', 'Arial', Arial, sans-serif;
+    border-bottom: 1px double #313150;
+    font-weight: normal;
 }
 
 H2 {
     margin: 0px;
-    font-family:Cooper,Algerian,Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight:normal;
 }
 
 .signature {
