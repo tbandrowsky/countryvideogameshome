@@ -1,11 +1,11 @@
 .Caption {
-    background: linear-gradient( #313150, #313150 13%, #101020 100% );
+    background: linear-gradient( #313150, #313150 13%, #00011B 70%, #000010 100% );
     text-align: center;
     color: white;
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
-    margin-top:0px;
-    width:100vw;
-    height:180px;
+    margin-top: 0px;
+    width: 100vw;
+    height: 180px;
 }
 
 .Caption div {

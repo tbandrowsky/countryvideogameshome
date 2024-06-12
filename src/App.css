@@ -10,11 +10,12 @@
     width: 45%;
     margin-left: 25%;
     margin-right: 5%;
-    background-color: #222230EE;
-    border:1px solid #342365AA;
-    border-top:2px solid black;
-    padding:22px;
-    color:aliceblue;
+    margin-top:1.5%;
+    background-color: #050511DE;
+    border: 1px solid #342365AA;
+    border-top: 4px solid black;
+    padding: 22px;
+    color: aliceblue;
 }
 
 .App-header {
