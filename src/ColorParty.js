@@ -7,7 +7,7 @@ function ColorParty() {
       <div class="pagebackground">
       <h1>Color Party</h1>
       <h2>
-      Great fun for churches and raves alike.
+      Great fun for any size gathering of young and young at heart!
           </h2>
           <br />
       <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
