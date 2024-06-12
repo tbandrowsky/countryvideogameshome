@@ -67,8 +67,8 @@ H2 {
     animation: rotateBackground 360s infinite;
     transform-origin: 50% 50%;
     position: absolute;
-    left: 0px;
-    top: 400px;
+    left: -50px;
+    top: 200px;
 }
 
 
