@@ -8,8 +8,8 @@ function About() {
       <h2>We're in Kentucky</h2>
       <h2>With these people</h2>
       <ul>
-      <li>"Willie Otis"</li>
-      <li>"Ma Otis"</li>
+       <li>Todd "Willie Otis" Bandrowsky</li>
+      <li>Holly "Ma Otis" Hudnall</li>
       </ul>
       <h2>Making applications for Windows.</h2>      
       </div>
