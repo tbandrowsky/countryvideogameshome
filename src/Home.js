@@ -21,12 +21,14 @@ function Home() {
               </ol>
               <h2>Technology Test</h2>
               <p>You can download our simple forms test harness from <a href="Demo.zip">here</a></p>
-              <h2>Reparations</h2>
-              <p>I, Todd Bandrowsky, have been taking Corona to the next level and using it to build a system of Reparations for Black Americans as a pilot. I'm actually a right wing
-                  Republican, pro-gun, and Christian.  The story of how I came to be in favor of reparations is entirely a Christian spiritual struggle, and is a good read I think for other people
-                  whose faith and relationship with God might be similar to mine.  I've included the pdf in the zip.
-                  This is the same document I posted on gofund me and other places.
+              <h2>Reparations Walkthrough!</h2>
+              <p>Reparations is a test project that demonstrates the emergent power of the stack we 
+                  are building.  Reparations is the libertarian counter to socialism as applied to power theory.
+                  Paving the way out of our end-of-life-for-marx world, Reparations creates a bolt on process any government 
+                  or agency of power may use to provide an insurance based claims system for those who are 
+                 often caught on carrot side of the government stick more than the carrot.
               </p>
+              <p>This release contains a walk through guide in the zip, along with a much more working application stack</p>
               <p>Download reparations as I evolve it, here: <a href="reparations.zip">here</a></p>
           </div>
       </div>
