@@ -13,7 +13,7 @@ import Background from './Background';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-   <BrowserRouter>
+    <BrowserRouter>
         <Background>
             <Caption/>
             <Routes>
