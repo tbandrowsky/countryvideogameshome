@@ -16,8 +16,9 @@ function Home() {
 
               <h2>Corona App Server</h2>
               <p>Create web apis instantly from a class definition file.</p>
+              <p>Download zip, extract to folder, and either run from the terminal or invoke the batch.</p>
               <p>
-                  <a href="coronaserver.zip">Download Corona Preview (11/11/2024)</a>
+                  <a href="coronaserver.zip">Download Corona Preview (11/18/2024)</a>
               </p>
 
           </div>
