@@ -3,15 +3,14 @@
 }
 
 .pagebackground {
-    width: 50%;
+    width: 70%;
     display: inline-block;
     flex-flow: column;
     align-items: center;
-    width: 45%;
-    margin-left: 25%;
+    margin-left: 15%;
     margin-right: 5%;
     margin-top:1.5%;
-    background-color: #050511DE;
+    background-color: #292121;
     border: 1px solid #342365AA;
     border-top: 4px solid black;
     padding: 22px;
@@ -54,65 +53,6 @@ H2 {
     width: 100vw;
     height: 100vh;
     overflow:clip;
-}
-
-@keyframes rotateBackground {
-    from {
-        transform: scale(2,2) rotate(0deg);
-    }
-
-    to {
-        transform: scale(2,2) rotate(360deg);
-    }
-}
-
-.background-layer1 {
-    animation: rotateBackground 360s infinite;
-    transform-origin: 50% 50%;
-    position: absolute;
-    left: -50px;
-    top: 200px;
-}
-
-
-.background-layer-container {
-    position: absolute;
-    left: 0vw;
-    top: 0vh;
-    width: 100vw;
-    height: 200vh;
-    border: 8px solid #00000060;
-    overflow:clip;
-}
-
-.background-layer2 {
-    position: absolute;
-    left: 0vw;
-    top: 200vh;
-    width: 250vw;
-    height: 250vh;
-    border: 8px solid #000000;
-    background-color:#000000;
-}
-
-.background-layer3 {
-    position: absolute;
-    left: 0vw;
-    top: 0vh;
-    width: 200vh;
-    height: 200vh;
-    border: 8px solid black;
-    background-image: url('images/transparentky.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.background-children {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
 }
 
 .topspace {

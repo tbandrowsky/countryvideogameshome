@@ -9,12 +9,11 @@ import Home from './Home';
 import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
-import Background from './Background';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <Background>
+        <div>
             <Caption/>
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
@@ -23,7 +22,7 @@ root.render(
                 <Route path="/ColorParty" element={<ColorParty/>} />
                 <Route path="/About" element={<About/>} />
             </Routes>
-        </Background>
+        </div>
    </BrowserRouter>
 );
 

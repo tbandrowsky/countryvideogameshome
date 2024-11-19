@@ -1,11 +1,12 @@
 .Caption {
-    background: linear-gradient( #313150, #313150 13%, #00011B 70%, #000010 100% );
+    background: linear-gradient( #FBF7D6 0%, #D1843D 100% );
     text-align: center;
     color: white;
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight:bold;
     margin-top: 0px;
     width: 100vw;
-    height: 180px;
+    height: 145px;
 }
 
 .Caption div {
@@ -13,17 +14,20 @@
 }
 
 .countrytitle1 {
-    font-size: 56px;
+    font-size: 42px;
     margin: 0px;
+    color:darkslategrey;
 }
 
 .countrytitle2 {
     font-size: 24px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style:italic;
     margin: 0px;
-    margin-bottom:16px;
+    margin-bottom: 16px;
     padding-top: 8px;
     padding-bottom: 8px;
+    color: darkslategrey;
 }
 
 .countrylinks {
