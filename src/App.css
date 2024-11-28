@@ -13,7 +13,7 @@
     background-color: #292121;
     border: 1px solid #342365AA;
     border-top: 4px solid black;
-    padding: 22px;
+    padding: 8px;
     color: aliceblue;
 }
 
@@ -40,7 +40,13 @@ H1 {
 H2 {
     margin: 0px;
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight:normal;
+    font-weight: normal;
+    color:#F5E9C3;
+    padding:0px;
+}
+
+p {
+    margin-bottom:2.0em;
 }
 
 .signature {

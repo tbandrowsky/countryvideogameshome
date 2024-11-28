@@ -9,6 +9,7 @@ import Home from './Home';
 import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
+import Corona from './Corona';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +19,8 @@ root.render(
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
                 <Route path="/Home" element={<Home/>} />
-                <Route path="/Privacy" element={<Privacy/>} />
+                <Route path="/Privacy" element={<Privacy />} />
+                <Route path="/Corona" element={<Corona />} />
                 <Route path="/ColorParty" element={<ColorParty/>} />
                 <Route path="/About" element={<About/>} />
             </Routes>

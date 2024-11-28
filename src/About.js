@@ -6,12 +6,7 @@ function About() {
       About COUNTRY VIDEO GAMES
       </h1>
       <h2>We're in Kentucky</h2>
-      <h2>With these people</h2>
-      <ul>
-       <li>Todd Bandrowsky</li>
-      <li>Holly Hudnall</li>
-      </ul>
-      <h2>Making applications for Windows.</h2>      
+      <h2>Making applications for Windows, the Web, and beyond.</h2>      
       </div>
   );
 }
