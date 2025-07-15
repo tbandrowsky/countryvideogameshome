@@ -21,7 +21,8 @@ root.render(
                 <Route path="/Home" element={<Home/>} />
                 <Route path="/Privacy" element={<Privacy />} />
                 <Route path="/Corona" element={<Corona />} />
-                <Route path="/ColorParty" element={<ColorParty/>} />
+                <Route path="/ColorParty" element={<ColorParty />} />
+                <Route path="/Revolution" element={<Revolution />} />
                 <Route path="/About" element={<About/>} />
             </Routes>
         </div>

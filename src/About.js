@@ -5,9 +5,9 @@ function About() {
       <h1>
       About COUNTRY VIDEO GAMES
       </h1>
-      <h2>We're in Kentucky</h2>
-      <h2>Making applications for Windows, the Web, and beyond.</h2>      
-      </div>
+        <h2>I'm Todd Bandrowsky and I'm an indy developer making applications.</h2>
+          <h2>Country Video Games is located in Bowling Green, KY 42101.</h2>
+        </div>
   );
 }
 

@@ -3,29 +3,46 @@ import './App.css'
 function Corona() {
     return (
         <div class="pagebackground">
-            <h1>CORONA is Easy and Fast.</h1>
+            <h1>CORONA API Server.</h1>
             <h2>
-                Integrated Application Database and Web Service Server
+                Get the Corona Vibe
             </h2>
             <p>
-                No need to full with a complex stack. Corona gives you a database server and http server
-                right out of the box.  Fire it up, edit a file, and focus on your UI and your data.
+                Enter a schema, and Corona implements the database, the services,
+                and even can update your clients using OpenAPI.  Create services instantly.  
+                Edit them as you please.
             </p>
             <h2>
-                Instant Business Service
-            </h2>
-            <p>
-                Easily set up a business with automatic sign on and enrollment for internal and external users.
-            </p>
-            <h2>
-                Objects of Anything
+                Imagine Anything
             </h2>
             <p>
                 Create classes, then make objects out of them. Use Corona's own easy database, or use
                 your favorite ODBC capable database as a back end store.
             </p>
             <h2>
-                Rich Querying
+                Ready to Go
+            </h2>
+            <p>
+                Don't get bogged down in sign up logic and verification.  
+                Corona supercharges your multi-user application development by providing a complete user sign on and password management experience.
+                Corona can create teams of users, and associate domains to teams, to create true first class globally collaborative applications.
+            </p>
+            <h2>
+                Express Performance
+            </h2>
+            <p>
+                Fast and Powerful, Corona can handle thousands of puts per second, and, reads 
+                are far faster.  Using Windows IO completion ports for both disk and network i/o, Corona is 
+                designed to be superior in performance to node.js on Windows.
+            </p>
+            <h2>
+                Polymorphism Online
+            </h2>
+            <p>
+                Join, filter, and project any collection from any source to any other collection.
+            </p>
+            <h2>
+                Rich Query Power Up                
             </h2>
             <p>
                 Join, filter, and project any collection from any source to any other collection.
