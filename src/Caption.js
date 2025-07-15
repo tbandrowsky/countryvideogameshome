@@ -1,5 +1,4 @@
 import './Caption.css';
-import { Link } from "react-router-dom";
 
 function Caption() {
   return (
