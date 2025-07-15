@@ -5,8 +5,7 @@
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight:bold;
     margin-top: 0px;
-    width: 100vw;
-    height: 145px;
+    width: 100%;
 }
 
 .Caption div {
@@ -19,36 +18,76 @@
     color:darkslategrey;
 }
 
-.countrytitle2 {
-    font-size: 24px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-style:italic;
-    margin: 0px;
-    margin-bottom: 16px;
+.countrytitle2x {
+    font-size: 18px;
+    font-family: 'Jost';
+    font-style: italic;
+    text-align: center;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 4px;
     padding-top: 8px;
     padding-bottom: 8px;
-    color: darkslategrey;
+    color: #D1843D;
+    background-color:darkgreen;
+}
+
+.countrytitle2a {
+    font-size: 18px;
+    font-family: 'Jost';
+    font-style: italic;
+    text-align: center;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #D1843D;
+    border-bottom: dashed 2px #D1843D;
+    border-top: dashed 2px #D1843D;
+}
+
+.countrytitle2b {
+    font-size: 24px;
+    font-family: 'Jost';
+    margin-left: 32px;
+    margin-right: 32px;
+    margin: 0px;
+    margin-bottom: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #D1843D;
+    text-align: center;
 }
 
 .countrylinks {
-    display:inline-block;
-    margin-top: 16px;
-    padding: 16px;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 18px;
+    font-family: 'Jost';
+    border-color: red;
+    border-width: 2px;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 35.0px 35.0px 35.0px;
+    gap: 10px;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 a {
-    background-color: #44445044;
+    background-color: #44445077;
     border: 2px solid #38423655;
-    padding: 8px;
+    padding: 3px;
     color: aliceblue;
+    text-align: center;
 }
 
 a:hover {
-    background-color: #55565044;
+    background-color: #55565077;
     border: 2px solid #48524655;
-    padding: 8px;
+    padding: 3px;
     color: white;
 }

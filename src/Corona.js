@@ -36,10 +36,11 @@ function Corona() {
                 designed to be superior in performance to node.js on Windows.
             </p>
             <h2>
-                Polymorphism Online
+                Polymorphic Oriented Programming REST
             </h2>
             <p>
-                Join, filter, and project any collection from any source to any other collection.
+                "POOR" Corona can manage polymorphic collections so well that you can create applications 
+                whose users can grow themselves organically.
             </p>
             <h2>
                 Rich Query Power Up                
