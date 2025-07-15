@@ -1,7 +1,6 @@
 .Caption {
     background: linear-gradient( #FBF7D6 0%, #D1843D 100% );
     text-align: center;
-    color: white;
     font-family: 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight:bold;
     margin-top: 0px;
@@ -12,82 +11,3 @@
     margin:0px;
 }
 
-.countrytitle1 {
-    font-size: 42px;
-    margin: 0px;
-    color:darkslategrey;
-}
-
-.countrytitle2x {
-    font-size: 18px;
-    font-family: 'Jost';
-    font-style: italic;
-    text-align: center;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 4px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    color: #D1843D;
-    background-color:darkgreen;
-}
-
-.countrytitle2a {
-    font-size: 18px;
-    font-family: 'Jost';
-    font-style: italic;
-    text-align: center;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 4px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    color: #D1843D;
-    border-bottom: dashed 2px #D1843D;
-    border-top: dashed 2px #D1843D;
-}
-
-.countrytitle2b {
-    font-size: 24px;
-    font-family: 'Jost';
-    margin-left: 32px;
-    margin-right: 32px;
-    margin: 0px;
-    margin-bottom: 4px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    color: #D1843D;
-    text-align: center;
-}
-
-.countrylinks {
-    font-size: 18px;
-    font-family: 'Jost';
-    border-color: red;
-    border-width: 2px;
-    height: 150px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 35.0px 35.0px 35.0px;
-    gap: 10px;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 4px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
-
-a {
-    background-color: #44445077;
-    border: 2px solid #38423655;
-    padding: 3px;
-    color: aliceblue;
-    text-align: center;
-}
-
-a:hover {
-    background-color: #55565077;
-    border: 2px solid #48524655;
-    padding: 3px;
-    color: white;
-}

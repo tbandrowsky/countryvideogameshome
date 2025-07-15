@@ -3,13 +3,11 @@
 }
 
 .pagebackground {
-    width: 70%;
+    width: 100vw;
+    height: 100vh;
     display: inline-block;
     flex-flow: column;
     align-items: center;
-    margin-left: 15%;
-    margin-right: 5%;
-    margin-top:1.5%;
     background-color: #292121;
     border: 1px solid #342365AA;
     border-top: 4px solid black;

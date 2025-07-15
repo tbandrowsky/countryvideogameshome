@@ -15,23 +15,24 @@ import { Link } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-     <div style={{display:'flex',flexDirection:'row'}}>
-        <div style={{display:'flex',flexDirection:'column',width:'25%',backgroundColor:'#006644'}}>
-            <Caption/>
-      <div class="countrytitle2x"></div>
-      <div class="countrylinks">
-          <Link to="/Home">HOME</Link>
-          <Link to="/Corona">CORONA</Link>
-          <Link to="/About">ABOUT</Link>
-          <Link to="/Privacy">PRIVACY</Link>
-          <Link to="/ColorParty">COLOR PARTY</Link>
-      </div>
-      <div class="countrytitle2a">Proudly heralded</div>
-      <div class="countrytitle2b">SELECT GRADE</div>
-      <div class="countrytitle2a">Proudly made</div>
-      <div class="countrytitle2x"></div>
+     <div class="countryvideogamesroot">
+        <div class="countryvideogamesnavigation" >
+          <Caption/>
+          <div class="countrytitlespacer" style={{marginTop:"30px"}}>&nbsp;</div>
+          <div class="countrylinks">
+              <Link to="/Home">HOME</Link>
+              <Link to="/Corona">CORONA</Link>
+              <Link to="/About">ABOUT</Link>
+              <Link to="/Privacy">PRIVACY</Link>
+              <Link to="/ColorParty">COLOR PARTY</Link>
+          </div>
+          <div class="countrytitlespacer">&nbsp;</div>
+          <div class="countrytitlebox">
+              <div class="countrytitle2b">SELECT GRADE</div>
+              <div class="countrytitle2a">Proudly made</div>
+          </div>
         </div>
-        <div style={{display:'flex',flexDirection:'column',width:'75%'}}>
+        <div class="countryvideogamescontent">
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
                 <Route path="/Home" element={<Home/>} />
@@ -41,7 +42,7 @@ root.render(
                 <Route path="/About" element={<About/>} />
             </Routes>
         </div>
-      </div>
+     </div>
    </BrowserRouter>
 );
 
