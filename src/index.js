@@ -27,9 +27,11 @@ root.render(
               <Link to="/ColorParty">COLOR PARTY</Link>
           </div>
           <div class="countrytitlespacer">&nbsp;</div>
-          <div class="countrytitlebox">
-              <div class="countrytitle2b">SELECT GRADE</div>
-              <div class="countrytitle2a">Proudly made</div>
+          <div class="countrycontainer">
+              <div class="countrytitlebox">
+                  <div class="countrytitle2b">SELECT GRADE</div>
+                  <div class="countrytitle2a">Proudly made</div>
+              </div>
           </div>
         </div>
         <div class="countryvideogamescontent">
