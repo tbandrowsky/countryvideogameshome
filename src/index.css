@@ -39,7 +39,7 @@ A {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 120.0px 65.0px 223.0px 35.0px 1fr;
+    grid-template-rows: 150.0px 35.0px 105.0px 35.0px 105.0px 1fr;
 }
 
 .countrytitlebox {
@@ -49,10 +49,8 @@ A {
 
 .countryvideogamescontent {
     margin: 0px;
-    width: 100%;
-    height: 100%;
     color: darkslategrey;
-    overflow:scroll;
+    overflow:auto;
 }
 
 .countrytitle1 {
@@ -64,12 +62,13 @@ A {
 .countrytitlespacer {
     font-size: 18px;
     font-family: 'Jost';
-    font-style: italic;
     text-align: center;
+    vertical-align: middle;
     color: #D1843D;
     background-color: darkgreen;
     margin-left: 32px;
     margin-right: 32px;
+    height:100%;
 }
 
 .countrytitlebox {
@@ -78,7 +77,8 @@ A {
     border-top: dashed 1px #D1843D;
     height: 70px;
     margin-left: 32px;
-    margin-right: 32px;    
+    margin-right: 32px;
+    margin-bottom:4px;
 }
 
 .countrycontainer {
@@ -114,6 +114,38 @@ A {
     border-width: 2px;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 35.0px 35.0px 35.0px 35.0px;
+    gap: 8px;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.countrylinks2 {
+    font-size: 22px;
+    font-family: 'Jost';
+    border-color: red;
+    border-width: 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 35.0px 35.0px 35.0px 35.0px;
+    gap: 8px;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.countrylinks3 {
+    font-size: 22px;
+    font-family: 'Jost';
+    border-color: red;
+    border-width: 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 35.0px 35.0px 35.0px 35.0px;
     gap: 8px;
     margin-left: 32px;

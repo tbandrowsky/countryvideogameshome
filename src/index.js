@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Caption from './Caption';
-import Home from './Home';
+import News from './News';
 import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
@@ -18,15 +18,17 @@ root.render(
      <div class="countryvideogamesroot">
         <div class="countryvideogamesnavigation" >
           <Caption/>
-          <div class="countrytitlespacer" style={{marginTop:"30px"}}>&nbsp;</div>
-          <div class="countrylinks">
-              <Link to="/Home">HOME</Link>
-              <Link to="/Corona">CORONA</Link>
+          <div class="countrytitlespacer">Company</div>
+          <div class="countrylinks3">
+              <Link to="/News">NEWS</Link>
               <Link to="/About">ABOUT</Link>
               <Link to="/Privacy">PRIVACY</Link>
-              <Link to="/ColorParty">COLOR PARTY</Link>
           </div>
-          <div class="countrytitlespacer">&nbsp;</div>
+                <div class="countrytitlespacer">Products</div>
+        <div class="countrylinks2">
+            <Link to="/Corona">CORONA</Link>
+            <Link to="/ColorParty">COLOR PARTY</Link>
+        </div>
           <div class="countrycontainer">
               <div class="countrytitlebox">
                   <div class="countrytitle2b">SELECT GRADE</div>
@@ -36,8 +38,8 @@ root.render(
         </div>
         <div class="countryvideogamescontent">
             <Routes>
-                <Route exact path="/" element={<Home/>}/>
-                <Route path="/Home" element={<Home/>} />
+                    <Route exact path="/" element={<News />}/>
+                    <Route path="/News" element={<News />} />
                 <Route path="/Privacy" element={<Privacy />} />
                 <Route path="/Corona" element={<Corona />} />
                 <Route path="/ColorParty" element={<ColorParty />} />

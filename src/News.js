@@ -1,7 +1,7 @@
 import './App.css';
 import colorpartystore from './images/colorpartymsstore.png'
 
-function Home() {
+function News() {
   return (
       <div class="contentbackground">
             <h1>Welcome to Country Video Games</h1>
@@ -23,4 +23,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default News;
