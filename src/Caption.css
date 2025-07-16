@@ -1,9 +1,8 @@
 .Caption {
     background: linear-gradient( #FBF7D6 0%, #D1843D 100% );
     text-align: center;
-    font-family: 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight:bold;
-    padding: 10px;
+    font-family: 'Jost', 'Arial', Arial, sans-serif;
+    font-weight: bold;
     width: 100%;
 }
 

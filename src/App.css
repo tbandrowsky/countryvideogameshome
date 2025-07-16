@@ -3,16 +3,14 @@
 }
 
 .pagebackground {
-    width: 100vw;
-    height: 100vh;
+    width: 95%;
+    height: 95%;
     display: inline-block;
     flex-flow: column;
     align-items: center;
-    background-color: #292121;
-    border: 1px solid #342365AA;
-    border-top: 4px solid black;
+    background-color: #F5E9D3;
+    border: 16px solid #006644;
     padding: 8px;
-    color: aliceblue;
 }
 
 .App-header {
@@ -23,24 +21,23 @@
     color: white;
     padding-left: 16px;
     text-align: left;
-    font-family: 'Open Sans', 'Arial', Arial, sans-serif
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif
 }
 
 H1 {
     margin: 0px;
     margin-bottom: 14px;
     font-size: 24pt;
-    font-family: 'Open Sans', 'Arial', Arial, sans-serif;
-    border-bottom: 1px double #313150;
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
 }
- 
+
 H2 {
     margin: 0px;
-    font-family: 'Open Sans', 'Arial', Arial, sans-serif;
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
-    color:#F5E9C3;
-    padding:0px;
+    color: #F5E9C3;
+    padding: 0px;
 }
 
 p {
