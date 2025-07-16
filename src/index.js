@@ -4,48 +4,28 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Caption from './Caption';
+import MenuBar from './MenuBar';
 import News from './News';
 import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
 import Corona from './Corona';
-import { Link } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-     <div class="countryvideogamesroot">
-        <div class="countryvideogamesnavigation" >
-          <Caption/>
-          <div class="countrytitlespacer">Company</div>
-          <div class="countrylinks3">
-              <Link to="/News">NEWS</Link>
-              <Link to="/About">ABOUT</Link>
-              <Link to="/Privacy">PRIVACY</Link>
-          </div>
-                <div class="countrytitlespacer">Products</div>
-        <div class="countrylinks2">
-            <Link to="/Corona">CORONA</Link>
-            <Link to="/ColorParty">COLOR PARTY</Link>
-        </div>
-          <div class="countrycontainer">
-              <div class="countrytitlebox">
-                  <div class="countrytitle2b">SELECT GRADE</div>
-                  <div class="countrytitle2a">Proudly made</div>
-              </div>
-          </div>
-        </div>
-        <div class="countryvideogamescontent">
-            <Routes>
+        <div class="countryvideogamesroot">
+            <MenuBar/>
+            <div class="countryvideogamescontent">
+                <Routes>
                     <Route exact path="/" element={<News />}/>
                     <Route path="/News" element={<News />} />
-                <Route path="/Privacy" element={<Privacy />} />
-                <Route path="/Corona" element={<Corona />} />
-                <Route path="/ColorParty" element={<ColorParty />} />
-                <Route path="/About" element={<About/>} />
-            </Routes>
-        </div>
+                    <Route path="/Privacy" element={<Privacy />} />
+                    <Route path="/Corona" element={<Corona />} />
+                    <Route path="/ColorParty" element={<ColorParty />} />
+                    <Route path="/About" element={<About/>} />
+                </Routes>
+            </div>
      </div>
    </BrowserRouter>
 );
