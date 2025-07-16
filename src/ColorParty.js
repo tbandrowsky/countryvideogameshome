@@ -5,7 +5,7 @@ import colorpartystore from './images/colorpartymsstore.png'
 
 function ColorParty() {
   return (
-      <div class="pagebackground">
+      <div class="contentbackground">
       <h1>COLOR PARTY can make light shows out of anything that moves</h1>
       <h2>
       Great fun!

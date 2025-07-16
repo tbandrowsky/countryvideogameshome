@@ -2,7 +2,7 @@ import './App.css'
 
 function Corona() {
     return (
-        <div class="pagebackground">
+        <div class="contentbackground">
             <h1>CORONA API Server.</h1>
             <h2>
                 Get the Corona Vibe
@@ -33,7 +33,7 @@ function Corona() {
             <p>
                 Fast and Powerful, Corona can handle thousands of puts per second, and, reads 
                 are far faster.  Using Windows IO completion ports for both disk and network i/o, Corona is 
-                designed to be superior in performance to node.js on Windows.
+                designed to be competitive in performance to node.js on Windows.
             </p>
             <h2>
                 Polymorphic Oriented Programming REST

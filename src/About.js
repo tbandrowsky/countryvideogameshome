@@ -1,7 +1,7 @@
 
 function About() {
   return (
-      <div class="pagebackground">
+      <div class="contentbackground">
       <h1>
       About COUNTRY VIDEO GAMES
       </h1>

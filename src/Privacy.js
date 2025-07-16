@@ -1,7 +1,7 @@
 
 function Privacy() {
   return (
-      <div class="pagebackground">
+      <div class="contentbackground">
       <h1>Country Video Games PRIVACY POLICY</h1>
       <h2>
       Country Video Games is interested in your money, not your data.

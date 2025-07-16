@@ -3,7 +3,7 @@ import colorpartystore from './images/colorpartymsstore.png'
 
 function Home() {
   return (
-      <div class="pagebackground">
+      <div class="contentbackground">
             <h1>Welcome to Country Video Games</h1>
             <h2>All our applications are $1, or close to it.</h2>
 
