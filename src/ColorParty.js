@@ -13,7 +13,7 @@ function ColorParty() {
           <br />
       <a href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">Buy Color Party for your PC</a>
           <br />
-      <p>
+          <p>
               Color Party is an app for Windows you can get from the Microsoft Store.  Color Party reads 
               whatever web cams you have connected, and produces a live light show on screen (or an attacked projector), 
               of everything moving on the camera.
