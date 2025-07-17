@@ -3,10 +3,12 @@ function About() {
   return (
       <div class="contentbackground">
       <h1>
-      About COUNTRY VIDEO GAMES
+      About
       </h1>
-        <h2>I'm Todd Bandrowsky and I'm an indy developer making applications.</h2>
-          <h2>Country Video Games is located in Bowling Green, KY 42101.</h2>
+        <h2>Writers</h2>
+          <h3>Todd Bandrowsky</h3>
+          <p>Todd is the founder of Country Video Games.  He writes applications and services in C++, C#, JavaScript, short stories and poetry.  He's also rumored to have
+learned a few chords on his guitar.</p>
         </div>
   );
 }

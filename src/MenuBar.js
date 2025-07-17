@@ -7,13 +7,13 @@ function MenuBar() {
     return (
         <div class="countryvideogamesnavigation" >
             <Caption />
-            <div class="countrytitlespacer">Company</div>
+            <h2 class="countrytitlespacer">Company</h2>
             <div class="countrylinks3">
                 <Link to="/News">NEWS</Link>
                 <Link to="/About">ABOUT</Link>
                 <Link to="/Privacy">PRIVACY</Link>
             </div>
-            <div class="countrytitlespacer">Products</div>
+            <h2 class="countrytitlespacer">Products</h2>
             <div class="countrylinks2">
                 <Link to="/Corona">CORONA</Link>
                 <Link to="/ColorParty">COLOR PARTY</Link>

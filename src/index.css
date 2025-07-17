@@ -1,3 +1,14 @@
+
+:root {
+    --forest0: rgb(68, 98, 90);
+    --forest1: rgb(32, 64, 61);
+    --forest2: rgb(17, 55, 42);
+    --forest3: rgb(7, 42, 35);
+    --rock0: rgb(173, 172, 151);
+    --rock1: rgb(152, 143, 134);
+    --rock2: rgb(37, 30, 14);
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -15,14 +26,8 @@ code {
     color: floralwhite;
 }
 
-A {
-    font-size: 16px;
-    color: white;
-}
-
 .countryvideogamesroot {
     margin: 0px;
-    color: darkslategrey;
     display: grid;
     grid-template-columns: 350px 1fr;
     grid-template-rows: 1fr;
@@ -34,9 +39,8 @@ A {
 
 .countryvideogamesnavigation {
     margin: 0px;
-    color: darkslategrey;
-    background-color: #006644;
     display: grid;
+    background-color: var(--forest1);
     grid-template-columns: 1fr;
     grid-template-rows: 150.0px 35.0px 105.0px 35.0px 105.0px 1fr;
     grid-column: 1;
@@ -50,7 +54,6 @@ A {
 
 .countryvideogamescontent {
     margin: 0px;
-    color: darkslategrey;
     overflow: auto;
     width: 100%;
     height: 100%;
@@ -61,7 +64,7 @@ A {
 
 .contentbackground {
     background-color: #F5E9D3;
-    border: 32px solid #006644;
+    border: 32px solid var(--forest3);
     padding: 8px;
     height: 100%;
 }
@@ -77,8 +80,9 @@ A {
     font-family: 'Jost';
     text-align: center;
     vertical-align: middle;
+    padding-top:5px;
     color: #D1843D;
-    background-color: darkgreen;
+    background-color: var(--forest1);
     margin-left: 32px;
     margin-right: 32px;
     height:100%;
@@ -168,42 +172,65 @@ A {
     padding-bottom: 8px;
 }
 
-.pagebackground {
-    background-color: #F5E9D3;
-    border: 16px solid #006644;
-    padding: 8px;
-}
-
 H1 {
     margin: 0px;
     margin-bottom: 14px;
     font-size: 24pt;
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
+    color: #D1843D;
+    background-color: var(--forest1);
+    margin-left: -8px;
+    padding: 8px;
 }
 
 H2 {
     margin: 0px;
+    font-size: 20pt;
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: normal;
+    padding: 0px;
+    text-transform: uppercase;
+}
+
+H3 {
+    margin: 0px;
+    font-size: 16pt;
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
     padding: 0px;
 }
 
 p {
-    margin-bottom: 2.0em;
+    margin-bottom: 1.5em;
 }
 
 a {
-    background-color: #44445077;
-    border: 2px solid #38423655;
+    background-color: var(--rock1);
     padding: 3px;
-    color: aliceblue;
+    color: white;
     text-align: center;
+    font-size: 18px;
+    box-shadow: 0 2px #00000044;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border 0.2s ease;
+    text-decoration:none;
+}
+
+a:active {
+    box-shadow: 0 2px #00000044;
+    transform: translateY(3px);
 }
 
 a:hover {
-    background-color: #35A650FF;
+    background-color: var(--rock2);
     border: 2px solid #48524655;
-    padding: 3px;
+    box-shadow: 0 2px #00000044;
+    color: white;
+}
+
+a .selected {
+    background-color: var(--rock2);
+    border: 2px solid #48524655;
+    box-shadow: 0 2px #00000044;
     color: white;
 }
