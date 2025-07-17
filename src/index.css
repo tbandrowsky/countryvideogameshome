@@ -47,6 +47,18 @@ code {
     height: 100%;
 }
 
+.titlearea {
+    height: 120px;
+    vertical-align: middle;
+    background-color: var(--forest1);
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #D1843D;
+    font-size: 42px;
+    margin: 0px;
+}
+
 .countrytitlebox {
     height: 100%;
     vertical-align:bottom;
@@ -64,8 +76,8 @@ code {
 
 .contentbackground {
     background-color: #F5E9D3;
-    border: 32px solid var(--forest3);
-    padding: 8px;
+    border-left: 32px solid var(--forest3);
+    border-right: 32px solid var(--forest3);
     height: 100%;
 }
 
@@ -180,8 +192,6 @@ H1 {
     font-weight: normal;
     color: #D1843D;
     background-color: var(--forest1);
-    margin-left: -8px;
-    padding: 8px;
 }
 
 H2 {

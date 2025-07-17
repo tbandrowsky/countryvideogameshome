@@ -1,5 +1,6 @@
 import './App.css';
 import { Link } from "react-router-dom";
+import TitleBar from "./TitleBar";
 
 let newsItems = [
     {
@@ -27,7 +28,7 @@ function News()
 {
   return (
       <div class="contentbackground">   
-          <h1>NEWS</h1>
+          <TitleBar title="NEWS" />
           {newsItems.map((item) => (
               <div class="newstory">
                   <h3><Link style={{ display: "inline-block", width: "250px" }} to={item.info}>{item.title}</Link></h3>

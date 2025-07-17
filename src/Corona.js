@@ -1,9 +1,10 @@
 import './App.css'
+import TitleBar from './TitleBar'
 
 function Corona() {
     return (
         <div class="contentbackground">
-            <h1>CORONA API Server.</h1>
+            <TitleBar title="CORONA" />
             <h2>
                 Get the Corona Vibe
             </h2>

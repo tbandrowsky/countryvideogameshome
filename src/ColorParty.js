@@ -2,11 +2,12 @@ import './App.css'
 
 import screencap1release1 from './images/screencap1release1.png'
 import colorpartystore from './images/colorpartymsstore.png'
+import TitleBar from './TitleBar'
 
 function ColorParty() {
   return (
       <div class="contentbackground">
-      <h1>COLOR PARTY can make light shows out of anything that moves</h1>
+        <TitleBar title="COLOR PARTY"/>
       <h2>
       Great fun!
           </h2>
