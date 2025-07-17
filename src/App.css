@@ -12,7 +12,6 @@
 
     display: flex;
     flex-flow: column;
-    align-items: center;
     background-color: #F5E9D3;
     border: 32px solid #006644;
     padding: 8px;
