@@ -3,20 +3,20 @@ import './App.css';
 let newsItems = [
     {
         title: "Web Site",
-        info: "Home",
-        url: "https://github.com/tbandrowsky/countryvideogameshome",
+        info: "News",
+        repo: "https://github.com/tbandrowsky/countryvideogameshome",
         description: "Web site getting new look and Corona integration."
     },
     {
         title: "Corona Server",
         info: "Corona",
-        url: "https://github.com/tbandrowsky/countrybit",
+        repo: "https://github.com/tbandrowsky/countrybit",
         description: "Corona gets beta OpenAPI 3.x support.",
         download: "coronaserver.zip"
     },
     {
         title: "Color Party",
-        url: "https://github.com/tbandrowsky/countrybit",
+        repo: "https://github.com/tbandrowsky/countrybit",
         description: "Color Party is hanging out there.  Haven't done anything with it."
     }
 ];
