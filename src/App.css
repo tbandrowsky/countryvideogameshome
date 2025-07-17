@@ -2,22 +2,6 @@
 .App {
 }
 
-.pagebackground {
-    background-color: #F5E9D3;
-    border: 16px solid #006644;
-    padding: 8px;
-}
-
-.contentbackground {
-
-    display: flex;
-    flex-flow: column;
-    background-color: #F5E9D3;
-    border: 32px solid #006644;
-    padding: 8px;
-    height:100%;
-    width:100%;
-}
 
 .App-header {
     background: linear-gradient( #313150, #313150 13%, #101020 100% );
@@ -30,35 +14,11 @@
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif
 }
 
-H1 {
-    margin: 0px;
-    margin-bottom: 14px;
-    font-size: 24pt;
-    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight: normal;
-}
-
-H2 {
-    margin: 0px;
-    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight: normal;
-    padding: 0px;
-}
-
-p {
-    margin-bottom:2.0em;
-}
 
 .signature {
     margin: 0px;
     font-size: 28pt;
     font-family: 'Magneto Bold', 'Brush Script MT', Cambria, Cochin, Georgia, Times, Times New Roman, serif
-}
-
-.background-bottom {
-    width: 100vw;
-    height: 100vh;
-    overflow:clip;
 }
 
 .topspace {
