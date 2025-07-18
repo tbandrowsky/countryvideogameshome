@@ -7,6 +7,7 @@
     --rock0: rgb(173, 172, 151);
     --rock1: rgb(152, 143, 134);
     --rock2: rgb(37, 30, 14);
+    --pageindent: 16px;
 }
 
 body {
@@ -42,7 +43,7 @@ code {
     display: grid;
     background-color: var(--forest1);
     grid-template-columns: 1fr;
-    grid-template-rows: 150.0px 35.0px 105.0px 35.0px 105.0px 1fr;
+    grid-template-rows: 120.0px 35.0px 105.0px 35.0px 105.0px 1fr;
     grid-column: 1;
     height: 100%;
 }
@@ -57,6 +58,7 @@ code {
     color: #D1843D;
     font-size: 42px;
     margin: 0px;
+    padding-left:var(--pageindent)
 }
 
 .countrytitlebox {
@@ -79,6 +81,19 @@ code {
     border-left: 32px solid var(--forest3);
     border-right: 32px solid var(--forest3);
     height: 100%;
+    overflow:auto;
+}
+
+.contentbackground h2 {
+    padding-left: var(--pageindent);
+}
+
+.contentbackground h3 {
+    padding-left: var(--pageindent);
+}
+
+.contentbackground p {
+    padding-left: var(--pageindent);
 }
 
 .countrytitle1 {
@@ -88,15 +103,15 @@ code {
 }
 
 .countrytitlespacer {
-    font-size: 18px;
+    font-size: 24px;
     font-family: 'Jost';
     text-align: center;
     vertical-align: middle;
-    padding-top:5px;
     color: #D1843D;
     background-color: var(--forest1);
     margin-left: 32px;
     margin-right: 32px;
+    margin-top:8px;
     height:100%;
 }
 
@@ -187,6 +202,7 @@ code {
 H1 {
     margin: 0px;
     margin-bottom: 14px;
+    margin-top: 8px;
     font-size: 24pt;
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
@@ -195,7 +211,7 @@ H1 {
 }
 
 H2 {
-    margin: 0px;
+    margin-top:8px;
     font-size: 20pt;
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
