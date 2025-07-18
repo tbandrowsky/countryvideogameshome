@@ -96,6 +96,10 @@ code {
     padding-left: var(--pageindent);
 }
 
+.contentbackground i {
+    padding-left: var(--pageindent);
+}
+
 .countrytitle1 {
     font-size: 42px;
     margin: 0px;
