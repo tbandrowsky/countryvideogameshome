@@ -4,17 +4,17 @@ import TitleBar from "./TitleBar";
 
 let newsItems = [
     {
-        title: "Web Site",
-        info: "/News",
-        repo: "https://github.com/tbandrowsky/countryvideogameshome",
-        description: "Web site getting new look and Corona integration."
-    },
-    {
         title: "Corona Server",
         info: "/Corona",
         repo: "https://github.com/tbandrowsky/countrybit",
         description: "Corona gets beta OpenAPI 3.x support.",
         download: "coronaserver.zip"
+    },
+    {
+        title: "Web Site",
+        info: "/News",
+        repo: "https://github.com/tbandrowsky/countryvideogameshome",
+        description: "Web site getting new look and Corona integration."
     },
     {
         title: "Color Party",
