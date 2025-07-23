@@ -9,9 +9,17 @@ function Corona() {
                 Get the Corona Vibe
             </h2>
             <p>
+                Create a simple JSON schema with incredibly easy syntax, and Corona gives you a working service and an API as you edit your schema.
                 Enter a schema, and Corona implements the database, the services,
                 and even can update your clients using OpenAPI.  Create services instantly.  
                 Edit them as you please.
+            </p>
+            <h2>Get Started</h2>
+            <p>Download zip, extract to folder, and either run from the terminal or invoke the batch. There's a word document that is a manual,
+                and we'll have examples to get you started as we go.  Included are the revolution and insurance schemas presently
+                being discussed on linked in.</p>
+            <p>
+                <a href="coronaserver.zip">Download Corona (7/19/2025)</a>
             </p>
             <h2>
                 Imagine Anything
@@ -69,12 +77,6 @@ function Corona() {
                 Microsoft Windows has fast asynchronous i/o internally, and Corona uses all of it, similar to what Node.js and libuv does, but, 
                 with the disk i/o also included in that same asynchronous i/o stack.
             </p>
-            <h2>Download</h2>
-              <p>Create web apis instantly from a class definition file.</p>
-              <p>Download zip, extract to folder, and either run from the terminal or invoke the batch.</p>
-              <p>
-                  <a href="coronaserver.zip">Download Corona Preview (11/28/2024)</a>
-              </p>
         </div>
     );
 }
