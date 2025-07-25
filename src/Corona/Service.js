@@ -4,7 +4,7 @@ import { AppSettings } from '../AppSettings'
 
 let TokenKey = AppSettings.Authorization.LocalStorageTokenKey;
 
-const callService = function (url, request, config, successMessageText, successMessageTitle, errorMessageText, errorMessageTitle) {
+const callService = function (url, request, config) {
     if (!config) {
         config = {};
     }
@@ -34,14 +34,11 @@ const callService = function (url, request, config, successMessageText, successM
         client
             .request(defaultConfig)
             .then(response => {
-                if (successMessageText || successMessageTitle) {
-                    Alert.succes(successMessageTitle + " : " + successMessageText)
-                }
                 resolve(response);
             })
             .catch(error => {
-                let messageText = errorMessageText || "Unable to complete request";
-                let messageTitle = errorMessageTitle || "Error";
+                let messageText = config.errorMessageText || "Unable to complete request";
+                let messageTitle = config.errorMessageTitle || "Error";
 
                 if (error.response) {
                     // The request was made and the server responded with a status code
@@ -57,4 +54,11 @@ const callService = function (url, request, config, successMessageText, successM
                 resolve();
             });
     });
+};
+
+const coronaLogin = function (url, request, config) {
+    return callService(url, request, config)
+        .then(response => {
+            resolve(response);
+        });
 };
