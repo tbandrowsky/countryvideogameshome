@@ -56,9 +56,72 @@ const callService = function (url, request, config) {
     });
 };
 
-const coronaLogin = function (url, request, config) {
-    return callService(url, request, config)
-        .then(response => {
-            resolve(response);
-        });
+const coronaLoginUser = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaCreateUser = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaSendUserCode = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaConfirmUserCode = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaGetClasses = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaGetClass = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaPutClass = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaGetObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaCreateObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaPutObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaEditObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaRunObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaCreateObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
+};
+
+const coronaDeleteObject = async function (url, request, config) {
+    const response = await callService(url, request, config);
+    return response;
 };
