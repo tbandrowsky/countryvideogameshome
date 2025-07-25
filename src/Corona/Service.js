@@ -116,12 +116,8 @@ const coronaRunObject = async function (url, request, config) {
     return response;
 };
 
-const coronaCreateObject = async function (url, request, config) {
+const coronaQuery = async function (url, request, config) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaDeleteObject = async function (url, request, config) {
-    const response = await callService(url, request, config);
-    return response;
-};
