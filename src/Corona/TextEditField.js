@@ -6,12 +6,29 @@ import InputMask from 'react-input-mask';
 
 export default function TextEditField(props)
 {
+    let placeholder = '';
+    let value = '';
+
+    if ('value' in props) {
+        value = props.value;
+    };
+
+    if ('placeholder' in props) {
+        placeholder = props.placeholder;
+    }
 
     if ('enum' in props) {
-
+        let options = props.enum;
+        return <Typeahead
+            id="basic-typeahead"
+            onChange={setSelected}
+            options={options}
+            placeholder={placeholder} 
+            selected={value} />;
     }
     else if ('input_mask' in props) {
-        return <InputMask mask={props.input_mask} placeholder={props.placeholder} />
+        let input_mask = props.input_mask;
+        return <InputMask mask={input_mask} placeholder={placeholder} />
     }
     else
     {
@@ -20,7 +37,6 @@ export default function TextEditField(props)
         let min_length = 0;
         let match_pattern = '';
         let enum_values = [];
-        let placeholder = '';
 
         if ('format' in props) {
             format = props.format;
@@ -34,8 +50,18 @@ export default function TextEditField(props)
         if ('match_pattern' in props) {
             match_pattern = props.match_pattern;
         }
-        if ('placeholder' in props) {
-            placeholder = props.placeholder;
-        }
+        return <input
+            type="text"
+            className="form-control corona-text-edit-field"
+            placeholder={placeholder}
+            value={value}
+            onChange={(e) => {
+                if (props.onChange) {
+                    props.onChange(e.target.value);
+                }
+            }}
+            maxLength={max_length}
+            minLength={min_length}
+            pattern={match_pattern}/>
     }
 }
