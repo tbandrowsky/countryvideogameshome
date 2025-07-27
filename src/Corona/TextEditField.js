@@ -9,7 +9,12 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 export default function TextEditField(props)
 {
     let placeholder = '';
+    let json_field_name = '';
     let value = '';
+
+    if ('json_field_name' in props) {
+        json_field_name = props.json_field_name;
+    }
 
     if ('value' in props) {
         value = props.value;
@@ -23,7 +28,11 @@ export default function TextEditField(props)
         let options = props.enum;
         return <Typeahead
             id="basic-typeahead"
-            onChange={setSelected}
+            onChange={(e) => {
+                if (props.onChange) {
+                    props.update(json_field_name, e.target.value);
+                }
+            }}
             options={options}
             placeholder={placeholder} 
             selected={value} />;
@@ -34,15 +43,10 @@ export default function TextEditField(props)
     }
     else
     {
-        let format = '';
         let max_length = 0;
         let min_length = 0;
         let match_pattern = '';
-        let enum_values = [];
 
-        if ('format' in props) {
-            format = props.format;
-        }
         if ('max_length' in props) {
             max_length = props.max_length;
         }
@@ -59,7 +63,7 @@ export default function TextEditField(props)
             value={value}
             onChange={(e) => {
                 if (props.onChange) {
-                    props.onChange(e.target.value);
+                    props.update(json_field_name, e.target.value);
                 }
             }}
             maxLength={max_length}

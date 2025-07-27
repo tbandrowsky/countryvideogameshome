@@ -1,5 +1,10 @@
 
 import './CoronaBar.css';
+import TextEditField from "./TextEditField";
+import DoubleEditField from "./DoubleEditField";
+import IntegerEditField from "./IntegerEditField";
+import DateTimeEditField from "./DateTimeEditField";
+import ReferenceEditField from "./ReferenceEditField";
 
 export default function EditField(props) {
     return (
