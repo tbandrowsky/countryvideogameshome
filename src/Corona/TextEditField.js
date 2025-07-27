@@ -1,8 +1,10 @@
 
 
 import './CoronaBar.css';
-import React from 'react';
+import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export default function TextEditField(props)
 {
