@@ -18,7 +18,7 @@ export default function TextEditField(props)
 
     if ('value' in props) {
         value = props.value;
-    };
+    }
 
     if ('placeholder' in props) {
         placeholder = props.placeholder;
@@ -39,7 +39,13 @@ export default function TextEditField(props)
     }
     else if ('input_mask' in props) {
         let input_mask = props.input_mask;
-        return <InputMask mask={input_mask} placeholder={placeholder} />
+        return <InputMask mask={input_mask} placeholder={placeholder} onChange={(e) => {
+            if (props.onChange) {
+                let v = e.target.value || '';
+                props.update(json_field_name, v);
+            }
+        }}
+        />
     }
     else
     {
