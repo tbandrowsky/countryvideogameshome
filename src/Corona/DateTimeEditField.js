@@ -24,7 +24,7 @@ export default function DateTimeEditField(props) {
         placeholder={placeholder}
         value={value}
         onChange={(e) => {
-            if (props.onChange) {
+            if (props.update) {
                 let v = e.target.value;
                 props.update(json_field_name, v);
             }

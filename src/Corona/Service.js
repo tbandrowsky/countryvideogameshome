@@ -1,6 +1,12 @@
 import axios from "axios";
 import { stringify } from "query-string";
 import { AppSettings } from '../AppSettings'
+import { ObjectEdit } from '../AppSettings'
+import { ObjectSearch } from '../AppSettings'
+import { Login } from '../AppSettings'
+import { SendCode } from '../AppSettings'
+import { SetPassword } from '../AppSettings'
+import { CreateAccount } from '../AppSettings'
 
 let TokenKey = AppSettings.Authorization.LocalStorageTokenKey;
 
@@ -56,67 +62,67 @@ const callService = function (url, request, config) {
     });
 };
 
-const coronaLoginUser = async function (url, request, config) {
+const coronaLoginUser = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaCreateUser = async function (url, request, config) {
+const coronaCreateUser = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaSendUserCode = async function (url, request, config) {
+const coronaSendUserCode = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaConfirmUserCode = async function (url, request, config) {
+const coronaConfirmUserCode = async function ( request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaGetClasses = async function (url, request, config) {
+const coronaGetClasses = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaGetClass = async function (url, request, config) {
+const coronaGetClass = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaPutClass = async function (url, request, config) {
+const coronaPutClass = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaGetObject = async function (url, request, config) {
+const coronaGetObject = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaCreateObject = async function (url, request, config) {
+const coronaCreateObject = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaPutObject = async function (url, request, config) {
+const coronaPutObject = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaEditObject = async function (url, request, config) {
+const coronaEditObject = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaRunObject = async function (url, request, config) {
+const coronaRunObject = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaQuery = async function (url, request, config) {
+const coronaQuery = async function (request) {
     const response = await callService(url, request, config);
     return response;
 };

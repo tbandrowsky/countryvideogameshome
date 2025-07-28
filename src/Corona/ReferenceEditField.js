@@ -21,11 +21,10 @@ export default function ReferenceEditField(props) {
         placeholder={placeholder}
         value={value}
         onChange={(e) => {
-            if (props.onChange) {
+            if (props.update) {
                 let v = tryParseDouble(e.target.value, 0);
                 props.update(json_field_name, v);
             }
         }}
-        pattern={match_pattern} />
+        />
 }
-
