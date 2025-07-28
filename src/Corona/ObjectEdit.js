@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import './CoronaBar.css';
 import './EditForm.css';
 import EditForm from './EditForm.js';
+import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 export default function ObjectEdit(props) {
 
@@ -24,7 +26,19 @@ export default function ObjectEdit(props) {
             <div class="countrytitle1">{props.applicationName}</div>
             <div class="countrytitle1">{props.formName}</div>
             <EditForm {...new_props} />
-            <div class=""/>
+            {(tab_fields.length > 0) && <Tabs>
+                <TabList>
+                    {tab_fields.map((field, index) => <Tab key={index}>{field.jsonFieldName}</Tab>)}
+                </TabList>
+
+                {tab_fields.map((field, index) =>
+                    <TabPanel key={index}>
+                        {field.field_type === "object" && <EditForm key={index} />}
+                        {field.field_type === "array" && <SearchForm key={index} />}
+                    </TabPanel>)
+                }
+
+            </Tabs>}
         </div>
     );
 }
