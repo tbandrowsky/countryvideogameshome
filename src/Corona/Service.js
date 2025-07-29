@@ -73,6 +73,7 @@ export const coronaLoginUser = async function (request) {
         else
         {
             result.form = "login";
+            result.form_props = {}; // that is the pattern
         }
     }
     else
@@ -80,6 +81,7 @@ export const coronaLoginUser = async function (request) {
         result.success = false;
         result.message = "Could not login";
         result.form = "login";
+        result.form_props = {}; // that is the pattern
     }
 
     return response;
