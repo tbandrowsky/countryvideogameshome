@@ -28,8 +28,8 @@ export default function ObjectEdit(props) {
             {(child_objects.length > 0) && <div class="countrybitformsection">
                 {child_objects.map((field, index) => {
                     if (field.field_type === "object")
-                        return <ObjectEdit key={index} />
-                    return <SearchForm key={index} />
+                        return <ObjectEdit props={{ ...field, index }} />
+                    return <SearchForm props={{ ...field, index }} />
                 })}
             </div>}
         </div>

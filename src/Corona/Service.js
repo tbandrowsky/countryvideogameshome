@@ -1,14 +1,6 @@
 import axios from "axios";
 import { stringify } from "query-string";
 import { AppSettings } from '../AppSettings'
-import { ObjectEdit } from '../AppSettings'
-import { ObjectSearch } from '../AppSettings'
-import { Login } from '../AppSettings'
-import { SendCode } from '../AppSettings'
-import { SetPassword } from '../AppSettings'
-import { CreateAccount } from '../AppSettings'
-
-let TokenKey = AppSettings.Authorization.LocalStorageTokenKey;
 
 const callService = function (url, request, config) {
     if (!config) {
@@ -20,7 +12,7 @@ const callService = function (url, request, config) {
         baseURL: AppSettings.GetBaseUrl(),
         headers: {
             "Content-Type": config.headers && config.headers["Content-Type"] ? config.headers["Content-Type"] : "application/json",
-            Authorization: sessionStorage.getItem(TokenKey) ? `Bearer ${sessionStorage.getItem(TokenKey)}` : ""
+            Authorization: sessionStorage.getItem(AppSettings.TokenKey) ? `Bearer ${sessionStorage.getItem(AppSettings.TokenKey)}` : ""
         },
         timeout: config.timeout || 60000,
         responseType: config.responseType || "json",
@@ -62,67 +54,114 @@ const callService = function (url, request, config) {
     });
 };
 
-const coronaLoginUser = async function (request) {
+export const coronaLoginUser = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/login/loginuser/";
+    const config = {};
+    const response = await callService(url, request, config);
+
+    let result = {};
+
+    if (response && response.data)
+    {
+        result.success = response.data.success;
+        result.message = response.data.message;
+
+    }
+    else
+    {
+
+    }
+
+    return response;
+};
+
+export const coronaCreateUser = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/login/createuser/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaCreateUser = async function (request) {
+export const coronaSendUserCode = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/login/senduser/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaSendUserCode = async function (request) {
+export const coronaConfirmUserCode = async function ( request) {
+    const url = AppSettings.GetBaseUrl() + "/login/confirmuser/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaConfirmUserCode = async function ( request) {
+export const coronaSetPassword = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/login/passworduser/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaGetClasses = async function (request) {
+export const coronaGetClasses = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/classes/get/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaGetClass = async function (request) {
+export const coronaGetClass = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/classes/get/details/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaPutClass = async function (request) {
+export const coronaPutClass = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/classes/put/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaGetObject = async function (request) {
+export const coronaGetObject = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/objects/get/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaCreateObject = async function (request) {
+export const coronaCreateObject = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/objects/create/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaPutObject = async function (request) {
+export const coronaPutObject = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/objects/put/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaEditObject = async function (request) {
+export const coronaEditObject = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/objects/edit/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaRunObject = async function (request) {
+export const coronaRunObject = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/objects/run/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
 
-const coronaQuery = async function (request) {
+export const coronaQuery = async function (request) {
+    const url = AppSettings.GetBaseUrl() + "/objects/query/";
+    const config = {};
     const response = await callService(url, request, config);
     return response;
 };
