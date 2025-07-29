@@ -65,11 +65,20 @@ export const coronaLoginUser = async function (request) {
     {
         result.success = response.data.success;
         result.message = response.data.message;
-
+        if (result.success) {
+            sessionStorage.setItem(AppSettings.TokenKey, response.data.token);
+            result.use_form = "home";
+        }
+        else
+        {
+            result.use_form = "login";
+        }
     }
     else
     {
-
+        result.success = false;
+        result.message = "Could not login";
+        result.use_form = "login";
     }
 
     return response;
