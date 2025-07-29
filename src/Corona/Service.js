@@ -67,18 +67,19 @@ export const coronaLoginUser = async function (request) {
         result.message = response.data.message;
         if (result.success) {
             sessionStorage.setItem(AppSettings.TokenKey, response.data.token);
-            result.use_form = "home";
+            result.form = "home";
+            result.form_props = {}; // that is the pattern
         }
         else
         {
-            result.use_form = "login";
+            result.form = "login";
         }
     }
     else
     {
         result.success = false;
         result.message = "Could not login";
-        result.use_form = "login";
+        result.form = "login";
     }
 
     return response;
