@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 export default function Login(props) {
 
     const [request, setRequest] = useState({});
-    const [error, setError] = useState({});
+    const [error, setError] = useState({ success:false, message:"", inProgress:false });
 
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
@@ -30,19 +30,18 @@ export default function Login(props) {
     return (
         <div class="contentbackground">
             <CoronaBar applicationName={props.applicationName} formName="LOGIN" />
-            <Error success={error.success} message={error.message} />
+            <Error {...error} />
             <EditForm {...edit_props} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
-                        console.log("Login request", request);
+                        setError({ success: true, message: "Attempting to login", inProgress:true });
                         let response = await coronaLoginUser(request);
-                        setError({ error: !response.success, message: response.message });
-                        console.log("Login response", response);
+                        setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
                 }>LOGIN</button>
-                <button id="createUserButton" onClick={
+                <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Corona/CreateAccount');
                     }
