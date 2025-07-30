@@ -1,5 +1,6 @@
 import './App.css'
 import TitleBar from './TitleBar'
+import { Link } from "react-router-dom";
 
 function Corona() {
     return (
@@ -20,6 +21,9 @@ function Corona() {
                 being discussed on linked in.</p>
             <p>
                 <a href="coronaserver.zip">Download Corona (7/19/2025)</a>
+            </p>
+            <p>
+                <Link style={{ display: "inline-block", width: "250px" }} to="/Corona/Login">Sample Corona Application</Link>
             </p>
             <h2>
                 Imagine Anything

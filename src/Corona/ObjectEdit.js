@@ -24,6 +24,7 @@ export default function ObjectEdit(props) {
         <div class="EditForm">
             <div class="countrytitle1">{props.applicationName}</div>
             <div class="countrytitle1">{props.formName}</div>
+            {props.error && <div class="error_message">{props.error}</div>}
             <EditForm {...new_props} />
             {(child_objects.length > 0) && <div class="countrybitformsection">
                 {child_objects.map((field, index) => {

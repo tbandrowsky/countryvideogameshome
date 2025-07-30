@@ -68,12 +68,18 @@ export const coronaLoginUser = async function (request) {
         if (result.success) {
             sessionStorage.setItem(AppSettings.TokenKey, response.data.token);
             result.form = "home";
-            result.form_props = {}; // that is the pattern
+            result.form_props = {
+                success: true,
+                message: response.data.message
+            }; // that is the pattern
         }
         else
         {
             result.form = "login";
-            result.form_props = {}; // that is the pattern
+            result.form_props = {
+                success: false,
+                message: response.data.message || "Could not login"
+            }; // that is the pattern
         }
     }
     else
@@ -89,91 +95,117 @@ export const coronaLoginUser = async function (request) {
 
 export const coronaCreateUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/createuser/";
-    const config = {};
+    const config = {
+        token:sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaSendUserCode = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/senduser/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaConfirmUserCode = async function ( request) {
     const url = AppSettings.GetBaseUrl() + "/login/confirmuser/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaSetPassword = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/passworduser/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaGetClasses = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/get/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaGetClass = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/get/details/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaPutClass = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/put/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaGetObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/get/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaCreateObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/create/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaPutObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/put/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaEditObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/edit/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaRunObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/run/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
 
 export const coronaQuery = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/query/";
-    const config = {};
+    const config = {
+        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
+    };
     const response = await callService(url, request, config);
     return response;
 };
