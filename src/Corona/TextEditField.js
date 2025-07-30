@@ -1,6 +1,4 @@
 
-
-
 import '../App.css'
 import '../index.css'
 import './CoronaBar.css';
@@ -13,43 +11,41 @@ export default function TextEditField(props)
 {
     let placeholder = '';
     let json_field_name = '';
-    let value = '';
+    let field_props = props.field || {};
 
-    if ('json_field_name' in props) {
-        json_field_name = props.json_field_name;
+    console.log("TextEditField props", field_props);
+
+    if ('json_field_name' in field_props) {
+        json_field_name = field_props.json_field_name;
     }
 
-    if ('value' in props) {
-        value = props.value;
+    if ('placeholder' in field_props) {
+        placeholder = field_props.placeholder;
     }
 
-    if ('placeholder' in props) {
-        placeholder = props.placeholder;
-    }
-
-    if ('enum' in props) {
+    if ('enum' in field_props) {
         console.log("enum in props");
-        let options = props.enum;
+        let options = field_props.enum;
         return <Typeahead
             id="basic-typeahead"
+            selected={props.get_value(json_field_name)}
             onChange={(e) => {
-                if (props.onChange) {
-                    props.update(json_field_name, e.target.value);
-                }
+                props.put_value(json_field_name, e.target.value);
             }}
             options={options}
-            placeholder={placeholder} 
-            selected={value} />;
+            placeholder={placeholder}
+        />;
     }
-    else if ('input_mask' in props) {
-        let input_mask = props.input_mask;
-        return <InputMask mask={input_mask} placeholder={placeholder} onChange={(e) => {
-            if (props.onChange) {
-                let v = e.target.value || '';
-                props.update(json_field_name, v);
-            }
-        }}
-        />
+    else if ('input_mask' in field_props) {
+        let input_mask = field_props.input_mask;
+        return <InputMask
+            mask={input_mask}
+            placeholder={placeholder}
+            value={props.get_value(json_field_name)}
+            onChange={(e) => {
+                props.put_value(json_field_name, e.target.value);
+            }}
+        />;
     }
     else
     {
@@ -70,11 +66,9 @@ export default function TextEditField(props)
             type="text"
             className="form-control corona-text-edit-field"
             placeholder={placeholder}
-            value={value}
+            value={props.get_value(json_field_name)}
             onChange={(e) => {
-                if (props.onChange) {
-                    props.update(json_field_name, e.target.value);
-                }
+                props.put_value(json_field_name, e.target.value);
             }}
             maxLength={max_length}
             minLength={min_length}
