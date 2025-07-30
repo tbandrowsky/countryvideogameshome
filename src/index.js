@@ -11,7 +11,8 @@ import About from './About';
 import ColorParty from './ColorParty';
 import Corona from './Corona';
 import Home from './Corona/Home';
-import Classes from './Corona/Classes';
+import ClassSearch from './Corona/ClassSearch';
+import ClassEdit from './Corona/ClassEdit';
 import CreateAccount from './Corona/CreateAccount';
 import Login from './Corona/Login';
 import SetPassword from './Corona/SetPassword';
@@ -38,6 +39,7 @@ root.render(
                     <Route path="/Corona/SendCode" element={<SendCode />} />
                     <Route path="/Corona/ObjectEdit" element={<ObjectEdit />} />
                     <Route path="/Corona/ObjectSearch" element={<ObjectSearch />} />
+                    <Route path="/Corona/ClassSearch" element={<ClassSearch />} />
                 </Routes>
             </div>
      </div>

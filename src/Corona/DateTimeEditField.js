@@ -1,7 +1,7 @@
 
 import './CoronaBar.css';
 import React, { useState } from 'react';
-import Datetime from 'react-datetime';
+import DateTime from 'react-datetime';
 
 export default function DateTimeEditField(props) {
     let placeholder = '';

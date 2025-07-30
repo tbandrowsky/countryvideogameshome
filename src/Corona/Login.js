@@ -1,25 +1,21 @@
 /* eslint-disable react/jsx-no-undef */
-import { useState, useEffect } from 'react';
 import './CoronaBar.css';
 import './EditForm.css';
 import EditForm from './EditForm.js';
-import 'react-tabs/style/react-tabs.css';
 import { coronaLoginUser } from './Service.js';
-import { AppSettings } from '../AppSettings.js'; 
 import { useNavigate } from "react-router";
 
 export default function Login(props) {
 
     let edit_props = { 
-        fields: [
-            { json_field_name: "username", field_type: "text", placeholder: "Username", max_length: 50, min_length: 3 }, 
-            { json_field_name: "password", field_type: "text", placeholder: "Password", max_length: 50, min_length: 3 }
+        body_fields: [
+            { json_field_name: "username", field_type: "string", placeholder: "Username", max_length: 50, min_length: 3 }, 
+            { json_field_name: "password", field_type: "string", placeholder: "Password", max_length: 50, min_length: 3 }
         ],
         data: {},
         update: function (json_field_name, value) {
-            if (field.json_field_name === json_field_name) {
-                data[json_field_name] = value;
-                break;
+            if (edit_props.field.json_field_name === json_field_name) {
+                edit_props.data[json_field_name] = value;
             }
         },
     };

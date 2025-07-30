@@ -10,12 +10,12 @@ export default function EditField(props) {
     return (
         <div class="edit_field_container">
             <label class="edit_field_label"></label>
-            {(props.field_type === "string") && <TextEditField {...props} />}
-            {(props.field_type === "double") && <DoubleEditField {...props} />}
-            {(props.field_type === "number") && <DoubleEditField {...props} />}
-            {(props.field_type === "int64") && <IntegerEditField {...props} />}
-            {(props.field_type === "datetime") && <DateTimeEditField {...props} />}
-            {(props.field_type === "reference") && <ReferenceEditField {...props} />}
+            {(props.field.field_type === "string") && <TextEditField {...props} />}
+            {(props.field.field_type === "double") && <DoubleEditField {...props} />}
+            {(props.field.field_type === "number") && <DoubleEditField {...props} />}
+            {(props.field.field_type === "int64") && <IntegerEditField {...props} />}
+            {(props.field.field_type === "datetime") && <DateTimeEditField {...props} />}
+            {(props.field.field_type === "reference") && <ReferenceEditField {...props} />}
         </div>
     );
 }

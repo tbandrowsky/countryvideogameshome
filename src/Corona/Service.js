@@ -1,63 +1,33 @@
-import axios from "axios";
-import { stringify } from "query-string";
-import { AppSettings } from '../AppSettings'
+import { AppSettings } from './AppSettings'
 
-const callService = function (url, request, config) {
-    if (!config) {
-        config = {};
-    }
-    let defaultConfig = {
-        method: config.method || "get",
-        url: url,
-        baseURL: AppSettings.GetBaseUrl(),
-        headers: {
-            "Content-Type": config.headers && config.headers["Content-Type"] ? config.headers["Content-Type"] : "application/json",
-            Authorization: sessionStorage.getItem(AppSettings.TokenKey) ? `Bearer ${sessionStorage.getItem(AppSettings.TokenKey)}` : ""
-        },
-        timeout: config.timeout || 60000,
-        responseType: config.responseType || "json",
-        responseEncoding: config.responseEncoding || "utf8",
-        maxContentLength: config.maxContentLength || 4000,
-        paramsSerializer: function (params) {
-            return stringify(params, { arrayFormat: "index" });
+const callService = async function (url, request) {
+    let response = {};
+    try
+    {
+        let these_headers = {
+            'Content-Type': 'application/json'
         }
-    };
-    if (defaultConfig.method === "get") {
-        defaultConfig.params = request;
-    } else {
-        defaultConfig.data = request;
+        let token = sessionStorage.getItem(AppSettings.TokenKey);
+        if (token) {
+            these_headers['Authorization'] = "Bearer " + token;
+        }
+        response = await fetch(url, {
+            method: 'POST',
+            headers: these_headers,
+            body: JSON.stringify(request) // Send JSON data
+        });
     }
-    const client = axios.create(defaultConfig);
-    return new Promise(resolve => {
-        client
-            .request(defaultConfig)
-            .then(response => {
-                resolve(response);
-            })
-            .catch(error => {
-                let messageText = config.errorMessageText || "Unable to complete request";
-                let messageTitle = config.errorMessageTitle || "Error";
-
-                if (error.response) {
-                    // The request was made and the server responded with a status code
-                    // that falls out of the range of 2xx
-                    if (error.response.status == 401) {
-                        messageText = "You are not logged in";
-                        messageTitle = "Unauthorized";
-                    } else if (error.response.status == 403) {
-                        messageText = "Access Denied";
-                        messageTitle = "Forbidden";
-                    }
-                }
-                resolve();
-            });
-    });
-};
+    catch (error)
+    {
+        response.success = false;
+        response.message = "Error calling service: " + error;
+    }
+    return response;
+}
 
 export const coronaLoginUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/loginuser/";
-    const config = {};
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
 
     let result = {};
 
@@ -95,118 +65,78 @@ export const coronaLoginUser = async function (request) {
 
 export const coronaCreateUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/createuser/";
-    const config = {
-        token:sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaSendUserCode = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/senduser/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaConfirmUserCode = async function ( request) {
     const url = AppSettings.GetBaseUrl() + "/login/confirmuser/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaSetPassword = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/passworduser/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaGetClasses = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/get/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaGetClass = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/get/details/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaPutClass = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/put/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaGetObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/get/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaCreateObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/create/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaPutObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/put/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaEditObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/edit/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaRunObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/run/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
 
 export const coronaQuery = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/query/";
-    const config = {
-        token: sessionStorage.setItem(AppSettings.TokenKey, response.data.token)
-    };
-    const response = await callService(url, request, config);
+    const response = await callService(url, request);
     return response;
 };
-

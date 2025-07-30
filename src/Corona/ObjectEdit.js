@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
-import { useState, useEffect } from 'react';
 import './CoronaBar.css';
 import './EditForm.css';
 import EditForm from './EditForm.js';
-import 'react-tabs/style/react-tabs.css';
 
 export default function ObjectEdit(props) {
 

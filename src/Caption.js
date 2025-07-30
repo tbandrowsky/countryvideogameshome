@@ -1,10 +1,10 @@
 import './Caption.css';
 
 function Caption() {
-  return (
-    <div class="Caption">
-          <div class="countrytitle1">COUNTRY</div>
-          <div class="countrytitle1">VIDEOGAMES</div>         
+    return (
+        <div className="Caption">
+            <div className="countrytitle1">COUNTRY</div>
+            <div className="countrytitle1">VIDEOGAMES</div>
     </div>
   );
 }

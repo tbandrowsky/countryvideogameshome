@@ -25,6 +25,7 @@ export default function TextEditField(props)
     }
 
     if ('enum' in props) {
+        console.log("enum in props");
         let options = props.enum;
         return <Typeahead
             id="basic-typeahead"
@@ -49,7 +50,7 @@ export default function TextEditField(props)
     }
     else
     {
-        let max_length = 0;
+        let max_length = 100;
         let min_length = 0;
         let match_pattern = '';
 
