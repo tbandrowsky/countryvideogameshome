@@ -1,5 +1,8 @@
 
 
+
+import '../App.css'
+import '../index.css'
 import './CoronaBar.css';
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';

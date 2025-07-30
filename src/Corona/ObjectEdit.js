@@ -1,3 +1,7 @@
+
+
+import '../App.css'
+import '../index.css'
 /* eslint-disable react/jsx-no-undef */
 import './CoronaBar.css';
 import './EditForm.css';

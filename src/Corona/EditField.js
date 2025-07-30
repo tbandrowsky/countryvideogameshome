@@ -1,5 +1,5 @@
 
-import './CoronaBar.css';
+import './EditField.css';
 import TextEditField from "./TextEditField";
 import DoubleEditField from "./DoubleEditField";
 import IntegerEditField from "./IntegerEditField";
@@ -8,8 +8,8 @@ import ReferenceEditField from "./ReferenceEditField";
 
 export default function EditField(props) {
     return (
-        <div class="edit_field_container">
-            <label class="edit_field_label"></label>
+        <div className="edit_field_container">
+            <label className="edit_field_label">{props.field.placeholder}</label>
             {(props.field.field_type === "string") && <TextEditField {...props} />}
             {(props.field.field_type === "double") && <DoubleEditField {...props} />}
             {(props.field.field_type === "number") && <DoubleEditField {...props} />}

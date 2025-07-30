@@ -1,6 +1,7 @@
-/* eslint-disable react/jsx-no-undef */
-import './CoronaBar.css';
-import './EditForm.css';
+
+import '../App.css'
+import '../index.css'
+import CoronaBar from './CoronaBar.js';
 import EditForm from './EditForm.js';
 import { coronaLoginUser } from './Service.js';
 import { useNavigate } from "react-router";
@@ -23,7 +24,8 @@ export default function Login(props) {
     let nav = useNavigate();
 
     return (
-        <div class="login_form">
+        <div class="contentbackground">
+            <CoronaBar props={{ applicationName: props.applicationName, formName:"Login" }} />
             <h2 class="countrytitle1">{props.applicationName}</h2>
             <h3 class="countrytitle1">Login</h3>
             <EditForm {...edit_props} />
