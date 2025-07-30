@@ -35,10 +35,12 @@ root.render(
                     <Route path="/About" element={<About />} />
                     <Route path="/Corona/Home" element={<Home />} />
                     <Route path="/Corona/Login" element={<Login />} />
+                    <Route path="/Corona/CreateAccount" element={<CreateAccount />} />
                     <Route path="/Corona/SetPassword" element={<SetPassword />} />
                     <Route path="/Corona/SendCode" element={<SendCode />} />
                     <Route path="/Corona/ObjectEdit" element={<ObjectEdit />} />
                     <Route path="/Corona/ObjectSearch" element={<ObjectSearch />} />
+                    <Route path="/Corona/ClassEdit" element={<ClassEdit />} />
                     <Route path="/Corona/ClassSearch" element={<ClassSearch />} />
                 </Routes>
             </div>

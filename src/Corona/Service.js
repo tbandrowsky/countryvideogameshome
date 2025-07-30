@@ -14,7 +14,8 @@ const callService = async function (url, request) {
         response = await fetch(url, {
             method: 'POST',
             headers: these_headers,
-            body: JSON.stringify(request) // Send JSON data
+            body: JSON.stringify(request), // Send JSON data
+            signal: AbortSignal.timeout(5000) // 5 seconds timeout
         });
     }
     catch (error)
@@ -28,6 +29,7 @@ const callService = async function (url, request) {
 export const coronaLoginUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/loginuser/";
     const response = await callService(url, request);
+    console.log("Login response", response);
 
     let result = {};
 
@@ -37,7 +39,7 @@ export const coronaLoginUser = async function (request) {
         result.message = response.data.message;
         if (result.success) {
             sessionStorage.setItem(AppSettings.TokenKey, response.data.token);
-            result.form = "home";
+            result.form = "/Corona/Home";
             result.form_props = {
                 success: true,
                 message: response.data.message
@@ -45,7 +47,7 @@ export const coronaLoginUser = async function (request) {
         }
         else
         {
-            result.form = "login";
+            result.form = "/Corona/Login";
             result.form_props = {
                 success: false,
                 message: response.data.message || "Could not login"
@@ -56,11 +58,11 @@ export const coronaLoginUser = async function (request) {
     {
         result.success = false;
         result.message = "Could not login";
-        result.form = "login";
+        result.form = "/Corona/Login";
         result.form_props = {}; // that is the pattern
     }
 
-    return response;
+    return result;
 };
 
 export const coronaCreateUser = async function (request) {
