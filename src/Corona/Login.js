@@ -25,9 +25,7 @@ export default function Login(props) {
 
     return (
         <div class="contentbackground">
-            <CoronaBar props={{ applicationName: props.applicationName, formName:"Login" }} />
-            <h2 class="countrytitle1">{props.applicationName}</h2>
-            <h3 class="countrytitle1">Login</h3>
+            <CoronaBar applicationName={props.applicationName} formName="Login" />
             <EditForm {...edit_props} />
             <div>
                 <button id="loginButton" onClick={
