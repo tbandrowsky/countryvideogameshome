@@ -27,7 +27,7 @@ export default function Login(props) {
         <div class="contentbackground">
             <CoronaBar applicationName={props.applicationName} formName="Login" />
             <EditForm {...edit_props} />
-            <div>
+            <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
                         let request = this.edit_props.data;

@@ -67,7 +67,7 @@ export default function DoubleEditField(props) {
                     let v = tryParseDouble(e.target.value, 0);
                     props.update(json_field_name, v);
                 }
-            }}
+            }} 
             pattern={match_pattern} />
     }
 }

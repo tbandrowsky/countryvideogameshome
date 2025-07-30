@@ -9,13 +9,13 @@ import ReferenceEditField from "./ReferenceEditField";
 export default function EditField(props) {
     return (
         <div className="edit_field_container">
-            <label className="edit_field_label">{props.field.placeholder}</label>
-            {(props.field.field_type === "string") && <TextEditField {...props} />}
-            {(props.field.field_type === "double") && <DoubleEditField {...props} />}
-            {(props.field.field_type === "number") && <DoubleEditField {...props} />}
-            {(props.field.field_type === "int64") && <IntegerEditField {...props} />}
-            {(props.field.field_type === "datetime") && <DateTimeEditField {...props} />}
-            {(props.field.field_type === "reference") && <ReferenceEditField {...props} />}
+            <p><label className="edit_field_label">{props.field.placeholder}</label></p>
+            <p>{(props.field.field_type === "string") && <TextEditField {...props} />}</p>
+            <p>{(props.field.field_type === "double") && <DoubleEditField {...props} />}</p>
+            <p>{(props.field.field_type === "number") && <DoubleEditField {...props} />}</p>
+            <p>{(props.field.field_type === "int64") && <IntegerEditField {...props} />}</p>
+            <p>{(props.field.field_type === "datetime") && <DateTimeEditField {...props} />}</p>
+            <p>{(props.field.field_type === "reference") && <ReferenceEditField {...props} />}</p>
         </div>
     );
 }

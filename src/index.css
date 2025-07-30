@@ -264,3 +264,43 @@ a .selected {
     box-shadow: 0 2px #00000044;
     color: white;
 }
+
+
+.buttonBar {
+    margin-left: 16px;
+    margin-top: 24px;
+}
+
+
+button {
+    background-color: var(--rock1);
+    padding: 3px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 2px #00000044;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border 0.2s ease;
+    text-decoration: none;
+    width: 150px;
+    margin-right: 8px;
+}
+
+button:active {
+    box-shadow: 0 2px #00000044;
+    transform: translateY(3px);
+}
+
+button:hover {
+    background-color: var(--rock2);
+    border: 2px solid #48524655;
+    box-shadow: 0 2px #00000044;
+    color: white;
+}
+
+button .selected {
+    background-color: var(--rock2);
+    border: 2px solid #48524655;
+    box-shadow: 0 2px #00000044;
+    color: white;
+}
+
