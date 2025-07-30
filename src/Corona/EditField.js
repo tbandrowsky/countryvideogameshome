@@ -7,6 +7,7 @@ import DateTimeEditField from "./DateTimeEditField";
 import ReferenceEditField from "./ReferenceEditField";
 
 export default function EditField(props) {
+
     return (
         <div className="edit_field_container">
             <p><label className="edit_field_label">{props.field.placeholder}</label></p>

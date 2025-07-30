@@ -13,19 +13,14 @@ export default function Login(props) {
             { json_field_name: "username", field_type: "string", placeholder: "Username", max_length: 50, min_length: 3 }, 
             { json_field_name: "password", field_type: "string", placeholder: "Password", max_length: 50, min_length: 3 }
         ],
-        data: {},
-        update: function (json_field_name, value) {
-            if (edit_props.field.json_field_name === json_field_name) {
-                edit_props.data[json_field_name] = value;
-            }
-        },
+        data: {}
     };
 
     let nav = useNavigate();
 
     return (
         <div class="contentbackground">
-            <CoronaBar applicationName={props.applicationName} formName="Login" />
+            <CoronaBar applicationName={props.applicationName} formName="LOGIN" />
             <EditForm {...edit_props} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
