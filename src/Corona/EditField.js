@@ -10,7 +10,7 @@ export default function EditField(props) {
 
     return (
         <div className="edit_field_container">
-            <p><label className="edit_field_label">{props.field.placeholder}</label></p>
+            <h2 className="countrylabelright">{props.field.placeholder}</h2>
             <p>{(props.field.field_type === "string") && <TextEditField {...props} />}</p>
             <p>{(props.field.field_type === "double") && <DoubleEditField {...props} />}</p>
             <p>{(props.field.field_type === "number") && <DoubleEditField {...props} />}</p>

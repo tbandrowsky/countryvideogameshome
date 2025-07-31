@@ -34,7 +34,7 @@ root.render(
                     <Route path="/ColorParty" element={<ColorParty />} />
                     <Route path="/About" element={<About />} />
                     <Route path="/Corona/Home" element={<Home />} />
-                    <Route path="/Corona/Login" element={<Login />} />
+                    <Route path="/Corona/Login" element={<Login applicationName="REVOLUTION" />} />
                     <Route path="/Corona/CreateAccount" element={<CreateAccount />} />
                     <Route path="/Corona/SetPassword" element={<SetPassword />} />
                     <Route path="/Corona/SendCode" element={<SendCode />} />

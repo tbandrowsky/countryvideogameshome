@@ -32,6 +32,7 @@ export default function Login(props) {
             <CoronaBar applicationName={props.applicationName} formName="LOGIN" />
             <Error {...error} />
             <EditForm {...edit_props} />
+            <h2 className="countrylabelright">ACT</h2>
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
@@ -40,12 +41,12 @@ export default function Login(props) {
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
-                }>LOGIN</button>
+                }>LOGIN</button>                
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Corona/CreateAccount');
                     }
-                }>REGISTER</button>
+                }>ENLIST</button>
             </div>
         </div>
     );

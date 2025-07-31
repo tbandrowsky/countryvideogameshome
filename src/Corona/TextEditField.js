@@ -64,7 +64,7 @@ export default function TextEditField(props)
         }
         return <input
             type="text"
-            className="form-control corona-text-edit-field"
+            className="text-edit-field"
             placeholder={placeholder}
             value={props.get_value(json_field_name)}
             onChange={(e) => {
