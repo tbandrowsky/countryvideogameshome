@@ -21,6 +21,12 @@ function Corona() {
             <p>
                 <a href="coronaserver.zip">Download Corona (8/1/2025)</a>
             </p>
+            <p>
+                <a href="corona_quickstart.pdf">Install Corona on Azure (7/23/2025)</a>
+            </p>
+            <p>
+                <a href="corona_manual.pdf">Corona Manual (7/23/2025)</a>
+            </p>
             <h2>
                 Imagine Anything
             </h2>
