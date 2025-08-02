@@ -19,7 +19,7 @@ function Corona() {
                 and we'll have examples to get you started as we go.  Included are the revolution and insurance schemas presently
                 being discussed on linked in.</p>
             <p>
-                <a href="coronaserver.zip">Download Corona (8/1/2025)</a>
+                <a href="coronaserver.zip">Download Corona (8/1/2025) [including azure fixes]</a>
             </p>
             <p>
                 <a href="corona_quickstart.pdf">Install Corona on Azure (7/23/2025)</a>
