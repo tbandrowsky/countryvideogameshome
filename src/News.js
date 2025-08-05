@@ -7,7 +7,7 @@ let newsItems = [
         title: "Corona Server",
         info: "/Corona",
         repo: "https://github.com/tbandrowsky/countrybit",
-        description: "Corona gets beta OpenAPI 3.x support, and an installer.",
+        description: "Corona gets beta OpenAPI 3.x support, and an installer, plus some internal queue fixes",
         download: "coronaserver.zip"
     },
     {
