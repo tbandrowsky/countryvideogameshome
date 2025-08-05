@@ -7,7 +7,7 @@ let newsItems = [
         title: "Corona Server",
         info: "/Corona",
         repo: "https://github.com/tbandrowsky/countrybit",
-        description: "Corona gets beta OpenAPI 3.x support, and an installer, plus some internal queue fixes",
+        description: "Corona gets beta OpenAPI 3.x support, and an installer. Working on a 56 core Windows Standard Server 2022, a 2 core Azure VM with Windows DataCenter Server 2022, and Windows 11 Professional.",
         download: "coronaserver.zip"
     },
     {
