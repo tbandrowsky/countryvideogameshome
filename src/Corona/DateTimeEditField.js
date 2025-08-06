@@ -1,6 +1,5 @@
 
 import './CoronaBar.css';
-import React, { useState } from 'react';
 import DateTime from 'react-datetime';
 
 export default function DateTimeEditField(props) {

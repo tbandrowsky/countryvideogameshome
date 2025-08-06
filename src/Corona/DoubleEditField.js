@@ -1,7 +1,7 @@
 
 
 import './CoronaBar.css';
-import React, { useState } from 'react';
+import React from 'react';
 import InputMask from 'react-input-mask';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';

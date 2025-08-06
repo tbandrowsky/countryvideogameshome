@@ -2,7 +2,6 @@ import '../App.css'
 import '../index.css'
 import './Error.css'
 /* eslint-disable react/jsx-no-undef */
-import { useState } from 'react';
 
 export default function Error(props) {
     console.log("Error props", props);

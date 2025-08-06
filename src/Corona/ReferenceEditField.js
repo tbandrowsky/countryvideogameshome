@@ -1,9 +1,6 @@
 
 
 import './CoronaBar.css';
-import React, { useState } from 'react';
-import InputMask from 'react-input-mask';
-import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function tryParseDouble(value, defaultValue) {
