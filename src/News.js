@@ -7,7 +7,7 @@ let newsItems = [
         title: "Corona Server",
         info: "/Corona",
         repo: "https://github.com/tbandrowsky/countrybit",
-        description: "Corona gets beta OpenAPI 3.x support, and an installer. Working on a 56 core Windows Standard Server 2022, a 2 core Azure VM with Windows DataCenter Server 2022, and Windows 11 Professional.",
+        description: "Corona gets beta OpenAPI 3.x support, and an installer.  Tested on Azure VM WS 2022 2 Core, on Xeon Max 9480 56 Core, and more to tease out a problem with a thread barrier.",
         download: "coronaserver.zip"
     },
     {
@@ -27,10 +27,10 @@ let newsItems = [
 function News()
 {
   return (
-      <div class="contentbackground">   
+      <div className="contentbackground">   
           <TitleBar title="NEWS" />
-          {newsItems.map((item) => (
-              <div class="newstory">
+          {newsItems.map((item,index) => (
+              <div key={index} className="newstory">
                   <h3><Link style={{ display: "inline-block", width: "250px" }} to={item.info}>{item.title}</Link></h3>
                   <p>{item.description}</p>
               </div>

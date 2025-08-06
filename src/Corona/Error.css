@@ -1,0 +1,14 @@
+
+.statusCommon {
+    margin:0px;
+}
+
+.statusOk {
+    color: #4CAF50; /* Green */
+    
+}
+
+.statusError {
+    color: #F44336; /* Red */
+    
+}
