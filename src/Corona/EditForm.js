@@ -23,7 +23,7 @@ export default function EditForm(props) {
     return (
         <div className="EditForm">
             {editProps.body_fields.map((field, index) =>
-                <EditField key={index} field={field} get_value={get_value} put_value={put_value} />
+                <EditField key={index} field={field} get_value={get_value} put_value={put_value}  />
             )}
         </div>
     );

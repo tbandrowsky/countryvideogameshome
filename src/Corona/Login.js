@@ -19,8 +19,8 @@ export default function Login(props) {
 
     let edit_props = { 
         body_fields: [
-            { json_field_name: "username", field_type: "string", placeholder: "Username", max_length: 50, min_length: 3 }, 
-            { json_field_name: "password", field_type: "string", placeholder: "Password", max_length: 50, min_length: 3 }
+            { json_field_name: "username", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
+            { json_field_name: "password", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 }
         ],
         put_value
     };
