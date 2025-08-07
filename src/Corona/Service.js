@@ -26,6 +26,7 @@ const callService = async function (url, request) {
     return response;
 }
 
+
 export const coronaLoginUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/loginuser/";
     const response = await callService(url, request);

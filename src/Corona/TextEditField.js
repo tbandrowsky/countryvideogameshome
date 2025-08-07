@@ -12,7 +12,7 @@ export default function TextEditField(props)
     let json_field_name = '';
     let field_props = props.field || {};
 
-    console.log("TextEditField props", field_props);
+    //console.log("TextEditField props", field_props);
 
     if ('json_field_name' in field_props) {
         json_field_name = field_props.json_field_name;
