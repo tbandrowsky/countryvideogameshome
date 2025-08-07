@@ -6,18 +6,19 @@ import InputMask from 'react-input-mask';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import ValidationError from './ValidationError';
-import { useState } from "react";
 
 export default function TextEditField(props)
 {
     let placeholder = '';
     let input_type = 'text';
     let json_field_name = '';
+
     let field_props = props.field || {};    
     let max_length = 52;
     let min_length = 0;
     let match_pattern = '';
-    let div_style = { margin: '0px', padding:'0px' };
+    let div_style = { margin: '0px', padding: '0px' };
+
     if ('max_length' in field_props) {
         max_length = field_props.max_length;
     }
@@ -88,6 +89,8 @@ export default function TextEditField(props)
             type={input_type}
             className="text-edit-field"
             placeholder={placeholder}
+            max_length={max_length}
+            min_length={min_length}
             value={props.get_value(json_field_name)}
             onChange={(e) => {
                 props.put_value(json_field_name, e.target.value);

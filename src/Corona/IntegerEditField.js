@@ -3,6 +3,7 @@
 import './CoronaBar.css';
 import React from 'react';
 import InputMask from 'react-input-mask';
+import ValidationError from './ValidationError';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
@@ -15,22 +16,50 @@ export default function IntegerEditField(props) {
     let placeholder = '';
     let json_field_name = '';
     let value = '';
+    let field_props = props.field || {};
 
-    if ('json_field_name' in props) {
-        json_field_name = props.json_field_name;
+    if ('json_field_name' in field_props) {
+        json_field_name = field_props.json_field_name;
     }
 
-    if ('value' in props) {
-        value = props.value;
+    if ('value' in field_props) {
+        value = field_props.value;
     }
 
-    if ('placeholder' in props) {
-        placeholder = props.placeholder;
+    if ('placeholder' in field_props) {
+        placeholder = field_props.placeholder;
+    }
+
+    let max_value = 1000;
+    let min_value = 0;
+    let div_style = { margin: '0px', padding: '0px' };
+    let has_max_value = false;
+    let has_min_value = false;
+
+    if ('max_value' in field_props) {
+        max_value = parseInt(field_props.max_value);
+        has_max_value = true;
+    }
+
+    if ('min_length' in field_props) {
+        min_value = parseInt(field_props.min_value);
+        has_min_value = true;
+    }
+
+    value = parseInt(props.get_value(json_field_name));
+
+    let error_message = '';
+
+    if (has_min_value && value < min_value) {
+        error_message = "Must be at least " + min_value;
+    }
+    else if (has_max_value && value > max_value) {
+        error_message = "Cannot be longer than " + max_value;
     }
 
     if ('enum' in props) {
         let options = props.enum;
-        return <Typeahead
+        return <div style={div_style}><Typeahead
             id="basic-typeahead"
             onChange={(e) => {
                 if (props.onChange) {
@@ -40,17 +69,21 @@ export default function IntegerEditField(props) {
             }}
             options={options}
             placeholder={placeholder}
-            selected={value} />;
+            selected={value} />
+            {error_message && <ValidationError error_message={error_message} />}
+        </div>;
     }
     else if ('input_mask' in props) {
         let input_mask = props.input_mask;
-        return <InputMask mask={input_mask} placeholder={placeholder} onChange={(e) => {
+        return <div style={div_style}><InputMask mask={input_mask} placeholder={placeholder} onChange={(e) => {
             if (props.onChange) {
                 let v = tryParseInt(e.target.value, 0);
                 props.update(json_field_name, v);
             }
         }}
-        />;
+        />
+            {error_message && <ValidationError error_message={error_message} />}
+        </div>;
     }
     else {
         let match_pattern = '';
@@ -58,7 +91,7 @@ export default function IntegerEditField(props) {
         if ('match_pattern' in props) {
             match_pattern = props.match_pattern;
         }
-        return <input
+        return <div style={div_style}><input
             type="text"
             className="form-control corona-text-edit-field"
             placeholder={placeholder}
@@ -70,5 +103,8 @@ export default function IntegerEditField(props) {
                 }
             }}
             pattern={match_pattern} />
+        { error_message && <ValidationError error_message={error_message} /> }
+        </div>
+
     }
 }
