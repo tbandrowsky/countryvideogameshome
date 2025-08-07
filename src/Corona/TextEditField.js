@@ -38,14 +38,20 @@ export default function TextEditField(props)
     let value = props.get_value(json_field_name);
     let error_message = '';
 
-    if (min_length > 0 && value.length < min_length) {
-        error_message = "Must be at least " + min_length + " characters";
-    }
-    else if (max_length > 0 && value.length > max_length) {
-        error_message = "Cannot be longer than " + max_length + " characters";
-    }
-    else if (match_pattern && match_pattern.length>0 && !value.match(match_pattern)) {
-        error_message = "Invalid " + placeholder;
+    if (value != null || value !== undefined) {
+
+        if (min_length > 0 && value == '') {
+            error_message = "Required";
+        }
+        else if (min_length > 0 && value.length < min_length) {
+            error_message = "Must be at least " + min_length + " characters";
+        }
+        else if (max_length > 0 && value.length > max_length) {
+            error_message = "Cannot be longer than " + max_length + " characters";
+        }
+        else if (match_pattern && match_pattern.length > 0 && !value.match(match_pattern)) {
+            error_message = "Invalid " + placeholder;
+        }
     }
 
     if ('format' in field_props) {
