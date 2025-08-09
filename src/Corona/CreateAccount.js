@@ -42,7 +42,7 @@ export default function CreateAccount(props) {
 
     return (
         <div class="contentbackground">
-            <CoronaBar applicationName={props.applicationName} formName="ENLIST" />
+            <CoronaBar applicationName={props.applicationName} formName="ENLIST IN THE REVOLUTION" />
             <Error {...error} />
             <EditForm {...edit_props} />
             <div className="buttonBar">
