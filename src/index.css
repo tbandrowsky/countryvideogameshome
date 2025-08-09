@@ -43,13 +43,13 @@ code {
     display: grid;
     background-color: var(--forest1);
     grid-template-columns: 1fr;
-    grid-template-rows: 120.0px 35.0px 111.0px 35.0px 115.0px 1fr;
+    grid-template-rows: 80.0px 35.0px 111.0px 35.0px 115.0px 1fr;
     grid-column: 1;
     height: 100%;
 }
 
 .titlearea {
-    height: 120px;
+    height: 80px;
     vertical-align: middle;
     background-color: var(--forest1);
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
@@ -101,7 +101,7 @@ code {
 }
 
 .countrytitle1left {
-    font-size: 42px;
+    font-size: 30px;
     margin: 0px;
     margin-right:48px;
     text-align: right;
@@ -109,14 +109,14 @@ code {
 }
 
 .countrytitle1right {
-    font-size: 42px;
+    font-size: 30px;
     margin: 0px;
     color: #D1843D;
     text-align: left;
 }
 
 .countrylabel {
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'Jost';
     text-align: right;
     vertical-align: middle;
@@ -128,7 +128,7 @@ code {
 }
 
 .countrylabelright {
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'Jost';
     text-align: left;
     vertical-align: middle;
@@ -157,7 +157,7 @@ code {
 }
 
 .countrytitle2left {
-    font-size: 34px;
+    font-size:20px;
     font-family: 'Jost';
     font-style: italic;
     text-align: right;
@@ -166,9 +166,8 @@ code {
 }
 
 .countrytitle2right {
-    font-size: 34px;
+    font-size: 20px;
     font-family: 'Jost';
-    font-style: italic;
     margin-left: 0px;
     margin-right: 32px;
     color: #D1843D;

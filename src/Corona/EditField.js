@@ -9,14 +9,15 @@ import ReferenceEditField from "./ReferenceEditField";
 export default function EditField(props) {
 
     return (
-        <div className="edit_field_container">
+        <div className="edit_field_container" style={{ gridRow: props.field.row, gridColumn: props.field.column}}>
             <h2 className="countrylabelright">{props.field.placeholder}</h2>
-            <p>{(props.field.field_type === "string") && <TextEditField {...props} />}</p>
-            <p>{(props.field.field_type === "double") && <DoubleEditField {...props} />}</p>
-            <p>{(props.field.field_type === "number") && <DoubleEditField {...props} />}</p>
-            <p>{(props.field.field_type === "int64") && <IntegerEditField {...props} />}</p>
-            <p>{(props.field.field_type === "datetime") && <DateTimeEditField {...props} />}</p>
-            <p>{(props.field.field_type === "reference") && <ReferenceEditField {...props} />}</p>
+            <div>{(props.field.field_type === "h2") && <TextEditField {...props} />}
+            {(props.field.field_type === "string") && <TextEditField {...props} />}
+            {(props.field.field_type === "double") && <DoubleEditField {...props} />}
+            {(props.field.field_type === "number") && <DoubleEditField {...props} />}
+            {(props.field.field_type === "int64") && <IntegerEditField {...props} />}
+            {(props.field.field_type === "datetime") && <DateTimeEditField {...props} />}
+            {(props.field.field_type === "reference") && <ReferenceEditField {...props} />}</div>
         </div>
     );
 }

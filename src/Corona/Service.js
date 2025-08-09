@@ -26,6 +26,7 @@ const callService = async function (url, request) {
     return response;
 }
 
+
 export const coronaLoginUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/loginuser/";
     const response = await callService(url, request);
@@ -33,26 +34,22 @@ export const coronaLoginUser = async function (request) {
 
     let result = {};
 
-    if (response && response.status == 200)
-    {
-        let result = response.body();
-        console.log({ "Login result": result });
-        result.success = result.success;
-        result.message = result.message;
+    if (response && response.ok) {
+        result = await response.json();
+        console.log({ "result": result });
         if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, response.data.token);
+            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
             result.form = "/Corona/Home";
             result.form_props = {
                 success: true,
-                message: response.message
+                message: result.message
             }; // that is the pattern
         }
-        else
-        {
+        else {
             result.form = "/Corona/Login";
             result.form_props = {
                 success: false,
-                message: response.data.message || "Could not login"
+                message: response.message || "Could not login"
             }; // that is the pattern
         }
     }

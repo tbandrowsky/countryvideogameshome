@@ -1,7 +1,8 @@
 
 .edit_field_container {
+
 }
 
-.edit_field_container p {
-    margin:0px;
+.edit_field_container div {
+    margin:0px 16px 0px 16px;
 }

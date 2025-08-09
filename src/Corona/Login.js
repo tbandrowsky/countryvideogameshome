@@ -18,9 +18,13 @@ export default function Login(props) {
     };
 
     let edit_props = { 
+        presentation: {
+            gridTemplateRows: "100.0px 100.0px",
+            gridTemplateColumns: "30% 30% 30%"
+        },
         body_fields: [
-            { json_field_name: "username", field_type: "string", placeholder: "Username", max_length: 50, min_length: 3 }, 
-            { json_field_name: "password", field_type: "string", placeholder: "Password", max_length: 50, min_length: 3 }
+            { json_field_name: "username", row:"1", column:"1", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
+            { json_field_name: "password", row: "2", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 }
         ],
         put_value
     };
@@ -32,7 +36,6 @@ export default function Login(props) {
             <CoronaBar applicationName={props.applicationName} formName="LOGIN" />
             <Error {...error} />
             <EditForm {...edit_props} />
-            <h2 className="countrylabelright">ACT</h2>
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
