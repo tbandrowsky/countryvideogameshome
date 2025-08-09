@@ -33,16 +33,18 @@ export const coronaLoginUser = async function (request) {
 
     let result = {};
 
-    if (response && response.data)
+    if (response && response.status == 200)
     {
-        result.success = response.data.success;
-        result.message = response.data.message;
+        let result = response.body();
+        console.log({ "Login result": result });
+        result.success = result.success;
+        result.message = result.message;
         if (result.success) {
             sessionStorage.setItem(AppSettings.TokenKey, response.data.token);
             result.form = "/Corona/Home";
             result.form_props = {
                 success: true,
-                message: response.data.message
+                message: response.message
             }; // that is the pattern
         }
         else
