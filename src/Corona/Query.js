@@ -4,7 +4,7 @@ import '../index.css'
 
 export default function Query(props) {
     return (
-        <div class="contentbackground">
+        <div class="contentbackgroundform">
         </div>
     );
 }

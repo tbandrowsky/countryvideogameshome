@@ -3,7 +3,7 @@ import '../index.css'
 
 export default function ClassSearch(props) {
     return (
-        <div className="contentbackground">
+        <div className="contentbackgroundform">
         </div>
     );
 }

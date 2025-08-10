@@ -2,28 +2,41 @@
     margin: 0px;
     font-weight: normal;
     padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px rgba(34, 34, 30, 0.08); /* subtle green shadow */
 }
 
 .coronatitle {
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
-    padding-left: 16px;
+    padding-left: 0px;
+    color: var(--forest1);
+    text-align: left;
 }
 
 .coronasubtitle {
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
-    padding-left: 16px;
+    padding-left: 0px;
+    color: var(--forest1);
+    text-align: left;
 }
 
 .coronachaptertitle {
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
     padding-left: 0px;
-    background-color: forestgreen;
+    color: dimgrey;
+    text-align: left;
+    margin-left:-16px;
+    padding-left:16px;
+    box-shadow: 0 4px 8px rgba(34, 34, 30, 0.08); /* subtle green shadow */
 }
 
 .coronachaptersubtitle {
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight:normal;
+    font-weight: normal;
+    color: var(--forest1);
+    text-align: left;
 }

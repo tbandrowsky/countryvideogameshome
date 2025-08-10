@@ -7,7 +7,8 @@ import TitleBar from './TitleBar'
 function ColorParty() {
   return (
       <div class="contentbackground">
-        <TitleBar title="COLOR PARTY"/>
+          <TitleBar title="COLOR PARTY" />
+          <div className="content">
         <h2>PSYCHEDLIC LIGHT SHOWS FROM YOUR WEBCAM</h2>
           <a style={{ marginLeft: "16px" }} href="ms-windows-store://pdp/?productid=9PP1DQXGWG0N">BUY NOW</a>
         <p>
@@ -40,6 +41,7 @@ function ColorParty() {
       Color Party just give you a list of cameras, and then you pick which one you want to display.
       </p>
 
+      </div>
       </div>
   );
 }

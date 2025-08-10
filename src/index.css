@@ -81,23 +81,20 @@ code {
     border-left: 32px solid var(--forest3);
     border-right: 32px solid var(--forest3);
     height: 100%;
-    overflow:auto;
+    overflow: auto;
 }
 
-.contentbackground h2 {
-    padding-left: var(--pageindent);
+.contentbackgroundform {
+    background-color: floralwhite;
+    border-left: 32px solid var(--forest3);
+    border-right: 32px solid var(--forest3);
+    height: 100%;
+    overflow: auto;
 }
 
-.contentbackground h3 {
-    padding-left: var(--pageindent);
-}
-
-.contentbackground p {
-    padding-left: var(--pageindent);
-}
-
-.contentbackground i {
-    padding-left: var(--pageindent);
+.content {
+    padding-left:16px;
+    margin-right:16px;
 }
 
 .countrytitle1left {
@@ -133,8 +130,10 @@ code {
     text-align: left;
     vertical-align: middle;
     color: var(--forest1);
-    margin-top:8px;
-    margin-bottom:0px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
 }
 
 .countrytitlebox {
@@ -289,6 +288,7 @@ a .selected {
 
 
 .buttonBar {
+    margin-top:16px;
     margin-left: 16px;
 }
 
@@ -307,8 +307,18 @@ button {
 }
 
 input {
-    padding:3px;
-    font-size:18px;
+    padding: 3px;
+    font-size: 18px;
+    width: 100%;
+    border: dashed 1px var(--forest2);
+}
+
+input:active {
+    border: solid 1px var(--forest2);
+}
+
+input:focus {
+    border: solid 1px var(--forest2);
 }
 
 button:active {

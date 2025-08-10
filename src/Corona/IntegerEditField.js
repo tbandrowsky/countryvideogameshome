@@ -93,7 +93,6 @@ export default function IntegerEditField(props) {
         }
         return <div style={div_style}><input
             type="text"
-            className="form-control corona-text-edit-field"
             placeholder={placeholder}
             value={value}
             onChange={(e) => {

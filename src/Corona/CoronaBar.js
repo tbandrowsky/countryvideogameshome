@@ -6,7 +6,7 @@ export default function CoronaBar(props) {
     return (
         <div className="coronabar">
             <div className="countrytitle1right">REVOLUTION</div>
-            <div className="countrytitle2right">{props.formName}</div>
+            <div className="countrytitle2right">{props.formName} <span style={{ float: "right" }} ></span>{props.formNumber}</div>
         </div>
     );
 }

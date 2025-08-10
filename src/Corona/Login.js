@@ -32,7 +32,7 @@ export default function Login(props) {
     let nav = useNavigate();
 
     return (
-        <div class="contentbackground">
+        <div class="contentbackgroundform">
             <CoronaBar applicationName={props.applicationName} formName="LOGIN" />
             <Error {...error} />
             <EditForm {...edit_props} />

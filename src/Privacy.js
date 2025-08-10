@@ -3,7 +3,8 @@ import TitleBar from "./TitleBar";
 function Privacy() {
   return (
       <div class="contentbackground">
-      <TitleBar title="PRIVACY POLICY"/>
+          <TitleBar title="PRIVACY POLICY" />
+          <div className="content">
       <p>
               Country Video Games respects your privacy and is committed to protecting it. This Privacy Policy explains how we collect, use, and disclose information about you when you visit our website or use our services.
           </p>
@@ -15,7 +16,8 @@ function Privacy() {
           </ul>
       <p class="signature">
       Todd Bandrowsky
-      </p>
+              </p>
+      </div>
       </div>
   );
 }

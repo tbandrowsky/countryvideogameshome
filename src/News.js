@@ -29,12 +29,14 @@ function News()
   return (
       <div className="contentbackground">   
           <TitleBar title="NEWS" />
+          <div className="content">
           {newsItems.map((item,index) => (
               <div key={index} className="newstory">
                   <h3><Link style={{ display: "inline-block", width: "250px" }} to={item.info}>{item.title}</Link></h3>
                   <p>{item.description}</p>
               </div>
           ))}
+          </div>
       </div>
   );
 }

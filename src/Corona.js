@@ -6,6 +6,7 @@ function Corona() {
     return (
         <div class="contentbackground">
             <TitleBar title="CORONA" />
+            <div className="content">
             <h2>
                 Get the Corona Vibe
             </h2>
@@ -86,7 +87,8 @@ function Corona() {
             <p>
                 Microsoft Windows has fast asynchronous i/o internally, and Corona uses all of it, similar to what Node.js and libuv does, but, 
                 with the disk i/o also included in that same asynchronous i/o stack.
-            </p>
+                </p>
+            </div>
         </div>
     );
 }
