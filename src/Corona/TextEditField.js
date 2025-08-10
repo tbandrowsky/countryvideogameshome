@@ -40,7 +40,7 @@ export default function TextEditField(props)
 
     if (value != null || value !== undefined) {
 
-        if (min_length > 0 && value == '') {
+        if (min_length > 0 && value === '') {
             error_message = "Required";
         }
         else if (min_length > 0 && value.length < min_length) {
