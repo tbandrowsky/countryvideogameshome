@@ -13,19 +13,19 @@ export default function EditField(props) {
         <div className="edit_field_container" style={{ gridRow: props.field.row, gridColumn: props.field.column }}>
             {(props.field.field_type === "title") &&
                 <React.Fragment>
-                    <h2 className="coronatitle">{props.field.placeholder}</h2>
+                    <h2 className="coronatitle">{props.field.text}</h2>
                 </React.Fragment>}
             {(props.field.field_type === "subtitle") &&
                 <React.Fragment>
-                    <h3 className="coronasubtitle">{props.field.placeholder}</h3>
+                    <h3 className="coronasubtitle">{props.field.text}</h3>
                 </React.Fragment>}
             {(props.field.field_type === "chaptertitle") &&
                 <React.Fragment>
-                    <h4 className="chaptertitle">{props.field.placeholder}</h4>
+                    <h4 className="coronachaptertitle">{props.field.text}</h4>
                 </React.Fragment>}
             {(props.field.field_type === "chaptersubtitle") &&
                 <React.Fragment>
-                    <h5 className="chaptersubtitle">{props.field.placeholder}</h5>
+                    <h4 className="coronachaptersubtitle">{props.field.text}</h4>
                 </React.Fragment>}
             {(props.field.field_type === "string") &&
                 <React.Fragment>

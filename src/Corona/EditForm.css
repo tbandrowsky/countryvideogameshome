@@ -1,3 +1,29 @@
 .EditForm {
-    margin:0px;
+    margin: 0px;
+    font-weight: normal;
+    padding-left: 16px;
+}
+
+.coronatitle {
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: normal;
+    padding-left: 16px;
+}
+
+.coronasubtitle {
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: normal;
+    padding-left: 16px;
+}
+
+.coronachaptertitle {
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: normal;
+    padding-left: 0px;
+    background-color: forestgreen;
+}
+
+.coronachaptersubtitle {
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight:normal;
 }

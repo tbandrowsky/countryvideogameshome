@@ -20,20 +20,23 @@ export default function CreateAccount(props) {
     let edit_props = {
         presentation: {
             gridTemplateColumns: "repeat( 3 fr )",
-            gridTemplateRows: "90px 90px 90px 90px 100px"
+            gridTemplateRows: "40px 90px 40px 90px 90px 40px 90px 100px"
         },
         body_fields: [
-            { json_field_name: "username", column:1, row:1,  field_type: "string", format: "name", placeholder: "Username", max_length: 30, min_length: 4 },
-            { json_field_name: "password1", column: 2, row: 1, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8 },
-            { json_field_name: "password2", column: 3, row: 1, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8 },
-            { json_field_name: "first_name", column: 1, row: 2, field_type: "string", format: "name", placeholder: "First Name", max_length: 100, min_length: 1 },
-            { json_field_name: "last_name", column: 2, row: 2, field_type: "string", format: "name", placeholder: "Last Name", max_length: 100, min_length: 1 },
-            { json_field_name: "email", column: 1, row: 3, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 100, min_length: 10 },
-            { json_field_name: "phone", column: 2, row: 3, field_type: "string", format: "tel", placeholder: "Phone", max_length: 20  },
-            { json_field_name: "street", column: 1, row: 4, field_type: "string", format: "text", placeholder: "Street", max_length: 50, min_length: 8 },
-            { json_field_name: "city", column: 1, row: 5, field_type: "string", format: "text", placeholder: "City", max_length: 50, min_length: 8 },
-            { json_field_name: "state", column: 2, row: 5, field_type: "string", format: "text", placeholder: "State", max_length: 20, min_length: 2 },
-            { json_field_name: "zip", column: 3, row: 5, field_type: "string", format: "text", placeholder: "Zip", max_length: 10, min_length: 5 }
+            { column: '1/3', row: 1, field_type: "chaptertitle", text: "Account" },
+            { json_field_name: "username", column:1, row:2,  field_type: "string", format: "name", placeholder: "Username", max_length: 30, min_length: 4 },
+            { json_field_name: "password1", column: 2, row: 2, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8 },
+            { json_field_name: "password2", column: 3, row: 2, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8 },
+            { column: '1/3', row: 3, field_type: "chaptertitle", text: "Contact" },
+            { json_field_name: "first_name", column: 1, row: 4, field_type: "string", format: "name", placeholder: "First Name", max_length: 100, min_length: 1 },
+            { json_field_name: "last_name", column: 2, row: 4, field_type: "string", format: "name", placeholder: "Last Name", max_length: 100, min_length: 1 },
+            { json_field_name: "email", column: 1, row: 5, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 100, min_length: 10 },
+            { json_field_name: "phone", column: 2, row: 5, field_type: "string", format: "tel", placeholder: "Phone", max_length: 20  },
+            { column: '1/3', row: 6, field_type: "chaptertitle", text: "Address" },
+            { json_field_name: "street", column: '1/3', row: 7, field_type: "string", format: "text", placeholder: "Street", max_length: 50, min_length: 8 },
+            { json_field_name: "city", column: 1, row: 8, field_type: "string", format: "text", placeholder: "City", max_length: 50, min_length: 8 },
+            { json_field_name: "state", column: 2, row: 8, field_type: "string", format: "text", placeholder: "State", max_length: 20, min_length: 2 },
+            { json_field_name: "zip", column: 3, row: 8, field_type: "string", format: "text", placeholder: "Zip", max_length: 10, min_length: 5 }
         ],
         put_value
     };
