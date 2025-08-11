@@ -56,7 +56,7 @@ export default function CreateAccount(props) {
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
-                }>BEGIN</button>
+                }>SUBMIT</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Corona/Login');

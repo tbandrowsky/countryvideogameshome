@@ -67,6 +67,35 @@ export const coronaLoginUser = async function (request) {
 export const coronaCreateUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/createuser/";
     const response = await callService(url, request);
+    console.log("Login response", response);
+
+    let result = {};
+
+    if (response && response.ok) {
+        result = await response.json();
+        console.log({ "result": result });
+        if (result.success) {
+            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
+            result.form = "/Corona/ConfirmCode";
+            result.form_props = {
+                success: true,
+                message: result.message
+            }; // that is the pattern
+        }
+        else {
+            result.form = "/Corona/Login";
+            result.form_props = {
+                success: false,
+                message: response.message || "Could not login"
+            }; // that is the pattern
+        }
+    }
+    else {
+        result.success = false;
+        result.message = "Could not login";
+        result.form = "/Corona/Login";
+        result.form_props = {}; // that is the pattern
+    }
     return response;
 };
 

@@ -14,6 +14,7 @@ import Home from './Corona/Home';
 import ClassSearch from './Corona/ClassSearch';
 import ClassEdit from './Corona/ClassEdit';
 import CreateAccount from './Corona/CreateAccount';
+import ConfirmCode from './Corona/ConfirmCode';
 import Login from './Corona/Login';
 import SetPassword from './Corona/SetPassword';
 import SendCode from './Corona/SetPassword';
@@ -42,6 +43,7 @@ root.render(
                     <Route path="/Corona/ObjectSearch" element={<ObjectSearch />} />
                     <Route path="/Corona/ClassEdit" element={<ClassEdit />} />
                     <Route path="/Corona/ClassSearch" element={<ClassSearch />} />
+                    <Route path="/Corona/ConfirmCode" element={<ConfirmCode />} />
                 </Routes>
             </div>
      </div>
