@@ -6,6 +6,12 @@ function Corona() {
     return (
         <div class="contentbackground">
             <TitleBar title="CORONA" />
+            <div style={{ display: "grid", gridColumnTemplate: "185px 185px 185px 185px", width: "800px" }} >
+                <Link style={{ paddingRight: "16px", width: "175px", gridColumn: "1" }} to="/Corona/Login">Sample </Link>
+                <a style={{ paddingRight: "16px", width: "175px", gridColumn: "2" }} href="coronaserver20220806.zip">Corona (8/7/2025)</a>
+                <a style={{ paddingRight: "16px", width: "175px", gridColumn: "3" }} href="corona_quickstart.pdf">Installation(7/23/2025)</a>
+                <a style={{ paddingRight: "16px", width: "175px", gridColumn: "4" }} href="corona_manual.pdf">Manual(7/23/2025)</a>
+            </div>
             <div className="content">
                 <h2>Be fast to market</h2>
                 <p>Corona lets you create complex workflow instantly.  You supply a configuration file representating your schema and Corona will create and run both the database and the services for it.
@@ -26,18 +32,12 @@ function Corona() {
                 <p>Download zip, extract to folder, and either run from the terminal or invoke the batch. There's a word document that is a manual,
                     and we'll have examples to get you started as we go.  Included are the revolution and insurance schemas presently
                     being discussed on linked in.</p>
-                <p>
-                    <a href="coronaserver20220806.zip">Download Corona (8/06/2025)</a>
-                </p>
-                <p>
-                    <a href="corona_quickstart.pdf">Install Corona on Azure (7/23/2025)</a>
-                </p>
-                <p>
-                    <a href="corona_manual.pdf">Corona Manual (7/23/2025)</a>
-                </p>
-                <p>
-                    <Link style={{ display: "inline-block", width: "250px" }} to="/Corona/Login">Sample Corona Application</Link>
-                </p>
+                <div style={{ display:"grid", gridColumnTemplate: "185px 185px 185px 185px", width:"800px" }} >
+                    <Link style={{ paddingRight: "16px", width:"175px", gridColumn:"1" }} to="/Corona/Login">Sample </Link>
+                    <a style={{ paddingRight: "16px", width: "175px", gridColumn: "2" }} href="coronaserver20220806.zip">Corona (8/7/2025)</a>
+                    <a style={{ paddingRight: "16px", width: "175px", gridColumn: "3" }} href="corona_quickstart.pdf">Installation(7/23/2025)</a>
+                    <a style={{ paddingRight: "16px", width: "175px", gridColumn: "4" }} href="corona_manual.pdf">Manual(7/23/2025)</a>
+                </div>
                 <h2>
                     User Account and Login Build In
                 </h2>
