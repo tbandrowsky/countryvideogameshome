@@ -64,26 +64,35 @@ export const callCoronaService = async function (path, request, options) {
     return result;
 }
 
-export const coronaLoginUser = async function (request) {
+export const coronaLoginUser = async function (request, uxo) {
+    if (!uxo) uxo = {};
 
     let result = callCoronaService("/login/loginuser/", request, {
         successForm: "/Corona/Home",
         redoForm: "/Corona/Login",
-        redoMessage: "Could not login"
+        redoMessage: "Could not login",
+        ...uxo
     });
     return result;
 };
 
-export const coronaCreateUser = async function (request) {
+export const coronaCreateUser = async function (request, uxo) {
+
+    if (!uxo) uxo = {};
+
     let result = callCoronaService("/login/loginuser/", request, {
         successForm: "/Corona/Home",
         redoForm: "/Corona/Login",
-        redoMessage: "Could not create user"
+        redoMessage: "Could not create user",
+        ...uxo
     });
     return result;
 };
 
-export const coronaSendUserCode = async function (request) {
+export const coronaSendUserCode = async function (request, uxo) {
+
+    if (!uxo) uxo = {};
+
     let result = callCoronaService("/login/senduser/", request, {
         successForm: "/Corona/ConfirmCode",
         redoForm: "/Corona/SendCode",
@@ -92,7 +101,8 @@ export const coronaSendUserCode = async function (request) {
     return result;
 };
 
-export const coronaConfirmUserCode = async function ( request) {
+export const coronaConfirmUserCode = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/login/confirmuser/", request, {
         successForm: "/Corona/Login",
         redoForm: "/Corona/ConfirmCode",
@@ -101,7 +111,8 @@ export const coronaConfirmUserCode = async function ( request) {
     return result;
 };
 
-export const coronaSetPassword = async function (request) {
+export const coronaSetPassword = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/login/passworduser/", request, {
         successForm: "/Corona/Login",
         redoForm: "/Corona/SetPassword",
@@ -110,7 +121,8 @@ export const coronaSetPassword = async function (request) {
     return result;
 };
 
-export const coronaGetClasses = async function (request) {
+export const coronaGetClasses = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/classes/get/", request, {
         successForm: "/Corona/ClassSearch",
         redoForm: "/Corona/ClassSearch",
@@ -119,7 +131,8 @@ export const coronaGetClasses = async function (request) {
     return result;
 };
 
-export const coronaGetClass = async function (request) {
+export const coronaGetClass = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/class/get/", request, {
         successForm: "/Corona/ClassEdit",
         redoForm: "/Corona/ClassSearch",
@@ -128,7 +141,8 @@ export const coronaGetClass = async function (request) {
     return result;
 };
 
-export const coronaPutClass = async function (request) {
+export const coronaPutClass = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/classes/put/", request, {
         successForm: "/Corona/ClassEdit",
         redoForm: "/Corona/ClassSearch",
@@ -137,7 +151,8 @@ export const coronaPutClass = async function (request) {
     return result;
 };
 
-export const coronaGetObject = async function (request) {
+export const coronaGetObject = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/objects/get/", request, {
         successForm: "/Corona/ObjectEdit",
         redoForm: "/Corona/ObjectSearch",
@@ -146,37 +161,42 @@ export const coronaGetObject = async function (request) {
     return result;
 };
 
-export const coronaCreateObject = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/objects/create/";
-    const response = await callService(url, request);
+export const coronaCreateObject = async function (request, uxo) {
+    if (!uxo) uxo = {};
     let result = callCoronaService("/objects/get/", request, {
         successForm: "/Corona/ObjectEdit",
         redoForm: "/Corona/ObjectSearch",
         redoMessage: "Could not get object."
     });
     return result;
-    return response;
 };
 
-export const coronaPutObject = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/objects/put/";
-    const response = await callService(url, request);
-    return response;
+export const coronaPutObject = async function (request, uxo) {
+    if (!uxo) uxo = {};
+    let result = callCoronaService("/objects/put/", request, {
+        successForm: "/Corona/ObjectEdit",
+        redoForm: "/Corona/ObjectEdit",
+        redoMessage: "Could not save object."
+    });
+    return result;
 };
 
-export const coronaEditObject = async function (request) {
+export const coronaEditObject = async function (request, uxo) {
+    if (!uxo) uxo = {};
     const url = AppSettings.GetBaseUrl() + "/objects/edit/";
     const response = await callService(url, request);
     return response;
 };
 
-export const coronaRunObject = async function (request) {
+export const coronaRunObject = async function (request, uxo) {
+    if (!uxo) uxo = {};
     const url = AppSettings.GetBaseUrl() + "/objects/run/";
     const response = await callService(url, request);
     return response;
 };
 
-export const coronaQuery = async function (request) {
+export const coronaQuery = async function (request, uxo) {
+    if (!uxo) uxo = {};
     const url = AppSettings.GetBaseUrl() + "/objects/query/";
     const response = await callService(url, request);
     return response;

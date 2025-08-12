@@ -40,7 +40,9 @@ export default function Login(props) {
                 <button id="loginButton" onClick={
                     async () => {
                         setError({ success: true, message: "Attempting to login", inProgress:true });
-                        let response = await coronaLoginUser(request);
+                        let response = await coronaLoginUser(request, {
+
+                        });
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
