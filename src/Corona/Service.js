@@ -228,7 +228,39 @@ export const coronaSetPassword = async function (request) {
 export const coronaGetClasses = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/classes/get/";
     const response = await callService(url, request);
-    return response;
+    let result = {};
+    if (response && response.ok) {
+        result = await response.json();
+        console.log({ "result": result });
+        if (result.success) {
+            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
+            result.form = "/Corona/ClassSearch";
+            result.form_props = {
+                success: true,
+                message: result.message
+            }; // that is the pattern
+        }
+        else {
+            result.form = "/Corona/CreateAccount";
+            result.form_props = {
+                success: false,
+                message: response.message || "Could not create account.",
+                errors: {}
+            }; // that is the pattern
+            if (result.errors) {
+                result.errors.forEach((error) => {
+                    result.form_props.errors[error.field_name] = error.message;
+                });
+            }
+        }
+    }
+    else {
+        result.success = false;
+        result.message = "Could not create account";
+        result.form = "/Corona/SendCode";
+        result.form_props = {}; // that is the pattern
+    }
+    return result;
 };
 
 export const coronaGetClass = async function (request) {
