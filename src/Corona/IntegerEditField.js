@@ -1,5 +1,6 @@
 
 
+import './CoronaBar.css';
 import React from 'react';
 import InputMask from 'react-input-mask';
 import ValidationError from './ValidationError';
@@ -69,7 +70,7 @@ export default function IntegerEditField(props) {
             options={options}
             placeholder={placeholder}
             selected={value} />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
     else if ('input_mask' in props) {
@@ -81,7 +82,7 @@ export default function IntegerEditField(props) {
             }
         }}
         />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
     else {
@@ -101,7 +102,8 @@ export default function IntegerEditField(props) {
                 }
             }}
             pattern={match_pattern} />
-        { error_message && <ValidationError error_message={error_message} /> }
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
+
         </div>
 
     }

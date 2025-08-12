@@ -36,6 +36,7 @@ export default function TextEditField(props)
 
     let value = props.get_value(json_field_name);
     let error_message = '';
+    let server_message = props.get_error(props.field.json_field_name);
 
     if (value != null || value !== undefined) {
 
@@ -72,7 +73,7 @@ export default function TextEditField(props)
             options={options}
             placeholder={placeholder}
         />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
     else if ('input_mask' in field_props) {
@@ -85,7 +86,7 @@ export default function TextEditField(props)
                 props.put_value(json_field_name, e.target.value);
             }}
             />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
     else
@@ -100,7 +101,7 @@ export default function TextEditField(props)
                 props.put_value(json_field_name, e.target.value);
             }}
             pattern={match_pattern} />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
 }

@@ -4,14 +4,14 @@ import '../index.css'
 import { useState } from "react";
 import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
-import Error from './Error.js';
+import ErrorControl from './ErrorControl.js';
 import { coronaCreateUser } from './Service.js';
 import { useNavigate } from "react-router";
 
 export default function CreateUserForm(props) {
 
     const [request, setRequest] = useState({});
-    const [error, setError] = useState({ success: false, message: "", inProgress: false });
+    const [error, setError] = useState({ success: false, message: "", inProgress: false, errors:[] });
 
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
@@ -46,8 +46,8 @@ export default function CreateUserForm(props) {
     return (
         <div class="contentbackgroundform">
             <CoronaBarControl applicationName={props.applicationName} formName="ENLISTMENT APPLICATION" formNumber="(FORM 1A)" />
-            <Error {...error} />
-            <EditForm {...edit_props} />
+            <ErrorControl {...error} />
+            <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
                 <button id="createUserButton" onClick={
                     async () => {
@@ -57,7 +57,7 @@ export default function CreateUserForm(props) {
                             redoForm: '/Corona/CreateUser',
                             redoMessage: 'Unable to process application.'
                         });
-                        setError({ success: response.success, message: response.message, inProgress: false, field_errors:response.errors });
+                        setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
                         nav(response.form, response.form_props);
                     }
                 }>SUBMIT</button>

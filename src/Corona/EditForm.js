@@ -14,7 +14,15 @@ export default function EditForm(props) {
     };
 
     let get_value = (json_field_name) => {
+        if (editProps.errors) { }
         return editProps[json_field_name] || '';
+    };
+
+    let get_error = (json_field_name) => {
+        let error = "";
+        if (editProps.hasOwnProperty(json_field_name)) {
+            error = editProps.errors ? editProps.errors[json_field_name] : "";
+        }
     };
 
     let form_styles = {
@@ -23,10 +31,11 @@ export default function EditForm(props) {
         gridTemplateRows: props.presentation.gridTemplateRows || "auto",
     };
 
+
     return (
         <div className="EditForm" style={form_styles}>
             {editProps.body_fields.map((field, index) => {
-                return <EditField key={index} field={field} get_value={get_value} put_value={put_value} />;
+                return <EditField key={index} field={field} get_value={get_value} put_value={put_value} get_error={get_error} />;
             }
             )}
         </div>

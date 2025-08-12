@@ -69,7 +69,7 @@ export default function DoubleEditField(props) {
             options={options}
             placeholder={placeholder}
             selected={value} />
-            {error_message && <ValidationError error_message={error_message} server_message={props.server_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
             </div>;
     }
     else if ('input_mask' in props) {
@@ -81,7 +81,7 @@ export default function DoubleEditField(props) {
             }
         }}
         />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
     else {
@@ -101,7 +101,7 @@ export default function DoubleEditField(props) {
                 }
             }}
             pattern={match_pattern} />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
         </div>;
     }
 }

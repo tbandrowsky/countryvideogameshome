@@ -4,7 +4,7 @@ import '../index.css'
 import { useState } from "react";
 import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
-import Error from './Error.js';
+import ErrorControl from './ErrorControl.js';
 import { coronaConfirmUserCode } from './Service.js';
 import { useNavigate } from "react-router";
 
@@ -34,8 +34,8 @@ export default function ConfirmCodeForm(props) {
     return (
         <div class="contentbackgroundform">
             <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" />
-            <Error {...error} />
-            <EditForm {...edit_props} />
+            <ErrorControl {...error} />
+            <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {

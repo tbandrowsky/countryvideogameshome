@@ -80,7 +80,7 @@ export const coronaCreateUser = async function (request, uxo) {
 
     if (!uxo) uxo = {};
 
-    let result = callCoronaService("/login/loginuser/", request, {
+    let result = callCoronaService("/login/createuser/", request, {
         successForm: "/Corona/Home",
         redoForm: "/Corona/Login",
         redoMessage: "Could not create user",

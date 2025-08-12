@@ -4,7 +4,7 @@ import '../index.css'
 import { useState } from "react";
 import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
-import Error from './Error.js';
+import ErrorControl from './ErrorControl.js';
 import { coronaLoginUser } from './Service.js';
 import { useNavigate } from "react-router";
 
@@ -34,8 +34,8 @@ export default function LoginForm(props) {
     return (
         <div class="contentbackgroundform">
             <CoronaBarControl applicationName={props.applicationName} formName="LOGIN" />
-            <Error {...error} />
-            <EditForm {...edit_props} field_errors={error.field_errors} />
+            <ErrorControl {...error} />
+            <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
