@@ -34,6 +34,7 @@ export default function DoubleEditField(props) {
     let div_style = { margin: '0px', padding: '0px' };
     let has_max_value = false;
     let has_min_value = false;
+    let server_message = props.get_error(props.field.json_field_name);
 
     if ('max_value' in field_props) {
         max_value = parseFloat(field_props.max_value);

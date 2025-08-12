@@ -39,6 +39,7 @@ export default function DateTimeEditField(props) {
     value = parseFloat(props.get_value(json_field_name));
 
     let error_message = '';
+    let server_message = props.get_error(props.field.json_field_name);
 
     if (has_min_value && value < min_value) {
         error_message = "Must be at least " + min_value;
