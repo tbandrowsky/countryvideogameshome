@@ -1,7 +1,7 @@
 import '../App.css'
 import '../index.css'
 
-export default function ClassEdit(props) {
+export default function ClassSearchForm(props) {
     return (
         <div className="contentbackgroundform">
         </div>

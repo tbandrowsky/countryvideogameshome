@@ -1,6 +1,5 @@
 
 
-import './CoronaBar.css';
 import React from 'react';
 import InputMask from 'react-input-mask';
 import ValidationError from './ValidationError';
@@ -70,7 +69,7 @@ export default function DoubleEditField(props) {
             options={options}
             placeholder={placeholder}
             selected={value} />
-            {error_message && <ValidationError error_message={error_message} />}
+            {error_message && <ValidationError error_message={error_message} server_message={props.server_message} />}
             </div>;
     }
     else if ('input_mask' in props) {

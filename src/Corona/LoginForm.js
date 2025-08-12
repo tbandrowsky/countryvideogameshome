@@ -2,16 +2,16 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBar from './CoronaBar.js';
+import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
 import Error from './Error.js';
 import { coronaLoginUser } from './Service.js';
 import { useNavigate } from "react-router";
 
-export default function Login(props) {
+export default function LoginForm(props) {
 
     const [request, setRequest] = useState({});
-    const [error, setError] = useState({ success:false, message:"", inProgress:false });
+    const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
 
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
@@ -33,15 +33,17 @@ export default function Login(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBar applicationName={props.applicationName} formName="LOGIN" />
+            <CoronaBarControl applicationName={props.applicationName} formName="LOGIN" />
             <Error {...error} />
-            <EditForm {...edit_props} />
+            <EditForm {...edit_props} field_errors={error.field_errors} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
                         setError({ success: true, message: "Attempting to login", inProgress:true });
                         let response = await coronaLoginUser(request, {
-
+                            successForm: '/Corona/Home',
+                            redoForm: '/Corona/Login',
+                            redoMessage: 'Cannot log in.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
@@ -49,7 +51,7 @@ export default function Login(props) {
                 }>LOGIN</button>                
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/CreateAccount');
+                        nav('/Corona/CreateUser');
                     }
                 }>ENLIST</button>
             </div>

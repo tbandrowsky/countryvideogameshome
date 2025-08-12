@@ -10,16 +10,16 @@ import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
 import Corona from './Corona';
-import Home from './Corona/Home';
-import ClassSearch from './Corona/ClassSearch';
-import ClassEdit from './Corona/ClassEdit';
-import CreateAccount from './Corona/CreateAccount';
-import ConfirmCode from './Corona/ConfirmCode';
-import Login from './Corona/Login';
-import SetPassword from './Corona/SetPassword';
-import SendCode from './Corona/SetPassword';
-import ObjectEdit from './Corona/ObjectEdit';
-import ObjectSearch from './Corona/ObjectSearch';
+import HomeForm from './Corona/HomeForm';
+import ClassSearchForm from './Corona/ClassSearchForm';
+import ClassEditForm from './Corona/ClassEditForm';
+import CreateUserForm from './Corona/CreateUserForm';
+import ConfirmCodeForm from './Corona/ConfirmCodeForm';
+import LoginForm from './Corona/LoginForm';
+import SetPasswordForm from './Corona/SetPasswordForm';
+import SendCodeForm from './Corona/SendCodeForm';
+import ObjectEditForm from './Corona/ObjectEditForm';
+import ObjectSearchForm from './Corona/ObjectSearchForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -34,16 +34,16 @@ root.render(
                     <Route path="/Corona" element={<Corona />} />
                     <Route path="/ColorParty" element={<ColorParty />} />
                     <Route path="/About" element={<About />} />
-                    <Route path="/Corona/Home" element={<Home />} />
-                    <Route path="/Corona/Login" element={<Login applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/CreateAccount" element={<CreateAccount />} />
-                    <Route path="/Corona/SetPassword" element={<SetPassword />} />
-                    <Route path="/Corona/SendCode" element={<SendCode />} />
-                    <Route path="/Corona/ObjectEdit" element={<ObjectEdit />} />
-                    <Route path="/Corona/ObjectSearch" element={<ObjectSearch />} />
-                    <Route path="/Corona/ClassEdit" element={<ClassEdit />} />
-                    <Route path="/Corona/ClassSearch" element={<ClassSearch />} />
-                    <Route path="/Corona/ConfirmCode" element={<ConfirmCode />} />
+                    <Route path="/Corona/Home" element={<HomeForm />} />
+                    <Route path="/Corona/Login" element={<LoginForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/CreateUser" element={<CreateUserForm />} />
+                    <Route path="/Corona/SetPassword" element={<SetPasswordForm />} />
+                    <Route path="/Corona/SendCode" element={<SendCodeForm />} />
+                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm />} />
+                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm />} />
+                    <Route path="/Corona/ClassEdit" element={<ClassEditForm />} />
+                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm />} />
+                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm />} />
                 </Routes>
             </div>
      </div>

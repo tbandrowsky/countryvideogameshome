@@ -2,13 +2,13 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBar from './CoronaBar.js';
+import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
 import Error from './Error.js';
-import { coronaConfirmUserCode, coronaLoginUser } from './Service.js';
+import { coronaConfirmUserCode } from './Service.js';
 import { useNavigate } from "react-router";
 
-export default function ConfirmCode(props) {
+export default function ConfirmCodeForm(props) {
 
     const [request, setRequest] = useState({});
     const [error, setError] = useState({ success: false, message: "", inProgress: false });
@@ -33,13 +33,13 @@ export default function ConfirmCode(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBar applicationName={props.applicationName} formName="CONFIRM ACCESS" />
+            <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" />
             <Error {...error} />
             <EditForm {...edit_props} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
-                        setError({ success: true, message: "Attempting to login", inProgress: true });
+                        setError({ success: true, message: "Confirming code", inProgress: true });
                         let response = await coronaConfirmUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);

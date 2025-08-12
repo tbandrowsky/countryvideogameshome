@@ -1,6 +1,5 @@
 
 
-import './CoronaBar.css';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function tryParseDouble(value, defaultValue) {

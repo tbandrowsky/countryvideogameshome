@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 
-export default function Query(props) {
+export default function QueryForm(props) {
     return (
         <div class="contentbackgroundform">
         </div>

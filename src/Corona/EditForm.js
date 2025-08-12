@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-undef */
-import './CoronaBar.css';
 import EditField from './EditField.js';
 import { useState } from 'react';
 
@@ -27,7 +26,7 @@ export default function EditForm(props) {
     return (
         <div className="EditForm" style={form_styles}>
             {editProps.body_fields.map((field, index) => {
-                return <EditField key={index} field={field} get_value={get_value} put_value={put_value}  />
+                return <EditField key={index} field={field} get_value={get_value} put_value={put_value} />;
             }
             )}
         </div>

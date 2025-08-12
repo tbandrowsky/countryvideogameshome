@@ -1,5 +1,5 @@
 
-export default function Home(props) {
+export default function HomeForm(props) {
     return (
         <div class="contentbackgroundform">
         </div>

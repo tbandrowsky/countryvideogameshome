@@ -3,11 +3,10 @@
 import '../App.css'
 import '../index.css'
 /* eslint-disable react/jsx-no-undef */
-import './CoronaBar.css';
 import './EditForm.css';
 import EditForm from './EditForm.js';
 
-export default function ObjectEdit(props) {
+export default function ObjectEditForm(props) {
 
     let body_fields = [];
     let child_objects = [];

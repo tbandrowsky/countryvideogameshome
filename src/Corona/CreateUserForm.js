@@ -2,13 +2,13 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBar from './CoronaBar.js';
+import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
 import Error from './Error.js';
 import { coronaCreateUser } from './Service.js';
 import { useNavigate } from "react-router";
 
-export default function CreateAccount(props) {
+export default function CreateUserForm(props) {
 
     const [request, setRequest] = useState({});
     const [error, setError] = useState({ success: false, message: "", inProgress: false });
@@ -45,15 +45,19 @@ export default function CreateAccount(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBar applicationName={props.applicationName} formName="ENLISTMENT APPLICATION" formNumber="(FORM 1A)" />
+            <CoronaBarControl applicationName={props.applicationName} formName="ENLISTMENT APPLICATION" formNumber="(FORM 1A)" />
             <Error {...error} />
             <EditForm {...edit_props} />
             <div className="buttonBar">
                 <button id="createUserButton" onClick={
                     async () => {
-                        setError({ success: true, message: "Creating Your Account.", inProgress: true });
-                        let response = await coronaCreateUser(request);
-                        setError({ success: response.success, message: response.message, inProgress: false });
+                        setError({ success: true, message: "Processing Application.", inProgress: true });
+                        let response = await coronaCreateUser(request, {
+                            successForm: '/Corona/ConfirmCode',
+                            redoForm: '/Corona/CreateUser',
+                            redoMessage: 'Unable to process application.'
+                        });
+                        setError({ success: response.success, message: response.message, inProgress: false, field_errors:response.errors });
                         nav(response.form, response.form_props);
                     }
                 }>SUBMIT</button>

@@ -1,5 +1,4 @@
 
-import './CoronaBar.css';
 import DateTime from 'react-datetime';
 import ValidationError from './ValidationError.js';
 
@@ -58,6 +57,6 @@ export default function DateTimeEditField(props) {
             }
         }}
     />
-        {error_message && <ValidationError error_message={error_message} />}
+        {error_message && <ValidationError error_message={error_message} server_message={props.server_message} />}
     </div>
 }
