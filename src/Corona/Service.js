@@ -67,7 +67,7 @@ export const coronaLoginUser = async function (request) {
 export const coronaCreateUser = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/createuser/";
     const response = await callService(url, request);
-    console.log("Login response", response);
+    console.log("Create User response", response);
 
     let result = {};
 
@@ -83,38 +83,146 @@ export const coronaCreateUser = async function (request) {
             }; // that is the pattern
         }
         else {
-            result.form = "/Corona/Login";
+
+            result.form = "/Corona/SetPassword";
             result.form_props = {
                 success: false,
-                message: response.message || "Could not login"
+                message: response.message || "Could not create account.",
+                errors: {}
             }; // that is the pattern
+            if (result.errors) {
+                result.errors.forEach((error) => {
+                    result.form_props.errors[error.field_name] = error.message;
+                });
+            }
         }
     }
     else {
         result.success = false;
-        result.message = "Could not login";
-        result.form = "/Corona/Login";
+        result.message = "Could not create account";
+        result.form = "/Corona/CreateAccount";
         result.form_props = {}; // that is the pattern
     }
-    return response;
+    return result;
 };
 
 export const coronaSendUserCode = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/senduser/";
     const response = await callService(url, request);
-    return response;
+    let result = {};
+
+    if (response && response.ok) {
+        result = await response.json();
+        console.log({ "result": result });
+        if (result.success) {
+            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
+            result.form = "/Corona/ConfirmCode";
+            result.form_props = {
+                success: true,
+                message: result.message
+            }; // that is the pattern
+        }
+        else
+        {
+            result.form = "/Corona/CreateAccount";
+            result.form_props = {
+                success: false,
+                message: response.message || "Could not create account.",
+                errors: {}
+            }; // that is the pattern
+            if (result.errors) {
+                result.errors.forEach((error) => {
+                    result.form_props.errors[error.field_name] = error.message;
+                });
+            }
+        }
+    }
+    else {
+        result.success = false;
+        result.message = "Could not create account";
+        result.form = "/Corona/SendCode";
+        result.form_props = {}; // that is the pattern
+    }
+
+    return result;
 };
 
 export const coronaConfirmUserCode = async function ( request) {
     const url = AppSettings.GetBaseUrl() + "/login/confirmuser/";
     const response = await callService(url, request);
-    return response;
+    let result = {};
+
+    if (response && response.ok) {
+        result = await response.json();
+        console.log({ "result": result });
+        if (result.success) {
+            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
+            result.form = "/Corona/ConfirmCode";
+            result.form_props = {
+                success: true,
+                message: result.message
+            }; // that is the pattern
+        }
+        else {
+            result.form = "/Corona/CreateAccount";
+            result.form_props = {
+                success: false,
+                message: response.message || "Could not create account.",
+                errors: {}
+            }; // that is the pattern
+            if (result.errors) {
+                result.errors.forEach((error) => {
+                    result.form_props.errors[error.field_name] = error.message;
+                });
+            }
+        }
+    }
+    else {
+        result.success = false;
+        result.message = "Could not create account";
+        result.form = "/Corona/SendCode";
+        result.form_props = {}; // that is the pattern
+    }
+    return result;
 };
 
 export const coronaSetPassword = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/login/passworduser/";
     const response = await callService(url, request);
-    return response;
+    let result = {};
+
+    if (response && response.ok) {
+        result = await response.json();
+        console.log({ "result": result });
+        if (result.success) {
+            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
+            result.form = "/Corona/Login";
+            result.form_props = {
+                success: true,
+                message: result.message
+            }; // that is the pattern
+        }
+        else {
+            result.form = "/Corona/CreateAccount";
+            result.form_props = {
+                success: false,
+                message: response.message || "Could not create account.",
+                errors: {}
+            }; // that is the pattern
+            if (result.errors) {
+                result.errors.forEach((error) => {
+                    result.form_props.errors[error.field_name] = error.message;
+                });
+            }
+        }
+    }
+    else {
+        result.success = false;
+        result.message = "Could not create account";
+        result.form = "/Corona/SendCode";
+        result.form_props = {}; // that is the pattern
+    }
+    return result;
 };
 
 export const coronaGetClasses = async function (request) {
