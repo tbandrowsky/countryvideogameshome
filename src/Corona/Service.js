@@ -26,11 +26,10 @@ const callService = async function (url, request) {
     return response;
 }
 
-
-export const coronaLoginUser = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/login/loginuser/";
+export const callCoronaService = async function (path, request, options) {
+    const url = AppSettings.GetBaseUrl() + path;
     const response = await callService(url, request);
-    console.log("Login response", response);
+    console.log(path, request, response);
 
     let result = {};
 
@@ -39,84 +38,7 @@ export const coronaLoginUser = async function (request) {
         console.log({ "result": result });
         if (result.success) {
             sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
-            result.form = "/Corona/Home";
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
-        }
-        else {
-            result.form = "/Corona/Login";
-            result.form_props = {
-                success: false,
-                message: response.message || "Could not login"
-            }; // that is the pattern
-        }
-    }
-    else
-    {
-        result.success = false;
-        result.message = "Could not login";
-        result.form = "/Corona/Login";
-        result.form_props = {}; // that is the pattern
-    }
-
-    return result;
-};
-
-export const coronaCreateUser = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/login/createuser/";
-    const response = await callService(url, request);
-    console.log("Create User response", response);
-
-    let result = {};
-
-    if (response && response.ok) {
-        result = await response.json();
-        console.log({ "result": result });
-        if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
-            result.form = "/Corona/ConfirmCode";
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
-        }
-        else {
-
-            result.form = "/Corona/SetPassword";
-            result.form_props = {
-                success: false,
-                message: response.message || "Could not create account.",
-                errors: {}
-            }; // that is the pattern
-            if (result.errors) {
-                result.errors.forEach((error) => {
-                    result.form_props.errors[error.field_name] = error.message;
-                });
-            }
-        }
-    }
-    else {
-        result.success = false;
-        result.message = "Could not create account";
-        result.form = "/Corona/CreateAccount";
-        result.form_props = {}; // that is the pattern
-    }
-    return result;
-};
-
-export const coronaSendUserCode = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/login/senduser/";
-    const response = await callService(url, request);
-    let result = {};
-
-    if (response && response.ok) {
-        result = await response.json();
-        console.log({ "result": result });
-        if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
-            result.form = "/Corona/ConfirmCode";
+            result.form = options.successForm;
             result.form_props = {
                 success: true,
                 message: result.message
@@ -124,166 +46,115 @@ export const coronaSendUserCode = async function (request) {
         }
         else
         {
-            result.form = "/Corona/CreateAccount";
+            result.form = options.redoForm;
             result.form_props = {
                 success: false,
-                message: response.message || "Could not create account.",
-                errors: {}
+                message: response.message || options.redoMessage
             }; // that is the pattern
-            if (result.errors) {
-                result.errors.forEach((error) => {
-                    result.form_props.errors[error.field_name] = error.message;
-                });
-            }
         }
     }
-    else {
+    else
+    {
         result.success = false;
-        result.message = "Could not create account";
-        result.form = "/Corona/SendCode";
+        result.message = options.redoMessage;
+        result.form = options.redoForm;
         result.form_props = {}; // that is the pattern
     }
 
+    return result;
+}
+
+export const coronaLoginUser = async function (request) {
+
+    let result = callCoronaService("/login/loginuser/", request, {
+        successForm: "/Corona/Home",
+        redoForm: "/Corona/Login",
+        redoMessage: "Could not login"
+    });
+    return result;
+};
+
+export const coronaCreateUser = async function (request) {
+    let result = callCoronaService("/login/loginuser/", request, {
+        successForm: "/Corona/Home",
+        redoForm: "/Corona/Login",
+        redoMessage: "Could not create user"
+    });
+    return result;
+};
+
+export const coronaSendUserCode = async function (request) {
+    let result = callCoronaService("/login/senduser/", request, {
+        successForm: "/Corona/ConfirmCode",
+        redoForm: "/Corona/SendCode",
+        redoMessage: "Could not send code."
+    });
     return result;
 };
 
 export const coronaConfirmUserCode = async function ( request) {
-    const url = AppSettings.GetBaseUrl() + "/login/confirmuser/";
-    const response = await callService(url, request);
-    let result = {};
-
-    if (response && response.ok) {
-        result = await response.json();
-        console.log({ "result": result });
-        if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
-            result.form = "/Corona/ConfirmCode";
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
-        }
-        else {
-            result.form = "/Corona/CreateAccount";
-            result.form_props = {
-                success: false,
-                message: response.message || "Could not create account.",
-                errors: {}
-            }; // that is the pattern
-            if (result.errors) {
-                result.errors.forEach((error) => {
-                    result.form_props.errors[error.field_name] = error.message;
-                });
-            }
-        }
-    }
-    else {
-        result.success = false;
-        result.message = "Could not create account";
-        result.form = "/Corona/SendCode";
-        result.form_props = {}; // that is the pattern
-    }
+    let result = callCoronaService("/login/confirmuser/", request, {
+        successForm: "/Corona/Login",
+        redoForm: "/Corona/ConfirmCode",
+        redoMessage: "Could not confirm code."
+    });
     return result;
 };
 
 export const coronaSetPassword = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/login/passworduser/";
-    const response = await callService(url, request);
-    let result = {};
-
-    if (response && response.ok) {
-        result = await response.json();
-        console.log({ "result": result });
-        if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
-            result.form = "/Corona/Login";
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
-        }
-        else {
-            result.form = "/Corona/CreateAccount";
-            result.form_props = {
-                success: false,
-                message: response.message || "Could not create account.",
-                errors: {}
-            }; // that is the pattern
-            if (result.errors) {
-                result.errors.forEach((error) => {
-                    result.form_props.errors[error.field_name] = error.message;
-                });
-            }
-        }
-    }
-    else {
-        result.success = false;
-        result.message = "Could not create account";
-        result.form = "/Corona/SendCode";
-        result.form_props = {}; // that is the pattern
-    }
+    let result = callCoronaService("/login/passworduser/", request, {
+        successForm: "/Corona/Login",
+        redoForm: "/Corona/SetPassword",
+        redoMessage: "Could not confirm code."
+    });
     return result;
 };
 
 export const coronaGetClasses = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/classes/get/";
-    const response = await callService(url, request);
-    let result = {};
-    if (response && response.ok) {
-        result = await response.json();
-        console.log({ "result": result });
-        if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.data.token);
-            result.form = "/Corona/ClassSearch";
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
-        }
-        else {
-            result.form = "/Corona/CreateAccount";
-            result.form_props = {
-                success: false,
-                message: response.message || "Could not create account.",
-                errors: {}
-            }; // that is the pattern
-            if (result.errors) {
-                result.errors.forEach((error) => {
-                    result.form_props.errors[error.field_name] = error.message;
-                });
-            }
-        }
-    }
-    else {
-        result.success = false;
-        result.message = "Could not create account";
-        result.form = "/Corona/SendCode";
-        result.form_props = {}; // that is the pattern
-    }
+    let result = callCoronaService("/classes/get/", request, {
+        successForm: "/Corona/ClassSearch",
+        redoForm: "/Corona/ClassSearch",
+        redoMessage: "Could not search classes."
+    });
     return result;
 };
 
 export const coronaGetClass = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/classes/get/details/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/class/get/", request, {
+        successForm: "/Corona/ClassEdit",
+        redoForm: "/Corona/ClassSearch",
+        redoMessage: "Could not search classes."
+    });
+    return result;
 };
 
 export const coronaPutClass = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/classes/put/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/classes/put/", request, {
+        successForm: "/Corona/ClassEdit",
+        redoForm: "/Corona/ClassSearch",
+        redoMessage: "Could not search classes."
+    });
+    return result;
 };
 
 export const coronaGetObject = async function (request) {
-    const url = AppSettings.GetBaseUrl() + "/objects/get/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/get/", request, {
+        successForm: "/Corona/ObjectEdit",
+        redoForm: "/Corona/ObjectSearch",
+        redoMessage: "Could not get object."
+    });
+    return result;
 };
 
 export const coronaCreateObject = async function (request) {
     const url = AppSettings.GetBaseUrl() + "/objects/create/";
     const response = await callService(url, request);
+    let result = callCoronaService("/objects/get/", request, {
+        successForm: "/Corona/ObjectEdit",
+        redoForm: "/Corona/ObjectSearch",
+        redoMessage: "Could not get object."
+    });
+    return result;
     return response;
 };
 
