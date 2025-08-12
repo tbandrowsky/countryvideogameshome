@@ -49,7 +49,7 @@ export default function CreateAccount(props) {
             <Error {...error} />
             <EditForm {...edit_props} />
             <div className="buttonBar">
-                <button id="loginButton" onClick={
+                <button id="createUserButton" onClick={
                     async () => {
                         setError({ success: true, message: "Creating Your Account.", inProgress: true });
                         let response = await coronaCreateUser(request);
@@ -57,7 +57,7 @@ export default function CreateAccount(props) {
                         nav(response.form, response.form_props);
                     }
                 }>SUBMIT</button>
-                <button id="createUserButton" disabled={error.inProgress} onClick={
+                <button id="cancelButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Corona/Login');
                     }

@@ -342,6 +342,38 @@ button .selected {
 
 .newstory {
     background-color: white;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    width: 50%;
+    padding: 16px;
+}
+
+.newstory a {
+    background-color: var(--rock1);
+    padding: 3px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 2px #00000044;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border 0.2s ease;
+    text-decoration: none;
+}
+
+.newstory a:active {
+    box-shadow: 0 2px #00000044;
+    transform: translateY(3px);
+}
+
+.newstory a:hover {
+    background-color: var(--rock2);
     border: 2px solid #48524655;
     box-shadow: 0 2px #00000044;
+    color: white;
+}
+
+.newstory a .selected {
+    background-color: var(--rock2);
+    border: 2px solid #48524655;
+    box-shadow: 0 2px #00000044;
+    color: white;
 }

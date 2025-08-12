@@ -32,9 +32,9 @@ function News()
           <div className="content">
           {newsItems.map((item,index) => (
               <div key={index} className="newstory">
+                  <p>{item.description}</p>
                   <Link style={{ display: "inline-block", width: "250px" }} to={item.info}>
-                      <p>{item.title}</p>   
-                      <p>{item.description}</p>
+                      <h3>{item.title}</h3>
                   </Link>
               </div>
           ))}
