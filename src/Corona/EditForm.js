@@ -23,6 +23,8 @@ export default function EditForm(props) {
         if (editProps.hasOwnProperty(json_field_name)) {
             error = editProps.errors ? editProps.errors[json_field_name] : "";
         }
+        console.log({ "get_error": json_field_name, error });
+        return error;
     };
 
     let form_styles = {

@@ -34,16 +34,16 @@ root.render(
                     <Route path="/Corona" element={<Corona />} />
                     <Route path="/ColorParty" element={<ColorParty />} />
                     <Route path="/About" element={<About />} />
-                    <Route path="/Corona/Home" element={<HomeForm />} />
+                    <Route path="/Corona/Home" element={<HomeForm applicationName="REVOLUTION" />} />
                     <Route path="/Corona/Login" element={<LoginForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/CreateUser" element={<CreateUserForm />} />
-                    <Route path="/Corona/SetPassword" element={<SetPasswordForm />} />
-                    <Route path="/Corona/SendCode" element={<SendCodeForm />} />
-                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm />} />
-                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm />} />
-                    <Route path="/Corona/ClassEdit" element={<ClassEditForm />} />
-                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm />} />
-                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm />} />
+                    <Route path="/Corona/CreateUser" element={<CreateUserForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/SetPassword" element={<SetPasswordForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/SendCode" element={<SendCodeForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/ClassEdit" element={<ClassEditForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm applicationName="REVOLUTION" />} />
+                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm applicationName="REVOLUTION" />} />
                 </Routes>
             </div>
      </div>

@@ -38,14 +38,14 @@ export default function DateTimeEditField(props) {
 
     value = parseFloat(props.get_value(json_field_name));
 
-    let error_message = '';
+    let client_message = '';
     let server_message = props.get_error(props.field.json_field_name);
 
     if (has_min_value && value < min_value) {
-        error_message = "Must be at least " + min_value;
+        client_message = "Must be at least " + min_value;
     }
     else if (has_max_value && value > max_value) {
-        error_message = "Cannot be longer than " + max_value;
+        client_message = "Cannot be longer than " + max_value;
     }
 
     return <div style={div_style}><DateTime
@@ -58,6 +58,6 @@ export default function DateTimeEditField(props) {
             }
         }}
     />
-        {error_message && <ValidationError error_message={error_message} server_message={props.server_message} />}
+        {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
     </div>
 }

@@ -1,6 +1,4 @@
 
-
-import './CoronaBar.css';
 import React from 'react';
 import InputMask from 'react-input-mask';
 import ValidationError from './ValidationError';
@@ -48,14 +46,14 @@ export default function IntegerEditField(props) {
 
     value = parseInt(props.get_value(json_field_name));
 
-    let error_message = '';
+    let client_message = '';
     let server_message = props.get_error(props.field.json_field_name);
 
     if (has_min_value && value < min_value) {
-        error_message = "Must be at least " + min_value;
+        client_message = "Must be at least " + min_value;
     }
     else if (has_max_value && value > max_value) {
-        error_message = "Cannot be longer than " + max_value;
+        client_message = "Cannot be longer than " + max_value;
     }
 
     if ('enum' in props) {
@@ -71,7 +69,7 @@ export default function IntegerEditField(props) {
             options={options}
             placeholder={placeholder}
             selected={value} />
-            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
+            {client_message && <ValidationError client_message={client_message} server_message={server_message} />}
         </div>;
     }
     else if ('input_mask' in props) {
@@ -83,7 +81,7 @@ export default function IntegerEditField(props) {
             }
         }}
         />
-            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
+            {(client_message || server_message) &&<ValidationError client_message={client_message} server_message={server_message} />}
         </div>;
     }
     else {
@@ -103,7 +101,7 @@ export default function IntegerEditField(props) {
                 }
             }}
             pattern={match_pattern} />
-            {error_message && <ValidationError error_message={error_message} server_message={server_message} />}
+            {client_message && <ValidationError client_message={client_message} server_message={server_message} />}
 
         </div>
 

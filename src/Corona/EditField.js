@@ -8,7 +8,7 @@ import DateTimeEditField from "./DateTimeEditField";
 import ReferenceEditField from "./ReferenceEditField";
 
 export default function EditField(props) {
-
+    console.log("EditField props", props);
     return (
         <div className="edit_field_container" style={{ gridRow: props.field.row, gridColumn: props.field.column }}>
             {(props.field.field_type === "title") &&
