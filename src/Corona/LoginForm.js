@@ -54,6 +54,16 @@ export default function LoginForm(props) {
                         nav('/Corona/CreateUser');
                     }
                 }>ENLIST</button>
+                <button id="recoverUserButton" disabled={error.inProgress} onClick={
+                    async () => {
+                        nav('/Corona/SendCode');
+                    }
+                }>RECOVER</button>
+                <button id="confirmUserButton" disabled={error.inProgress} onClick={
+                    async () => {
+                        nav('/Corona/ConfirmCode');
+                    }
+                }>CONFIRM</button>
             </div>
         </div>
     );

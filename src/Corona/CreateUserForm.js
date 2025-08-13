@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 
 export default function CreateUserForm(props) {
 
-    const [request, setRequest] = useState({});
+    const [request, setRequest] = useState({ });
     const [error, setError] = useState({ success: false, message: "", inProgress: false, errors:[] });
 
     const put_value = (json_field_name, value) => {
@@ -52,7 +52,7 @@ export default function CreateUserForm(props) {
                 <button id="createUserButton" onClick={
                     async () => {
                         setError({ success: true, message: "Processing Application.", inProgress: true });
-                        let response = await coronaCreateUser(request, {
+                        let response = await coronaCreateUser({ data: request }, {
                             successForm: '/Corona/ConfirmCode',
                             redoForm: '/Corona/CreateUser',
                             redoMessage: 'Unable to process application.'
@@ -60,7 +60,7 @@ export default function CreateUserForm(props) {
                         setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
                         nav(response.form, response.form_props);
                     }
-                }>SUBMIT</button>
+                }>ENLIST</button>
                 <button id="cancelButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Corona/Login');

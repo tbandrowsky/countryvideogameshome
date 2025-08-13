@@ -24,7 +24,7 @@ export default function ConfirmCodeForm(props) {
         },
         body_fields: [
             { json_field_name: "username", row: "1", column: "1", field_type: "string", format: "name", placeholder: "Username", max_length: 50, min_length: 4 },
-            { json_field_name: "confirmcode", row: "2", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 }
+            { json_field_name: "confirmcode", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
         ],
         put_value
     };
