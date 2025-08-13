@@ -24,7 +24,7 @@ export default function CreateUserForm(props) {
         },
         body_fields: [
             { column: '1/4', row: 1, field_type: "chaptertitle", text: "Account" },
-            { json_field_name: "username", column:1, row:2,  field_type: "string", format: "name", placeholder: "Username", max_length: 30, min_length: 4 },
+            { json_field_name: "username", column: 1, row: 2, field_type: "string", format: "name", placeholder: "Username", max_length: 30, min_length: 4 },
             { json_field_name: "password1", column: 2, row: 2, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8 },
             { json_field_name: "password2", column: 3, row: 2, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8 },
             { column: '1/4', row: 3, field_type: "chaptertitle", text: "Contact" },
@@ -45,7 +45,7 @@ export default function CreateUserForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="ENLISTMENT APPLICATION" formNumber="(FORM 1A)" />
+            <CoronaBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 001" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">

@@ -18,12 +18,23 @@ export default function EditForm(props) {
         return editProps[json_field_name] || '';
     };
 
-    let get_error = (json_field_name) => {
-        let error = "";
-        if (editProps.hasOwnProperty(json_field_name)) {
-            error = editProps.errors ? editProps.errors[json_field_name] : "";
+    let errorsByField = new Map();
+    if (editProps && editProps.error && editProps.error.errors) {
+        console.log("test errors");
+        let error_fields = editProps.error.errors;
+        for (let i = 0; i < error_fields.length; i++) {
+            let item = error_fields[i];
+            console.log({ error: item });
+            if (item.field_name && item.message) {
+                errorsByField.set(item.field_name, item.message);
+            }
         }
-        console.log({ "get_error": json_field_name, error });
+    }
+
+    console.log("EditForm errorsByField", errorsByField);
+
+    let get_error = (json_field_name) => {
+        let error = errorsByField.has(json_field_name) && errorsByField.get(json_field_name);
         return error;
     };
 

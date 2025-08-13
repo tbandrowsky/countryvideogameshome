@@ -109,7 +109,8 @@ code {
     font-size: 30px;
     margin: 0px;
     color: #D1843D;
-    text-align: left;
+    text-align: center;
+    text-decoration: double underline;
 }
 
 .countrylabel {
