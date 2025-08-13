@@ -33,7 +33,7 @@ export default function LoginForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="LOGIN" />
+            <CoronaBarControl applicationName={props.applicationName} formName="LOGIN" formNumber="FORM 000" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
