@@ -33,7 +33,7 @@ export default function SendCodeForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" />
+            <CoronaBarControl applicationName={props.applicationName} formName="SEND CODE" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
