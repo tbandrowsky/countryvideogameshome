@@ -23,7 +23,7 @@ export default function SendCodeForm(props) {
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { json_field_name: "username", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
+            { json_field_name: "user_name", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
         ],
         put_value
     };

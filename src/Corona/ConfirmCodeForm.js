@@ -23,7 +23,7 @@ export default function ConfirmCodeForm(props) {
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { json_field_name: "username", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 },
+            { json_field_name: "user_name", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 },
             { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
         ],
         put_value
