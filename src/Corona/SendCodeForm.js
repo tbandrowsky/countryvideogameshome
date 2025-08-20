@@ -5,7 +5,7 @@ import { useState } from "react";
 import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaConfirmUserCode } from './Service.js';
+import { coronaConfirmUserCode, coronaSendUserCode } from './Service.js';
 import { useNavigate } from "react-router";
 
 export default function SendCodeForm(props) {
@@ -23,8 +23,7 @@ export default function SendCodeForm(props) {
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { json_field_name: "username", row: "1", column: "1", field_type: "string", format: "name", placeholder: "Username", max_length: 50, min_length: 4 },
-            { json_field_name: "confirmcode", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
+            { json_field_name: "username", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
         ],
         put_value
     };
@@ -40,7 +39,7 @@ export default function SendCodeForm(props) {
                 <button id="loginButton" onClick={
                     async () => {
                         setError({ success: true, message: "Sending Code", inProgress: true });
-                        let response = await coronaConfirmUserCode(request);
+                        let response = await coronaSendUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
