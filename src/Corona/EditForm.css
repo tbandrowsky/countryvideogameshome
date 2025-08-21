@@ -40,3 +40,10 @@
     color: var(--forest1);
     text-align: left;
 }
+
+.coronaparagraph {
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: normal;
+    color: var(--forest1);
+    text-align: left;
+}

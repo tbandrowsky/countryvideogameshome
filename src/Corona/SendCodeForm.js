@@ -19,11 +19,12 @@ export default function SendCodeForm(props) {
 
     let edit_props = {
         presentation: {
-            gridTemplateRows: "100.0px 100.0px",
+            gridTemplateRows: "auto 100.0px",
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { json_field_name: "user_name", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
+            { field_type: "paragraph", row: "1", column: "1/3", text: "Please enter your E-Mail address to receive a confirmation code." }, 
+            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
         ],
         put_value
     };

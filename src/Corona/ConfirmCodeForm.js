@@ -5,7 +5,7 @@ import { useState } from "react";
 import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaConfirmUserCode } from './Service.js';
+import { coronaSendUserCode, coronaConfirmUserCode } from './Service.js';
 import { useNavigate } from "react-router";
 
 export default function ConfirmCodeForm(props) {
@@ -19,12 +19,13 @@ export default function ConfirmCodeForm(props) {
 
     let edit_props = {
         presentation: {
-            gridTemplateRows: "100.0px 100.0px",
+            gridTemplateRows: "auto 100.0px 100.0px",
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { json_field_name: "user_name", row: "1", column: "1", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 },
-            { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
+            { field_type: "paragraph", row: "1", column: "1/3", text: "Please your E-Mail address and the confirmation code from the email you received." }, 
+            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 },
+            { json_field_name: "validation_code", row: "3", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
         ],
         put_value
     };
@@ -37,14 +38,22 @@ export default function ConfirmCodeForm(props) {
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
-                <button id="loginButton" onClick={
+                <button id="confirmCodeButton" onClick={
                     async () => {
                         setError({ success: true, message: "Confirming code", inProgress: true });
                         let response = await coronaConfirmUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
-                }>CONFIRM</button>
+                }>CONFIRM CODE</button>
+                <button id="sendCodeButton" onClick={
+                    async () => {
+                        setError({ success: true, message: "Send code", inProgress: true });
+                        let response = await coronaSendUserCode(request);
+                        setError({ success: response.success, message: response.message, inProgress: false });
+                        nav(response.form, response.form_props);
+                    }
+                }>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Corona/Login');
