@@ -96,7 +96,8 @@ export const coronaSendUserCode = async function (request, uxo) {
     let result = callCoronaService("/login/senduser/", request, {
         successForm: "/Corona/ConfirmCode",
         redoForm: "/Corona/SendCode",
-        redoMessage: "Could not send code."
+        redoMessage: "Could not send code.",
+        ...uxo
     });
     return result;
 };
@@ -106,7 +107,8 @@ export const coronaConfirmUserCode = async function (request, uxo) {
     let result = callCoronaService("/login/confirmuser/", request, {
         successForm: "/Corona/Home",
         redoForm: "/Corona/ConfirmCode",
-        redoMessage: "Could not confirm code."
+        redoMessage: "Could not confirm code.",
+        ...uxo
     });
     return result;
 };
@@ -116,7 +118,8 @@ export const coronaSetPassword = async function (request, uxo) {
     let result = callCoronaService("/login/passworduser/", request, {
         successForm: "/Corona/Login",
         redoForm: "/Corona/SetPassword",
-        redoMessage: "Could not confirm code."
+        redoMessage: "Could not confirm code.",
+        ...uxo
     });
     return result;
 };
@@ -126,7 +129,8 @@ export const coronaGetClasses = async function (request, uxo) {
     let result = callCoronaService("/classes/get/", request, {
         successForm: "/Corona/ClassSearch",
         redoForm: "/Corona/ClassSearch",
-        redoMessage: "Could not search classes."
+        redoMessage: "Could not search classes.",
+        ...uxo
     });
     return result;
 };
@@ -136,7 +140,8 @@ export const coronaGetClass = async function (request, uxo) {
     let result = callCoronaService("/class/get/", request, {
         successForm: "/Corona/ClassEdit",
         redoForm: "/Corona/ClassSearch",
-        redoMessage: "Could not search classes."
+        redoMessage: "Could not search classes.",
+        ...uxo
     });
     return result;
 };
@@ -146,7 +151,8 @@ export const coronaPutClass = async function (request, uxo) {
     let result = callCoronaService("/classes/put/", request, {
         successForm: "/Corona/ClassEdit",
         redoForm: "/Corona/ClassSearch",
-        redoMessage: "Could not search classes."
+        redoMessage: "Could not search classes.",
+        ...uxo
     });
     return result;
 };
@@ -156,7 +162,8 @@ export const coronaGetObject = async function (request, uxo) {
     let result = callCoronaService("/objects/get/", request, {
         successForm: "/Corona/ObjectEdit",
         redoForm: "/Corona/ObjectSearch",
-        redoMessage: "Could not get object."
+        redoMessage: "Could not get object.",
+        ...uxo
     });
     return result;
 };
@@ -166,7 +173,8 @@ export const coronaCreateObject = async function (request, uxo) {
     let result = callCoronaService("/objects/get/", request, {
         successForm: "/Corona/ObjectEdit",
         redoForm: "/Corona/ObjectSearch",
-        redoMessage: "Could not get object."
+        redoMessage: "Could not get object.",
+        ...uxo
     });
     return result;
 };
@@ -176,28 +184,41 @@ export const coronaPutObject = async function (request, uxo) {
     let result = callCoronaService("/objects/put/", request, {
         successForm: "/Corona/ObjectEdit",
         redoForm: "/Corona/ObjectEdit",
-        redoMessage: "Could not save object."
+        redoMessage: "Could not save object.",
+        ...uxo
     });
     return result;
 };
 
 export const coronaEditObject = async function (request, uxo) {
     if (!uxo) uxo = {};
-    const url = AppSettings.GetBaseUrl() + "/objects/edit/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/edit/", request, {
+        successForm: "/Corona/ObjectEdit",
+        redoForm: "/Corona/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
+    });
+    return result;
 };
 
 export const coronaRunObject = async function (request, uxo) {
     if (!uxo) uxo = {};
-    const url = AppSettings.GetBaseUrl() + "/objects/run/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/run/", request, {
+        successForm: "/Corona/ObjectEdit",
+        redoForm: "/Corona/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
+    });
+    return result;
 };
 
 export const coronaQuery = async function (request, uxo) {
     if (!uxo) uxo = {};
-    const url = AppSettings.GetBaseUrl() + "/objects/query/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/run/", request, {
+        successForm: "/Corona/ObjectEdit",
+        redoForm: "/Corona/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
+    });
+    return result;
 };

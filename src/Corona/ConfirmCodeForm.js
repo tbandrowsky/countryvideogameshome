@@ -24,7 +24,7 @@ export default function ConfirmCodeForm(props) {
         },
         body_fields: [
             { field_type: "paragraph", row: "1", column: "1/3", text: "Please your E-Mail address and the confirmation code from the email you received." }, 
-            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 },
+            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4 },
             { json_field_name: "validation_code", row: "3", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
         ],
         put_value
@@ -34,7 +34,7 @@ export default function ConfirmCodeForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" />
+            <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" formNumber="004"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">

@@ -23,7 +23,7 @@ export default function SendCodeForm(props) {
         },
         body_fields: [
             { field_type: "paragraph", row: "1", column: "1/3", text: "Please enter your E-Mail address to receive a confirmation code." }, 
-            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
+            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4 }
         ],
         put_value
     };
@@ -32,7 +32,7 @@ export default function SendCodeForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="SEND CODE" />
+            <CoronaBarControl applicationName={props.applicationName} formName="SEND CODE" formNumber="003"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">

@@ -1,9 +1,78 @@
+
 import '../App.css'
 import '../index.css'
+import { useState } from "react";
+import CoronaBarControl from './CoronaBarControl.js';
+import EditForm from './EditForm.js';
+import ErrorControl from './ErrorControl.js';
+import GridControl from './GridControl.js';
+import { coronaGetClasses } from './Service.js';
+import { useNavigate } from "react-router";
 
 export default function ClassSearchForm(props) {
+
+    const [request, setRequest] = useState({ });
+    const [error, setError] = useState({ success: false, message: "", inProgress: false, errors:[] });
+
+    const put_value = (json_field_name, value) => {
+        setRequest(prev => ({ ...prev, [json_field_name]: value }));
+    };
+
+    let edit_props = {
+        presentation: {
+            gridTemplateColumns: "repeat( 4 fr )",
+            gridTemplateRows: "auto 90px 90px auto 90px 100px"
+        },
+        body_fields: [
+            { json_field_name: "object_id", column: 1, row: 2, field_type: "number", format: "number", placeholder: "Object Id", max_length: 30, min_length: 4 },
+            { json_field_name: "base_class_name", column: 4, row: 4, field_type: "string", format: "name", placeholder: "Base Class Name", max_length: 100, min_length: 1 },
+            { json_field_name: "class_name", column: 2, row: 3, field_type: "string", format: "password", placeholder: "Class Name", max_length: 50, min_length: 8 },
+            { json_field_name: "class_description", column: 3, row: 3, field_type: "string", format: "password", placeholder: "Class Description", max_length: 50, min_length: 8 },
+        ],
+        put_value
+    };
+
+    let grid_props = {
+        presentation: {
+            gridTemplateColumns: "repeat( 4 fr )",
+            gridTemplateRows: "auto 90px 90px auto 90px 100px"
+        },
+        grid_columns: [
+            { json_field_name: "object_id", column: 1, row: 2, field_type: "number", format: "number", placeholder: "Object Id", max_length: 30, min_length: 4 },
+            { json_field_name: "class_name", column: 2, row: 3, field_type: "string", format: "password", placeholder: "Class Name", max_length: 50, min_length: 8 },
+            { json_field_name: "class_description", column: 3, row: 3, field_type: "string", format: "password", placeholder: "Class Description", max_length: 50, min_length: 8 },
+            { json_field_name: "base_class_name", column: 4, row: 4, field_type: "string", format: "name", placeholder: "Base Class Name", max_length: 100, min_length: 1 }
+        ],
+        put_value
+    };
+
+    let nav = useNavigate();
+
     return (
-        <div className="contentbackgroundform">
+        <div class="contentbackgroundform">
+            <CoronaBarControl applicationName={props.applicationName} formName="CLASSES" formNumber="FORM 006" />
+            <ErrorControl {...error} />
+            <EditForm {...edit_props} error={error} />
+            <GridControl {...grid_props} error={error} />
+            <div className="buttonBar">
+                <button id="searchButton" onClick={
+                    async () => {
+                        setError({ success: true, message: "Searching", inProgress:true });
+                        let response = await coronaGetClasses(request, {
+                            successForm: '/Corona/ClassSearchForm',
+                            redoForm: '/Corona/ClassSearchForm',
+                            redoMessage: 'Search failed.'
+                        });
+                        setError({ success: response.success, message: response.message, inProgress: false });
+                        nav(response.form, response.form_props);
+                    }
+                }>SEARCH</button>                
+                <button id="confirmUserButton" disabled={error.inProgress} onClick={
+                    async () => {
+                        nav('/Corona/Home');
+                    }
+                }>CANCEL</button>
+            </div>
         </div>
     );
 }
