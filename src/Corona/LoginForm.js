@@ -19,12 +19,16 @@ export default function LoginForm(props) {
 
     let edit_props = { 
         presentation: {
-            gridTemplateRows: "100.0px 100.0px",
+            gridTemplateRows: "100.0px 100.0px 100.0px",
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { json_field_name: "username", row:"1", column:"1", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
-            { json_field_name: "password", row: "2", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 }
+            { row: "1", column: "1", field_type: "coronaparagraph", text:"Please login" }, 
+            { json_field_name: "username", row:"2", column:"1", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
+            { json_field_name: "password", row: "3", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 }
+            { row: "4", column: "1", field_type: "coronaparagraph", text: "LOGIN if you are in the Revolution." }, 
+            { row: "5", column: "1", field_type: "coronaparagraph", text: "RECOVER if you forgot." }, 
+            { row: "6", column: "1", field_type: "coronaparagraph", text: "ENLIST to join Revolution." }, 
         ],
         put_value
     };
