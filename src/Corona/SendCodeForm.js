@@ -1,11 +1,10 @@
-
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
 import CoronaBarControl from './CoronaBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaConfirmUserCode, coronaSendUserCode } from './Service.js';
+import { coronaSendUserCode } from './Service.js';
 import { useNavigate } from "react-router";
 
 export default function SendCodeForm(props) {
