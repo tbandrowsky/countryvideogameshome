@@ -26,15 +26,14 @@
 .coronachaptertitle {
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
     font-weight: normal;
-    font-size:24px;
+    font-size:18px;
     padding-left: 0px;
     color: dimgrey;
     text-align: left;
     margin-left:-16px;
     margin-right:-16px;
-    margin-bottom:16px;
     padding-left:16px;
-    box-shadow: 0 0px 8px rgba(34, 34, 30, 0.28); /* subtle green shadow */
+    height:1.4em;
 }
 
 .coronachaptersubtitle {

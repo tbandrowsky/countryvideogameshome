@@ -50,7 +50,7 @@ export default function ClassSearchForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="CLASSES" formNumber="FORM 006" />
+            <CoronaBarControl applicationName={props.applicationName} formName="CLASSES" formNumber="FORM 001" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <GridControl {...grid_props} error={error} />

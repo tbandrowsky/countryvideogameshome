@@ -25,7 +25,7 @@ export default function EditField(props) {
                 </React.Fragment>}
             {(props.field.field_type === "chaptersubtitle") &&
                 <React.Fragment>
-                    <h4 className="coronachaptersubtitle">{props.field.text}</h4>
+                    <p className="coronachaptersubtitle">{props.field.text}</p>
                 </React.Fragment>}
             {(props.field.field_type === "paragraph") &&
                 <React.Fragment>

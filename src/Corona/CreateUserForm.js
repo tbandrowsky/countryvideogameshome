@@ -20,11 +20,11 @@ export default function CreateUserForm(props) {
     let edit_props = {
         presentation: {
             gridTemplateColumns: "repeat( 4 fr )",
-            gridTemplateRows: "auto 90px 90px auto 90px 100px"
+            gridTemplateRows: "auto auto auto auto auto auto"
         },
         body_fields: [
             { column: '1/4', row: 1, field_type: "chaptertitle", text: "Account" },
-            { json_field_name: "user_name", column: '1/4', row: 2, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 30, min_length: 4 },
+            { json_field_name: "user_name", column: '1/4', row: 2, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 100, min_length: 4 },
             { json_field_name: "password1", column: 1, row: 3, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8 },
             { json_field_name: "password2", column: 2, row: 3, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8 },
             { json_field_name: "first_name", column: 1, row: 4, field_type: "string", format: "name", placeholder: "First Name", max_length: 100, min_length: 1 },
@@ -43,7 +43,7 @@ export default function CreateUserForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 002" />
+            <CoronaBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 004" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">

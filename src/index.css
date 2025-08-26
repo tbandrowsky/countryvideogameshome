@@ -110,7 +110,6 @@ code {
     margin: 0px;
     color: #D1843D;
     text-align: center;
-    text-decoration: double underline;
 }
 
 .countrylabel {
@@ -126,7 +125,7 @@ code {
 }
 
 .countrylabelright {
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'Jost';
     text-align: left;
     vertical-align: middle;
@@ -158,8 +157,8 @@ code {
 
 .countrytitle2left {
     font-size:20px;
-    font-family: 'Jost';
-    font-style: italic;
+    font-family: Lobster, Cambria, Cochin, Georgia, Times, Times New Roman, serif, 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
     text-align: right;
     vertical-align: middle;
     color: darkslategray;
@@ -167,7 +166,7 @@ code {
 
 .countrytitle2right {
     font-size: 20px;
-    font-family: 'Jost';
+    font-family: Lobster, Cambria, Cochin, Georgia, Times, Times New Roman, serif, 'Arial Narrow', Arial, sans-serif;
     margin-left: 0px;
     margin-right: 32px;
     color: #D1843D;
@@ -246,6 +245,14 @@ H2 {
 }
 
 H3 {
+    margin: 0px;
+    font-size: 16pt;
+    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
+    font-weight: normal;
+    padding: 0px;
+}
+
+H4 {
     margin: 0px;
     font-size: 16pt;
     font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
