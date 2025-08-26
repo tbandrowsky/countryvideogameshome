@@ -23,9 +23,9 @@ export default function ConfirmCodeForm(props) {
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { field_type: "paragraph", row: "1", column: "1/3", text: "Please your E-Mail address and the confirmation code from the email you received." }, 
-            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4 },
-            { json_field_name: "validation_code", row: "3", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
+            { field_type: "paragraph", row: "1", column: "1/3", text: "Enter your confirmation code and the email address you requested it with." }, 
+            { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirmation Code", max_length: 50, min_length: 8 },
+            { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4 }
         ],
         put_value
     };
