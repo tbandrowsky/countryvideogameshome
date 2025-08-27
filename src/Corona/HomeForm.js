@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import CoronaBarControl from './CoronaBarControl.js';
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
 import { coronaGetClasses } from './Service.js';
 import { useState } from "react";
 import ErrorControl from './ErrorControl.js';
@@ -10,7 +10,7 @@ import ErrorControl from './ErrorControl.js';
 export default function HomeForm(props) {
     const [error, setError] = useState({ success: false, message: "", inProgress: false, errors:[] });
 
-    let nav = useNavigate();
+
     return (
         <div class="contentbackgroundform">
             <CoronaBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
