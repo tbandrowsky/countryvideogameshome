@@ -26,7 +26,7 @@ export default function LoginForm(props) {
             { field_type: "paragraph", row: "1", column: "1/3", text: "Please enter your E-Mail address to and password to login." }, 
             { json_field_name: "username", row:"2", column:"1", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
             { json_field_name: "password", row: "3", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 },
-            { field_type: "paragraph", row: "4", column: "1/3", text: "If you forgot your password, just use the send code to get." },  
+            { field_type: "paragraph", row: "4", column: "1/3", text: "If you forgot your password, just use RECOVER." },  
         ],
         put_value
     };
