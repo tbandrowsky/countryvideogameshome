@@ -37,7 +37,9 @@ export const callCoronaService = async function (path, request, options) {
         result = await response.json();
         console.log({ "result": result });
         if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.token);
+            if (options && options.storeToken && result.token) {
+                sessionStorage.setItem(AppSettings.TokenKey, result.token);
+            }
             result.form = options.successForm;
             result.form_props = {
                 success: true,
@@ -65,7 +67,8 @@ export const callCoronaService = async function (path, request, options) {
 }
 
 export const coronaLoginUser = async function (request, uxo) {
-    if (!uxo) uxo = {};
+    if (!uxo) uxo = { };
+    uxo = { ...uxo, storeToken: true };
 
     let result = callCoronaService("/login/loginuser/", request, {
         successForm: "/Corona/Home",
@@ -104,6 +107,7 @@ export const coronaSendUserCode = async function (request, uxo) {
 
 export const coronaConfirmUserCode = async function (request, uxo) {
     if (!uxo) uxo = {};
+    uxo = { ...uxo, storeToken: true };
     let result = callCoronaService("/login/confirmuser/", request, {
         successForm: "/Corona/Home",
         redoForm: "/Corona/ConfirmCode",

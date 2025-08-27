@@ -6,20 +6,39 @@ function Corona() {
     return (
         <div class="contentbackground">
             <TitleBar title="CORONA" />
-            <div style={{ display: "grid", gridColumnTemplate: "185px 185px 185px 185px", width: "800px" }} >
-                <Link style={{ paddingRight: "16px", width: "175px", gridColumn: "1" }} to="/Corona/Login">Sample </Link>
-                <a style={{ paddingRight: "16px", width: "175px", gridColumn: "2" }} href="coronaserver20220806.zip">Corona (8/7/2025)</a>
-                <a style={{ paddingRight: "16px", width: "175px", gridColumn: "3" }} href="corona_quickstart.pdf">Installation(7/23/2025)</a>
-                <a style={{ paddingRight: "16px", width: "175px", gridColumn: "4" }} href="corona_manual.pdf">Manual(7/23/2025)</a>
+            <div style={{ display: "grid", gridColumnTemplate: "30% 30% 30%", backgroundColor: "darkgreen" }} >
+                <Link style={{ paddingLeft: "16px", gridColumn: "1", textAlign: "left" }} to="/Corona/Login">REVOLUTION</Link>
+                <a style={{ paddingLeft: "16px", gridColumn: "2", textAlign: "left" }} href="downloads/coronarc1.zip">Download (8/26/2025)</a>
+                <a style={{ paddingLeft: "16px", gridColumn: "3", textAlign: "left" }} href="corona_quickstart.pdf">Installation (7/23/2025)</a>
             </div>
             <div className="content">
-                <h2>Be fast to market</h2>
-                <p>Corona lets you create complex workflow instantly.  You supply a configuration file representating your schema and Corona will create and run both the database and the services for it.
-                    Corona handles all the boiler plate for object access, transparent SQL Server integration, and user account management.  Edit a schema file and have the service reflect and data be correct as you edit it.</p>
+                <h2>An object oriented api and data server</h2>
+                <p>Corona is a database server that is designed to get data driven web apis quickly running.  Corona accepts a schema file
+                    with class definitions, data imports, and SQL Server links, and integrates all of that into an object api with consistent and correct
+                    CRUD, plus, the ability to define queries consisting of joins, filters, and projections.</p>
+
+                <p>Breathtakingly innovative, Corona takes all the things anyone needs, from database to web, and identity,
+                with a powerful, simple appliance weighing in at 1.5Mb.</p>
                 <h2>Create organizations from sets of teams</h2>
                 <p>No more need to wrestle with complicated workflows and endless security nightmares.  Corona correctly implements
                     teams.  Create teams with your own enterprise's people, people from other domains, and any mix that you prefer.
                 </p>
+
+                <h2>Fast to execute</h2>
+                <p>Corona is fast.  Corona has of thousands of objects per second, validated and on disk, and roaring queries.</p>
+                <p>Logging in, password recovery are all instant.</p>
+
+                <h2>Fast to data</h2>
+                <p>Corona lets you edit your api as easy as a simple json file.  Edit a schema file while Corona is running.  Have it rebuild your database from the ground up
+                on every change, or just keep editing your file. </p>
+
+                <h2>Fast to people</h2>
+                <p>Create teams, each with their own unique permissions.  Users onboard to teams based on their email address.  So you can have teams from
+all your partners and friends, each with their own permissions.</p>
+
+                <h2>"Edit my own stuff" security</h2>
+                <p>Corona's integrated workflow and security allows you to specify security for "own records".</p>
+
                 <h2>Open Source</h2>
                 <p>
                     Corona is an open source and available for free either from this download page or from our repo.
@@ -28,16 +47,6 @@ function Corona() {
                 <p>Corona is a database engine and a web server rolled together.  It has all the crud methods for objects,
                     so you have instant CRUD. It has a full login and sign up scenario with MFA.  Right now we use email but we can use cell phones.
                 </p>
-                <h2>Get Started</h2>
-                <p>Download zip, extract to folder, and either run from the terminal or invoke the batch. There's a word document that is a manual,
-                    and we'll have examples to get you started as we go.  Included are the revolution and insurance schemas presently
-                    being discussed on linked in.</p>
-                <div style={{ display:"grid", gridColumnTemplate: "185px 185px 185px 185px", width:"800px" }} >
-                    <Link style={{ paddingRight: "16px", width:"175px", gridColumn:"1" }} to="/Corona/Login">Sample </Link>
-                    <a style={{ paddingRight: "16px", width: "175px", gridColumn: "2" }} href="coronaserver20220806.zip">Corona (8/7/2025)</a>
-                    <a style={{ paddingRight: "16px", width: "175px", gridColumn: "3" }} href="corona_quickstart.pdf">Installation(7/23/2025)</a>
-                    <a style={{ paddingRight: "16px", width: "175px", gridColumn: "4" }} href="corona_manual.pdf">Manual(7/23/2025)</a>
-                </div>
                 <h2>
                     User Account and Login Build In
                 </h2>
