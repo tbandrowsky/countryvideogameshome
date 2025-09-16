@@ -25,8 +25,8 @@ export default function CreateUserForm(props) {
         body_fields: [
             { column: '1/4', row: 1, field_type: "chaptertitle", text: "Account" },
             { json_field_name: "user_name", column: '1/4', row: 2, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 100, min_length: 4 },
-            { json_field_name: "password1", column: 1, row: 3, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8 },
-            { json_field_name: "password2", column: 2, row: 3, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8 },
+            { json_field_name: "password1", column: 1, row: 3, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8, autocomplete:false },
+            { json_field_name: "password2", column: 2, row: 3, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8, autocomplete: false },
             { json_field_name: "first_name", column: 1, row: 4, field_type: "string", format: "name", placeholder: "First Name", max_length: 100, min_length: 1 },
             { json_field_name: "last_name", column: 2, row: 4, field_type: "string", format: "name", placeholder: "Last Name", max_length: 100, min_length: 1 },
             { json_field_name: "phone", column: 3, row: 4, field_type: "string", format: "tel", placeholder: "Phone", max_length: 20  },
