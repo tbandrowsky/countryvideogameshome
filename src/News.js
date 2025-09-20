@@ -4,17 +4,17 @@ import TitleBar from "./TitleBar";
 
 let newsItems = [
     {
-        title: "Corona Server",
-        info: "/Corona",
-        repo: "https://github.com/tbandrowsky/countrybit",
-        description: "Corona gets beta OpenAPI 3.x support, and an installer.  Tested on Azure VM WS 2022 2 Core, on Xeon Max 9480 56 Core, and more to tease out a problem with a thread barrier.",
-        download: "coronaserver.zip"
+        title: "Revolution",
+        info: "/RevolutionAbout",
+        repo: "https://github.com/tbandrowsky/corona",
+        description: "You can log into Revolution now, or download it, and start your own.",
+        download: "revolution.zip"
     },
     {
         title: "Web Site",
         info: "/News",
         repo: "https://github.com/tbandrowsky/countryvideogameshome",
-        description: "Web site getting new look and Corona integration."
+        description: "Web site getting new look."
     },
     {
         title: "Color Party",

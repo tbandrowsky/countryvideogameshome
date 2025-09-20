@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import CoronaBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import GridControl from './GridControl.js';
@@ -59,8 +59,8 @@ export default function ClassSearchForm(props) {
                     async () => {
                         setError({ success: true, message: "Searching", inProgress:true });
                         let response = await coronaGetClasses(request, {
-                            successForm: '/Corona/ClassSearchForm',
-                            redoForm: '/Corona/ClassSearchForm',
+                            successForm: '/Revolution/ClassSearchForm',
+                            redoForm: '/Revolution/ClassSearchForm',
                             redoMessage: 'Search failed.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
@@ -69,7 +69,7 @@ export default function ClassSearchForm(props) {
                 }>SEARCH</button>                
                 <button id="confirmUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/Home');
+                        nav('/Revolution/Home');
                     }
                 }>CANCEL</button>
             </div>

@@ -9,9 +9,8 @@ function MenuBar() {
             <Caption />
             <h2 className="countrylabel">Products</h2>
             <div className="countrylinks2">
-                <Link to="/Corona">CORONA</Link>
                 <Link to="/ColorParty">COLOR PARTY</Link>
-                <Link to="/Corona/Login">REVOLUTION</Link>
+                <Link to="/RevolutionAbout">REVOLUTION</Link>
             </div>
             <h2 className="countrylabel">Company</h2>
             <div className="countrylinks3">

@@ -1,7 +1,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import CoronaBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaSendUserCode } from './Service.js';
@@ -46,7 +46,7 @@ export default function SendCodeForm(props) {
                 }>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/Login');
+                        nav('/Revolution/Login');
                     }
                 }>CANCEL</button>
             </div>

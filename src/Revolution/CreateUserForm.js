@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import CoronaBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaCreateUser } from './Service.js';
@@ -51,8 +51,8 @@ export default function CreateUserForm(props) {
                     async () => {
                         setError({ success: true, message: "Processing Application.", inProgress: true });
                         let response = await coronaCreateUser({ data: request }, {
-                            successForm: '/Corona/ConfirmCode',
-                            redoForm: '/Corona/CreateUser',
+                            successForm: '/Revolution/ConfirmCode',
+                            redoForm: '/Revolution/CreateUser',
                             redoMessage: 'Unable to process application.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
@@ -61,7 +61,7 @@ export default function CreateUserForm(props) {
                 }>ENLIST</button>
                 <button id="cancelButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/Login');
+                        nav('/Revolution/Login');
                     }
                 }>CANCEL</button>
             </div>

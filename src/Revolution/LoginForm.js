@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import CoronaBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaLoginUser } from './Service.js';
@@ -43,8 +43,8 @@ export default function LoginForm(props) {
                     async () => {
                         setError({ success: true, message: "Attempting to login", inProgress:true });
                         let response = await coronaLoginUser(request, {
-                            successForm: '/Corona/Home',
-                            redoForm: '/Corona/Login',
+                            successForm: '/Revolution/Home',
+                            redoForm: '/Revolution/Login',
                             redoMessage: 'Cannot log in.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
@@ -53,17 +53,17 @@ export default function LoginForm(props) {
                 }>LOGIN</button>                
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/CreateUser');
+                        nav('/Revolution/CreateUser');
                     }
                 }>ENLIST</button>
                 <button id="recoverUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/SendCode');
+                        nav('/Revolution/SendCode');
                     }
                 }>RECOVER</button>
                 <button id="confirmUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/ConfirmCode');
+                        nav('/Revolution/ConfirmCode');
                     }
                 }>CONFIRM</button>
             </div>

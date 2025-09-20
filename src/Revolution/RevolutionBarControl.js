@@ -1,8 +1,8 @@
 import '../App.css'
 import '../index.css'
-import './CoronaBarControl.css';
+import './RevolutionBarControl.css';
 
-export default function CoronaBarControl(props) {
+export default function RevolutionBarControl(props) {
     return (
         <div className="coronabar" >
             <div className="countrytitle1right">REVOLUTION</div>
