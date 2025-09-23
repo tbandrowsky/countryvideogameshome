@@ -17,7 +17,7 @@ export default function TextEditField(props)
     let min_length = 0;
     let match_pattern = '';
     let div_style = { margin: '0px', padding: '0px', paddingLeft: '0px' };
-    let autocomplete = true;
+    let autocomplete = "true";
 
     if ('max_length' in field_props) {
         max_length = field_props.max_length;

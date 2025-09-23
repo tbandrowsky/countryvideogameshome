@@ -43,7 +43,7 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: true, message: "Confirming code", inProgress: true });
                         let response = await coronaConfirmUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        nav(response.form, { state: response.form_props });
                     }
                 }>CONFIRM CODE</button>
                 <button id="sendCodeButton" onClick={
@@ -51,7 +51,7 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: true, message: "Send code", inProgress: true });
                         let response = await coronaSendUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        nav(response.form, { state: response.form_props });
                     }
                 }>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={

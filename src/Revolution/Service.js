@@ -41,18 +41,12 @@ export const callCoronaService = async function (path, request, options) {
                 sessionStorage.setItem(AppSettings.TokenKey, result.token);
             }
             result.form = options.successForm;
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
+            result.form_props = { ...result, success: true };
         }
         else
         {
             result.form = options.redoForm;
-            result.form_props = {
-                success: false,
-                message: response.message || options.redoMessage
-            }; // that is the pattern
+            result.form_props = { ...result, success: false };
         }
     }
     else
@@ -60,7 +54,7 @@ export const callCoronaService = async function (path, request, options) {
         result.success = false;
         result.message = options.redoMessage;
         result.form = options.redoForm;
-        result.form_props = {}; // that is the pattern
+        result.form_props = { applicationName: AppSettings.ApplicationName }; // that is the pattern
     }
 
     return result;
@@ -171,6 +165,18 @@ export const coronaGetObject = async function (request, uxo) {
     });
     return result;
 };
+
+export const coronaSetTeam = async function (request, uxo) {
+    if (!uxo) uxo = {};
+    let result = callCoronaService("/user/set_team/", request, {
+        successForm: "/Revolution/Home",
+        redoForm: "/Revolution/Home",
+        redoMessage: "Could not get object.",
+        ...uxo
+    });
+    return result;
+};
+
 
 export const coronaCreateObject = async function (request, uxo) {
     if (!uxo) uxo = {};

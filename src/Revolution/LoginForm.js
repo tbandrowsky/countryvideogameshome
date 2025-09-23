@@ -26,7 +26,7 @@ export default function LoginForm(props) {
             { field_type: "paragraph", row: "1", column: "1/3", text: "Please enter your E-Mail address to and password to login." }, 
             { json_field_name: "user_name", row:"2", column:"1/3", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
             { json_field_name: "password", row: "3", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 },
-            { field_type: "paragraph", row: "4", column: "1/3", text: "If you forgot your password, just use RECOVER." },  
+            { field_type: "paragraph", row: "4", column: "1/3", text: "If you forgot your password, just use RECOVER." }
         ],
         put_value
     };
@@ -34,7 +34,7 @@ export default function LoginForm(props) {
     let nav = useNavigate();
 
     return (
-        <div class="contentbackgroundform">
+        <div className="contentbackgroundform">
             <RevolutionBarControl applicationName={props.applicationName} formName="LOGIN" formNumber="FORM 006" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
@@ -48,7 +48,8 @@ export default function LoginForm(props) {
                             redoMessage: 'Cannot log in.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        console.log({ 'login_form_props': response.form_props });
+                        nav(response.form, { state: response.form_props } );
                     }
                 }>LOGIN</button>                
                 <button id="createUserButton" disabled={error.inProgress} onClick={

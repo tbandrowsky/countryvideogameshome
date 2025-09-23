@@ -18,8 +18,9 @@ class GoogleAd extends Component {
 
     render() {
         const { classNames, slot, googleAdId, style, format } = this.props;
+        let divClassName = classNames || 'googlead';
         return (
-            <div className={classNames}>
+            <div className={divClassName}>
                 <ins
                     className="adsbygoogle"
                     style={style || { display: 'block', textAlign: "center" }}

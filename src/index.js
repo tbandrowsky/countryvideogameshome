@@ -20,12 +20,13 @@ import SetPasswordForm from './Revolution/SetPasswordForm';
 import SendCodeForm from './Revolution/SendCodeForm';
 import ObjectEditForm from './Revolution/ObjectEditForm';
 import ObjectSearchForm from './Revolution/ObjectSearchForm';
+import GoogleAd from './GoogleAd'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 
-    <BrowserRouter>
+    <BrowserRouter >
         <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
@@ -40,18 +41,20 @@ root.render(
                     <Route path="/RevolutionAbout" element={<RevolutionAbout />} />
                     <Route path="/ColorParty" element={<ColorParty />} />
                     <Route path="/About" element={<About />} />
-                    <Route path="/Revolution/Home" element={<HomeForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/Login" element={<LoginForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/CreateUser" element={<CreateUserForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/SetPassword" element={<SetPasswordForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/SendCode" element={<SendCodeForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/ObjectEdit" element={<ObjectEditForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/ObjectSearch" element={<ObjectSearchForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/ClassEdit" element={<ClassEditForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/ClassSearch" element={<ClassSearchForm applicationName="REVOLUTION" />} />
-                    <Route path="/Revolution/ConfirmCode" element={<ConfirmCodeForm applicationName="REVOLUTION" />} />
+                    <Route path="/Revolution/Home" element={<HomeForm />} />
+                    <Route path="/Revolution/Login" element={<LoginForm  />} />
+                    <Route path="/Revolution/CreateUser" element={<CreateUserForm />} />
+                    <Route path="/Revolution/SetPassword" element={<SetPasswordForm />} />
+                    <Route path="/Revolution/SendCode" element={<SendCodeForm />} />
+                    <Route path="/Revolution/ObjectEdit" element={<ObjectEditForm />} />
+                    <Route path="/Revolution/ObjectSearch" element={<ObjectSearchForm />} />
+                    <Route path="/Revolution/ClassEdit" element={<ClassEditForm />} />
+                    <Route path="/Revolution/ClassSearch" element={<ClassSearchForm />} />
+                    <Route path="/Revolution/ConfirmCode" element={<ConfirmCodeForm />} />
                 </Routes>
             </div>
+            <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" style={{ display: 'block', width: '250px', height: '300px' }} />
+
      </div>
    </BrowserRouter>
 );

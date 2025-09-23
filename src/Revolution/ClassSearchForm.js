@@ -64,7 +64,7 @@ export default function ClassSearchForm(props) {
                             redoMessage: 'Search failed.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        nav(response.form, { state: response.form_props });
                     }
                 }>SEARCH</button>                
                 <button id="confirmUserButton" disabled={error.inProgress} onClick={

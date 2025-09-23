@@ -1,7 +1,7 @@
 
 export const AppSettings = {
     TokenKey: "CoronaToken",    
-    ApplicationName: "Revolution Demonstration",
+    ApplicationName: "REVOLUTION",
     GetBaseUrl: function () {
         return "https://mightyware.com:443/revolution";
     }
