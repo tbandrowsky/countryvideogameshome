@@ -8,8 +8,7 @@ function Corona() {
             <TitleBar title="REVOLUTION" />
             <div style={{ display: "grid", gridColumnTemplate: "30% 30% 30%", backgroundColor: "darkgreen" }} >
                 <Link style={{ paddingLeft: "16px", gridColumn: "1", textAlign: "left" }} to="/Revolution/Login">LOGIN OR ENLIST</Link>
-                <a style={{ paddingLeft: "16px", gridColumn: "2", textAlign: "left" }} href="downloads/revolution.zip">Download (9/16/2025)</a>
-                <a style={{ paddingLeft: "16px", gridColumn: "3", textAlign: "left" }} href="revolution_quickstart.pdf">Getting Started</a>
+                <a style={{ paddingLeft: "16px", gridColumn: "2", textAlign: "left" }} href="downloads/">Downloads</a>
             </div>
             <div className="contentwrapper">
                 <div className="content" >
