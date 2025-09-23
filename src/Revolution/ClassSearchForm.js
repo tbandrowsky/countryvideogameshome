@@ -43,9 +43,9 @@ export default function ClassSearchForm(formProps) {
             gridTemplateRows: "auto 90px 90px auto 90px 100px"
         },
         grid_columns: [
-            { key: "class_name", name: },
-            { key: "class_description" },
-            { key: "base_class_name" }
+            { key: "class_name", name: "Name" },
+            { key: "class_description", name:"Description" },
+            { key: "base_class_name", name: "Base Class"}
         ],
         put_value
     };
