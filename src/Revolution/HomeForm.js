@@ -4,7 +4,7 @@ import '../index.css'
 import RevolutionBarControl from './RevolutionBarControl.js';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-import { coronaGetClasses, coronaSetTeam } from './Service.js';
+import { coronaSetTeam } from './Service.js';
 import { useState } from "react";
 import ErrorControl from './ErrorControl.js';
 import GridControl from './GridControl.js';
