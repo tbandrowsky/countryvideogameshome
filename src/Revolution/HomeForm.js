@@ -16,21 +16,43 @@ export default function HomeForm(formProps) {
     let loc = useLocation();
     let props = { ...formProps, ...loc.state };
     console.log({ props, "title": "HomeForm" });
+
+
     let ticketColumns = [
         { key: 'class_name', name: 'Class' },
         { key: 'object_id', name: 'ObjectId' },
         { key: 'name', name: 'Name' },
-        { key: 'description', name: 'Description' }
+        { key: 'description', name: 'Description' },
+        { key: 'created', name: 'Created' },
+        { key: 'createdby', name: 'CreatedBy' },
+        { key: 'modified', name: 'Modified' },
+        { key: 'modifiedby', name: 'ModifiedBy' },
+    ];
+
+    let articleColumns = [
+        { key: 'class_name', name: 'Class' },
+        { key: 'object_id', name: 'ObjectId' },
+        { key: 'name', name: 'Name' },
+        { key: 'description', name: 'Description' },
+        { key: 'created', name: 'Created' },
+        { key: 'createdby', name: 'CreatedBy' },
+        { key: 'modified', name: 'Modified' },
+        { key: 'modifiedby', name: 'ModifiedBy' },
+    ];
+
+    let classColumns = [
+        { key: 'class_name', name: 'Class' },
+        { key: 'class_description', name: 'ObjectId' }
     ];
 
     return (
         <div class="contentbackgroundform">
             <RevolutionBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
             <ErrorControl {...error} />
-            <div className="section">TEAMS</div>
+            <div className="section">Teams</div>
             <div className="sectionbuttons">
                 {props.data.team.allowed_teams.map((field, index) => {
-                    return <button onClick={
+                    return <button key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Selecting Team", inProgress: true });
                             let response = await coronaSetTeam({}, {
@@ -50,23 +72,10 @@ export default function HomeForm(formProps) {
             {props.data.team.tickets && props.data.team.tickets.length > 0 && <GridControl columns={ticketColumns} rows={props.data.team.tickets} /> }
 
             <div className="subsection">Articles</div>
-            {props.data.team.articles && props.data.team.articles.length > 0 && <GridControl columns={ticketColumns} rows={props.data.team.articles} />}
+            {props.data.team.articles && props.data.team.articles.length > 0 && <GridControl columns={articleColumns} rows={props.data.team.articles} />}
 
-            <div className="section">TOOLS</div>
-            <div className="sectionbuttons">
-                <button id="searchButton" onClick={
-                    async () => {
-                        setError({ success: true, message: "Searching", inProgress: true });
-                        let response = await coronaGetClasses({}, {
-                            successForm: '/Revolution/ClassSearchForm',
-                            redoForm: '/Revolution/ClassSearchForm',
-                            redoMessage: 'Search failed.'
-                        });
-                        nav(response.form, { state: response.form_props });
-                        setError({ success: response.success, message: response.message, inProgress: false });
-                    }
-                }>Data Explorer</button>                
-            </div>
+            <div className="subsection">Collections</div>
+            {props.data.team.classes && props.data.team.classes.length > 0 && <GridControl columns={classColumns} rows={props.data.team.classes} />}
         </div>
     );
 }

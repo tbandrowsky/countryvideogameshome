@@ -8,8 +8,9 @@ import ErrorControl from './ErrorControl.js';
 import GridControl from './GridControl.js';
 import { coronaGetClasses } from './Service.js';
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 
-export default function ClassSearchForm(props) {
+export default function ClassSearchForm(formProps) {
 
     const [request, setRequest] = useState({ });
     const [error, setError] = useState({ success: false, message: "", inProgress: false, errors:[] });
@@ -17,6 +18,10 @@ export default function ClassSearchForm(props) {
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
     };
+
+    let loc = useLocation();
+    let props = { ...formProps, ...loc.state };
+    console.log({ props, "title": "ClassSearch" });
 
     let edit_props = {
         presentation: {
@@ -38,10 +43,9 @@ export default function ClassSearchForm(props) {
             gridTemplateRows: "auto 90px 90px auto 90px 100px"
         },
         grid_columns: [
-            { json_field_name: "object_id", column: 1, row: 2, field_type: "number", format: "number", placeholder: "Object Id", max_length: 30, min_length: 4 },
-            { json_field_name: "class_name", column: 2, row: 3, field_type: "string", format: "password", placeholder: "Class Name", max_length: 50, min_length: 8 },
-            { json_field_name: "class_description", column: 3, row: 3, field_type: "string", format: "password", placeholder: "Class Description", max_length: 50, min_length: 8 },
-            { json_field_name: "base_class_name", column: 4, row: 4, field_type: "string", format: "name", placeholder: "Base Class Name", max_length: 100, min_length: 1 }
+            { key: "class_name", name: },
+            { key: "class_description" },
+            { key: "base_class_name" }
         ],
         put_value
     };

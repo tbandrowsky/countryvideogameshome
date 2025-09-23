@@ -156,6 +156,7 @@ code {
     margin-left: 0px;
     padding-left: 16px;
     padding-bottom: 0px;
+    text-decoration: underline;
 }
 
 .sectionbuttons {
@@ -163,10 +164,11 @@ code {
     font-family: 'Jost';
     text-align: left;
     margin-top: 16px;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
     margin-left: 0px;
     padding-left: 16px;
     padding-bottom: 0px;
+    height:auto;
 }
 
 .subsection {
@@ -182,14 +184,6 @@ code {
     padding-bottom: 0px;
 }
 
-.sectionbuttons {
-    height: 40px;
-    font-size: 16px;
-    font-family: 'Jost';
-    text-align: left;
-    color: var(--forest1);
-    padding-left: 16px;
-}
 
 .countrytitlebox {
     color: #D1843D;
@@ -355,9 +349,8 @@ a .selected {
 
 
 button {
-    background-color: var(--rock1);
     padding: 3px;
-    color: white;
+    color: var(--forest1);
     text-align: left;
     font-size: 18px;
     box-shadow: 0 2px #00000044;
@@ -365,7 +358,6 @@ button {
     text-decoration: none;
     width: 150px;
     margin-right: 8px;
-    border:1px solid black;
 }
 
 input {
