@@ -1,7 +1,7 @@
 
 import '../App.css'
 import '../index.css'
-import CoronaBarControl from './RevolutionBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 //import { useNavigate } from "react-router";
 import { coronaGetClasses } from './Service.js';
 import { useState } from "react";
@@ -13,7 +13,7 @@ export default function HomeForm(props) {
     console.log(props);
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
+            <RevolutionBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
             <ErrorControl {...error} />
             <div className="buttonBar">
                 <button id="searchButton" onClick={

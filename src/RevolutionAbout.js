@@ -17,35 +17,22 @@ function Corona() {
                     <p>Don't argue about theoretics.  Get rid of virtue cultures and appeals to heaven.
                         Advance your cause by hosting a better government out of the box.</p>
                     <ol>
-                        <li>Actual Transparent Democracy</li>
-                        <li>Accountable Currency, with Audit</li>
-                        <li>Provisional courts and a reparations process</li>
+                        <li>A standard court and a reparations process</li>
+                        <li>A system for government insurances</li>
+                        <li>Better permits</li>
                         <li>Integrated risk modelling and management</li>
-                        <li>Jobs, education with suitability for a job achievements</li>
-                        <li>Better permitting</li>
                     </ol>
 
                     <h2>THE MEANS TO OBTAIN IT</h2>
                     <p>Revolution provides tools for state of the art political advocacy.</p>
                     <ol>
-                        <li>A better home page for voters and members.</li>
                         <li>Colonize rival gerrymandered "safe" districts.</li>
-                        <li>Replace brutal NAZI right and left wing pogroms with wise and crafted solutions.</li>
+                        <li>Gather intelligence to support colonies.</li>
+                        <li>Build a policy process from the get go.</li>
                         <li>Logistical support for time and place coordinated activism.</li>
                         <li>Track candidates, political action committees, and their donors.</li>
                         <li>Model policy choices with exact implications shown for individuals.</li>
                         <li>End to End Encryption.</li>
-                    </ol>
-
-                    <h2>INVESTMENT FRIENDLY</h2>
-                    <p>Use capitalism wisely.</p>
-                    <ol>
-                        <li>People all work.  Everyone does something useful to get paid.</li>
-                        <li>Superior technology stack and outlook makes every other platform obsolete.</li>
-                        <li>Political activity aligned with fiscal interests</li>
-                        <li>Stable currency, inflation free.</li>
-                        <li>Practical government, not lunacy.</li>
-                        <li>Global reach.</li>
                     </ol>
 
                     <h2>ADVANCED TECHNOLOGY</h2>

@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './RevolutionBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaSendUserCode, coronaConfirmUserCode } from './Service.js';
@@ -34,7 +34,7 @@ export default function ConfirmCodeForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" formNumber="FORM 002"/>
+            <RevolutionBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" formNumber="FORM 002"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">

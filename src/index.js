@@ -22,7 +22,9 @@ import ObjectEditForm from './Revolution/ObjectEditForm';
 import ObjectSearchForm from './Revolution/ObjectSearchForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
+
     <BrowserRouter>
         <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />

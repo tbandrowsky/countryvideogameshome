@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function MenuBar() {
     return (
-        <div class="countryvideogamesnavigation" >
+        <div className="countryvideogamesnavigation" >
             <Caption />
             <h2 className="countrylabel">Products</h2>
             <div className="countrylinks2">

@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './RevolutionBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import GridControl from './GridControl.js';
@@ -50,7 +50,7 @@ export default function ClassSearchForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="CLASSES" formNumber="FORM 001" />
+            <RevolutionBarControl applicationName={props.applicationName} formName="CLASSES" formNumber="FORM 001" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <GridControl {...grid_props} error={error} />

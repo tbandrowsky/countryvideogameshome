@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './RevolutionBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaCreateUser } from './Service.js';
@@ -43,7 +43,7 @@ export default function CreateUserForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 004" />
+            <RevolutionBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 004" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">

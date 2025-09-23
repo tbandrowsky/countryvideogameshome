@@ -28,7 +28,7 @@ function ColorParty() {
 
           <h2>OUTDOOR PARTY FUN</h2>
           <p>Get a cheap projector and a laptop and Color Party can turn any place where you can shine a project into an interactive art experience.</p>
-          <iframe style={{ marginLeft: "16px" }} width="560" height="315" src="https://www.youtube.com/embed/bd6F8wUNgQ4?si=uR6m5DDIzBgaEZiI&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe style={{ marginLeft: "16px" }} width="560" height="315" src="https://www.youtube.com/embed/bd6F8wUNgQ4?si=uR6m5DDIzBgaEZiI&amp;controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           <p>
               You can get this at the Microsoft Store on your Windows PC, to which, we are greatly appreciative,
               and we say out here "Windows is the best", down here.
