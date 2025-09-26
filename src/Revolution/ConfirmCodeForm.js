@@ -24,8 +24,8 @@ export default function ConfirmCodeForm(props) {
         },
         body_fields: [
             { field_type: "paragraph", row: "1", column: "1/3", text: "Enter your confirmation code and the email address you requested it with." }, 
-            { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirmation Code", max_length: 50, min_length: 8 },
-            { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4 }
+            { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirmation Code", max_length: 50, min_length: 8, autocomplete:'one-time-code' },
+            { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4, autocomplete: 'email' }
         ],
         put_value
     };
