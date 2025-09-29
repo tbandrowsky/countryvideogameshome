@@ -29,6 +29,7 @@ function News()
   return (
       <div className="contentbackground">   
           <TitleBar title="NEWS" />
+          <div className="contentWrapper">
           <div className="content">
           {newsItems.map((item,index) => (
               <div key={index} className="newstory">
@@ -38,6 +39,7 @@ function News()
                   </Link>
               </div>
           ))}
+              </div>
           </div>
       </div>
   );

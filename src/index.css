@@ -11,23 +11,6 @@
     --pageindent: 16px;
 }
 
-
-.countryvideogamesroot {
-    margin: 0px;
-    display: grid;
-    grid-template-columns: 250px 1fr 300px;
-    grid-template-rows: 1fr;
-}
-
-.countryvideogamescontent {
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    grid-column: 2;
-    display: flex;
-    flex-flow: column;
-}
-
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -36,9 +19,59 @@ body {
     background: black;
 }
 
+.countryvideogamesroot {
+    margin: 0px;
+    position:fixed;
+    width: 100vw;
+    height: 70vh;
+    display:grid;
+    grid-template-columns: 250px 1fr;
+}
+
+.countryvideogamesnavigation {
+    background-color: var(--forest1);
+    grid-column: 1;
+    overflow: hidden;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.countryvideogamescontent {
+    grid-column: 2;
+    overflow: hidden;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.contentwrapper {
+
+}
+
+.content {
+    padding-left: 16px;
+    margin-right: 16px;
+}
+
+
+.contentbackground {
+    background-color: #FFFFFF;
+    border-left: 32px solid var(--forest3);
+    border-right: 32px solid var(--forest3);
+}
+
+.contentbackgroundform {
+    background-color: #FAFAFA;
+    border-left: 32px solid var(--forest3);
+    border-right: 32px solid var(--forest3);
+}
+
+.slide-sized {
+    width: 100%;
+    height: 100%;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .App-link {
@@ -46,16 +79,6 @@ code {
 }
 
 /* style={{display:'flex',flexDirection:'column',width:'25%',backgroundColor:'#006644'}} */
-
-.countryvideogamesnavigation {
-    margin: 0px;
-    display: grid;
-    background-color: var(--forest1);
-    grid-template-columns: 1fr;
-    grid-template-rows: 80.0px 35.0px 125.0px 35.0px 125.0px 1fr;
-    grid-column: 1;
-    height: 100vh;
-}
 
 .titlearea {
     height: 80px;
@@ -73,36 +96,6 @@ code {
 .countrytitlebox {
     height: 100%;
     vertical-align:bottom;
-}
-
-.contentwrapper {
-    overflow: auto;
-    width: 100%;
-    height: 90vh;
-}
-
-.content {
-    padding-left: 16px;
-    margin-right: 16px;
-    overflow: auto;
-    width: 100%;
-    height:100%;
-}
-
-
-.contentbackground {
-    background-color: #FFFFFF;
-    border-left: 32px solid var(--forest3);
-    border-right: 32px solid var(--forest3);
-    height: 100%;
-}
-
-.contentbackgroundform {
-    background-color: #FAFAFA;
-    border-left: 32px solid var(--forest3);
-    border-right: 32px solid var(--forest3);
-    height: 100%;
-    overflow: auto;
 }
 
 
@@ -130,7 +123,6 @@ code {
     background-color: var(--forest1);
     margin-left: 32px;
     margin-right: 32px;
-    height: 100%;
 }
 
 .countrylabelright {
@@ -432,6 +424,7 @@ button .selected {
 }
 
 .googlead {
-    width:100%;
-    height:100%;
+    position:fixed;
+    width:100vw;
+    height:25vh;
 }

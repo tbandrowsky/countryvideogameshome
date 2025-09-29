@@ -31,9 +31,10 @@ root.render(
         <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png" />
-        <div class="countryvideogamesroot">
+
+        <div className="countryvideogamesroot" style={{ width: "100%", height: "80vh" }}>
             <MenuBar/>
-            <div class="countryvideogamescontent">
+            <div className="countryvideogamescontent">
                 <Routes>
                     <Route exact path="/" element={<News />}/>
                     <Route path="/News" element={<News />} />
@@ -53,12 +54,11 @@ root.render(
                     <Route path="/Revolution/ConfirmCode" element={<ConfirmCodeForm />} />
                 </Routes>
             </div>
-            <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" style={{ display: 'block', width: '250px', height: '300px' }} />
-
-     </div>
-   </BrowserRouter>
+        </div>
+    </BrowserRouter>
 );
 
+//<GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" style={{ width: "100%", height: "20vh" }} />
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
