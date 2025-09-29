@@ -18,7 +18,7 @@ function ColorParty() {
     return (
         <div class="contentbackground">
             <TitleBar title="COLOR PARTY" />
-            <div className="contentwrapper">
+            <div className="contentwrapper" style={{marginTop:"16px"}}>
                 <div className="content">
                     <Swiper
                         // install Swiper modules

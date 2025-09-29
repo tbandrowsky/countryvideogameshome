@@ -1,15 +1,16 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export default function Card(props)
 {
+    let nav = useNavigate();
     return (
         <div className="card" style={{
             width: props.width ?? "90%",
             height: props.height ?? "450px",
             display: "grid",
             gridTemplateColumns: "250px 1.0fr",
-            gridTemplateRows: "75px 1.0fr 100px",
+            gridTemplateRows: "75px 1.0fr 80px",
             backgroundColor:"#FFFFFF"
         }}>
             <div style={{ gridColumn: "1/ span 2", gridRow: "1", border:"1px solid green" }}>
@@ -32,11 +33,18 @@ export default function Card(props)
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                         </form>
                 </div>
-                <div style={{ width: "250px", display: "flex" }}>
-                    <Link style={{ display: "inline-block", width: "250px" }} to="/revolution/login">
-                        <h3>JOIN NOW</h3>
-                    </Link>
-                </div>
+                <button id="confirmUserButton" style={{ width:"150px", height:"50px" }} onClick={
+                    async () => {
+                        nav('/Revolution/Login');
+                    }
+                }>LOGIN</button>
+
+                <button id="confirmUserButton" style={{ width: "150px", height: "50px" }} onClick={
+                    async () => {
+                        nav('/Revolution/CreateUser');
+                    }
+                }>ENLIST</button>
+
             </div>
         </div>
     );

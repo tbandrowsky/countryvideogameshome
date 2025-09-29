@@ -53,7 +53,8 @@ function Corona() {
                                 <div>
                                     <h3 style={{paddingLeft:"16px"}}>Organize strategic migrations to red counties to flip states blue.</h3>
                                     <ul>
-                                        <li>Intelligence to gather information.</li>
+                                        <li>Identify low population counties and voter shifts.</li>
+                                        <li>Intelligence to gather information from all sources.</li>
                                         <li>Policy for strategic guidance.</li>
                                         <li>Colony for political action.</li>
                                         <li>Elect and establish modern government.</li>
