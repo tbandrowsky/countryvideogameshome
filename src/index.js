@@ -26,7 +26,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 
-    <BrowserRouter >
+    <BrowserRouter>
         <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
@@ -55,10 +55,11 @@ root.render(
                 </Routes>
             </div>
         </div>
+        <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" containerStyle={{ position: "absolute", left: 0, top: "70vh", width: "100vw", height: "25vh" }} />
     </BrowserRouter>
 );
 
-//<GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" style={{ width: "100%", height: "20vh" }} />
+//
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

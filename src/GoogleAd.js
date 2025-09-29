@@ -17,18 +17,20 @@ class GoogleAd extends Component {
     }
 
     render() {
-        const { classNames, slot, googleAdId, style, format } = this.props;
+        const { classNames, slot, googleAdId, style, format, containerStyle } = this.props;
         let divClassName = classNames || 'googlead';
         return (
-            <div className={divClassName}>
-                <ins
-                    className="adsbygoogle"
-                    style={style || { display: 'block', textAlign: "center" }}
-                    data-ad-client={googleAdId}
-                    data-ad-slot={slot}
-                    data-ad-format={format || "auto"}
-                    data-full-width-responsive="true"
-                ></ins>
+            <div style={containerStyle}>
+                <div className={divClassName}>
+                    <ins
+                        className="adsbygoogle"
+                        style={style || { display: 'block', textAlign: "center" }}
+                        data-ad-client={googleAdId}
+                        data-ad-slot={slot}
+                        data-ad-format={format || "auto"}
+                        data-full-width-responsive="true"
+                    ></ins>
+                </div>
             </div>
         );
     }

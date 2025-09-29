@@ -2,29 +2,31 @@ import './App.css'
 import TitleBar from './TitleBar'
 import { Link } from "react-router-dom";
 // import Swiper bundle with all modules installed
-import Swiper from 'swiper/bundle';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+import colonize1 from './images/revolutionart/colonize1.png';
+import intelligence1 from './images/revolutionart/intelligence1.png';
+import policy1 from './images/revolutionart/policy1.png';
+import colony1 from './images/revolutionart/colony1.png';
+import govern1 from './images/revolutionart/govern1.png';
+import survive1 from './images/revolutionart/survive1.png';
 
 // import styles bundle
 import 'swiper/css/bundle';
+import Card from './Card';
 
 function Corona() {
-    let [mySwiper, setMySwiper] = useState(null);
-    useEffect(() => {
-        let swiper = new Swiper('.swiper', {
-            direction: 'vertical',
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-        swiper.direction = 'vertical';
-        setMySwiper(swiper);
-    }, []);
+
     return (
         <div className="contentbackground">
             <TitleBar title="REVOLUTION" />
@@ -33,98 +35,99 @@ function Corona() {
                 <a style={{ paddingLeft: "16px", gridColumn: "2", textAlign: "left" }} href="downloads/">Downloads</a>
             </div>
             <div className="contentwrapper">
-                <div className="content" >
-                    <div className="swiper">
-                        <div className="swiper-wrapper">
-                            <div className="swiper-slide slide-sized">
-                                <h2>A BETTER GOVERNMENT</h2>
-                                <p>Don't argue about theoretics.  Get rid of virtue cultures and appeals to heaven.
-                                    Advance your cause by hosting a better government out of the box.</p>
-                                <ol>
-                                    <li>A standard court and a reparations process</li>
-                                    <li>A system for government insurances</li>
-                                    <li>Better permits</li>
-                                    <li>Integrated risk modelling and management</li>
-                                </ol>
-
-                            </div>
-                            <div className="swiper-slide slide-sized">
-                                <h2>THE MEANS TO OBTAIN IT</h2>
-                                <p>Revolution provides tools for state of the art political advocacy.</p>
-                                <ol>
-                                    <li>Colonize rival gerrymandered "safe" districts.</li>
-                                    <li>Gather intelligence to support colonies.</li>
-                                    <li>Build a policy process from the get go.</li>
-                                    <li>Logistical support for time and place coordinated activism.</li>
-                                    <li>Track candidates, political action committees, and their donors.</li>
-                                    <li>Model policy choices with exact implications shown for individuals.</li>
-                                    <li>End to End Encryption.</li>
-                                </ol>
-                            </div>
-                            <div className="swiper-slide slide-sized">
-                                <h2>COLONIZE RED AMERICA</h2>
-                                <p>Organize strategic migrations to red counties to flip states blue.</p>
-                                <ol>
-                                    <li>Intelligence to gather information.</li>
-                                    <li>Policy for strategic guidance.</li>
-                                    <li>Colony for political action.</li>
-                                    <li>Demonstration of modern government.</li>
-                                    <li>Track candidates, political action committees, and their donors.</li>
-                                    <li>End to End Encryption.</li>
-                                </ol>
-
-                            </div>
-                            <div className="swiper-slide slide-sized">
-                                <h2>ADVANCED TECHNOLOGY</h2>
-                                <p>
-                                    Revolution is built on Corona, a modern C++ based web server and object oriented database service.
-                                </p>
-                                <ol>
-                                    <li>Fast 2MB C++ Service EXE.  Runs on Windows Servers with 100's of cores, or a local Windows 10/11 PC.</li>
-                                    <li>Low Cost/Transaction - we will be less expensive to operate than most other stacks.</li>
-                                    <li>Superior workflow.</li>
-                                    <li>Integrates with enterprise databases such as SQL Server, so that, you can use your own data without moving it.</li>
-                                    <li>Create database classes with polymorphic query methods and join across classes no matter their source.</li>
-                                    <li>Open Source.</li>
-                                    <li>Integrates with SendGrid for email.</li>
-                                </ol>
-                            </div>
-                            <div className="swiper-slide slide-sized">
-                                <h2>ROADMAP</h2>
-                                <p>
-                                    We're building out Revolution to have new capabilities continuously.
-                                </p>
-                                <ol>
-                                    <li>Free geocoding and simple mapping - TIGER/LINE ESRI shapefile support</li>
-                                    <li>MCP support, so you can use AI to help you take over</li>
-                                    <li>Presentations and charting</li>
-                                    <li>Extend ODBC support for MySQL/Oracle</li>
-                                    <li>Foreign classes - link APIs to Corona classes</li>
-                                    <li>Always improve performance</li>
-                                    <li>Linux native port and embedded systems ports</li>
-                                    <li>AI model support and training</li>
-                                    <li>Native Apps</li>
-                                    <li>Torrent style sharing.</li>
-                                    <li>Support for Azure blob store.</li>
-                                </ol>
-                            </div>
-                            <div className="swiper-slide slide-sized">
-                                <h2>INVEST IN YOUR SURVIVAL</h2>
-                                <ol>
-                                    <li>Check it out</li>
-                                    <li>Donate to our kickstarters</li>
-                                    <li>Help with coding and ux</li>
-                                    <li>Start your own revolution!</li>
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="swiper-pagination"></div>
-                        <div className="swiper-button-prev"></div>
-                        <div className="swiper-button-next"></div>
-                    </div>
-
-
-
+                <div className="content" style={{marginTop:"16px"}}>
+                    <Swiper
+                        // install Swiper modules
+                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        spaceBetween={16}
+                        slidesPerView={1}
+                        centeredSlides={true}
+                        navigation
+                        pagination={{ clickable: true }}
+                        scrollbar={{ draggable: true }}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        onSlideChange={() => console.log('slide change')}
+                    >
+                        <SwiperSlide>
+                            <Card image={colonize1} title="COLONIZE RED AMERICA">
+                                <div>
+                                    <h3 style={{paddingLeft:"16px"}}>Organize strategic migrations to red counties to flip states blue.</h3>
+                                    <ul>
+                                        <li>Intelligence to gather information.</li>
+                                        <li>Policy for strategic guidance.</li>
+                                        <li>Colony for political action.</li>
+                                        <li>Elect and establish modern government.</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Card image={intelligence1} title="COORDINATE INTELLIGENCE">
+                                <div>
+                                    <h3 style={{ paddingLeft: "16px" }}>Find your colonies, and establish thought leadership.</h3>
+                                    <ul>
+                                        <li>Follow the money with candidate donor analytics</li>
+                                        <li>Analytics to support colony identification</li>
+                                        <li>Offer articles, education, and training</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Card image={policy1} title="FORMULATE POLICY">
+                                <div>
+                                    <h3 style={{ paddingLeft: "16px" }}>Create resources and guidelines for the Revolution.</h3>
+                                    <ul>
+                                        <li>Turn intelligence into plans anyone can follow</li>
+                                        <li>Provide how-to guidance to allow for a new economy</li>
+                                        <li>Offer articles, education, and training</li>
+                                        <li>Put together colonization teams and resources for them</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Card image={colony1} title="GROW YOUR COLONY">
+                                <div>
+                                    <h3 style={{ paddingLeft: "16px" }}>Scout and run colonies.</h3>
+                                    <ul>
+                                        <li>Move voters in</li>
+                                        <li>Identify local chiefs as blockers or helpers.</li>
+                                        <li>Gather information about transportation access, physical barriers.</li>
+                                        <li>Work with policy and intelligence team for local activism.</li>
+                                        <li>Schedule local team events.</li>
+                                        <li>Replace local systems software .</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Card image={govern1} title="GOVERN BETTER">
+                                <div>
+                                    <h3 style={{ paddingLeft: "16px" }}>Show them a better way.</h3>
+                                    <ul>
+                                        <li>Coordinated property management</li>
+                                        <li>Voters insurances</li>
+                                        <li>Consistent justice platform.</li>
+                                        <li>Reparations.</li>
+                                        <li>Better people making better government for everyone.</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Card image={survive1} title="SURVIVE THE OCCUPATION">
+                                <div>
+                                    <ul>
+                                        <li>DONATE!  Every cent helps.</li>
+                                        <li>COMMUNICATE!  You are never alone.</li>
+                                        <li>RESIST!  The Nazis before they come for you.</li>
+                                        <li>SAY!  My existence is non-negotiable.</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
             </div>
         </div>
