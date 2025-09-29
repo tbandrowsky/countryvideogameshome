@@ -7,15 +7,10 @@ function MenuBar() {
     return (
         <div className="countryvideogamesnavigation" >
             <Caption />
-            <h2 className="countrylabel">Products</h2>
             <div className="countrylinks2">
-                <Link to="/ColorParty">COLOR PARTY</Link>
                 <Link to="/RevolutionAbout">REVOLUTION</Link>
-            </div>
-            <h2 className="countrylabel">Company</h2>
-            <div className="countrylinks3">
+                <Link to="/ColorParty">COLOR PARTY</Link>
                 <Link to="/News">NEWS</Link>
-                <Link to="/About">ABOUT</Link>
                 <Link to="/Privacy">PRIVACY</Link>
             </div>
             <div className="countrycontainer">
