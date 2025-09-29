@@ -15,7 +15,7 @@ export default function HomeForm(formProps) {
     let nav = useNavigate();
     let loc = useLocation();
     let props = { ...formProps, ...loc.state };
-    console.log({ props, "title": "HomeForm" });
+    console.log({ props, "title": "Home" });
 
 
     let ticketColumns = [
@@ -55,9 +55,9 @@ export default function HomeForm(formProps) {
                     return <button key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Selecting Team", inProgress: true });
-                            let response = await coronaSetTeam({}, {
-                                successForm: '/Revolution/HomeForm',
-                                redoForm: '/Revolution/HomeForm',
+                            let response = await coronaSetTeam({'team_name':field }, {
+                                successForm: '/Revolution/Home',
+                                redoForm: '/Revolution/Home',
                                 redoMessage: 'select failed.'
                             });
                             nav(response.form, { state: response.form_props });
