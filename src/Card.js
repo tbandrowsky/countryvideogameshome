@@ -11,15 +11,16 @@ export default function Card(props)
             display: "grid",
             gridTemplateColumns: "250px 1.0fr",
             gridTemplateRows: "75px 1.0fr 80px",
-            backgroundColor:"#FFFFFF"
-        }}>
+            backgroundColor:"#FFFFFF",
+            borderRadius:"8px"
+                   }}>
             <div style={{ gridColumn: "1/ span 2", gridRow: "1", border:"1px solid green" }}>
                 <div style={{ fontSize: "24px", fontWeight: "bold", paddingLeft: "16px", paddingTop: "8px" }}>{props.title}</div>
             </div>
             <div style={{ gridColumn: "1", gridRow: "2", border: "1px solid green" }}>
                 <img src={props.image} style={{ width: "100%", height: "100%" }} alt={props.title} />
             </div>
-            <div style={{ gridColumn: "2", gridRow: "2", border: "1px solid green" }}>
+            <div style={{ gridColumn: "2", gridRow: "2", border: "1px solid green", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"near", padding:"16px", overflowY:"auto" }}>
                 {props.children}
             </div>
             <div style={{ gridColumn: "1 / span 2", gridRow: "3", border: "1px solid green", display:"flex", flexDirection:"row" }}>

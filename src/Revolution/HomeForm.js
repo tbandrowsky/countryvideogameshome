@@ -21,28 +21,28 @@ export default function HomeForm(formProps) {
     let ticketColumns = [
         { key: 'class_name', name: 'Class' },
         { key: 'object_id', name: 'ObjectId' },
-        { key: 'name', name: 'Name' },
-        { key: 'description', name: 'Description' },
+        { key: 'ticket_name', name: 'Name' },
+        { key: 'ticket_description', name: 'Description' },
         { key: 'created', name: 'Created' },
-        { key: 'createdby', name: 'CreatedBy' },
+        { key: 'created_by', name: 'CreatedBy' },
         { key: 'modified', name: 'Modified' },
         { key: 'modifiedby', name: 'ModifiedBy' },
     ];
 
     let articleColumns = [
         { key: 'class_name', name: 'Class' },
-        { key: 'object_id', name: 'ObjectId' },
-        { key: 'name', name: 'Name' },
+        { key: 'object_id', name: 'Object Id' },
+        { key: 'article_name', name: 'Name' },
         { key: 'description', name: 'Description' },
         { key: 'created', name: 'Created' },
-        { key: 'createdby', name: 'CreatedBy' },
+        { key: 'created_by', name: 'Created By' },
         { key: 'modified', name: 'Modified' },
-        { key: 'modifiedby', name: 'ModifiedBy' },
+        { key: 'modified_by', name: 'Modified By' },
     ];
 
     let classColumns = [
         { key: 'class_name', name: 'Class' },
-        { key: 'class_description', name: 'ObjectId' }
+        { key: 'class_description', name: 'Description' }
     ];
 
     return (
@@ -52,7 +52,8 @@ export default function HomeForm(formProps) {
             <div className="section">Teams</div>
             <div className="sectionbuttons">
                 {props.data.team.allowed_teams.map((field, index) => {
-                    return <button key={index} onClick={
+                    let isSelected = props.data.team.team_name === field;
+                    return <button key={index} className={isSelected ? 'button-selected' : ''} onClick={
                         async () => {
                             setError({ success: true, message: "Selecting Team", inProgress: true });
                             let response = await coronaSetTeam({'team_name':field }, {
@@ -69,13 +70,13 @@ export default function HomeForm(formProps) {
             </div>
             <div className="section">{props.data.team.team_name}</div>
             <div className="subsection">Tickets</div>
-            {props.data.team.tickets && props.data.team.tickets.length > 0 && <GridControl columns={ticketColumns} rows={props.data.team.tickets} /> }
+            {props.data.team &&props.data.team.tickets && props.data.team.tickets.length > 0 && <GridControl columns={ticketColumns} rows={props.data.team.tickets} /> }
 
             <div className="subsection">Articles</div>
-            {props.data.team.articles && props.data.team.articles.length > 0 && <GridControl columns={articleColumns} rows={props.data.team.articles} />}
+            {props.data.team && props.data.team.articles && props.data.team.articles.length > 0 && <GridControl columns={articleColumns} rows={props.data.team.articles} />}
 
             <div className="subsection">Collections</div>
-            {props.data.team.classes && props.data.team.classes.length > 0 && <GridControl columns={classColumns} rows={props.data.team.classes} />}
+            {props.data.team&&props.data.team.classes && props.data.team.classes.length > 0 && <GridControl columns={classColumns} rows={props.data.team.classes} />}
         </div>
     );
 }

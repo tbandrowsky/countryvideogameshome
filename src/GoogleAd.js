@@ -22,14 +22,12 @@ class GoogleAd extends Component {
         return (
             <div style={containerStyle}>
                 <div className={divClassName}>
-                    <ins
-                        className="adsbygoogle"
-                        style={style || { display: 'block', textAlign: "center" }}
-                        data-ad-client={googleAdId}
-                        data-ad-slot={slot}
-                        data-ad-format={format || "auto"}
-                        data-full-width-responsive="true"
-                    ></ins>
+                    <ins class="adsbygoogle"
+                        style={{"display":"block"}}
+                        data-ad-client="ca-pub-6977136153307290"
+                        data-ad-slot="5713577518"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
                 </div>
             </div>
         );

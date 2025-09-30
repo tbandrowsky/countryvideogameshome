@@ -369,6 +369,11 @@ button {
     margin-right: 8px;
 }
 
+.button-selected {
+    color: whitesmoke;
+    background-color:var(--forest2);
+}
+
 input {
     padding: 3px;
     font-size: 18px;
@@ -445,4 +450,11 @@ button .selected {
     position:fixed;
     width:100vw;
     height:25vh;
+}
+
+.datagridcontrolcontainer
+{
+    margin:16px;
+    height:100%;
+    padding-bottom: 16px;
 }

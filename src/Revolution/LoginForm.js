@@ -19,14 +19,16 @@ export default function LoginForm(props) {
 
     let edit_props = {
         presentation: {
-            gridTemplateRows: "45.0px 100.0px 100.0px 45.0px",
+            gridTemplateRows: "45.0px 45.0px 100.0px 100.0px 45.0px",
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { field_type: "paragraph", row: "1", column: "1/3", text: "Please enter your E-Mail address to and password to login." },
-            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "Username", max_length: 50, min_length: 4 },
-            { json_field_name: "password", row: "3", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 },
-            { field_type: "paragraph", row: "4", column: "1/3", text: "If you forgot your password, just use RECOVER." }
+            { field_type: "chaptertitle", row: "1", column: "1/3", text: "Welcome to the Revolution" },
+            { field_type: "paragraph", row: "2", column: "1/3", text: "Enter your E-Mail address to and password to login." },
+            { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "name", placeholder: "Username", max_length: 50, min_length: 4 },
+            { json_field_name: "password", row: "4", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 },
+            { field_type: "paragraph", row: "5", column: "1/3", text: "If you forgot your password, just use RECOVER." },
+            { field_type: "paragraph", row: "6", column: "1/3", text: "If you never logged in before, ENLIST." }
         ],
         put_value
     };
