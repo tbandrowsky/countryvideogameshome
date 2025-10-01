@@ -9,47 +9,57 @@ import News from './News';
 import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
-import Corona from './Corona';
-import HomeForm from './Corona/HomeForm';
-import ClassSearchForm from './Corona/ClassSearchForm';
-import ClassEditForm from './Corona/ClassEditForm';
-import CreateUserForm from './Corona/CreateUserForm';
-import ConfirmCodeForm from './Corona/ConfirmCodeForm';
-import LoginForm from './Corona/LoginForm';
-import SetPasswordForm from './Corona/SetPasswordForm';
-import SendCodeForm from './Corona/SendCodeForm';
-import ObjectEditForm from './Corona/ObjectEditForm';
-import ObjectSearchForm from './Corona/ObjectSearchForm';
+import RevolutionAbout from './RevolutionAbout';
+import HomeForm from './Revolution/HomeForm';
+import ClassSearchForm from './Revolution/ClassSearchForm';
+import ClassEditForm from './Revolution/ClassEditForm';
+import CreateUserForm from './Revolution/CreateUserForm';
+import ConfirmCodeForm from './Revolution/ConfirmCodeForm';
+import LoginForm from './Revolution/LoginForm';
+import SetPasswordForm from './Revolution/SetPasswordForm';
+import SendCodeForm from './Revolution/SendCodeForm';
+import ObjectEditForm from './Revolution/ObjectEditForm';
+import ObjectSearchForm from './Revolution/ObjectSearchForm';
+import GoogleAd from './GoogleAd'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
+
     <BrowserRouter>
-        <div class="countryvideogamesroot">
+        <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png" />
+
+        <div className="countryvideogamesroot" style={{ width: "100%", height: "80vh" }}>
             <MenuBar/>
-            <div class="countryvideogamescontent">
+            <div className="countryvideogamescontent">
                 <Routes>
                     <Route exact path="/" element={<News />}/>
                     <Route path="/News" element={<News />} />
                     <Route path="/Privacy" element={<Privacy />} />
-                    <Route path="/Corona" element={<Corona />} />
+                    <Route path="/RevolutionAbout" element={<RevolutionAbout />} />
                     <Route path="/ColorParty" element={<ColorParty />} />
                     <Route path="/About" element={<About />} />
-                    <Route path="/Corona/Home" element={<HomeForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/Login" element={<LoginForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/CreateUser" element={<CreateUserForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/SetPassword" element={<SetPasswordForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/SendCode" element={<SendCodeForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/ClassEdit" element={<ClassEditForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm applicationName="REVOLUTION" />} />
-                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm applicationName="REVOLUTION" />} />
+                    <Route path="/Revolution/Home" element={<HomeForm />} />
+                    <Route path="/Revolution/Login" element={<LoginForm  />} />
+                    <Route path="/Revolution/CreateUser" element={<CreateUserForm />} />
+                    <Route path="/Revolution/SetPassword" element={<SetPasswordForm />} />
+                    <Route path="/Revolution/SendCode" element={<SendCodeForm />} />
+                    <Route path="/Revolution/ObjectEdit" element={<ObjectEditForm />} />
+                    <Route path="/Revolution/ObjectSearch" element={<ObjectSearchForm />} />
+                    <Route path="/Revolution/ClassEdit" element={<ClassEditForm />} />
+                    <Route path="/Revolution/ClassSearch" element={<ClassSearchForm />} />
+                    <Route path="/Revolution/ConfirmCode" element={<ConfirmCodeForm />} />
                 </Routes>
             </div>
-     </div>
-   </BrowserRouter>
+        </div>
+        <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" containerStyle={{ position: "absolute", left: 0, top: "70vh", width: "100vw", height: "25vh" }} />
+    </BrowserRouter>
 );
 
+//
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaSendUserCode, coronaConfirmUserCode } from './Service.js';
@@ -23,9 +23,9 @@ export default function ConfirmCodeForm(props) {
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { field_type: "paragraph", row: "1", column: "1/3", text: "Please your E-Mail address and the confirmation code from the email you received." }, 
-            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 },
-            { json_field_name: "validation_code", row: "3", column: "1", field_type: "string", format: "text", placeholder: "Confirm Code", max_length: 50, min_length: 8 }
+            { field_type: "paragraph", row: "1", column: "1/3", text: "Enter your confirmation code and the email address you requested it with." }, 
+            { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirmation Code", max_length: 50, min_length: 8, autocomplete:'one-time-code' },
+            { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4, autocomplete: 'email' }
         ],
         put_value
     };
@@ -34,7 +34,7 @@ export default function ConfirmCodeForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" />
+            <RevolutionBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" formNumber="FORM 002"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
@@ -43,7 +43,7 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: true, message: "Confirming code", inProgress: true });
                         let response = await coronaConfirmUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        nav(response.form, { state: response.form_props });
                     }
                 }>CONFIRM CODE</button>
                 <button id="sendCodeButton" onClick={
@@ -51,12 +51,12 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: true, message: "Send code", inProgress: true });
                         let response = await coronaSendUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        nav(response.form, { state: response.form_props });
                     }
                 }>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/Login');
+                        nav('/Revolution/Login');
                     }
                 }>CANCEL</button>
             </div>

@@ -16,7 +16,8 @@ export default function TextEditField(props)
     let max_length = 52;
     let min_length = 0;
     let match_pattern = '';
-    let div_style = { margin: '0px', padding: '0px', paddingLeft:'0px' };
+    let div_style = { margin: '0px', padding: '0px', paddingLeft: '0px' };
+    let autocomplete = "true";
 
     if ('max_length' in field_props) {
         max_length = field_props.max_length;
@@ -32,6 +33,9 @@ export default function TextEditField(props)
     }
     if ('placeholder' in field_props) {
         placeholder = field_props.placeholder;
+    }
+    if ('autocomplete' in field_props) {
+        autocomplete = field_props.autocomplete;
     }
 
     let value = props.get_value(json_field_name);
@@ -100,7 +104,7 @@ export default function TextEditField(props)
             onChange={(e) => {
                 props.put_value(json_field_name, e.target.value);
             }}
-            pattern={match_pattern} />
+            pattern={match_pattern} autoComplete={autocomplete} />
             {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
         </div>;
     }

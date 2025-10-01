@@ -6,6 +6,7 @@ import DoubleEditField from "./DoubleEditField";
 import IntegerEditField from "./IntegerEditField";
 import DateTimeEditField from "./DateTimeEditField";
 import ReferenceEditField from "./ReferenceEditField";
+import GoogleAd from '../GoogleAd';
 
 export default function EditField(props) {
     console.log("EditField props", props);
@@ -25,7 +26,7 @@ export default function EditField(props) {
                 </React.Fragment>}
             {(props.field.field_type === "chaptersubtitle") &&
                 <React.Fragment>
-                    <h4 className="coronachaptersubtitle">{props.field.text}</h4>
+                    <p className="coronachaptersubtitle">{props.field.text}</p>
                 </React.Fragment>}
             {(props.field.field_type === "paragraph") &&
                 <React.Fragment>
@@ -60,6 +61,10 @@ export default function EditField(props) {
                 <React.Fragment>
                     <h2 className="countrylabelright">{props.field.placeholder}</h2>
                     <ReferenceEditField {...props} />
+                </React.Fragment>}
+            {(props.field.field_type === "advertisement") && 
+                <React.Fragment>
+                    <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" style={{ display: 'block', width: '250px', height: '300px' }} />
                 </React.Fragment>}
         </div>
     );

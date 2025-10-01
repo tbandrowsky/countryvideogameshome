@@ -37,20 +37,16 @@ export const callCoronaService = async function (path, request, options) {
         result = await response.json();
         console.log({ "result": result });
         if (result.success) {
-            sessionStorage.setItem(AppSettings.TokenKey, result.token);
+            if (options && options.storeToken && result.token) {
+                sessionStorage.setItem(AppSettings.TokenKey, result.token);
+            }
             result.form = options.successForm;
-            result.form_props = {
-                success: true,
-                message: result.message
-            }; // that is the pattern
+            result.form_props = { ...result, success: true };
         }
         else
         {
             result.form = options.redoForm;
-            result.form_props = {
-                success: false,
-                message: response.message || options.redoMessage
-            }; // that is the pattern
+            result.form_props = { ...result, success: false };
         }
     }
     else
@@ -58,18 +54,19 @@ export const callCoronaService = async function (path, request, options) {
         result.success = false;
         result.message = options.redoMessage;
         result.form = options.redoForm;
-        result.form_props = {}; // that is the pattern
+        result.form_props = { applicationName: AppSettings.ApplicationName }; // that is the pattern
     }
 
     return result;
 }
 
 export const coronaLoginUser = async function (request, uxo) {
-    if (!uxo) uxo = {};
+    if (!uxo) uxo = { };
+    uxo = { ...uxo, storeToken: true };
 
     let result = callCoronaService("/login/loginuser/", request, {
-        successForm: "/Corona/Home",
-        redoForm: "/Corona/Login",
+        successForm: "/Revolution/Home",
+        redoForm: "/Revolution/Login",
         redoMessage: "Could not login",
         ...uxo
     });
@@ -81,8 +78,8 @@ export const coronaCreateUser = async function (request, uxo) {
     if (!uxo) uxo = {};
 
     let result = callCoronaService("/login/createuser/", request, {
-        successForm: "/Corona/Home",
-        redoForm: "/Corona/Login",
+        successForm: "/Revolution/Home",
+        redoForm: "/Revolution/Login",
         redoMessage: "Could not create user",
         ...uxo
     });
@@ -94,19 +91,22 @@ export const coronaSendUserCode = async function (request, uxo) {
     if (!uxo) uxo = {};
 
     let result = callCoronaService("/login/senduser/", request, {
-        successForm: "/Corona/ConfirmCode",
-        redoForm: "/Corona/SendCode",
-        redoMessage: "Could not send code."
+        successForm: "/Revolution/ConfirmCode",
+        redoForm: "/Revolution/SendCode",
+        redoMessage: "Could not send code.",
+        ...uxo
     });
     return result;
 };
 
 export const coronaConfirmUserCode = async function (request, uxo) {
     if (!uxo) uxo = {};
+    uxo = { ...uxo, storeToken: true };
     let result = callCoronaService("/login/confirmuser/", request, {
-        successForm: "/Corona/Home",
-        redoForm: "/Corona/ConfirmCode",
-        redoMessage: "Could not confirm code."
+        successForm: "/Revolution/Home",
+        redoForm: "/Revolution/ConfirmCode",
+        redoMessage: "Could not confirm code.",
+        ...uxo
     });
     return result;
 };
@@ -114,9 +114,10 @@ export const coronaConfirmUserCode = async function (request, uxo) {
 export const coronaSetPassword = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/login/passworduser/", request, {
-        successForm: "/Corona/Login",
-        redoForm: "/Corona/SetPassword",
-        redoMessage: "Could not confirm code."
+        successForm: "/Revolution/Login",
+        redoForm: "/Revolution/SetPassword",
+        redoMessage: "Could not confirm code.",
+        ...uxo
     });
     return result;
 };
@@ -124,9 +125,10 @@ export const coronaSetPassword = async function (request, uxo) {
 export const coronaGetClasses = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/classes/get/", request, {
-        successForm: "/Corona/ClassSearch",
-        redoForm: "/Corona/ClassSearch",
-        redoMessage: "Could not search classes."
+        successForm: "/Revolution/ClassSearch",
+        redoForm: "/Revolution/ClassSearch",
+        redoMessage: "Could not search classes.",
+        ...uxo
     });
     return result;
 };
@@ -134,9 +136,10 @@ export const coronaGetClasses = async function (request, uxo) {
 export const coronaGetClass = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/class/get/", request, {
-        successForm: "/Corona/ClassEdit",
-        redoForm: "/Corona/ClassSearch",
-        redoMessage: "Could not search classes."
+        successForm: "/Revolution/ClassEdit",
+        redoForm: "/Revolution/ClassSearch",
+        redoMessage: "Could not search classes.",
+        ...uxo
     });
     return result;
 };
@@ -144,9 +147,10 @@ export const coronaGetClass = async function (request, uxo) {
 export const coronaPutClass = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/classes/put/", request, {
-        successForm: "/Corona/ClassEdit",
-        redoForm: "/Corona/ClassSearch",
-        redoMessage: "Could not search classes."
+        successForm: "/Revolution/ClassEdit",
+        redoForm: "/Revolution/ClassSearch",
+        redoMessage: "Could not search classes.",
+        ...uxo
     });
     return result;
 };
@@ -154,19 +158,33 @@ export const coronaPutClass = async function (request, uxo) {
 export const coronaGetObject = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/objects/get/", request, {
-        successForm: "/Corona/ObjectEdit",
-        redoForm: "/Corona/ObjectSearch",
-        redoMessage: "Could not get object."
+        successForm: "/Revolution/ObjectEdit",
+        redoForm: "/Revolution/ObjectSearch",
+        redoMessage: "Could not get object.",
+        ...uxo
     });
     return result;
 };
 
+export const coronaSetTeam = async function (request, uxo) {
+    if (!uxo) uxo = {};
+    let result = callCoronaService("/user/set_team/", request, {
+        successForm: "/Revolution/Home",
+        redoForm: "/Revolution/Home",
+        redoMessage: "Could not get object.",
+        ...uxo
+    });
+    return result;
+};
+
+
 export const coronaCreateObject = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/objects/get/", request, {
-        successForm: "/Corona/ObjectEdit",
-        redoForm: "/Corona/ObjectSearch",
-        redoMessage: "Could not get object."
+        successForm: "/Revolution/ObjectEdit",
+        redoForm: "/Revolution/ObjectSearch",
+        redoMessage: "Could not get object.",
+        ...uxo
     });
     return result;
 };
@@ -174,30 +192,43 @@ export const coronaCreateObject = async function (request, uxo) {
 export const coronaPutObject = async function (request, uxo) {
     if (!uxo) uxo = {};
     let result = callCoronaService("/objects/put/", request, {
-        successForm: "/Corona/ObjectEdit",
-        redoForm: "/Corona/ObjectEdit",
-        redoMessage: "Could not save object."
+        successForm: "/Revolution/ObjectEdit",
+        redoForm: "/Revolution/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
     });
     return result;
 };
 
 export const coronaEditObject = async function (request, uxo) {
     if (!uxo) uxo = {};
-    const url = AppSettings.GetBaseUrl() + "/objects/edit/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/edit/", request, {
+        successForm: "/Revolution/ObjectEdit",
+        redoForm: "/Revolution/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
+    });
+    return result;
 };
 
 export const coronaRunObject = async function (request, uxo) {
     if (!uxo) uxo = {};
-    const url = AppSettings.GetBaseUrl() + "/objects/run/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/run/", request, {
+        successForm: "/Revolution/ObjectEdit",
+        redoForm: "/Revolution/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
+    });
+    return result;
 };
 
 export const coronaQuery = async function (request, uxo) {
     if (!uxo) uxo = {};
-    const url = AppSettings.GetBaseUrl() + "/objects/query/";
-    const response = await callService(url, request);
-    return response;
+    let result = callCoronaService("/objects/run/", request, {
+        successForm: "/Revolution/ObjectEdit",
+        redoForm: "/Revolution/ObjectEdit",
+        redoMessage: "Could not save object.",
+        ...uxo
+    });
+    return result;
 };

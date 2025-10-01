@@ -2,7 +2,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaLoginUser } from './Service.js';
@@ -17,18 +17,18 @@ export default function LoginForm(props) {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
     };
 
-    let edit_props = { 
+    let edit_props = {
         presentation: {
-            gridTemplateRows: "100.0px 100.0px 100.0px",
+            gridTemplateRows: "45.0px 45.0px 100.0px 100.0px 45.0px",
             gridTemplateColumns: "30% 30% 30%"
         },
         body_fields: [
-            { row: "1", column: "1", field_type: "coronaparagraph", text:"Please login" }, 
-            { json_field_name: "username", row:"2", column:"1", field_type: "string", format:"name", placeholder: "Username", max_length: 50, min_length: 4 }, 
-            { json_field_name: "password", row: "3", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 }
-            { row: "4", column: "1", field_type: "coronaparagraph", text: "LOGIN if you are in the Revolution." }, 
-            { row: "5", column: "1", field_type: "coronaparagraph", text: "RECOVER if you forgot." }, 
-            { row: "6", column: "1", field_type: "coronaparagraph", text: "ENLIST to join Revolution." }, 
+            { field_type: "chaptertitle", row: "1", column: "1/3", text: "Welcome to the Revolution" },
+            { field_type: "paragraph", row: "2", column: "1/3", text: "Enter your E-Mail address to and password to login." },
+            { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "name", placeholder: "Username", max_length: 50, min_length: 4 },
+            { json_field_name: "password", row: "4", column: "1", field_type: "string", format: "password", placeholder: "Password", max_length: 50, min_length: 8 },
+            { field_type: "paragraph", row: "5", column: "1/3", text: "If you forgot your password, just use RECOVER." },
+            { field_type: "paragraph", row: "6", column: "1/3", text: "If you never logged in before, ENLIST." }
         ],
         put_value
     };
@@ -36,36 +36,37 @@ export default function LoginForm(props) {
     let nav = useNavigate();
 
     return (
-        <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="LOGIN" formNumber="FORM 000" />
+        <div className="contentbackgroundform">
+            <RevolutionBarControl applicationName={props.applicationName} formName="LOGIN" formNumber="FORM 006" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
                 <button id="loginButton" onClick={
                     async () => {
-                        setError({ success: true, message: "Attempting to login", inProgress:true });
+                        setError({ success: true, message: "Attempting to login", inProgress: true });
                         let response = await coronaLoginUser(request, {
-                            successForm: '/Corona/Home',
-                            redoForm: '/Corona/Login',
+                            successForm: '/Revolution/Home',
+                            redoForm: '/Revolution/Login',
                             redoMessage: 'Cannot log in.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        console.log({ 'login_form_props': response.form_props });
+                        nav(response.form, { state: response.form_props });
                     }
-                }>LOGIN</button>                
+                }>LOGIN</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/CreateUser');
+                        nav('/Revolution/CreateUser');
                     }
                 }>ENLIST</button>
                 <button id="recoverUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/SendCode');
+                        nav('/Revolution/SendCode');
                     }
                 }>RECOVER</button>
                 <button id="confirmUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/ConfirmCode');
+                        nav('/Revolution/ConfirmCode');
                     }
                 }>CONFIRM</button>
             </div>

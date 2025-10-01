@@ -1,7 +1,7 @@
 import '../App.css'
 import '../index.css'
 import { useState } from "react";
-import CoronaBarControl from './CoronaBarControl.js';
+import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaSendUserCode } from './Service.js';
@@ -23,7 +23,7 @@ export default function SendCodeForm(props) {
         },
         body_fields: [
             { field_type: "paragraph", row: "1", column: "1/3", text: "Please enter your E-Mail address to receive a confirmation code." }, 
-            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "name", placeholder: "E-Mail", max_length: 50, min_length: 4 }
+            { json_field_name: "user_name", row: "2", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4 }
         ],
         put_value
     };
@@ -32,7 +32,7 @@ export default function SendCodeForm(props) {
 
     return (
         <div class="contentbackgroundform">
-            <CoronaBarControl applicationName={props.applicationName} formName="SEND CODE" />
+            <RevolutionBarControl applicationName={props.applicationName} formName="SEND CODE" formNumber="FORM 003"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} />
             <div className="buttonBar">
@@ -46,7 +46,7 @@ export default function SendCodeForm(props) {
                 }>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
-                        nav('/Corona/Login');
+                        nav('/Revolution/Login');
                     }
                 }>CANCEL</button>
             </div>
