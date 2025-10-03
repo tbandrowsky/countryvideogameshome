@@ -46,7 +46,7 @@ export const callCoronaService = async function (path, request, options) {
         else
         {
             result.form = options.redoForm;
-            result.form_props = { ...result, success: false };
+            result.form_props = { ...options.formProps, ...result, success: false };
         }
     }
     else

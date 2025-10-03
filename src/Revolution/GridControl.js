@@ -10,18 +10,18 @@ export default function GridControl(props) {
             columns.push({ key: col.key, name: col.name, width: col.width || 150 });
         });
     }
-    console.log({ columns, height: props.height, title: "GridControl" });
+    console.log({ columns,title: "GridControl" });
 
     return (
-        <div className="datagridcontrolcontainer">
+        <div className="datagridcontrolcontainer" style={{ ...props }}>
             <DataGrid
                 columns={columns}
                 rows={props.rows}
                 defaultColumnOptions={{
                     sortable: true,
                     resizable: true
-                }}
-                style={{ height: props.height || 400 }}
+                }}                
+                style={{ height: '250px' }}
             />
         </div>
     );

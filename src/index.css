@@ -327,7 +327,7 @@ a {
     padding: 3px;
     color: var(--rock0);
     text-align: right;
-    font-size: 18px;
+    font-size: 14px;
     border-bottom:1px solid var(--rock0);
     transition: transform 0.2s ease, border 0.2s ease, background-color 0.2s ease;
     text-decoration:none;
@@ -361,17 +361,19 @@ button {
     padding: 3px;
     color: var(--forest1);
     text-align: left;
-    font-size: 18px;
-    box-shadow: 0 2px #00000044;
+    font-size: 14px;
+    box-shadow: 0 2px #A7A77844;
     transition: box-shadow 0.2s ease, transform 0.2s ease, border 0.2s ease;
     text-decoration: none;
     width: 150px;
     margin-right: 8px;
+    border:#48524655 solid 1px;
+    border-radius: 3px;
 }
 
 .button-selected {
-    color: whitesmoke;
-    background-color:var(--forest2);
+    color: black;
+    background-color:var(--forest5);
 }
 
 input {
@@ -421,7 +423,7 @@ button .selected {
     padding: 3px;
     color: white;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
     box-shadow: 0 2px #00000044;
     transition: box-shadow 0.2s ease, transform 0.2s ease, border 0.2s ease;
     text-decoration: none;
@@ -455,6 +457,4 @@ button .selected {
 .datagridcontrolcontainer
 {
     margin:16px;
-    height:100%;
-    padding-bottom: 16px;
 }

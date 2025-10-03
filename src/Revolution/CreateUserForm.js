@@ -7,6 +7,8 @@ import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaCreateUser } from './Service.js';
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAtom } from '@fortawesome/free-solid-svg-icons';
 
 export default function CreateUserForm(props) {
 
@@ -56,9 +58,9 @@ export default function CreateUserForm(props) {
                             redoMessage: 'Unable to process application.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
-                        nav(response.form, { state: response.form_props });
+                        nav(response.form, { ...response.form_props });
                     }
-                }>ENLIST</button>
+                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
                 <button id="cancelButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Revolution/Login');

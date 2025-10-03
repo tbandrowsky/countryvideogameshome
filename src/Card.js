@@ -14,17 +14,24 @@ export default function Card(props)
             backgroundColor:"#FFFFFF",
             borderRadius:"8px"
                    }}>
-            <div style={{ gridColumn: "1/ span 2", gridRow: "1", border:"1px solid green" }}>
-                <div style={{ fontSize: "24px", fontWeight: "bold", paddingLeft: "16px", paddingTop: "8px" }}>{props.title}</div>
+            <div style={{ gridColumn: "1/ span 2", gridRow: "1", fontSize: "24px", fontWeight: "bold", background:"linear-gradient(180deg, rgba(23, 90, 0, 1) 0%, rgba(10, 10, 10, 1) 100%)"  }}>
+                <div style={{fontSize: "24px", fontWeight: "bold", paddingLeft: "16px", paddingTop: "8px", color:"white" }}>{props.title}</div>
             </div>
-            <div style={{ gridColumn: "1", gridRow: "2", border: "1px solid green" }}>
+            <div style={{ gridColumn: "1", gridRow: "2",  }}>
                 <img src={props.image} style={{ width: "100%", height: "100%" }} alt={props.title} />
             </div>
-            <div style={{ gridColumn: "2", gridRow: "2", border: "1px solid green", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"near", padding:"16px", overflowY:"auto" }}>
+            <div style={{ gridColumn: "2", gridRow: "2",  display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"near", padding:"16px", overflowY:"auto" }}>
                 {props.children}
             </div>
-            <div style={{ gridColumn: "1 / span 2", gridRow: "3", border: "1px solid green", display:"flex", flexDirection:"row" }}>
-                <div style={{ width: "250px", display: "flex" }}>
+            <div style={{ gridColumn: "1 / span 2", gridRow: "3",background:"linear-gradient(180deg, rgba(23, 90, 0, 1) 0%, rgba(10, 10, 10, 1) 100%)", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"center", paddingTop:"8px" }}>
+
+                <button id="confirmUserButton" style={{ width:"150px", height:"50px" }} onClick={
+                    async () => {
+                        nav('/Revolution/Login');
+                    }
+                }>LOGIN</button>
+
+                <div style={{ height: "50px", display: "flex", marginRight:"16px", border:"0px" }}>
                     <form action="https://www.paypal.com/donate" method="post" target="_top">
                         <input type="hidden" name="business" value="TWXJ467KP823E" />
                         <input type="hidden" name="no_recurring" value="0" />
@@ -34,11 +41,6 @@ export default function Card(props)
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                         </form>
                 </div>
-                <button id="confirmUserButton" style={{ width:"150px", height:"50px" }} onClick={
-                    async () => {
-                        nav('/Revolution/Login');
-                    }
-                }>LOGIN</button>
 
                 <button id="confirmUserButton" style={{ width: "150px", height: "50px" }} onClick={
                     async () => {

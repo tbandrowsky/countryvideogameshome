@@ -7,6 +7,9 @@ import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaLoginUser } from './Service.js';
 import { useNavigate } from "react-router";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function LoginForm(props) {
 
@@ -53,7 +56,7 @@ export default function LoginForm(props) {
                         console.log({ 'login_form_props': response.form_props });
                         nav(response.form, { state: response.form_props });
                     }
-                }>LOGIN</button>
+                }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Revolution/CreateUser');
