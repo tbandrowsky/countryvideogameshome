@@ -6,6 +6,9 @@ import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaSendUserCode } from './Service.js';
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function SendCodeForm(props) {
 
@@ -43,12 +46,12 @@ export default function SendCodeForm(props) {
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, response.form_props);
                     }
-                }>SEND CODE</button>
+                }><FontAwesomeIcon icon={faEnvelope}/>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Revolution/Login');
                     }
-                }>CANCEL</button>
+                }><FontAwesomeIcon icon={faSquareCaretLeft} />CANCEL</button>
             </div>
         </div>
     );

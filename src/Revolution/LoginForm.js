@@ -10,6 +10,9 @@ import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faAtom } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { faWineBottle } from '@fortawesome/free-solid-svg-icons';
 
 export default function LoginForm(props) {
 
@@ -57,21 +60,21 @@ export default function LoginForm(props) {
                         nav(response.form, { state: response.form_props });
                     }
                 }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
-                <button id="createUserButton" disabled={error.inProgress} onClick={
+                <button id="createUserButton" onClick={
                     async () => {
                         nav('/Revolution/CreateUser');
                     }
-                }>ENLIST</button>
-                <button id="recoverUserButton" disabled={error.inProgress} onClick={
+                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
+                <button id="recoverUserButton" onClick={
                     async () => {
                         nav('/Revolution/SendCode');
                     }
-                }>RECOVER</button>
-                <button id="confirmUserButton" disabled={error.inProgress} onClick={
+                }><FontAwesomeIcon icon={faWineBottle} />RECOVER</button>
+                <button id="confirmUserButton" onClick={
                     async () => {
                         nav('/Revolution/ConfirmCode');
                     }
-                }>CONFIRM</button>
+                }><FontAwesomeIcon icon={faCheckSquare} />CONFIRM</button>
             </div>
         </div>
     );

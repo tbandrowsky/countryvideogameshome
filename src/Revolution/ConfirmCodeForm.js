@@ -7,6 +7,10 @@ import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import { coronaSendUserCode, coronaConfirmUserCode } from './Service.js';
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function ConfirmCodeForm(props) {
 
@@ -45,7 +49,7 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, { state: response.form_props });
                     }
-                }>CONFIRM CODE</button>
+                }><FontAwesomeIcon icon={faSquareCaretRight} />CONFIRM CODE</button>
                 <button id="sendCodeButton" onClick={
                     async () => {
                         setError({ success: true, message: "Send code", inProgress: true });
@@ -53,12 +57,12 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, { state: response.form_props });
                     }
-                }>SEND CODE</button>
+                }><FontAwesomeIcon icon={faEnvelope} />SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Revolution/Login');
                     }
-                }>CANCEL</button>
+                }><FontAwesomeIcon icon={faSquareCaretLeft} />CANCEL</button>
             </div>
         </div>
     );

@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faAtom } from '@fortawesome/free-solid-svg-icons';
 
 export default function Card(props)
 {
@@ -29,7 +32,7 @@ export default function Card(props)
                     async () => {
                         nav('/Revolution/Login');
                     }
-                }>LOGIN</button>
+                }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
 
                 <div style={{ height: "50px", display: "flex", marginRight:"16px", border:"0px" }}>
                     <form action="https://www.paypal.com/donate" method="post" target="_top">
@@ -46,7 +49,7 @@ export default function Card(props)
                     async () => {
                         nav('/Revolution/CreateUser');
                     }
-                }>ENLIST</button>
+                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
 
             </div>
         </div>

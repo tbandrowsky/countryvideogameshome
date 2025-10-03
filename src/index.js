@@ -55,7 +55,7 @@ root.render(
                 </Routes>
             </div>
         </div>
-        <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" containerStyle={{ position: "absolute", left: 0, top: "70vh", width: "100vw", height: "25vh" }} />
+        <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" containerStyle={{ position: "absolute", left: 0, top: "75vh", width: "100vw", height: "25vh" }} />
     </BrowserRouter>
 );
 
