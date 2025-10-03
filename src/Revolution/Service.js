@@ -42,13 +42,12 @@ export const callCoronaService = async function (path, request, options) {
                 sessionStorage.setItem(AppSettings.TokenKey, result.token);
             }
             result.form = options.successForm;
-            result.form_props = { ...result, success: true };
+            console.log({ "final result": result });
         }
         else
         {
             console.log({"response good, result bad": response, "fallbackprops": options.formProps});
             result.form = options.redoForm;
-            result.form_props = { ...result, ...options.formProps,  success: false, message:result.message }; 
         }
     }
     else
@@ -57,7 +56,6 @@ export const callCoronaService = async function (path, request, options) {
         result.success = false;
         result.message = options.redoMessage;
         result.form = options.redoForm;
-        result.form_props = {  ...options.formProps, sucess:false, applicationName: AppSettings.ApplicationName }; // that is the pattern
     }
 
     return result;
@@ -138,7 +136,7 @@ export const coronaGetClasses = async function (request, uxo) {
 
 export const coronaGetClass = async function (request, uxo) {
     if (!uxo) uxo = {};
-    let result = callCoronaService("/class/get/", request, {
+    let result = callCoronaService("/classes/get/details", request, {
         successForm: "/Revolution/ClassEdit",
         redoForm: "/Revolution/ClassSearch",
         redoMessage: "Could not search classes.",
@@ -227,10 +225,10 @@ export const coronaRunObject = async function (request, uxo) {
 
 export const coronaQuery = async function (request, uxo) {
     if (!uxo) uxo = {};
-    let result = callCoronaService("/objects/run/", request, {
-        successForm: "/Revolution/ObjectEdit",
-        redoForm: "/Revolution/ObjectEdit",
-        redoMessage: "Could not save object.",
+    let result = callCoronaService("/query/", request, {
+        successForm: "/Revolution/ObjectSearchForm",
+        redoForm: "/Revolution/ObjectSearchForm",
+        redoMessage: "Could not query class.",
         ...uxo
     });
     return result;

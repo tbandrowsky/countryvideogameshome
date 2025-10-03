@@ -12,7 +12,7 @@ export default function ObjectEditForm(props) {
     let body_fields = [];
     let child_objects = [];
 
-    for (const field of props.fields) {
+    for (const field of props.data.class.fields) {
         if (field.field_type === 'array' || field.field_type === 'object') {
             child_objects.push(field);
         } else {

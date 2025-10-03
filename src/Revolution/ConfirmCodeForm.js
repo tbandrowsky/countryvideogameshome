@@ -47,7 +47,15 @@ export default function ConfirmCodeForm(props) {
                         setError({ success: true, message: "Confirming code", inProgress: true });
                         let response = await coronaConfirmUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, { state: response.form_props });
+                        let nav_state = {};
+                        
+                        if (response.success) {
+                            nav_state = { ...response };
+                        } else {
+                            nav_state = { ...props };
+                        }
+
+                        nav(response.form, { state: nav_state });
                     }
                 }><FontAwesomeIcon icon={faSquareCaretRight} />CONFIRM CODE</button>
                 <button id="sendCodeButton" onClick={

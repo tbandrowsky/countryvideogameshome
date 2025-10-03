@@ -44,7 +44,14 @@ export default function SendCodeForm(props) {
                         setError({ success: true, message: "Sending Code", inProgress: true });
                         let response = await coronaSendUserCode(request);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, response.form_props);
+                        let nav_state = {};
+                        if (response.success) {
+                            nav_state = { ...response };
+                        } else {
+                            nav_state = { ...props};
+                        }
+                        nav(response.form, { state: nav_state });
+
                     }
                 }><FontAwesomeIcon icon={faEnvelope}/>SEND CODE</button>
                 <button id="createUserButton" disabled={error.inProgress} onClick={

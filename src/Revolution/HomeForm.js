@@ -4,7 +4,7 @@ import '../index.css'
 import RevolutionBarControl from './RevolutionBarControl.js';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-import { coronaSetTeam, coronaCreateObject, coronaEditObject, coronaGetClass } from './Service.js';
+import { coronaSetTeam, coronaEditObject, coronaGetClass } from './Service.js';
 import { useState } from "react";
 import ErrorControl from './ErrorControl.js';
 import GridControl from './GridControl.js';
@@ -46,7 +46,7 @@ export default function HomeForm(formProps) {
         { key: 'class_description', name: 'Description' }
     ];
 
-    let inventoryMap = Object.fromEntries(props.data.inventory.map(obj => [obj.class_name, obj]));
+    let inventoryMap = Object.fromEntries(props.user.inventory.map(obj => [obj.class_name, obj]));
     console.log({'inventory':inventoryMap});
 
     return (
@@ -55,7 +55,7 @@ export default function HomeForm(formProps) {
             <ErrorControl {...error} />
             <h2 style={{marginLeft:"16px"}}>Inventory</h2>
             <div className="sectionbuttons">
-                {props.data.inventory && props.data.inventory.map((field, index) => {
+                {props.user.inventory && props.user.inventory.map((field, index) => {
                     return <button key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
@@ -65,7 +65,14 @@ export default function HomeForm(formProps) {
                                 redoMessage: 'select failed.',
                                 formProps: props
                             });
-                            nav(response.form, { state: response.form_props });
+                            let nav_state = {};
+                            if (response.success) {
+                                nav_state = { user:props.user, ...response };
+                            } else {
+                                nav_state = { ...props };
+                            }
+
+                            nav(response.form, { state: nav_state });
                             setError({ success: response.success, message: response.message, inProgress: false });
                         }
                     }>{field.class_name}</button>
@@ -74,7 +81,7 @@ export default function HomeForm(formProps) {
             </div>
             <h2 style={{marginLeft:"16px"}}>Teams</h2>
             <div className="sectionbuttons">
-                {props.data.team.allowed_teams.map((field, index) => {
+                {props.user.team.allowed_teams.map((field, index) => {
                     let isSelected = props.data.team.team_name === field;
                     return <button key={index} className={isSelected ? 'button-selected' : ''} onClick={
                         async () => {
@@ -85,8 +92,15 @@ export default function HomeForm(formProps) {
                                 redoMessage: 'select failed.',
                                 formProps: props
                             });
-                            nav(response.form, { state: response.form_props });
+                            let nav_state = {};
+                            if (response.success) {
+                                nav_state = { user:response.data, ...response };
+                            } else {
+                                nav_state = { ...props };
+                            }
+
                             setError({ success: response.success, message: response.message, inProgress: false });
+                            nav(response.form, { state: nav_state });
                         }
                     }>{field}</button>;
                 }
@@ -100,7 +114,7 @@ export default function HomeForm(formProps) {
                     <Tab>Tickets</Tab>
                 </TabList>
                     <TabPanel>
-            {(props.data.team && props.data.team.permissions && props.data.team.permissions.length >0) && 
+            {(props.user.team && props.user.team.permissions && props.user.team.permissions.length >0) && 
                 <div className="sectionbuttons"> 
                   {props.data.team.permissions.map((item,index) => {
                     let filteredMap = item.grant_classes.filter((grant_class_name, index)=> { return !(grant_class_name in inventoryMap)});
@@ -110,27 +124,33 @@ export default function HomeForm(formProps) {
                         async () => {
                             setError({ success: true, message: "Editing " + field, inProgress: true });
                             let response = await coronaGetClass({'class_name':field }, {
-                                successForm: '/Revolution/ObjectEdit',
+                                successForm: '/Revolution/ObjectSearch',
                                 redoForm: '/Revolution/Home',
                                 redoMessage: 'Create failed.',
-                                formProps: props
+                                formProps: props.formProps
                             });
-                            nav(response.form, { state: response.form_props });
+                            let nav_state = {};
+                            if (response.success) {
+                                nav_state = { user:props.user, class:response.data, ...response };
+                            } else {
+                                nav_state = { ...props, class:{}};
+                            }
                             setError({ success: response.success, message: response.message, inProgress: false });
+                            nav(response.form, { state: nav_state });
                         }}>{field}</button>);
                         })
                   })}</div>
                   }
                 </TabPanel>    
                     <TabPanel>
-            {props.data.team &&props.data.team.tickets && props.data.team.tickets.length > 0 && <GridControl columns={ticketColumns} rows={props.data.team.tickets} /> }
+            {props.user.team &&props.user.team.tickets && props.user.team.tickets.length > 0 && <GridControl columns={ticketColumns} rows={props.user.team.tickets} /> }
                     </TabPanel>
 <TabPanel>
-            {props.data.team && props.data.team.articles && props.data.team.articles.length > 0 && <GridControl columns={articleColumns} rows={props.data.team.articles} />}
+            {props.user.team && props.user.team.articles && props.user.team.articles.length > 0 && <GridControl columns={articleColumns} rows={props.user.team.articles} />}
 
 </TabPanel>
 <TabPanel>
-            {props.data.team&&props.data.team.classes && props.data.team.classes.length > 0 && <GridControl columns={classColumns} rows={props.data.team.classes} />}
+            {props.user.team&&props.user.team.classes && props.user.team.classes.length > 0 && <GridControl columns={classColumns} rows={props.user.team.classes} />}
     </TabPanel>
         </Tabs>
         </div>

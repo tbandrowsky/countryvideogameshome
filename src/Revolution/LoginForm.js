@@ -57,7 +57,13 @@ export default function LoginForm(props) {
                         });
                         setError({ success: response.success, message: response.message, inProgress: false });
                         console.log({ 'login_form_props': response.form_props });
-                        nav(response.form, { state: response.form_props });
+                        let nav_state = {};
+                        if (response.success) {
+                            nav_state = { user:response.data,...response };
+                        } else {
+                            nav_state = {};
+                        }
+                        nav(response.form, { state: nav_state });
                     }
                 }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
                 <button id="createUserButton" onClick={
