@@ -4,7 +4,7 @@ import '../index.css'
 import RevolutionBarControl from './RevolutionBarControl.js';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-import { coronaSetTeam, coronaCreateObject, coronaEditObject } from './Service.js';
+import { coronaSetTeam, coronaCreateObject, coronaEditObject, coronaGetClass } from './Service.js';
 import { useState } from "react";
 import ErrorControl from './ErrorControl.js';
 import GridControl from './GridControl.js';
@@ -63,7 +63,7 @@ export default function HomeForm(formProps) {
                                 successForm: '/Revolution/ObjectEdit',
                                 redoForm: '/Revolution/Home',
                                 redoMessage: 'select failed.',
-                                formProps: formProps
+                                formProps: props
                             });
                             nav(response.form, { state: response.form_props });
                             setError({ success: response.success, message: response.message, inProgress: false });
@@ -82,7 +82,8 @@ export default function HomeForm(formProps) {
                             let response = await coronaSetTeam({'team_name':field }, {
                                 successForm: '/Revolution/Home',
                                 redoForm: '/Revolution/Home',
-                                redoMessage: 'select failed.'
+                                redoMessage: 'select failed.',
+                                formProps: props
                             });
                             nav(response.form, { state: response.form_props });
                             setError({ success: response.success, message: response.message, inProgress: false });
@@ -91,7 +92,7 @@ export default function HomeForm(formProps) {
                 }
                 )}
             </div>
-            <h3 style={{marginLeft:"16px"}}>{props.data.team.team_name} - {props.data.team.team_decription}</h3>           
+            <h3 style={{marginLeft:"16px"}}>{props.data.team.team_name}</h3>           
 
             <Tabs style={{marginLeft:"16px", marginRight:"16px", height:"320px", border:"var(--rock1) solid 1px", borderRadius:"5px", padding:"8px", backgroundColor:"var(--rock6)"}}>
                 <TabList>
@@ -107,12 +108,12 @@ export default function HomeForm(formProps) {
                     return filteredMap.map((field,index) => {
                       return (<button key={index} onClick={
                         async () => {
-                            setError({ success: true, message: "Creating " + field, inProgress: true });
-                            let response = await coronaCreateObject({'class_name':field }, {
+                            setError({ success: true, message: "Editing " + field, inProgress: true });
+                            let response = await coronaGetClass({'class_name':field }, {
                                 successForm: '/Revolution/ObjectEdit',
                                 redoForm: '/Revolution/Home',
                                 redoMessage: 'Create failed.',
-                                formProps: formProps
+                                formProps: props
                             });
                             nav(response.form, { state: response.form_props });
                             setError({ success: response.success, message: response.message, inProgress: false });

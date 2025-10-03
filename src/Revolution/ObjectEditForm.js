@@ -5,6 +5,7 @@ import '../index.css'
 /* eslint-disable react/jsx-no-undef */
 import './EditForm.css';
 import EditForm from './EditForm.js';
+import ObjectSearchForm from './ObjectSearchForm.js';
 
 export default function ObjectEditForm(props) {
 
@@ -30,8 +31,8 @@ export default function ObjectEditForm(props) {
             {(child_objects.length > 0) && <div class="countrybitformsection">
                 {child_objects.map((field, index) => {
                     if (field.field_type === "object")
-                        return <ObjectEdit props={{ ...field, index }} />
-                    return <SearchForm props={{ ...field, index }} />
+                        return <EditForm props={{ ...field, index }} />
+                    return <ObjectSearchForm props={{ ...field, index }} />
                 })}
             </div>}
         </div>

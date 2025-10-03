@@ -20,6 +20,7 @@ const callService = async function (url, request) {
     }
     catch (error)
     {
+        response.ok = false;
         response.success = false;
         response.message = "Error calling service: " + error;
     }
@@ -45,16 +46,18 @@ export const callCoronaService = async function (path, request, options) {
         }
         else
         {
+            console.log({"response good, result bad": response, "fallbackprops": options.formProps});
             result.form = options.redoForm;
-            result.form_props = { ...options.formProps, ...result, success: false };
+            result.form_props = { ...result, ...options.formProps,  success: false, message:result.message }; 
         }
     }
     else
     {
+        console.log({"response bad": response, "fallbackprops": options.formProps});
         result.success = false;
         result.message = options.redoMessage;
         result.form = options.redoForm;
-        result.form_props = { applicationName: AppSettings.ApplicationName }; // that is the pattern
+        result.form_props = {  ...options.formProps, sucess:false, applicationName: AppSettings.ApplicationName }; // that is the pattern
     }
 
     return result;
