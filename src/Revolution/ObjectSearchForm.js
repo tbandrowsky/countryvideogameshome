@@ -9,7 +9,7 @@ import { coronaQuery } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from "react-router-dom";
 import GridControl from './GridControl.js';
@@ -26,10 +26,14 @@ export default function ObjectSearchForm(props) {
 
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
+        console.log({ request });
     };
 
     const get_value = (json_field_name) => {
-        return request.hasOwnProperty(json_field_name) && request[json_field_name];
+        if (json_field_name in request)
+            return request[json_field_name];
+        else
+            return "";
     }
 
     let edit_props = {
@@ -53,8 +57,11 @@ export default function ObjectSearchForm(props) {
     let gridColumns = [
         ];
 
+    let form_name = "SEARCH";
+
     if (classdef) {
         // main fields
+        form_name = classdef.class_name.toUpperCase();
         for (const fieldname in classdef.fields) {
             if (system_fields.hasOwnProperty(fieldname)) {
                 continue;
@@ -92,60 +99,71 @@ export default function ObjectSearchForm(props) {
     }
 
     let nav = useNavigate();
+    let gridRows = [];
+    if (props.rows && props.rows && Array.isArray(props.rows)) {
+        gridRows = props.rows;
+    }
 
     return (
         <div className="contentbackgroundform">
-            <RevolutionBarControl applicationName={props.applicationName} formName={"SEARCH"} formNumber="FORM 007" />
+            <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
-            <div>
-                <div style={{ display: 'grid', gridTemplateColumns: '325px 1fr' }}>
+            <div style={{height:"450px", overflow:"auto", display: 'grid', gridTemplateColumns: '325px 1fr'}}>
+                <div>
                 <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} />
                 </div>
-                {props.data.length > 0 && <GridControl columns={gridColumns} data={props.data || []}  style={{ gridColumn: '2' }}/>}
                 <div>
+                <GridControl columns={gridColumns} rows={gridRows} style={{ gridColumn: '2' }}/>
                 </div>
             </div>
             <div className="buttonBar">
-                <button id="loginButton" onClick={
+                <button id="searchButton" onClick={
                     async () => {
                         setError({ success: true, message: "Attempting to login", inProgress: true });
                         let search_request = { "class_name": "query",
-                            "filter": {
+                            "from": [{
                                 "class_name": classdef.class_name,
-                                "name": classdef.class_name
-                            },
+                                "name": classdef.class_name,
+                            }],
                             "stages": [ {
                                 "class_name": "filter",
                                 "input":classdef.class_name,
-                                "conditions": [ 
-                                    { 
+                                "condition": { 
                                         "class_name": "any", 
                                         "conditions" :[]
-                                    }
-                                ]
+                                },
+                                "output": "result"
                             }]
                         };
-                        for (const field of classdef.fields) {
-                            if (!system_fields.hasOwnProperty(field.field_name) && field.field_type === 'string') {
-                                search_request.stages[0].conditions[0].conditions.push_({ class_name:"contains", value_path: field.field_name, value: get_value(field.field_name)});
+                        for (const fieldname in classdef.fields) {                            
+                            const field = classdef.fields[fieldname];
+                            if (!request.hasOwnProperty(field.field_name) && field.field_type === 'string') {
+                                let v = get_value(field.field_name);
+                                if (v && v.length > 0) {
+                                    search_request.stages[0].condition.conditions.push({ class_name:"contains", value_path: field.field_name, value:v });
+                                }
                             }
                         }
-
-                        let response = await coronaQuery(request, {
-                            successForm: '/Revolution/ObjectSearchForm',
-                            redoForm: '/Revolution/ObjectSearchForm',
+                        console.log({ "search_request": search_request });
+                        let response = await coronaQuery(search_request, {
+                            successForm: '/Revolution/ObjectSearch',
+                            redoForm: '/Revolution/ObjectSearch',
                             redoMessage: 'Cannot search.'
                         },
                         props.formProps);
                         setError({ success: response.success, message: response.message, inProgress: false });
-                        let navparam = { state: { ...response.form_props, data: [] } };
-                        console.log({ 'navparam': navparam });
-                        nav(response.form, navparam);
+                        let nav_state = {};
+                        if (response.success) {
+                            nav_state = { rows:response.data,...response, user:props.user, class:props.class };
+                        } else {
+                            nav_state = {...props};
+                        }
+                        nav(response.form, { state: nav_state });
                     }
                 }><FontAwesomeIcon icon={faSearch} />SEARCH</button>
                 <button id="cancelButton" onClick={
                     async () => {
-                        nav('/Revolution/Home');
+                        nav('/Revolution/Home', {state:{...props} } );
                     }
                 }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</button>
             </div>

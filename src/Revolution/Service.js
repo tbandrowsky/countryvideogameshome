@@ -225,9 +225,9 @@ export const coronaRunObject = async function (request, uxo) {
 
 export const coronaQuery = async function (request, uxo) {
     if (!uxo) uxo = {};
-    let result = callCoronaService("/query/", request, {
-        successForm: "/Revolution/ObjectSearchForm",
-        redoForm: "/Revolution/ObjectSearchForm",
+    let result = callCoronaService("/objects/query/", request, {
+        successForm: "/Revolution/ObjectSearch",
+        redoForm: "/Revolution/ObjectSearch",
         redoMessage: "Could not query class.",
         ...uxo
     });

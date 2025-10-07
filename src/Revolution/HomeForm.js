@@ -71,9 +71,9 @@ export default function HomeForm(formProps) {
                             } else {
                                 nav_state = { ...props };
                             }
-
-                            nav(response.form, { state: nav_state });
                             setError({ success: response.success, message: response.message, inProgress: false });
+                            console.log({"edit object nav_state":nav_state});
+                            nav(response.form, { state: nav_state });
                         }
                     }>{field.class_name}</button>
                 }
@@ -82,7 +82,7 @@ export default function HomeForm(formProps) {
             <h2 style={{marginLeft:"16px"}}>Teams</h2>
             <div className="sectionbuttons">
                 {props.user.team.allowed_teams.map((field, index) => {
-                    let isSelected = props.data.team.team_name === field;
+                    let isSelected = props.user.team.team_name === field;
                     return <button key={index} className={isSelected ? 'button-selected' : ''} onClick={
                         async () => {
                             setError({ success: true, message: "Selecting Team", inProgress: true });
@@ -106,7 +106,7 @@ export default function HomeForm(formProps) {
                 }
                 )}
             </div>
-            <h3 style={{marginLeft:"16px"}}>{props.data.team.team_name}</h3>           
+            <h3 style={{marginLeft:"16px"}}>{props.user.team.team_name}</h3>           
 
             <Tabs style={{marginLeft:"16px", marginRight:"16px", height:"320px", border:"var(--rock1) solid 1px", borderRadius:"5px", padding:"8px", backgroundColor:"var(--rock6)"}}>
                 <TabList>
@@ -116,7 +116,7 @@ export default function HomeForm(formProps) {
                     <TabPanel>
             {(props.user.team && props.user.team.permissions && props.user.team.permissions.length >0) && 
                 <div className="sectionbuttons"> 
-                  {props.data.team.permissions.map((item,index) => {
+                  {props.user.team.permissions.map((item,index) => {
                     let filteredMap = item.grant_classes.filter((grant_class_name, index)=> { return !(grant_class_name in inventoryMap)});
                     if (item.put !== "any" && item.put !== "team") filteredMap = [];
                     return filteredMap.map((field,index) => {

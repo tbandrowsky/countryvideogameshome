@@ -56,8 +56,9 @@ export default function CreateUserForm(props) {
                             redoMessage: 'Unable to process application.'
                         });
                         setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
+                        let nav_state = {};
                         if (response.success) {
-                            nav_state = { ...response };
+                            nav_state = { user:response.data,...response };
                         } else {
                             nav_state = { ...props};
                         }
