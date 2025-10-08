@@ -48,8 +48,8 @@ export default function ObjectEditForm(props) {
         get_value
     };
 
-    let classdef = props.class;
-    let objdef = props.object;
+    let classdef = props.data.class;
+    let objdef = props.data.object;
 
     let row_id = 1;
 
@@ -75,9 +75,14 @@ export default function ObjectEditForm(props) {
                 edit_props.body_fields.push( { json_field_name: field.field_name, row: row_id, column:1, field_type: field.field_type, format: field.field_format, placeholder: field.placeholder || field.field_name, max_length: field.max_length, min_length: field.min_length });
                 row_id += 1;
             }
-            
-            if (field.field_type == "array" || field.field_type == "object") {
-                childObjects.push(objdef[ field.field_name ] );
+
+            if (field.field_type == "array") {
+                let item = objdef.hasOwnProperty(field.field_name) ? objdef[ field.field_name ] : [];
+                childObjects.push(item);
+            }
+            else if (field.field_type == "object") {
+                let item = objdef.hasOwnProperty(field.field_name) ? objdef[ field.field_name ] : {};
+                childObjects.push(item);
             }
         }
         // base fields
@@ -92,8 +97,6 @@ export default function ObjectEditForm(props) {
                 row_id += 1;
             }
         }
-
-        console.log( {"edit_props":edit_props});
     }
 
     let nav = useNavigate();
@@ -113,6 +116,7 @@ export default function ObjectEditForm(props) {
             <div className="buttonBar">
                 <button id="cancelButton" onClick={
                     async () => {
+                        console.log( {"cancel / home with":props});
                         nav('/Revolution/Home', {state:{...props} } );
                     }
                 }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</button>

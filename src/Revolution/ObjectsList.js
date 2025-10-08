@@ -25,7 +25,7 @@ export default function ObjectsList(props) {
     return (
         <div className="objectlist" >
             {Object.keys(childrenMap).map(className => (
-                <div key={className}>
+                <div key={className} style={{ marginTop:'0px'}}>
                     <h4>{className}</h4>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}>
                     {childrenMap[className].map((obj, idx) => (
