@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from "react-router-dom";
-import GridControl from './GridControl.js';
+import ObjectsList from './ObjectsList.js';
 
 export default function ObjectSearchForm(props) {
 
@@ -54,8 +54,6 @@ export default function ObjectSearchForm(props) {
     let system_fields = { "class_name": true, "object_id": true, "created": true, "updated": true, "created_by": true, "updated_by": true };
 
     let rowSize = " 60px";
-    let gridColumns = [
-        ];
 
     let form_name = "SEARCH";
 
@@ -73,10 +71,6 @@ export default function ObjectSearchForm(props) {
                 edit_props.body_fields.push( { json_field_name: field.field_name, row: row_id, column:1, field_type: field.field_type, format: field.field_format, placeholder: field.placeholder || field.field_name, max_length: field.max_length, min_length: field.min_length });
                 row_id += 1;
             }
-            
-            if (field.field_type != "array" && field.field_type != "object") {
-                gridColumns.push({ key: field.field_name, name: field.field_name });
-            }
         }
         // base fields
         for (const fieldname in classdef.fields) {
@@ -89,9 +83,7 @@ export default function ObjectSearchForm(props) {
                 edit_props.body_fields.push( { json_field_name: field.field_name, row: row_id, column:1, field_type: field.field_type, format: field.field_format, placeholder: field.placeholder || field.field_name, max_length: field.max_length, min_length: field.min_length });
                 row_id += 1;
             }
-            if (field.field_type != "array" && field.field_type != "object") {
-                gridColumns.push({ key: field.field_name, name: field.field_name });
-            }
+
         }
 
 
@@ -113,13 +105,13 @@ export default function ObjectSearchForm(props) {
                 <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} />
                 </div>
                 <div>
-                <GridControl columns={gridColumns} rows={gridRows} style={{ gridColumn: '2' }}/>
+                <ObjectsList objects={gridRows} style={{ gridColumn: '2' }} setError={setError} />
                 </div>
             </div>
             <div className="buttonBar">
                 <button id="searchButton" onClick={
                     async () => {
-                        setError({ success: true, message: "Attempting to login", inProgress: true });
+                        setError({ success: true, message: "Searching...", inProgress: true });
                         let search_request = { "class_name": "query",
                             "from": [{
                                 "class_name": classdef.class_name,

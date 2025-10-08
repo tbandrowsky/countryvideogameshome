@@ -33,6 +33,7 @@ export default function EditForm(props) {
     };
 
     let form_styles = {
+        marginLeft:"16px",
         display: "grid",
         gridTemplateColumns: props.presentation.gridTemplateColumns || "auto",
         gridTemplateRows: props.presentation.gridTemplateRows || "auto",
