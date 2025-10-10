@@ -5,6 +5,7 @@ import InputMask from 'react-input-mask';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import ValidationError from './ValidationError';
+import Input from '@mui/material/Input';
 
 export default function TextEditField(props)
 {
@@ -75,6 +76,7 @@ export default function TextEditField(props)
                 props.put_value(json_field_name, e.target.value);
             }}
             options={options}
+            style={{ width: '100%' }} 
             placeholder={placeholder}
         />
             {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
@@ -86,6 +88,7 @@ export default function TextEditField(props)
             mask={input_mask}
             placeholder={placeholder}
             value={props.get_value(json_field_name)}
+            style={{ width: '100%' }} 
             onChange={(e) => {
                 props.put_value(json_field_name, e.target.value);
             }}
@@ -95,7 +98,7 @@ export default function TextEditField(props)
     }
     else
     {
-        return <div style={div_style}><input
+        return <div style={div_style}><Input
             type={input_type}
             placeholder={placeholder}
             max_length={max_length}
@@ -104,7 +107,8 @@ export default function TextEditField(props)
             onChange={(e) => {
                 props.put_value(json_field_name, e.target.value);
             }}
-            pattern={match_pattern} autoComplete={autocomplete} />
+            pattern={match_pattern} autoComplete={autocomplete}
+            style={{ width: '100%' }} />
             {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
         </div>;
     }

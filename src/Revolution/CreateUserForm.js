@@ -10,6 +10,8 @@ import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAtom } from '@fortawesome/free-solid-svg-icons';
 import { faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import Button from '@mui/material/Button';
+
 export default function CreateUserForm(props) {
 
     const [request, setRequest] = useState({ });
@@ -21,11 +23,11 @@ export default function CreateUserForm(props) {
 
     let edit_props = {
         presentation: {
-            gridTemplateColumns: "repeat( 4 fr )",
+            gridTemplateColumns: "250px 250px 250px 250px",
             gridTemplateRows: "auto auto auto auto auto auto"
         },
         body_fields: [
-                { json_field_name: "user_name", column: '1/4', row: 1, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 100, min_length: 4, autocomplete: 'email' },
+            { json_field_name: "user_name", column: '1/4', row: 1, field_type: "string", format: "email", placeholder: "E-Mail", max_length: 100, min_length: 4, autocomplete: 'email' },
             { json_field_name: "password1", column: 1, row: 2, field_type: "string", format: "password", placeholder: "Password 1", max_length: 50, min_length: 8, autocomplete: 'new-password' },
             { json_field_name: "password2", column: 2, row: 2, field_type: "string", format: "password", placeholder: "Password 2", max_length: 50, min_length: 8, autocomplete: 'new-password' },
             { json_field_name: "first_name", column: 1, row: 3, field_type: "string", format: "name", placeholder: "First Name", max_length: 100, min_length: 1, autocomplete: 'given_name' },
@@ -45,34 +47,35 @@ export default function CreateUserForm(props) {
         <div class="contentbackgroundform">
             <RevolutionBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 004" />
             <ErrorControl {...error} />
-            <EditForm {...edit_props} error={error} />
-            <div className="buttonBar">
-                <button id="createUserButton" onClick={
-                    async () => {
-                        setError({ success: true, message: "Processing Application.", inProgress: true });
-                        let response = await coronaCreateUser({ data: request }, {
-                            successForm: '/Revolution/ConfirmCode',
-                            redoForm: '/Revolution/CreateUser',
-                            redoMessage: 'Unable to process application.'
-                        });
-                        setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
-                        let nav_state = {};
-                        if (response.success) {
-                            nav_state = { user:response.data,...response };
-                        } else {
-                            nav_state = { ...props};
+            <EditForm {...edit_props} error={error} >
+                <div className="buttonBar">
+                    <Button id="createUserButton" onClick={
+                        async () => {
+                            setError({ success: true, message: "Processing Application.", inProgress: true });
+                            let response = await coronaCreateUser({ data: request }, {
+                                successForm: '/Revolution/ConfirmCode',
+                                redoForm: '/Revolution/CreateUser',
+                                redoMessage: 'Unable to process application.'
+                            });
+                            setError({ success: response.success, message: response.message, inProgress: false, errors:response.errors });
+                            let nav_state = {};
+                            if (response.success) {
+                                nav_state = { user:response.data,...response };
+                            } else {
+                                nav_state = { ...props};
+                            }
+
+                            nav(response.form, { state: nav_state });
                         }
+                    }><FontAwesomeIcon icon={faAtom} />ENLIST</Button>
+                    <Button id="cancelButton" disabled={error.inProgress} onClick={
+                        async () => {
+                            nav('/Revolution/Login');
+                        }
+                    }><FontAwesomeIcon icon={faSquareCaretLeft} />CANCEL</Button>
 
-                        nav(response.form, { state: nav_state });
-                    }
-                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
-                <button id="cancelButton" disabled={error.inProgress} onClick={
-                    async () => {
-                        nav('/Revolution/Login');
-                    }
-                }><FontAwesomeIcon icon={faSquareCaretLeft} />CANCEL</button>
-
-            </div>
+                </div>
+            </EditForm>
         </div>
     );
 }

@@ -283,41 +283,6 @@ code {
     text-align: right;
 }
 
-H1 {
-    margin: 0px;
-    margin-bottom: 14px;
-    margin-top: 8px;
-    font-size: 24pt;
-    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight: normal;
-    color: #D1843D;
-    background-color: var(--forest1);
-}
-
-H2 {
-    margin-top:8px;
-    font-size: 20pt;
-    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight: normal;
-    padding: 0px;
-    text-transform: uppercase;
-}
-
-H3 {
-    margin: 0px;
-    font-size: 16pt;
-    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight: normal;
-    padding: 0px;
-}
-
-H4 {
-    margin: 0px;
-    font-size: 16pt;
-    font-family: 'Jost', 'Open Sans', 'Arial', Arial, sans-serif;
-    font-weight: normal;
-    padding: 0px;
-}
 
 p {
     margin-bottom: 1.5em;
@@ -353,7 +318,8 @@ a .selected {
 
 .buttonBar {
     margin-top:16px;
-    margin-left: 16px;
+    flex-direction: row;
+    display: flex;
 }
 
 

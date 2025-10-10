@@ -9,6 +9,7 @@ import GridControl from './GridControl.js';
 import { coronaGetClasses } from './Service.js';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 export default function ClassSearchForm(formProps) {
 
@@ -59,7 +60,7 @@ export default function ClassSearchForm(formProps) {
             <EditForm {...edit_props} error={error} />
             <GridControl {...grid_props} error={error} />
             <div className="buttonBar">
-                <button id="searchButton" onClick={
+                <Button id="searchButton" onClick={
                     async () => {
                         setError({ success: true, message: "Searching", inProgress:true });
                         let response = await coronaGetClasses(request, {
@@ -70,12 +71,12 @@ export default function ClassSearchForm(formProps) {
                         setError({ success: response.success, message: response.message, inProgress: false });
                         nav(response.form, { state: response.form_props });
                     }
-                }>SEARCH</button>                
-                <button id="confirmUserButton" disabled={error.inProgress} onClick={
+                }>SEARCH</Button>                
+                <Button id="confirmUserButton" disabled={error.inProgress} onClick={
                     async () => {
                         nav('/Revolution/Home');
                     }
-                }>CANCEL</button>
+                }>CANCEL</Button>
             </div>
         </div>
     );

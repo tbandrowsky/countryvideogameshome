@@ -10,9 +10,12 @@ import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from "react-router-dom";
 import ObjectsList from './ObjectsList.js';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 
 export default function ObjectSearchForm(props) {
 
@@ -26,7 +29,6 @@ export default function ObjectSearchForm(props) {
 
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
-        console.log({ request });
     };
 
     const get_value = (json_field_name) => {
@@ -38,8 +40,9 @@ export default function ObjectSearchForm(props) {
 
     let edit_props = {
         presentation: {
-            gridTemplateRows: "",
-            gridTemplateColumns: "100%"
+            gridTemplateRows: "60px",
+            gridTemplateColumns: "40% 40%",
+            gap: "20px"
         },
         body_fields: [
         ],
@@ -49,43 +52,28 @@ export default function ObjectSearchForm(props) {
 
     let classdef = props.class.class;
 
-    let row_id = 1;
-
-    let system_fields = { "class_name": true, "object_id": true, "created": true, "updated": true, "created_by": true, "updated_by": true };
-
-    let rowSize = " 60px";
-
     let form_name = "SEARCH";
+    let class_name = "object";
+
+    let edit_field_names = [];
+
+    edit_props.body_fields.push( { json_field_name: "search_text", row: 1, column:"1/3", field_type: "string", format: "", placeholder: "Search:", max_length: 200, min_length: 0 });
+    edit_props.body_fields.push( { json_field_name: "start_date", row: 2, column:'1', field_type: "datetime", format: "", placeholder: "From:", max_length: 200, min_length: 0 });
+    edit_props.body_fields.push( { json_field_name: "stop_date", row: 2, column:'2', field_type: "datetime", format: "", placeholder: "To:", max_length: 200, min_length: 0 });
 
     if (classdef) {
         // main fields
-        form_name = classdef.class_name.toUpperCase();
+
+        class_name = classdef.class_name;
+        form_name = class_name.toUpperCase();
         for (const fieldname in classdef.fields) {
-            if (system_fields.hasOwnProperty(fieldname)) {
-                continue;
-            }
             let field = classdef.fields[fieldname];
-            edit_props.presentation.gridTemplateRows += rowSize;
+            edit_props.presentation.gridTemplateRows += "60px";
 
             if (field.field_type === 'string') {
-                edit_props.body_fields.push( { json_field_name: field.field_name, row: row_id, column:1, field_type: field.field_type, format: field.field_format, placeholder: field.placeholder || field.field_name, max_length: field.max_length, min_length: field.min_length });
-                row_id += 1;
+                edit_field_names.push(field.field_name);    
             }
         }
-        // base fields
-        for (const fieldname in classdef.fields) {
-            if (!system_fields.hasOwnProperty(fieldname)) {
-                continue;
-            }
-            let field = classdef.fields[fieldname];
-            edit_props.presentation.gridTemplateRows += rowSize;
-            if (field.field_type === 'string') {
-                edit_props.body_fields.push( { json_field_name: field.field_name, row: row_id, column:1, field_type: field.field_type, format: field.field_format, placeholder: field.placeholder || field.field_name, max_length: field.max_length, min_length: field.min_length });
-                row_id += 1;
-            }
-
-        }
-
 
         console.log( {"edit_props":edit_props});
     }
@@ -100,64 +88,128 @@ export default function ObjectSearchForm(props) {
         <div className="contentbackgroundform">
             <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
-            <div style={{height:"450px", overflow:"auto", display: 'grid', gridTemplateColumns: '325px 1fr'}}>
-                <div>
-                <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} />
-                </div>
-                <div>
-                <ObjectsList objects={gridRows} style={{ gridColumn: '2' }} setError={setError} />
-                </div>
-            </div>
-            <div className="buttonBar">
-                <button id="searchButton" onClick={
-                    async () => {
-                        setError({ success: true, message: "Searching...", inProgress: true });
-                        let search_request = { "class_name": "query",
-                            "from": [{
-                                "class_name": classdef.class_name,
-                                "name": classdef.class_name,
-                            }],
-                            "stages": [ {
-                                "class_name": "filter",
-                                "input":classdef.class_name,
-                                "condition": { 
-                                        "class_name": "any", 
-                                        "conditions" :[]
-                                },
-                                "output": "result"
-                            }]
-                        };
-                        for (const fieldname in classdef.fields) {                            
-                            const field = classdef.fields[fieldname];
-                            if (!request.hasOwnProperty(field.field_name) && field.field_type === 'string') {
-                                let v = get_value(field.field_name);
-                                if (v && v.length > 0) {
-                                    search_request.stages[0].condition.conditions.push({ class_name:"contains", value_path: field.field_name, value:v });
+            <div style={{display: 'grid', gridTemplateColumns: '400px 1fr', gridTemplateRows:'1fr', marginRight:"16px"}}>
+                <div style={{ gridColumn: '1'}}>
+                    <h4 style={{ marginLeft:"16px", marginTop:"16px"}}>Search for {class_name}</h4>
+                    <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} >
+                        <div className="buttonBar">
+                            <Button id="searchButton" onClick={
+                                async () => {
+                                    setError({ success: true, message: "Searching...", inProgress: true });
+                                    let search_request = { "class_name": "query",
+                                        "from": [{
+                                            "class_name": classdef.class_name,
+                                            "name": classdef.class_name,
+                                        }],
+                                        "stages": [ {
+                                            "class_name": "filter",
+                                            "input":classdef.class_name,
+                                            "condition": { 
+                                                    "class_name": "any", 
+                                                    "conditions" :[]
+                                            },
+                                            "output": "result"
+                                        }]
+                                    };
+                                    edit_field_names.forEach( (fieldname, index) => {                            
+                                        const field = classdef.fields[fieldname];
+                                        let v = get_value("search_text");
+                                        if (v && v.length > 0) {
+                                            search_request.stages[0].condition.conditions.push({ class_name:"contains", value_path: fieldname, value:v });
+                                        }
+                                    });
+                                    let start = get_value("start_date");
+                                    let stop = get_value("stop_date");
+                                    if (start && start.length > 0) {
+                                        search_request.stages[0].condition.conditions.push({ class_name:"gte", value_path: "updated", value:start });
+                                    }
+                                    if (stop && stop.length > 0) {
+                                        search_request.stages[0].condition.conditions.push({ class_name:"lte", value_path: "updated", value:stop });
+                                    }
+                                    console.log({ "search_request": search_request });
+                                    let response = await coronaQuery(search_request, {
+                                        successForm: '/Revolution/ObjectSearch',
+                                        redoForm: '/Revolution/ObjectSearch',
+                                        redoMessage: 'Cannot search.'
+                                    },
+                                    props.formProps);
+                                    setError({ success: response.success, message: response.message, inProgress: false });
+                                    let nav_state = {};
+                                    if (response.success) {
+                                        nav_state = { rows:response.data,...response, user:props.user, class:props.class };
+                                    } else {
+                                        nav_state = {...props};
+                                    }
+                                    nav(response.form, { state: nav_state });
                                 }
-                            }
-                        }
-                        console.log({ "search_request": search_request });
-                        let response = await coronaQuery(search_request, {
-                            successForm: '/Revolution/ObjectSearch',
-                            redoForm: '/Revolution/ObjectSearch',
-                            redoMessage: 'Cannot search.'
-                        },
-                        props.formProps);
-                        setError({ success: response.success, message: response.message, inProgress: false });
-                        let nav_state = {};
-                        if (response.success) {
-                            nav_state = { rows:response.data,...response, user:props.user, class:props.class };
-                        } else {
-                            nav_state = {...props};
-                        }
-                        nav(response.form, { state: nav_state });
-                    }
-                }><FontAwesomeIcon icon={faSearch} />SEARCH</button>
-                <button id="cancelButton" onClick={
-                    async () => {
-                        nav('/Revolution/Home', {state:{...props} } );
-                    }
-                }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</button>
+                            }><FontAwesomeIcon icon={faSearch} />SEARCH</Button>
+                            <Button id="cancelButton" onClick={
+                                async () => {
+                                    nav('/Revolution/Home', {state:{...props} } );
+                                }
+                            }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
+                        </div>
+                    </EditForm>
+                    <h4 style={{ marginLeft:"16px", marginTop:"16px", marginBottom:"0px"}}>Create new {class_name}</h4>
+                    <Paper elevation={3} style={{ marginLeft:"16px", marginTop:"16px", marginRight:"16px"}}>
+                        {classdef && classdef.descendants && classdef.descendants.map( (descendant, index) => (
+                            <Button id="searchButton" onClick={
+                                async () => {
+                                    setError({ success: true, message: "Searching...", inProgress: true });
+                                    let search_request = { "class_name": "query",
+                                        "from": [{
+                                            "class_name": classdef.class_name,
+                                            "name": classdef.class_name,
+                                        }],
+                                        "stages": [ {
+                                            "class_name": "filter",
+                                            "input":classdef.class_name,
+                                            "condition": { 
+                                                    "class_name": "any", 
+                                                    "conditions" :[]
+                                            },
+                                            "output": "result"
+                                        }]
+                                    };
+                                    edit_field_names.forEach( (fieldname, index) => {                            
+                                        const field = classdef.fields[fieldname];
+                                        let v = get_value("search_text");
+                                        if (v && v.length > 0) {
+                                            search_request.stages[0].condition.conditions.push({ class_name:"contains", value_path: fieldname, value:v });
+                                        }
+                                    });
+                                    let start = get_value("start_date");
+                                    let stop = get_value("stop_date");
+                                    if (start && start.length > 0) {
+                                        search_request.stages[0].condition.conditions.push({ class_name:"gte", value_path: "updated", value:start });
+                                    }
+                                    if (stop && stop.length > 0) {
+                                        search_request.stages[0].condition.conditions.push({ class_name:"lte", value_path: "updated", value:stop });
+                                    }
+                                    console.log({ "search_request": search_request });
+                                    let response = await coronaQuery(search_request, {
+                                        successForm: '/Revolution/ObjectSearch',
+                                        redoForm: '/Revolution/ObjectSearch',
+                                        redoMessage: 'Cannot search.'
+                                    },
+                                    props.formProps);
+                                    setError({ success: response.success, message: response.message, inProgress: false });
+                                    let nav_state = {};
+                                    if (response.success) {
+                                        nav_state = { rows:response.data,...response, user:props.user, class:props.class };
+                                    } else {
+                                        nav_state = {...props};
+                                    }
+                                    nav(response.form, { state: nav_state });
+                                }
+                            }><FontAwesomeIcon icon={faAdd} />{descendant}</Button>
+))}
+                    </Paper>
+                </div>
+                <div style={{ gridColumn: '2', width:'90%', height:"100%"}}>
+                    <h4 style={{ marginBottom:"0px", marginTop:"16px", marginBottom:"20px"}}>{class_name} Search Results</h4>
+                    <ObjectsList objects={gridRows} style={{ gridColumn: '2', marginRight:"16px" }} setError={setError} />
+                </div>
             </div>
         </div>
     );

@@ -21,8 +21,22 @@ import SendCodeForm from './Revolution/SendCodeForm';
 import ObjectEditForm from './Revolution/ObjectEditForm';
 import ObjectSearchForm from './Revolution/ObjectSearchForm';
 import GoogleAd from './GoogleAd'; 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { deepmerge } from '@mui/utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+        'Jost', 'Open Sans', 'Arial', 'Arial', 'sans-serif'
+    ].join(','),
+  },
+});
 
 root.render(
 
@@ -33,6 +47,7 @@ root.render(
         <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png" />
 
         <div className="countryvideogamesroot" style={{ width: "100%", height: "80vh" }}>
+            <ThemeProvider theme={theme}></ThemeProvider>
             <MenuBar/>
             <div className="countryvideogamescontent">
                 <Routes>

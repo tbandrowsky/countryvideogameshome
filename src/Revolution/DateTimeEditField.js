@@ -1,6 +1,7 @@
 
 import DateTime from 'react-datetime';
 import ValidationError from './ValidationError.js';
+import Input from '@mui/material/Input';
 
 export default function DateTimeEditField(props) {
     let placeholder = '';
@@ -36,7 +37,7 @@ export default function DateTimeEditField(props) {
         has_min_value = true;
     }
 
-    value = parseFloat(props.get_value(json_field_name));
+    value = props.get_value(json_field_name);
 
     let client_message = '';
     let server_message = props.get_error(props.field.json_field_name);
@@ -48,15 +49,17 @@ export default function DateTimeEditField(props) {
         client_message = "Cannot be longer than " + max_value;
     }
 
-    return <div style={div_style}><DateTime
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => {
-            if (props.update) {
-                let v = e.target.value;
-                props.update(json_field_name, v);
-            }
-        }}
+    return <div style={div_style}>
+        <Input type="date"
+            placeholder={placeholder}
+            value={value}
+            onChange={(e) => {
+                console.log({"updated":e.target.value});
+                if (props.put_value) {
+                    let v = e.target.value;
+                    props.put_value(json_field_name, v);
+                }
+            }}
     />
         {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
     </div>

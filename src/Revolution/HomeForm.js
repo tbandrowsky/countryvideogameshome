@@ -10,6 +10,11 @@ import ErrorControl from './ErrorControl.js';
 import ObjectsList from './ObjectsList.js';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faDatabase, faFile } from '@fortawesome/free-solid-svg-icons';
+import { faTeamspeak } from '@fortawesome/free-brands-svg-icons';
 
 export default function HomeForm(formProps) {
     const [error, setError] = useState({ success: false, message: "", inProgress: false, errors: [] });
@@ -68,10 +73,10 @@ export default function HomeForm(formProps) {
             <RevolutionBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
             <ErrorControl {...error} />
             <h2 style={{marginLeft:"16px"}}>Teams</h2>
-            <div className="sectionbuttons">
+            <Paper style={{marginRight:"16px", marginLeft:"16px",gap:"8px", display:"flex", flexDirection:"row", flexWrap:"wrap", padding:"8px", backgroundColor:"var(--rock6)", borderRadius:"5px", border:"var(--rock1) solid 1px"}}>
                 {props.user.allowed_teams.map((field, index) => {
                     let isSelected = props.user.team.team_name === field;
-                    return <button key={index} className={isSelected ? 'button-selected' : ''} onClick={
+                    return <Button variant="contained" key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Selecting Team", inProgress: true });
                             let response = await coronaSetTeam({'team_name':field }, {
@@ -90,22 +95,20 @@ export default function HomeForm(formProps) {
                             setError({ success: response.success, message: response.message, inProgress: false });
                             nav(response.form, { state: nav_state });
                         }
-                    }>{field}</button>;
+                    }><FontAwesomeIcon icon={isSelected ? faCheck:faTeamspeak} style={{marginRight:"8px"}}/>{field}</Button>;
                 }
                 )}
-            </div>
+            </Paper>
             <h3 style={{marginLeft:"16px"}}>{props.user.team.team_name}</h3>           
 
             <Tabs style={{marginLeft:"16px", marginRight:"16px", height:"320px", border:"var(--rock1) solid 1px", borderRadius:"5px", padding:"8px", backgroundColor:"var(--rock6)"}}>
                 <TabList>
                     <Tab>Data</Tab>
-                    <Tab>Tickets</Tab>
-                    <Tab>Articles</Tab>
                     <Tab>Inventory</Tab>
                 </TabList>
                     <TabPanel style={{overflow:"auto"}}>
             {(combinedPermissions && combinedPermissions.length > 0) &&
-                <div> 
+                <div className="sectionbuttons"> 
                   {combinedPermissions.map((perm,index) => {
                     console.log({"permissions":perm});
                     let tempFilteredMap = Object.keys(perm.all_granted_classes);
@@ -125,9 +128,9 @@ export default function HomeForm(formProps) {
                             if (perm.all_granted_classes[base_name]) {
                                 fields = fields.concat(perm.all_granted_classes[base_name]);
                             }
-                            return <div style={{flexDirection:"row", display:"flex", flexWrap:"wrap"}}>
+                            return <div style={{flexDirection:"row", display:"flex", flexWrap:"wrap", gap:"8px"}}>
                                 {fields.map((field, index3) => {                            
-                                return (<button key={index3} onClick={
+                                return (<Button variant="contained" color="secondary" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} onClick={
                                 async () => {
                                     setError({ success: true, message: "Editing " + field, inProgress: true });
                                     let response = await coronaGetClass({'class_name':field }, {
@@ -144,22 +147,15 @@ export default function HomeForm(formProps) {
                                     }
                                     setError({ success: response.success, message: response.message, inProgress: false });
                                     nav(response.form, { state: nav_state });
-                                }}>{field}</button>);
+                                }}><FontAwesomeIcon icon={faDatabase} style={{marginRight:"8px"}}/>{field}</Button>);
                             })}</div>})}
                     </div>)})}
                   </div>}
                   </TabPanel>    
-                    <TabPanel style={{overflow:"auto"}}>
-            {props.user.team &&props.user.team.tickets && props.user.team.tickets.length >= 0 && <ObjectsList user={props.user} objects={props.user.team.tickets} setError={setError}/> }
-                    </TabPanel>
-<TabPanel>
-            {props.user.team && props.user.team.articles && props.user.team.articles.length >= 0 && <ObjectsList user={props.user}objects={props.user.team.articles}  setError={setError}/>}
-
-</TabPanel>
 <TabPanel style={{overflow:"auto"}}>
                       <div className="sectionbuttons">
                 {props.user.inventory && props.user.inventory.map((field, index) => {
-                    return <button key={index} onClick={
+                    return <Button variant="contained" color="info" key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
                             let response = await coronaEditObject(field, {
@@ -178,7 +174,7 @@ export default function HomeForm(formProps) {
                             console.log({"edit object nav_state":nav_state});
                             nav(response.form, { state: nav_state });
                         }
-                    }>{field.class_name}</button>
+                    } style={{width:"250px", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/>{field.class_name}</Button>
                 }
                 )}
             </div>

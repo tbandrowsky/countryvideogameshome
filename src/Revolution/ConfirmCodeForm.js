@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faSquareCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
+import Button from '@mui/material/Button';
 
 export default function ConfirmCodeForm(props) {
 
@@ -40,38 +41,39 @@ export default function ConfirmCodeForm(props) {
         <div class="contentbackgroundform">
             <RevolutionBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" formNumber="FORM 002"/>
             <ErrorControl {...error} />
-            <EditForm {...edit_props} error={error} />
-            <div className="buttonBar">
-                <button id="confirmCodeButton" onClick={
-                    async () => {
-                        setError({ success: true, message: "Confirming code", inProgress: true });
-                        let response = await coronaConfirmUserCode(request);
-                        setError({ success: response.success, message: response.message, inProgress: false });
-                        let nav_state = {};
+            <EditForm {...edit_props} error={error} >
+                <div className="buttonBar">
+                    <Button id="confirmCodeButton" onClick={
+                        async () => {
+                            setError({ success: true, message: "Confirming code", inProgress: true });
+                            let response = await coronaConfirmUserCode(request);
+                            setError({ success: response.success, message: response.message, inProgress: false });
+                            let nav_state = {};
 
-                        if (response.success) {
-                            nav_state = { user:response.data,...response };
-                        } else {
-                            nav_state = { ...props };
+                            if (response.success) {
+                                nav_state = { user:response.data,...response };
+                            } else {
+                                nav_state = { ...props };
+                            }
+
+                            nav(response.form, { state: nav_state });
                         }
-
-                        nav(response.form, { state: nav_state });
-                    }
-                }><FontAwesomeIcon icon={faSquareCaretRight} />CONFIRM CODE</button>
-                <button id="sendCodeButton" onClick={
-                    async () => {
-                        setError({ success: true, message: "Send code", inProgress: true });
-                        let response = await coronaSendUserCode(request);
-                        setError({ success: response.success, message: response.message, inProgress: false });
-                        nav(response.form, { state: response.form_props });
-                    }
-                }><FontAwesomeIcon icon={faEnvelope} />SEND CODE</button>
-                <button id="createUserButton" disabled={error.inProgress} onClick={
-                    async () => {
-                        nav('/Revolution/Login');
-                    }
-                }><FontAwesomeIcon icon={faSquareCaretLeft} />CANCEL</button>
-            </div>
+                    }><FontAwesomeIcon icon={faSquareCaretRight} />CONFIRM CODE</Button>
+                    <Button id="sendCodeButton" onClick={
+                        async () => {
+                            setError({ success: true, message: "Send code", inProgress: true });
+                            let response = await coronaSendUserCode(request);
+                            setError({ success: response.success, message: response.message, inProgress: false });
+                            nav(response.form, { state: response.form_props });
+                        }
+                    }><FontAwesomeIcon icon={faEnvelope} />SEND CODE</Button>
+                    <Button id="createUserButton" disabled={error.inProgress} onClick={
+                        async () => {
+                            nav('/Revolution/Login');
+                        }
+                    }><FontAwesomeIcon icon={faSquareCaretLeft} />CANCEL</Button>
+                </div>
+            </EditForm>
         </div>
     );
 }

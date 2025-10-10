@@ -4,6 +4,7 @@ import InputMask from 'react-input-mask';
 import ValidationError from './ValidationError';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
+import Input from '@mui/material/Input';
 
 function tryParseInt(value, defaultValue) {
     const parsed = parseInt(value, 10);
@@ -90,7 +91,7 @@ export default function IntegerEditField(props) {
         if ('match_pattern' in props) {
             match_pattern = props.match_pattern;
         }
-        return <div style={div_style}><input
+        return <div style={div_style}><Input
             type="text"
             placeholder={placeholder}
             value={value}

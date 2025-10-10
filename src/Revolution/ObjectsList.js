@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import NameOfObject from './NameOfObject.js';
 import ObjectPanel from './ObjectPanel.js';
+import Paper from '@mui/material/Paper';
 
 export default function ObjectsList(props) {
     let nav = useNavigate();
@@ -23,17 +24,15 @@ export default function ObjectsList(props) {
     }
 
     return (
-        <div className="objectlist" >
-            {Object.keys(childrenMap).map(className => (
+        <Paper elevation={3} style={{ paddingLeft:"16px", paddingRight:"16px", overflow:"auto", width:"100%", height:"100%"}}>
+            {Object.keys(childrenMap).map((className,idx) => (
                 <div key={className} style={{ marginTop:'0px'}}>
                     <h4>{className}</h4>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}>
-                    {childrenMap[className].map((obj, idx) => (
-                            <ObjectPanel key={idx} object={obj} class_name={className} user={props.user} setError={props.setError} />
-                    ))}
+                    <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '8px', marginBottom:"16px" }}>
+                        <ObjectPanel key={idx} object={childrenMap[className]} class_name={className} user={props.user} setError={props.setError} style={{width:"250px"}} />
                     </div>
                 </div>
             ))}
-        </div>
+        </Paper>
     );
 }

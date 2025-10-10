@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-undef */
 import EditField from './EditField.js';
 import { useState } from 'react';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
 
 export default function EditForm(props) {
 
@@ -32,19 +34,31 @@ export default function EditForm(props) {
         return error;
     };
 
-    let form_styles = {
+    let paper_styles = {
         marginLeft:"16px",
+        marginRight:"16px",
+        marginTop:"16px",
+        paddingLeft:"16px",
+        paddingBottom:"16px"
+    };
+
+    let form_styles = {
         display: "grid",
         gridTemplateColumns: props.presentation.gridTemplateColumns || "auto",
         gridTemplateRows: props.presentation.gridTemplateRows || "auto",
+        gap: props.presentation.gap || "12px"
     };
 
     return (
-        <div className="EditForm" style={form_styles}>
+        <Paper elevation={3} style={paper_styles} >
+            <div style={form_styles}>
             {editProps.body_fields.map((field, index) => {
                 return <EditField key={index} field={field} get_value={get_value} put_value={put_value} get_error={get_error} />;
             }
             )}
-        </div>
+            </div>
+            {props.children && <Divider />}
+            {props.children && props.children}
+        </Paper>
     );
 }
