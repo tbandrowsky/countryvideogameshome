@@ -46,8 +46,8 @@ export default function LoginForm(props) {
             <RevolutionBarControl applicationName={props.applicationName} formName="LOGIN" formNumber="FORM 006" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error}>
-                <div className="buttonBar">
-                    <Button id="loginButton" onClick={
+                <div className="buttonBar" style={{gap:"10px"}}>
+                    <Button id="loginButton" variant='contained' color="primary" onClick={
                         async () => {
                             setError({ success: true, message: "Attempting to login", inProgress: true });
                             let response = await coronaLoginUser(request, {
@@ -66,17 +66,17 @@ export default function LoginForm(props) {
                             nav(response.form, { state: nav_state });
                         }
                     }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</Button>
-                    <Button id="createUserButton" onClick={
+                    <Button variant='contained' color="success" id="createUserButton" onClick={
                         async () => {
                             nav('/Revolution/CreateUser');
                         }
                     }><FontAwesomeIcon icon={faAtom} />ENLIST</Button>
-                    <Button id="recoverUserButton" onClick={
+                    <Button variant='contained' color="success" id="recoverUserButton" onClick={
                         async () => {
                             nav('/Revolution/SendCode');
                         }
                     }><FontAwesomeIcon icon={faWineBottle} />RECOVER</Button>
-                    <Button id="confirmUserButton" onClick={
+                    <Button variant='contained' color="success" id="confirmUserButton" onClick={
                         async () => {
                             nav('/Revolution/ConfirmCode');
                         }

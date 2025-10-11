@@ -54,6 +54,7 @@ export default function ObjectSearchForm(props) {
 
     let form_name = "SEARCH";
     let class_name = "object";
+    let class_description = "";
 
     let edit_field_names = [];
 
@@ -66,6 +67,8 @@ export default function ObjectSearchForm(props) {
 
         class_name = classdef.class_name;
         form_name = class_name.toUpperCase();
+        class_description = classdef.description;
+        
         for (const fieldname in classdef.fields) {
             let field = classdef.fields[fieldname];
             edit_props.presentation.gridTemplateRows += "60px";
@@ -92,8 +95,8 @@ export default function ObjectSearchForm(props) {
                 <div style={{ gridColumn: '1'}}>
                     <h4 style={{ marginLeft:"16px", marginTop:"16px"}}>Search for {class_name}</h4>
                     <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} >
-                        <div className="buttonBar">
-                            <Button id="searchButton" onClick={
+                        <div className="buttonBar" style={{gap:"10px", display:"flex", flexDirection:"row", marginBottom:"16px" }}>
+                            <Button id="searchButton" variant='contained' color="primary"  onClick={
                                 async () => {
                                     setError({ success: true, message: "Searching...", inProgress: true });
                                     let search_request = { "class_name": "query",
@@ -143,7 +146,7 @@ export default function ObjectSearchForm(props) {
                                     nav(response.form, { state: nav_state });
                                 }
                             }><FontAwesomeIcon icon={faSearch} />SEARCH</Button>
-                            <Button id="cancelButton" onClick={
+                            <Button id="cancelButton" variant='contained' color="success"  onClick={
                                 async () => {
                                     nav('/Revolution/Home', {state:{...props} } );
                                 }

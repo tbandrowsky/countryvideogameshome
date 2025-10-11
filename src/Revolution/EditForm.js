@@ -39,7 +39,8 @@ export default function EditForm(props) {
         marginRight:"16px",
         marginTop:"16px",
         paddingLeft:"16px",
-        paddingBottom:"16px"
+        paddingBottom:"16px",
+        ...props.style
     };
 
     let form_styles = {
