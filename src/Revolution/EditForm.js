@@ -17,24 +17,26 @@ export default function EditForm(props) {
         return editProps[json_field_name] || '';
     };
 
-    let errorsByField = new Map();
+    let errorsByField = {};
     if (props && props.error && props.error.errors) {
         let error_fields = props.error.errors;
         for (let i = 0; i < error_fields.length; i++) {
             let item = error_fields[i];
             console.log({ error: item });
             if (item.field_name && item.message) {
-                errorsByField.set(item.field_name, item.message);
+                errorsByField[item.field_name] = item.message;
             }
         }
     }
 
     let get_error = (json_field_name) => {
-        let error = errorsByField.has(json_field_name) && errorsByField.get(json_field_name);
+        let error = errorsByField.hasOwnProperty(json_field_name) && errorsByField[json_field_name];
         return error;
     };
 
     let paper_styles = {
+        height:"auto",
+        width:"auto",
         marginLeft:"16px",
         marginRight:"16px",
         marginTop:"16px",
@@ -49,6 +51,8 @@ export default function EditForm(props) {
         gridTemplateRows: props.presentation.gridTemplateRows || "auto",
         gap: props.presentation.gap || "12px"
     };
+
+    console.log({ 'edit_props': editProps, 'form_styles': form_styles, 'paper_styles': paper_styles });
 
     return (
         <Paper elevation={3} style={paper_styles} >

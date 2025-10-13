@@ -9,28 +9,35 @@ import ReferenceEditField from "./ReferenceEditField";
 import GoogleAd from '../GoogleAd';
 
 export default function EditField(props) {
-    return (
-        <div className="edit_field_container" style={{ gridRow: props.field.row, gridColumn: props.field.column }}>
-            {(props.field.field_type === "title") &&
-                <React.Fragment>
-                    <h2 className="coronatitle">{props.field.text}</h2>
-                </React.Fragment>}
-            {(props.field.field_type === "subtitle") &&
-                <React.Fragment>
-                    <h3 className="coronasubtitle">{props.field.text}</h3>
-                </React.Fragment>}
-            {(props.field.field_type === "chaptertitle") &&
-                <React.Fragment>
-                    <h4 className="coronachaptertitle">{props.field.text}</h4>
-                </React.Fragment>}
-            {(props.field.field_type === "chaptersubtitle") &&
-                <React.Fragment>
-                    <p className="coronachaptersubtitle">{props.field.text}</p>
-                </React.Fragment>}
-            {(props.field.field_type === "paragraph") &&
-                <React.Fragment>
-                    <p className="coronaparagraph">{props.field.text}</p>
-                </React.Fragment>}
+
+    let style = { gridRow: props.field.row, gridColumn: props.field.column };
+
+    if (props.field.field_type === "title") { return (
+        <React.Fragment>
+            <h2 className="coronatitle" style={style}>{props.field.text}</h2>
+        </React.Fragment>)}
+
+    else if (props.field.field_type === "subtitle") { return (
+        <React.Fragment>
+            <h3 className="coronasubtitle" style={style}>{props.field.text}</h3>
+        </React.Fragment>)}
+
+    else if (props.field.field_type === "chaptertitle") { return (
+        <React.Fragment>
+            <h4 className="coronachaptertitle" style={style}>{props.field.text}</h4>
+        </React.Fragment>)}
+
+    else if (props.field.field_type === "chaptersubtitle") { return (
+        <React.Fragment>
+            <p className="coronachaptersubtitle" style={style}>{props.field.text}</p>
+        </React.Fragment>)}
+
+    else if (props.field.field_type === "paragraph") { return (
+        <React.Fragment>
+            <p className="coronaparagraph" style={style}>{props.field.text}</p>
+        </React.Fragment>)}
+    else return (
+        <div className="edit_field_container" style={style} >
             {(props.field.field_type === "string") &&
                 <React.Fragment>
                     <h2 className="countrylabelright">{props.field.placeholder}</h2>
