@@ -22,11 +22,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 
 export default function ObjectEditForm(props) {
 
-    const [request, setRequest] = useState({});
-    const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
-
     let loc = useLocation();
     props = { ...props, ...loc.state };
+
+    const [request, setRequest] = useState({ ...props.data.object });
+    const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
 
     console.log({ props, "title": "Edit" });
 
@@ -95,7 +95,7 @@ export default function ObjectEditForm(props) {
             // main fields
             class_description = classdef.class_description;
             class_name = classdef.class_name;   
-            form_name = class_name.toUpperCase();
+            form_name = "EDIT " + class_name.toUpperCase();
 
             auto_grid_rows = false;
             class_edit_props = { 
@@ -105,10 +105,10 @@ export default function ObjectEditForm(props) {
                     gridTemplateRows: classdef.grid_template_rows, 
                     gridTemplateColumns: classdef.grid_template_columns, 
                     gap: "10px", 
-                    padding: "10px", 
-                    put_value: put_value, 
-                    get_value: get_value,
-                }             
+                    padding: "10px" 
+                },
+                "put_value": put_value, 
+                "get_value": get_value
             };    
 
             if (class_edit_props.presentation.gridTemplateRows == "" || class_edit_props.presentation.gridTemplateRows == null) {
@@ -186,34 +186,37 @@ export default function ObjectEditForm(props) {
         <div className="contentbackgroundform">
             <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
-            <div style={{ height:"auto", display: 'flex',gap: '10px', flexDirection: "row" }}>
-            {classorder.map((classname, idx)=>{
-                let class_name = all_classes[classname].class_name;
-                let class_description = all_classes[classname].class_description;
-                let edit_props = edit_props_by_base[classname];
-                return (<div key={idx} style={{ width:"500px"}}>
-                    <EditForm {...edit_props} error={error}  >
-                    </EditForm>
-                </div>)
-            })}
-                <ObjectsList objects={childObjects} setError={setError} user={props.user} style={{ gridRow:2, gridColumn: 2, overflow:"scroll" }}/>
+            <div style={{display:"grid", gridTemplateColumns:"1.0fr", gridTemplateRows:"96.0px 1.0fr" }}>
+                <div style={{gridColumn:"1 / span 2", gridRow:1}}>
+                    <Paper style={{ padding:"16px", marginLeft:"16px", marginTop:"16px", marginRight:"16px"}}>
+                        <Button id="runButton" variant="contained" color="success" style={{marginRight:"16px"}}onClick={
+                            async () => {
+                                console.log( {"cancel / home with":props});
+                                nav('/Revolution/Home', {state:{...props} } );
+                            }
+                        }><FontAwesomeIcon icon={faPlay} />RUN</Button>
+                        <Button id="cancelButton" variant="contained" onClick={
+                            async () => {
+                                console.log( {"cancel / home with":props});
+                                nav('/Revolution/Home', {state:{...props} } );
+                            }
+                        }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
+                    </Paper>
+                </div>
+                <div style={{ gridColumn:1, gridRow:2, overflow:"scroll", display:"flex", flexDirection:"column", height:"60vh", flexWrap:"wrap" }}>
+                        {classorder.map((classname, idx)=>{
+                            let class_name = all_classes[classname].class_name;
+                            let class_description = all_classes[classname].class_description;
+                            let edit_props = edit_props_by_base[classname];
+                            console.log({"render class": edit_props});
+                            return (<div key={idx} style={{ width:"400px" }}>
+                                <EditForm {...edit_props} error={error}  >
+                                </EditForm>
+                            </div>)
+                        })}
+                        {childObjects && childObjects.length > 0 && <ObjectsList objects={childObjects} setError={setError} user={props.user} />}
+                </div>
             </div>
-            <Divider></Divider>
-            <div className="buttonBar">
-            <Button id="runButton" onClick={
-                async () => {
-                    console.log( {"cancel / home with":props});
-                    nav('/Revolution/Home', {state:{...props} } );
-                }
-            }><FontAwesomeIcon icon={faPlay} />RUN</Button>
-            <Button id="cancelButton" onClick={
-                async () => {
-                    console.log( {"cancel / home with":props});
-                    nav('/Revolution/Home', {state:{...props} } );
-                }
-            }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
-        </div>
-
         </div>
     );
 }

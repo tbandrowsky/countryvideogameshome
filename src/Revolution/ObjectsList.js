@@ -24,7 +24,7 @@ export default function ObjectsList(props) {
     }
 
     return (
-        <Paper elevation={3} style={{ margin:"16px",paddingLeft:"16px",paddingBottom:"16px",overflow:"scroll", width:"100%", height:"100%", ...props.style}}>
+        <Paper elevation={3} style={{ margin:"16px", paddingLeft:"16px", paddingBottom:"16px", overflow:"scroll", ...props.style}}>
             {Object.keys(childrenMap).map((className,idx) => (
                 <div key={className} style={{ marginTop:'0px'}}>
                     <h4>{className}</h4>

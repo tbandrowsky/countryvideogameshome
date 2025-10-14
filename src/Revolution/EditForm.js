@@ -8,21 +8,22 @@ export default function EditForm(props) {
 
     const [editProps, setEditProps] = useState({ ...props });
 
-    let put_value = (json_field_name, value) => {
+    console.log({ 'EditForm': props });
+
+    let put_value = props.put_value || ((json_field_name, value) => {
         setEditProps(prev => ({ ...prev, [json_field_name]: value }));
         props.put_value(json_field_name, value);
-    };
+    });
 
-    let get_value = (json_field_name) => {
+    let get_value = props.get_value || ((json_field_name) => {
         return editProps[json_field_name] || '';
-    };
+    });
 
     let errorsByField = {};
     if (props && props.error && props.error.errors) {
         let error_fields = props.error.errors;
         for (let i = 0; i < error_fields.length; i++) {
             let item = error_fields[i];
-            console.log({ error: item });
             if (item.field_name && item.message) {
                 errorsByField[item.field_name] = item.message;
             }
