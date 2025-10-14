@@ -110,7 +110,6 @@ export default function HomeForm(formProps) {
             {(combinedPermissions && combinedPermissions.length > 0) &&
                 <div className="sectionbuttons"> 
                   {combinedPermissions.map((perm,index) => {
-                    console.log({"permissions":perm});
                     let tempFilteredMap = Object.keys(perm.all_granted_classes);
                     let filteredMap = [];                    
                     for (let i=0;i<tempFilteredMap.length;i++) {
@@ -130,7 +129,7 @@ export default function HomeForm(formProps) {
                             }
                             return <div style={{flexDirection:"row", display:"flex", flexWrap:"wrap", gap:"8px"}}>
                                 {fields.map((field, index3) => {                            
-                                return (<Button variant="contained" color="secondary" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} onClick={
+                                return (<Button variant="contained" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} sx={{backgroundColor:props.user.home_team.class_color}}  onClick={
                                 async () => {
                                     setError({ success: true, message: "Editing " + field, inProgress: true });
                                     let response = await coronaGetClass({'class_name':field }, {
@@ -155,7 +154,7 @@ export default function HomeForm(formProps) {
 <TabPanel style={{overflow:"auto"}}>
                       <div className="sectionbuttons">
                 {props.user.inventory && props.user.inventory.map((field, index) => {
-                    return <Button variant="contained" color="info" key={index} onClick={
+                    return <Button variant="contained" sx={{backgroundColor:field.class_color}}  key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
                             let response = await coronaEditObject(field, {

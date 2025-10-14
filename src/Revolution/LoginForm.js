@@ -23,6 +23,12 @@ export default function LoginForm(props) {
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
     };
+    const get_value = (json_field_name) => {
+        if (json_field_name in request)
+            return request[json_field_name];
+        else
+            return "";
+    }
 
     let edit_props = {
         presentation: {
@@ -36,7 +42,8 @@ export default function LoginForm(props) {
             { field_type: "paragraph", row: "4", column: "1/3", text: "If you forgot your password, just use RECOVER." },
             { field_type: "paragraph", row: "5", column: "1/3", text: "If you never logged in before, ENLIST." }
         ],
-        put_value
+        put_value,
+        get_value
     };
 
     let nav = useNavigate();

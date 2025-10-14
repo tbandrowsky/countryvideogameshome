@@ -20,7 +20,8 @@ export default function ObjectPanel(props) {
 
     return ( <div className="sectionbuttons">
                 {props.objects && props.objects.map((field, index) => {
-                    return <Button variant="contained" color="info" key={index} onClick={
+                    console.log("field", {"object in panel":field});
+                    return <Button variant="contained" color={field.class_color} key={index} onClick={
                         async () => {
                             props.setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
                             let response = await coronaEditObject(field, {

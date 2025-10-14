@@ -21,6 +21,13 @@ export default function CreateUserForm(props) {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
     };
 
+    const get_value = (json_field_name) => {
+        if (json_field_name in request)
+            return request[json_field_name];
+        else
+            return "";
+    }
+
     let edit_props = {
         presentation: {
             gridTemplateColumns: "250px 250px 250px 250px",
@@ -38,7 +45,8 @@ export default function CreateUserForm(props) {
             { json_field_name: "state", column: 2, row: 5, field_type: "string", format: "text", placeholder: "State", max_length: 20, min_length: 2, autocomplete: 'address-level1' },
             { json_field_name: "zip", column: 3, row: 5, field_type: "string", format: "text", placeholder: "Zip", max_length: 10, min_length: 5, autocomplete: 'postal-code' }
     ],
-        put_value
+        put_value,
+        get_value
     };
 
     let nav = useNavigate();

@@ -22,6 +22,14 @@ export default function ConfirmCodeForm(props) {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
     };
 
+    const get_value = (json_field_name) => {
+        if (json_field_name in request)
+            return request[json_field_name];
+        else
+            return "";
+    }
+
+
     let edit_props = {
         presentation: {
             gridTemplateRows: "auto 100.0px 100.0px",
@@ -32,7 +40,8 @@ export default function ConfirmCodeForm(props) {
             { json_field_name: "validation_code", row: "2", column: "1", field_type: "string", format: "text", placeholder: "Confirmation Code", max_length: 50, min_length: 8, autocomplete:'one-time-code' },
             { json_field_name: "user_name", row: "3", column: "1/3", field_type: "string", format: "email", placeholder: "E-Mail", max_length: 50, min_length: 4, autocomplete: 'email' }
         ],
-        put_value
+        put_value,
+        get_value
     };
 
     let nav = useNavigate();
