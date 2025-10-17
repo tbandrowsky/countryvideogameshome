@@ -24,10 +24,11 @@ export default function ObjectsList(props) {
     }
 
     return (
-        <Paper elevation={3} style={{ margin:"16px", paddingLeft:"16px", paddingBottom:"16px", overflow:"scroll", ...props.style}}>
+        <Paper elevation={3} style={{ margin:"16px", paddingLeft:"16px", paddingBottom:"16px", overflow:"auto", ...props.style}}>
+            <div className="coronachaptersubtitle" style={{marginTop:"16px", width:"400px"}}>Results</div>
             {Object.keys(childrenMap).map((className,idx) => (
                 <div key={className} style={{ marginTop:'0px'}}>
-                    <h4>{className}</h4>
+                    <div className="chaptersubtitle">{className}</div>
                     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '8px', marginBottom:"16px" }}>
                         <ObjectPanel key={idx} object={childrenMap[className]} class_name={className} user={props.user} setError={props.setError} style={{width:"250px"}} />
                     </div>

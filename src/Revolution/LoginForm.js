@@ -5,7 +5,7 @@ import { useState } from "react";
 import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaLoginUser } from './Service.js';
+import { coronaLoginUser, coronaLoginUserSso  } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,12 @@ import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { faAtom } from '@fortawesome/free-solid-svg-icons';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { faWineBottle } from '@fortawesome/free-solid-svg-icons';
+import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import Button from '@mui/material/Button';
+import { useGoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+
+//
 
 export default function LoginForm(props) {
 
@@ -55,6 +60,34 @@ export default function LoginForm(props) {
             <EditForm {...edit_props} error={error}>
                 <div className="buttonBar" style={{gap:"10px"}}>
                     <Button id="loginButton" variant='contained' color="primary" onClick={
+                        useGoogleLogin({
+                            onSuccess: async (credentialResponse) => {
+                                console.log({ 'Google login': credentialResponse });
+                                const request = { "data": { code: credentialResponse.code } };
+                                console.log(request);
+                                setError({ success: true, message: "Attempting to login", inProgress: true });
+                                let response = await coronaLoginUserSso(request, {
+                                    successForm: '/Revolution/Home',
+                                    redoForm: '/Revolution/Login',
+                                    redoMessage: 'Cannot log in.'
+                                });
+                                setError({ success: response.success, message: response.message, inProgress: false });
+                                console.log({ 'login_form_props': response.form_props });
+                                let nav_state = {};
+                                if (response.success) {
+                                    nav_state = { user: response.data, ...response };
+                                } else {
+                                    nav_state = {};
+                                }
+                                nav(response.form, { state: nav_state });
+                            },
+                            onError: () => {
+                                console.log('Login Failed');
+                            },
+                            flow: 'auth-code'
+                        })
+                    }><FontAwesomeIcon icon={faBrain} />GOOGLE</Button>  
+                    <Button id="loginButton" variant='contained' color="primary" onClick={
                         async () => {
                             setError({ success: true, message: "Attempting to login", inProgress: true });
                             let response = await coronaLoginUser(request, {
@@ -72,7 +105,7 @@ export default function LoginForm(props) {
                             }
                             nav(response.form, { state: nav_state });
                         }
-                    }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</Button>
+                    }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</Button>  
                     <Button variant='contained' color="success" id="createUserButton" onClick={
                         async () => {
                             nav('/Revolution/CreateUser');

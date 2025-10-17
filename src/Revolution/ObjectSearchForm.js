@@ -5,7 +5,7 @@ import { useState } from "react";
 import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaQuery } from './Service.js';
+import { coronaQuery, coronaEditObject } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -154,58 +154,30 @@ export default function ObjectSearchForm(props) {
                         </div>
                     </EditForm>
                     <h4 style={{ marginLeft:"16px", marginTop:"16px", marginBottom:"0px"}}>Create new {class_name}</h4>
-                    <Paper elevation={3} style={{ marginLeft:"16px", marginTop:"16px", marginRight:"16px"}}>
+                    <Paper elevation={3} style={{ marginLeft:"16px", marginTop:"16px", marginRight:"16px", padding:"8px"}}>
                         {classdef && classdef.descendants && classdef.descendants.map( (descendant, index) => (
-                            <Button id="searchButton" onClick={
+                            <div key={index} style={{ margin:"8px"}}>
+                            <Button key={index} id="createObject" variant='contained' color="primary" style={{width:"90%"}} onClick={
                                 async () => {
-                                    setError({ success: true, message: "Searching...", inProgress: true });
-                                    let search_request = { "class_name": "query",
-                                        "from": [{
-                                            "class_name": classdef.class_name,
-                                            "name": classdef.class_name,
-                                        }],
-                                        "stages": [ {
-                                            "class_name": "filter",
-                                            "input":classdef.class_name,
-                                            "condition": { 
-                                                    "class_name": "any", 
-                                                    "conditions" :[]
-                                            },
-                                            "output": "result"
-                                        }]
-                                    };
-                                    edit_field_names.forEach( (fieldname, index) => {                            
-                                        const field = classdef.fields[fieldname];
-                                        let v = get_value("search_text");
-                                        if (v && v.length > 0) {
-                                            search_request.stages[0].condition.conditions.push({ class_name:"contains", value_path: fieldname, value:v });
-                                        }
+                                    setError({ success: true, message: "Create " + descendant, inProgress: true });
+                                    let response = await coronaEditObject({ class_name: descendant}, {
+                                        successForm: '/Revolution/ObjectEdit',
+                                        redoForm: '/Revolution/Home',
+                                        redoMessage: 'select failed.',
+                                        formProps: props
                                     });
-                                    let start = get_value("start_date");
-                                    let stop = get_value("stop_date");
-                                    if (start && start.length > 0) {
-                                        search_request.stages[0].condition.conditions.push({ class_name:"gte", value_path: "updated", value:start });
-                                    }
-                                    if (stop && stop.length > 0) {
-                                        search_request.stages[0].condition.conditions.push({ class_name:"lte", value_path: "updated", value:stop });
-                                    }
-                                    console.log({ "search_request": search_request });
-                                    let response = await coronaQuery(search_request, {
-                                        successForm: '/Revolution/ObjectSearch',
-                                        redoForm: '/Revolution/ObjectSearch',
-                                        redoMessage: 'Cannot search.'
-                                    },
-                                    props.formProps);
-                                    setError({ success: response.success, message: response.message, inProgress: false });
                                     let nav_state = {};
                                     if (response.success) {
-                                        nav_state = { rows:response.data,...response, user:props.user, class:props.class };
+                                        nav_state = { user:props.user, ...response };
                                     } else {
-                                        nav_state = {...props};
+                                        nav_state = { ...props };
                                     }
+                                    setError({ success: response.success, message: response.message, inProgress: false });
+                                    console.log({"edit object nav_state":nav_state});
                                     nav(response.form, { state: nav_state });
                                 }
                             }><FontAwesomeIcon icon={faAdd} />{descendant}</Button>
+                            </div>
 ))}
                     </Paper>
                 </div>

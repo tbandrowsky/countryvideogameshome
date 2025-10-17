@@ -51,8 +51,8 @@ export default function ConfirmCodeForm(props) {
             <RevolutionBarControl applicationName={props.applicationName} formName="CONFIRM ACCESS" formNumber="FORM 002"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} >
-                <div className="buttonBar">
-                    <Button id="confirmCodeButton" onClick={
+                <div className="buttonBar" style={{gap:"16px"}}>
+                    <Button id="confirmCodeButton" variant='contained' color="primary" onClick={
                         async () => {
                             setError({ success: true, message: "Confirming code", inProgress: true });
                             let response = await coronaConfirmUserCode(request);
@@ -68,7 +68,7 @@ export default function ConfirmCodeForm(props) {
                             nav(response.form, { state: nav_state });
                         }
                     }><FontAwesomeIcon icon={faSquareCaretRight} />CONFIRM CODE</Button>
-                    <Button id="sendCodeButton" onClick={
+                    <Button id="sendCodeButton" variant='contained' color="primary" onClick={
                         async () => {
                             setError({ success: true, message: "Send code", inProgress: true });
                             let response = await coronaSendUserCode(request);
@@ -76,7 +76,7 @@ export default function ConfirmCodeForm(props) {
                             nav(response.form, { state: response.form_props });
                         }
                     }><FontAwesomeIcon icon={faEnvelope} />SEND CODE</Button>
-                    <Button id="createUserButton" disabled={error.inProgress} onClick={
+                    <Button id="createUserButton" variant='contained' color="secondary" disabled={error.inProgress} onClick={
                         async () => {
                             nav('/Revolution/Login');
                         }

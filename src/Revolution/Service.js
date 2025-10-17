@@ -74,6 +74,19 @@ export const coronaLoginUser = async function (request, uxo) {
     return result;
 };
 
+export const coronaLoginUserSso = async function (request, uxo) {
+    if (!uxo) uxo = { };
+    uxo = { ...uxo, storeToken: true };
+
+    let result = callCoronaService("/login/loginusersso/", request, {
+        successForm: "/Revolution/Home",
+        redoForm: "/Revolution/Login",
+        redoMessage: "Could not login",
+        ...uxo
+    });
+    return result;
+};
+
 export const coronaCreateUser = async function (request, uxo) {
 
     if (!uxo) uxo = {};

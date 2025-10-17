@@ -129,7 +129,7 @@ export default function HomeForm(formProps) {
                             }
                             return <div style={{flexDirection:"row", display:"flex", flexWrap:"wrap", gap:"8px"}}>
                                 {fields.map((field, index3) => {                            
-                                return (<Button variant="contained" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} sx={{backgroundColor:props.user.home_team.class_color}}  onClick={
+                                return (<Button variant="contained" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} sx={{backgroundColor:(perm.class_colors && perm.class_colors.hasOwnProperty(base_name)) ? perm.class_colors[base_name] : props.user.home_team.class_color}}  onClick={
                                 async () => {
                                     setError({ success: true, message: "Editing " + field, inProgress: true });
                                     let response = await coronaGetClass({'class_name':field }, {

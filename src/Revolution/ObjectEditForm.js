@@ -95,7 +95,7 @@ export default function ObjectEditForm(props) {
             // main fields
             class_description = classdef.class_description;
             class_name = classdef.class_name;   
-            form_name = "EDIT " + class_name.toUpperCase();
+            form_name = class_name.toUpperCase();
 
             auto_grid_rows = false;
             class_edit_props = { 
@@ -143,7 +143,7 @@ export default function ObjectEditForm(props) {
                 let field = classdef.fields[fieldname];
                 let field_class = field.field_class;
                 
-                if (field.field_type === 'string' || field.field_type === 'number' || field.field_type === 'int64' || field.field_type === 'boolean' || field.field_type === 'datetime') {
+                if (field.field_type === 'string' || field.field_type === 'number' || field.field_type === 'boolean' || field.field_type === 'datetime') {
                     let new_edit_field = { json_field_name: field.field_name, 
                         row: field.grid_row, 
                         column: field.grid_column, 
@@ -179,6 +179,20 @@ export default function ObjectEditForm(props) {
     }
 
     classorder.reverse();
+    
+    let final_classes = [];
+    for (const classname of classorder) {
+
+        if (all_classes[classname].display == "none") {
+            continue;
+        }
+        let edit_props = edit_props_by_base[classname];
+        if (edit_props.body_fields.length == 1) {
+            // only the chapter title - skip
+            continue;
+        }
+        final_classes.push(classname);
+    }
 
     let nav = useNavigate();
 
@@ -187,9 +201,9 @@ export default function ObjectEditForm(props) {
             <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
             <div style={{display:"grid", gridTemplateColumns:"1.0fr", gridTemplateRows:"96.0px 1.0fr" }}>
-                <div style={{gridColumn:"1 / span 2", gridRow:1}}>
+                <div style={{gridColumn:"1", gridRow:1}}>
                     <Paper style={{ padding:"16px", marginLeft:"16px", marginTop:"16px", marginRight:"16px"}}>
-                        <Button id="runButton" variant="contained" color="success" style={{marginRight:"16px"}}onClick={
+                        <Button id="runButton" variant="contained" color="success" style={{marginRight:"16px"}} onClick={
                             async () => {
                                 console.log( {"cancel / home with":props});
                                 nav('/Revolution/Home', {state:{...props} } );
@@ -203,8 +217,8 @@ export default function ObjectEditForm(props) {
                         }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
                     </Paper>
                 </div>
-                <div style={{ gridColumn:1, gridRow:2, overflow:"scroll", display:"flex", flexDirection:"column", height:"60vh", flexWrap:"wrap" }}>
-                        {classorder.map((classname, idx)=>{
+                <div style={{ gridColumn:'1', gridRow:"2", overflow:"scroll", display:"flex", flexDirection:"row", height:"60vh", flexWrap:"wrap" }}>
+                        {final_classes.map((classname, idx)=>{
                             let class_name = all_classes[classname].class_name;
                             let class_description = all_classes[classname].class_description;
                             let edit_props = edit_props_by_base[classname];
@@ -214,7 +228,9 @@ export default function ObjectEditForm(props) {
                                 </EditForm>
                             </div>)
                         })}
-                        {childObjects && childObjects.length > 0 && <ObjectsList objects={childObjects} setError={setError} user={props.user} />}
+                        <div style={{ display:"flex", flexDirection:"row", height:"auto",  flexWrap:"wrap" }}>
+                            <ObjectsList objects={childObjects} setError={setError} user={props.user} />
+                        </div>
                 </div>
             </div>
         </div>

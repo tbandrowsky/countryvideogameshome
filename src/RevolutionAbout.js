@@ -49,15 +49,14 @@ function Corona() {
                         onSlideChange={() => console.log('slide change')}
                     >
                         <SwiperSlide>
-                            <Card image={colonize1} title="COLONIZE RED AMERICA">
+                            <Card image={colonize1} title="A NEW AMERICA">
                                 <div>
-                                    <h3 style={{paddingLeft:"16px"}}>Organize strategic migrations to red counties to flip states blue.</h3>
+                                    <h3 style={{paddingLeft:"16px"}}>Resettle America.</h3>
                                     <ul>
-                                        <li>Identify low population counties and voter shifts.</li>
-                                        <li>Intelligence to gather information from all sources.</li>
-                                        <li>Policy for strategic guidance.</li>
-                                        <li>Colony for political action.</li>
-                                        <li>Elect and establish modern government.</li>
+                                        <li>Find and Settle low population counties.</li>
+                                        <li>Intelligence gathering for resources and obstacles.</li>
+                                        <li>Create colonies in counties and take over.</li>
+                                        <li>Demonstrate modern government.</li>
                                     </ul>
                                 </div>
                             </Card>
@@ -105,7 +104,7 @@ function Corona() {
                         <SwiperSlide>
                             <Card image={govern1} title="GOVERN BETTER">
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Show them a better way.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Make American Counties Profitable.</h3>
                                     <ul>
                                         <li>Coordinated property management</li>
                                         <li>Voters insurances</li>

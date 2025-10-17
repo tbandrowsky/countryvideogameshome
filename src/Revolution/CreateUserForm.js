@@ -56,8 +56,8 @@ export default function CreateUserForm(props) {
             <RevolutionBarControl applicationName={props.applicationName} formName="ENLIST" formNumber="FORM 004" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} >
-                <div className="buttonBar">
-                    <Button id="createUserButton" onClick={
+                <div className="buttonBar" style={{gap:"16px"}}>
+                    <Button id="createUserButton" variant='contained' color="primary" onClick={
                         async () => {
                             setError({ success: true, message: "Processing Application.", inProgress: true });
                             let response = await coronaCreateUser({ data: request }, {
@@ -76,7 +76,7 @@ export default function CreateUserForm(props) {
                             nav(response.form, { state: nav_state });
                         }
                     }><FontAwesomeIcon icon={faAtom} />ENLIST</Button>
-                    <Button id="cancelButton" disabled={error.inProgress} onClick={
+                    <Button id="cancelButton" variant='contained' color="secondary" disabled={error.inProgress} onClick={
                         async () => {
                             nav('/Revolution/Login');
                         }

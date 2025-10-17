@@ -39,8 +39,8 @@ export default function SendCodeForm(props) {
             <RevolutionBarControl applicationName={props.applicationName} formName="SEND CODE" formNumber="FORM 003"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} >
-                <div className="buttonBar">
-                    <Button id="loginButton" onClick={
+                <div className="buttonBar" style={{gap:"16px"}}>
+                    <Button id="loginButton" variant='contained' color="primary" onClick={
                         async () => {
                             setError({ success: true, message: "Sending Code", inProgress: true });
                             let response = await coronaSendUserCode(request);
@@ -55,7 +55,7 @@ export default function SendCodeForm(props) {
 
                         }
                     }><FontAwesomeIcon icon={faEnvelope}/>SEND CODE</Button>
-                    <Button id="createUserButton" disabled={error.inProgress} onClick={
+                    <Button id="createUserButton" variant='contained' color="secondary" disabled={error.inProgress} onClick={
                         async () => {
                             nav('/Revolution/Login');
                         }

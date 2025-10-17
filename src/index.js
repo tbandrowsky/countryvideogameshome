@@ -20,6 +20,7 @@ import SetPasswordForm from './Revolution/SetPasswordForm';
 import SendCodeForm from './Revolution/SendCodeForm';
 import ObjectEditForm from './Revolution/ObjectEditForm';
 import ObjectSearchForm from './Revolution/ObjectSearchForm';
+import SsoLanding from './Revolution/SsoLanding';
 import GoogleAd from './GoogleAd'; 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -27,6 +28,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { deepmerge } from '@mui/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -38,8 +40,10 @@ const theme = createTheme({
   },
 });
 
-root.render(
+let google_client_id = "747129738820-elfisfvfplttiogamqur0b1vflljv5ib.apps.googleusercontent.com";
 
+root.render(
+<GoogleOAuthProvider clientId={google_client_id}>
     <BrowserRouter>
         <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
@@ -67,11 +71,13 @@ root.render(
                     <Route path="/Revolution/ClassEdit" element={<ClassEditForm />} />
                     <Route path="/Revolution/ClassSearch" element={<ClassSearchForm />} />
                     <Route path="/Revolution/ConfirmCode" element={<ConfirmCodeForm />} />
+                    <Route path="/Revolution/SsoLanding" element={<SsoLanding />} />
                 </Routes>
             </div>
         </div>
         <GoogleAd slot="6300978111" googleAdId="ca-pub-3940256099942544" containerStyle={{ position: "absolute", left: 0, top: "75vh", width: "100vw", height: "25vh" }} />
     </BrowserRouter>
+</GoogleOAuthProvider>
 );
 
 //
