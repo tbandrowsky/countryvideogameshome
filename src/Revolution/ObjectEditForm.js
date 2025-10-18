@@ -7,7 +7,6 @@ import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import ObjectsList from './ObjectsList.js';
-import { coronaQuery } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +18,7 @@ import Divider from '@mui/material/Button';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import { coronaQuery, coronaRunObject } from './Service.js';
 
 export default function ObjectEditForm(props) {
 
@@ -93,6 +93,7 @@ export default function ObjectEditForm(props) {
         let classdef = all_classes[classname];
         if (classdef) {
             // main fields
+            // the last one is the base class so this works
             class_description = classdef.class_description;
             class_name = classdef.class_name;   
             form_name = class_name.toUpperCase();
@@ -195,6 +196,7 @@ export default function ObjectEditForm(props) {
     }
 
     let nav = useNavigate();
+    let run_object = { "data" : request };
 
     return (
         <div className="contentbackgroundform">
@@ -205,8 +207,22 @@ export default function ObjectEditForm(props) {
                     <Paper style={{ padding:"16px", marginLeft:"16px", marginTop:"16px", marginRight:"16px"}}>
                         <Button id="runButton" variant="contained" color="success" style={{marginRight:"16px"}} onClick={
                             async () => {
-                                console.log( {"cancel / home with":props});
-                                nav('/Revolution/Home', {state:{...props} } );
+                                setError({ success: true, message: "Edit " + class_name, inProgress: true });                               
+                                let response = await coronaRunObject(run_object, {
+                                    successForm: '/Revolution/ObjectEdit',
+                                    redoForm: '/Revolution/ObjectEdit',
+                                    redoMessage: 'Run failed.',
+                                    formProps: props
+                                });
+                                let nav_state = {};
+                                if (response.success) {
+                                    nav_state = { user:props.user, ...response };
+                                } else {
+                                    nav_state = { ...props };
+                                }
+                                setError({ success: response.success, message: response.message, inProgress: false });
+                                console.log({"edit object nav_state":nav_state});
+                                nav(response.form, { state: nav_state });
                             }
                         }><FontAwesomeIcon icon={faPlay} />RUN</Button>
                         <Button id="cancelButton" variant="contained" onClick={
