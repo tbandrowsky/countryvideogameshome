@@ -21,23 +21,34 @@ export default function DateTimeEditField(props) {
         placeholder = field_props.placeholder;
     }
 
-    let max_value = 1000;
-    let min_value = 0;
+    let max_value = new Date(2100, 0, 1);
+    let min_value = new Date(1972, 0, 1);
     let div_style = { margin: '0px', padding: '0px' };
     let has_max_value = false;
     let has_min_value = false;
 
     if ('max_value' in field_props) {
-        max_value = parseFloat(field_props.max_value);
-        has_max_value = true;
+        let temp = new Date(field_props.max_value);
+        if (temp.getFullYear() > 1970) {
+            max_value = temp;
+            has_max_value = true;
+        }
     }
 
-    if ('min_length' in field_props) {
-        min_value = parseFloat(field_props.min_value);
-        has_min_value = true;
+    if ('min_value' in field_props) {
+        let temp = new Date(field_props.min_value);
+        if (temp.getFullYear() > 1970) {
+            min_value = temp;
+            has_min_value = true;
+        }
     }
 
     value = props.get_value(json_field_name);
+
+    if (value || value > '') {
+        let date = new Date(value);
+        value = date.toISOString().split('T')[0];
+    }
 
     let client_message = '';
     let server_message = props.get_error(props.field.json_field_name);
@@ -55,9 +66,14 @@ export default function DateTimeEditField(props) {
             value={value}
             onChange={(e) => {
                 console.log({"updated":e.target.value});
+
                 if (props.put_value) {
-                    let v = e.target.value;
-                    props.put_value(json_field_name, v);
+                    let v = e.target.value;                
+                    let date = new Date(v);
+                    let iso = date.toISOString();
+
+                    console.log({"iso":iso, "date":date, "v":v});
+                    props.put_value(json_field_name, iso);
                 }
             }}
     />
