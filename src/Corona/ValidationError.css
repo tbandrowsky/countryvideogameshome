@@ -1,0 +1,8 @@
+
+.validation_error {
+    color: red;
+    font-size:14px;
+    font-weight:100;
+    margin-top: 0.05rem;
+    margin-bottom: 0.25rem;
+}
