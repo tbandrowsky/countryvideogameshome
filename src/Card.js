@@ -30,7 +30,7 @@ export default function Card(props)
 
                 <button id="confirmUserButton" style={{ width:"150px", height:"50px" }} onClick={
                     async () => {
-                        nav('/Revolution/Login');
+                        nav('/Corona/Login');
                     }
                 }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
 
@@ -47,7 +47,7 @@ export default function Card(props)
 
                 <button id="confirmUserButton" style={{ width: "150px", height: "50px" }} onClick={
                     async () => {
-                        nav('/Revolution/CreateUser');
+                        nav('/Corona/CreateUser');
                     }
                 }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
 

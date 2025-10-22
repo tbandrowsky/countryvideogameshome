@@ -10,17 +10,17 @@ import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
 import RevolutionAbout from './RevolutionAbout';
-import HomeForm from './Revolution/HomeForm';
-import ClassSearchForm from './Revolution/ClassSearchForm';
-import ClassEditForm from './Revolution/ClassEditForm';
-import CreateUserForm from './Revolution/CreateUserForm';
-import ConfirmCodeForm from './Revolution/ConfirmCodeForm';
-import LoginForm from './Revolution/LoginForm';
-import SetPasswordForm from './Revolution/SetPasswordForm';
-import SendCodeForm from './Revolution/SendCodeForm';
-import ObjectEditForm from './Revolution/ObjectEditForm';
-import ObjectSearchForm from './Revolution/ObjectSearchForm';
-import SsoLanding from './Revolution/SsoLanding';
+import HomeForm from './Corona/HomeForm';
+import ClassSearchForm from './Corona/ClassSearchForm';
+import ClassEditForm from './Corona/ClassEditForm';
+import CreateUserForm from './Corona/CreateUserForm';
+import ConfirmCodeForm from './Corona/ConfirmCodeForm';
+import LoginForm from './Corona/LoginForm';
+import SetPasswordForm from './Corona/SetPasswordForm';
+import SendCodeForm from './Corona/SendCodeForm';
+import ObjectEditForm from './Corona/ObjectEditForm';
+import ObjectSearchForm from './Corona/ObjectSearchForm';
+import SsoLanding from './Corona/SsoLanding';
 import GoogleAd from './GoogleAd'; 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -61,17 +61,17 @@ root.render(
                     <Route path="/RevolutionAbout" element={<RevolutionAbout />} />
                     <Route path="/ColorParty" element={<ColorParty />} />
                     <Route path="/About" element={<About />} />
-                    <Route path="/Revolution/Home" element={<HomeForm />} />
-                    <Route path="/Revolution/Login" element={<LoginForm  />} />
-                    <Route path="/Revolution/CreateUser" element={<CreateUserForm />} />
-                    <Route path="/Revolution/SetPassword" element={<SetPasswordForm />} />
-                    <Route path="/Revolution/SendCode" element={<SendCodeForm />} />
-                    <Route path="/Revolution/ObjectEdit" element={<ObjectEditForm />} />
-                    <Route path="/Revolution/ObjectSearch" element={<ObjectSearchForm />} />
-                    <Route path="/Revolution/ClassEdit" element={<ClassEditForm />} />
-                    <Route path="/Revolution/ClassSearch" element={<ClassSearchForm />} />
-                    <Route path="/Revolution/ConfirmCode" element={<ConfirmCodeForm />} />
-                    <Route path="/Revolution/SsoLanding" element={<SsoLanding />} />
+                    <Route path="/Corona/Home" element={<HomeForm />} />
+                    <Route path="/Corona/Login" element={<LoginForm  />} />
+                    <Route path="/Corona/CreateUser" element={<CreateUserForm />} />
+                    <Route path="/Corona/SetPassword" element={<SetPasswordForm />} />
+                    <Route path="/Corona/SendCode" element={<SendCodeForm />} />
+                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm />} />
+                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm />} />
+                    <Route path="/Corona/ClassEdit" element={<ClassEditForm />} />
+                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm />} />
+                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm />} />
+                    <Route path="/Corona/SsoLanding" element={<SsoLanding />} />
                 </Routes>
             </div>
         </div>

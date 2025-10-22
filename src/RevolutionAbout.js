@@ -49,6 +49,32 @@ function Corona() {
                         onSlideChange={() => console.log('slide change')}
                     >
                         <SwiperSlide>
+                            <Card image={colonize1} title="CREATE YOUR REVOLUTION">
+                                <div>
+                                    <h3 style={{paddingLeft:"16px"}}>Low Code for Activists.</h3>
+                                    <ul>
+                                        <li>Create widespread teams with a shared goal.</li>
+                                        <li>Baked in query and analytics.</li>
+                                        <li>Geospatial resources.</li>
+                                        <li>Create any organization easily.</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Card image={colonize1} title="COLONY EXAMPLE">
+                                <div>
+                                    <h3 style={{paddingLeft:"16px"}}>Example.</h3>
+                                    <ul>
+                                        <li>Create a process for flipping districts.</li>
+                                        <li>Research political candidates and donors.</li>
+                                        <li>Share articles.</li>
+                                        <li>Track colony efforts.</li>
+                                    </ul>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide>
                             <Card image={colonize1} title="A NEW AMERICA">
                                 <div>
                                     <h3 style={{paddingLeft:"16px"}}>Resettle America.</h3>
