@@ -28,13 +28,13 @@ import Card from './Card';
 function Corona() {
 
     return (
-        <div className="contentbackground">
-            <TitleBar title="REVOLUTION" />
-            <div style={{ display: "grid", gridColumnTemplate: "30% 30% 30%", backgroundColor: "darkgreen" }} >
+        <div className="contentbackground" style={{ background: "radial-gradient(circle, #fe917b, #160d0fff)" }}>
+            <TitleBar title="REVOLUTION" style={{ backgroundColor: "black", color: "#A00A00" }} />
+            <div style={{ display: "grid", gridColumnTemplate: "30% 30% 30%", backgroundColor: "black" }} >
                 <Link style={{ paddingLeft: "16px", gridColumn: "1", textAlign: "left" }} to="/Revolution/Login">LOGIN OR ENLIST</Link>
                 <a style={{ paddingLeft: "16px", gridColumn: "2", textAlign: "left" }} href="downloads/">Downloads</a>
             </div>
-            <div className="contentwrapper">
+            <div className="contentwrapper" style={{ }}>
                 <div className="content" style={{marginTop:"16px"}}>
                     <Swiper
                         // install Swiper modules
@@ -57,80 +57,80 @@ function Corona() {
                                         <li>Baked in query and analytics.</li>
                                         <li>Geospatial resources.</li>
                                         <li>Create any organization easily.</li>
+                                        <li>Modify instantly.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colonize1} title="COLONY EXAMPLE">
+                            <Card image={govern1} title="FAMILY AND LAND">
                                 <div>
-                                    <h3 style={{paddingLeft:"16px"}}>Example.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Responsibilities.</h3>
                                     <ul>
-                                        <li>Create a process for flipping districts.</li>
-                                        <li>Research political candidates and donors.</li>
-                                        <li>Share articles.</li>
-                                        <li>Track colony efforts.</li>
+                                        <li>Track your people from family to acquaintances</li> 
+                                        <li>Track you property, multiple buildings</li>
+                                        <li>Insure everything you have and you know</li>
+                                        <li>Integrated process from quote to claims.</li>
+                                        <li>Modify instantly.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colonize1} title="A NEW AMERICA">
+                            <Card image={colony1} title="CREATIVE POSSIBILITES">
                                 <div>
-                                    <h3 style={{paddingLeft:"16px"}}>Resettle America.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Articles about anything.</h3>
                                     <ul>
-                                        <li>Find and Settle low population counties.</li>
-                                        <li>Intelligence gathering for resources and obstacles.</li>
-                                        <li>Create colonies in counties and take over.</li>
-                                        <li>Demonstrate modern government.</li>
+                                        <li>A number of predefined topics</li>
+                                        <li>define your own.</li>
+                                        <li>uses markdown.</li>
+                                        <li>comments on articles.</li>
+                                        <li>full text searchable.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={intelligence1} title="COORDINATE INTELLIGENCE">
+                            <Card image={colony1} title="ACTION IF YOU WANT IT">
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Find your colonies, and establish thought leadership.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Ticket system.</h3>
                                     <ul>
-                                        <li>Follow the money with candidate donor analytics</li>
-                                        <li>Analytics to support colony identification</li>
-                                        <li>Offer articles, education, and training</li>
+                                        <li>Tickets for each team, to and from</li>
+                                        <li>Old school timetable plans.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={policy1} title="FORMULATE POLICY">
+                            <Card image={govern1} title="GO LOCAL">
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Create resources and guidelines for the Revolution.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Local networking.</h3>
                                     <ul>
-                                        <li>Turn intelligence into plans anyone can follow</li>
-                                        <li>Provide how-to guidance to allow for a new economy</li>
-                                        <li>Offer articles, education, and training</li>
-                                        <li>Put together colonization teams and resources for them</li>
+                                        <li>Coordinate resource and transportation routes</li>
+                                        <li>Scout resources and obstacles</li>
+                                        <li>Local power players, news, and weather.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colony1} title="GROW YOUR COLONY">
+                            <Card image={govern1} title="JUSTICE SYSTEM">
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Scout and run colonies.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Court System.</h3>
                                     <ul>
-                                        <li>Move voters in</li>
-                                        <li>Identify local chiefs as blockers or helpers.</li>
-                                        <li>Gather information about transportation access, physical barriers.</li>
-                                        <li>Work with policy and intelligence team for local activism.</li>
-                                        <li>Schedule local team events.</li>
-                                        <li>Replace local systems software .</li>
+                                        <li>Tickets to the court</li>
+                                        <li>Rulings from the court</li>
+                                        <li>Includes arrests, searches, seizures.</li>
+                                        <li>Multi-role court case Management.</li>
+                                        <li>Reparations cases.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={govern1} title="GOVERN BETTER">
+                            <Card image={govern1} title="PLANS">
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Make American Counties Profitable.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Create Timetables.</h3>
                                     <ul>
                                         <li>Coordinated property management</li>
                                         <li>Voters insurances</li>

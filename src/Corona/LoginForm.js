@@ -54,7 +54,7 @@ export default function LoginForm(props) {
     let nav = useNavigate();
 
     return (
-        <div className="contentbackgroundform">
+        <div className="contentbackgroundformrevolution">
             <RevolutionBarControl applicationName={props.applicationName} formName="LOGIN" formNumber="FORM 006" />
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error}>

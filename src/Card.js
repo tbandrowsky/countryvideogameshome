@@ -12,12 +12,14 @@ export default function Card(props)
             width: props.width ?? "90%",
             height: props.height ?? "450px",
             display: "grid",
+            marginLeft:"60px",
             gridTemplateColumns: "250px 1.0fr",
-            gridTemplateRows: "75px 1.0fr 80px",
+            gridTemplateRows: "65px 1.0fr 80px",
             backgroundColor:"#FFFFFF",
-            borderRadius:"8px"
+            border: "4px solid black",
+            boxShadow: "0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
                    }}>
-            <div style={{ gridColumn: "1/ span 2", gridRow: "1", fontSize: "24px", fontWeight: "bold", background:"linear-gradient(180deg, rgba(23, 90, 0, 1) 0%, rgba(10, 10, 10, 1) 100%)"  }}>
+            <div style={{ gridColumn: "1/ span 2", gridRow: "1", fontSize: "24px", fontWeight: "bold", background:"linear-gradient(270deg, rgba(90, 10, 10, 1) 0%, rgba(35, 10, 10, 1) 100%)"  }}>
                 <div style={{fontSize: "24px", fontWeight: "bold", paddingLeft: "16px", paddingTop: "8px", color:"white" }}>{props.title}</div>
             </div>
             <div style={{ gridColumn: "1", gridRow: "2",  }}>
@@ -26,13 +28,19 @@ export default function Card(props)
             <div style={{ gridColumn: "2", gridRow: "2",  display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"near", padding:"16px", overflowY:"auto" }}>
                 {props.children}
             </div>
-            <div style={{ gridColumn: "1 / span 2", gridRow: "3",background:"linear-gradient(180deg, rgba(23, 90, 0, 1) 0%, rgba(10, 10, 10, 1) 100%)", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"center", paddingTop:"8px" }}>
+            <div style={{ gridColumn: "1 / span 2", gridRow: "3",background:"linear-gradient(270deg, rgba(10, 10, 90, 1) 0%, rgba(10, 10, 35, 1) 100%)", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"right", paddingTop:"8px" }}>
 
                 <button id="confirmUserButton" style={{ width:"150px", height:"50px" }} onClick={
                     async () => {
                         nav('/Corona/Login');
                     }
                 }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
+
+                <button id="confirmUserButton" style={{ width: "150px", height: "50px" }} onClick={
+                    async () => {
+                        nav('/Corona/CreateUser');
+                    }
+                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
 
                 <div style={{ height: "50px", display: "flex", marginRight:"16px", border:"0px" }}>
                     <form action="https://www.paypal.com/donate" method="post" target="_top">
@@ -44,12 +52,6 @@ export default function Card(props)
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                         </form>
                 </div>
-
-                <button id="confirmUserButton" style={{ width: "150px", height: "50px" }} onClick={
-                    async () => {
-                        nav('/Corona/CreateUser');
-                    }
-                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
 
             </div>
         </div>

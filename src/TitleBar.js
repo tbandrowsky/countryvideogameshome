@@ -4,7 +4,7 @@ import './index.css';
 function TitleBar(props) {
     const { title } = props;
     return (
-        <div className="titlearea">{ title }</div>
+        <div className="titlearea" style={{...props.style}}>{ title }</div>
     );
 }
 

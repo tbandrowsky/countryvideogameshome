@@ -89,13 +89,13 @@ export default function ObjectSearchForm(props) {
     }
 
     return (
-        <div className="contentbackgroundform">
+        <div className="contentbackgroundformrevolution">
             <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
             <div style={{display: 'grid', gridTemplateColumns: '400px 1fr', gridTemplateRows:'1fr', marginRight:"16px"}}>
                 <div style={{ gridColumn: '1'}}>
-                    <h4 style={{ marginLeft:"16px", marginTop:"16px"}}>Search for {class_name}</h4>
                     <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} >
+                    <h4 style={{ marginTop:"16px" }}>Search for {class_name}</h4>
                         <div className="buttonBar" style={{gap:"10px", display:"flex", flexDirection:"row", marginBottom:"16px" }}>
                             <Button id="searchButton" variant='contained' color="primary"  onClick={
                                 async () => {
@@ -104,6 +104,9 @@ export default function ObjectSearchForm(props) {
                                         "from": [{
                                             "class_name": classdef.class_name,
                                             "name": classdef.class_name,
+                                            "filter": { 
+                                                "full_text" : get_value("search_text")
+                                            }
                                         }],
                                         "stages": [ {
                                             "class_name": "filter",
@@ -115,13 +118,6 @@ export default function ObjectSearchForm(props) {
                                             "output": "result"
                                         }]
                                     };
-                                    edit_field_names.forEach( (fieldname, index) => {                            
-                                        const field = classdef.fields[fieldname];
-                                        let v = get_value("search_text");
-                                        if (v && v.length > 0) {
-                                            search_request.stages[0].condition.conditions.push({ class_name:"contains", value_path: fieldname, value:v });
-                                        }
-                                    });
                                     let start = get_value("start_date");
                                     let stop = get_value("stop_date");
                                     if (start && start.length > 0) {
@@ -155,8 +151,8 @@ export default function ObjectSearchForm(props) {
                             }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
                         </div>
                     </EditForm>
+                    <Paper elevation={3} style={{ gridRow:"2", marginLeft:"16px", marginTop:"16px", marginRight:"16px", paddingTop:"4px", paddingBottom:"8px" }}>
                     <h4 style={{ marginLeft:"16px", marginTop:"16px", marginBottom:"0px"}}>Create new {class_name}</h4>
-                    <Paper elevation={3} style={{ marginLeft:"16px", marginTop:"16px", marginRight:"16px", padding:"8px"}}>
                         {classdef && classdef.descendants && classdef.descendants.map( (descendant, index) => (
                             <div key={index} style={{ margin:"8px"}}>
                             <Button key={index} id="createObject" variant='contained' color="primary" style={{width:"90%"}} onClick={
@@ -183,9 +179,11 @@ export default function ObjectSearchForm(props) {
 ))}
                     </Paper>
                 </div>
-                <div style={{ gridColumn: '2', width:'90%', height:"100%"}}>
-                    <h4 style={{ marginBottom:"0px", marginTop:"16px", marginBottom:"20px"}}>{class_name} Search Results</h4>
-                    <ObjectsList objects={gridRows} user={props.user} style={{ gridColumn: '2', marginRight:"16px" }} setError={setError} />
+                <div style={{ gridColumn: "2", width:"100%", height:"100%"}}>
+                    <Paper style={{ width:"100%", height:"100%", marginTop:"16px",  paddingBottom:"16px", backgroundColor:"white", border:"var(--rock1) solid 1px", borderRadius:"5px"}}>
+                    <h4 style={{  paddingTop:"10px", paddingLeft:"16px"}}>{class_name} Items</h4>
+                    <ObjectsList objects={gridRows} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
+                    </Paper>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@ export default function SendCodeForm(props) {
     let nav = useNavigate();
 
     return (
-        <div class="contentbackgroundform">
+        <div class="contentbackgroundformrevolution">
             <RevolutionBarControl applicationName={props.applicationName} formName="SEND CODE" formNumber="FORM 003"/>
             <ErrorControl {...error} />
             <EditForm {...edit_props} error={error} >

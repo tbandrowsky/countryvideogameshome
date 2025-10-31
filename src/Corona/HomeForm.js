@@ -69,11 +69,11 @@ export default function HomeForm(formProps) {
     let referenced_classes = {};
 
     return (
-        <div className="contentbackgroundform">
+        <div className="contentbackgroundformrevolution">
             <RevolutionBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
             <ErrorControl {...error} />
-            <h2 style={{marginLeft:"16px"}}>Teams</h2>
-            <Paper style={{marginRight:"16px", marginLeft:"16px",gap:"8px", display:"flex", flexDirection:"row", flexWrap:"wrap", padding:"8px", backgroundColor:"var(--rock6)", borderRadius:"5px", border:"var(--rock1) solid 1px"}}>
+            <div style={{display:"grid", gridTemplateRows:"auto auto", gridTemplateColumns:"1fr"}}>
+            <Paper style={{ marginTop:"16px", marginRight:"16px", marginLeft:"16px",gap:"8px", display:"flex", flexDirection:"row", flexWrap:"wrap", padding:"8px", backgroundColor:"white", borderRadius:"5px", border:"var(--rock1) solid 1px"}}>
                 {props.user.allowed_teams.map((field, index) => {
                     let isSelected = props.user.team.team_name === field;
                     return <Button variant="contained" key={index} onClick={
@@ -99,9 +99,12 @@ export default function HomeForm(formProps) {
                 }
                 )}
             </Paper>
+
+
+            <Paper style={{margin:"16px", height:"100%", border:"var(--rock1) solid 1px", borderRadius:"5px", padding:"8px",paddingTop:"0px", backgroundColor:"white"}}>
             <h3 style={{marginLeft:"16px"}}>{props.user.team.team_name}</h3>           
 
-            <Tabs style={{marginLeft:"16px", marginRight:"16px", height:"320px", border:"var(--rock1) solid 1px", borderRadius:"5px", padding:"8px", backgroundColor:"var(--rock6)"}}>
+            <Tabs >
                 <TabList>
                     <Tab>Data</Tab>
                     <Tab>Inventory</Tab>
@@ -180,6 +183,8 @@ export default function HomeForm(formProps) {
   
     </TabPanel>
         </Tabs>
+</Paper>
+</div>
         </div>
     );
 }

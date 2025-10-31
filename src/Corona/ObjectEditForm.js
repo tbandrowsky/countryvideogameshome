@@ -196,10 +196,10 @@ export default function ObjectEditForm(props) {
     let run_object = { "data" : request };
 
     return (
-        <div className="contentbackgroundform">
+        <div className="contentbackgroundformrevolution">
             <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
-            <div style={{display:"grid", gridTemplateColumns:"1.0fr", gridTemplateRows:"96.0px 1.0fr" }}>
+            <div style={{display:"grid", gridTemplateColumns:"1.0fr", gridTemplateRows:"96.0px 1.0fr", height:"90%" }}>
                 <div style={{gridColumn:"1", gridRow:1}}>
                     <Paper style={{ padding:"16px", marginLeft:"16px", marginTop:"16px", marginRight:"16px"}}>
                         <Button id="runButton" variant="contained" color="success" style={{marginRight:"16px"}} onClick={
@@ -230,7 +230,7 @@ export default function ObjectEditForm(props) {
                         }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
                     </Paper>
                 </div>
-                <div style={{ gridColumn:'1', gridRow:"2", overflow:"scroll", display:"flex", flexDirection:"row", height:"60vh", flexWrap:"wrap" }}>
+                <div style={{ gridColumn:'1', gridRow:"2", overflow:"scroll", display:"flex", flexDirection:"row", flexWrap:"wrap" }}>
                         {final_classes.map((classname, idx)=>{
                             let class_name = all_classes[classname].class_name;
                             let class_description = all_classes[classname].class_description;
@@ -240,8 +240,8 @@ export default function ObjectEditForm(props) {
                                 </EditForm>
                             </div>)
                         })}
-                        <div style={{ display:"flex", flexDirection:"row", height:"auto",  flexWrap:"wrap" }}>
-                            <ObjectsList objects={childObjects} setError={setError} user={props.user} />
+                        <div style={{ display:"flex", flexDirection:"row", height:"auto", flexGrow:1, flexWrap:"wrap" }}>
+                            <ObjectsList objects={childObjects} setError={setError} user={props.user}  style={{width:"90%",height:"90%"}}/>
                         </div>
                 </div>
             </div>

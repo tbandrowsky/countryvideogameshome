@@ -1,11 +1,12 @@
 import TitleBar from "./TitleBar";
+import Paper from '@mui/material/Paper';
 
 function Privacy() {
     return (
-        <div class="contentbackgroundtext">
+        <div className="contentbackground">
             <TitleBar title="PRIVACY POLICY" />
-            <div className="contentwrapper">
-                <div className="content">
+            <div className="contentwrapper">                
+                    <Paper style={{ borderRadius:"0px", margin: "16px", padding: "16px", fontSize: "18px", lineHeight: "28px" }} >
                     <p>
                         Country Video Games respects your privacy and is committed to protecting it. This Privacy Policy explains how we collect, use, and disclose information about you when you visit our website or use our services.
                     </p>
@@ -18,7 +19,7 @@ function Privacy() {
                     <p className="signature">
                         Todd Bandrowsky
                     </p>
-                </div>
+                    </Paper>
             </div>
         </div>
     );
