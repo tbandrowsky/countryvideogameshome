@@ -5,7 +5,7 @@ import { useState } from "react";
 import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaQuery, coronaEditObject } from './Service.js';
+import { coronaQuery, coronaEditObject, coronaGetClass } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +19,8 @@ import Paper from '@mui/material/Paper';
 
 export default function ObjectSearchForm(props) {
 
+    const [childrenMap, setChildrenMap] = useState({});
+    const [classes, setClasses] = useState(props.classes||[]);
     const [rows, setRows] = useState(props.rows||[]);
     const [request, setRequest] = useState({});
     const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
@@ -133,7 +135,47 @@ export default function ObjectSearchForm(props) {
                                         redoMessage: 'Cannot search.'
                                     },
                                     props.formProps);
-                                    setError({ success: response.success, message: response.message, inProgress: false });
+
+                                    if (response.data && Array.isArray(response.data)) {
+                                        const newChildrenMap = {};
+                                        const uniqueClassNames = new Set();
+
+                                        // First, build the children map and collect unique class names
+                                        response.data.forEach((obj) => {
+                                            if (obj.class_name) {
+                                                if (!(obj.class_name in newChildrenMap)) 
+                                                    newChildrenMap[obj.class_name] = [];
+                                                newChildrenMap[obj.class_name].push(obj);
+                                                uniqueClassNames.add(obj.class_name);
+                                            }
+                                        });
+
+                                        setChildrenMap(newChildrenMap);
+
+                                        // Then fetch class definitions for unique class names
+                                        const classPromises = Array.from(uniqueClassNames).map(async (className) => {
+                                            try {
+                                                const classDef = await coronaGetClass({ class_name: className }, { user: props.user });
+                                                return { className, classDef };
+                                            } catch (err) {
+                                                console.error(`Failed to fetch class ${className}:`, err);
+                                                return { className, classDef: null };
+                                            }
+                                        });
+
+                                        const classResults = await Promise.all(classPromises);
+                                        
+                                        // Update classes state once with all results
+                                        const newClasses = {};
+                                        classResults.forEach(({ className, classDef }) => {
+                                            if (classDef && classDef.data.class) {
+                                                newClasses[className] = classDef.data.class;
+                                            }
+                                        });
+                                        
+                                        setClasses(newClasses);
+                                    }
+                                    setError({ success: response.success, message: response.message, seconds:response.seconds, inProgress: false });
                                     let nav_state = {};
                                     if (response.success) {
                                         nav_state = { rows:response.data,...response, user:props.user, class:props.class };
@@ -182,7 +224,7 @@ export default function ObjectSearchForm(props) {
                 <div style={{ gridColumn: "2", width:"100%", height:"100%"}}>
                     <Paper style={{ width:"100%", height:"100%", marginTop:"16px",  paddingBottom:"16px", backgroundColor:"white", border:"var(--rock1) solid 1px", borderRadius:"5px"}}>
                     <h4 style={{  paddingTop:"10px", paddingLeft:"16px"}}>{class_name} Items</h4>
-                    <ObjectsList objects={gridRows} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
+                    <ObjectsList classes={classes} objects={gridRows} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
                     </Paper>
                 </div>
             </div>

@@ -6,11 +6,19 @@
     padding:8px;
     font-style: italic;
     font-family:"Arial";
+    text-align: right;
     position:fixed;
-    right:16px;
-    bottom:16px;
+    right:14px;
+    bottom:24vh;
     z-index:1000;
+    width:30%;
     box-shadow: 0 4px 8px rgba(34, 34, 30, 0.2); /* subtle shadow */
+}
+
+
+.statusTimer
+{
+    margin-left:16px;
 }
 
 .statusOk {

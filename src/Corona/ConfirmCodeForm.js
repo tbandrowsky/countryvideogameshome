@@ -56,7 +56,7 @@ export default function ConfirmCodeForm(props) {
                         async () => {
                             setError({ success: true, message: "Confirming code", inProgress: true });
                             let response = await coronaConfirmUserCode(request);
-                            setError({ success: response.success, message: response.message, inProgress: false });
+                            setError({ success: response.success, message: response.message, seconds: response.seconds, inProgress: false });
                             let nav_state = {};
 
                             if (response.success) {

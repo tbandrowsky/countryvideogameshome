@@ -3,6 +3,10 @@ import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { faAtom } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { faWineBottle } from '@fortawesome/free-solid-svg-icons';
+import { faBrain } from '@fortawesome/free-solid-svg-icons';
+import Button from '@mui/material/Button';
 
 export default function Card(props)
 {
@@ -28,19 +32,19 @@ export default function Card(props)
             <div style={{ gridColumn: "2", gridRow: "2",  display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"near", padding:"16px", overflowY:"auto" }}>
                 {props.children}
             </div>
-            <div style={{ gridColumn: "1 / span 2", gridRow: "3",background:"linear-gradient(270deg, rgba(10, 10, 90, 1) 0%, rgba(10, 10, 35, 1) 100%)", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"right", paddingTop:"8px" }}>
+            <div style={{ gridColumn: "1 / span 2", gridRow: "3",background:"linear-gradient(270deg, rgba(10, 10, 90, 1) 0%, rgba(10, 10, 35, 1) 100%)", display:"flex", flexDirection:"row", alignContent:"center", justifyContent:"right", paddingTop:"8px", gap:"8px" }}>
 
-                <button id="confirmUserButton" style={{ width:"150px", height:"50px" }} onClick={
+                <Button id="confirmUserButton" variant='contained' color="primary" style={{ width:"150px", height:"50px" }} onClick={
                     async () => {
                         nav('/Corona/Login');
                     }
-                }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</button>
+                }><FontAwesomeIcon icon={faSquareCaretRight} />LOGIN</Button>
 
-                <button id="confirmUserButton" style={{ width: "150px", height: "50px" }} onClick={
+                <Button id="confirmUserButton" variant='contained' color="primary" style={{ width: "150px", height: "50px" }} onClick={
                     async () => {
                         nav('/Corona/CreateUser');
                     }
-                }><FontAwesomeIcon icon={faAtom} />ENLIST</button>
+                }><FontAwesomeIcon icon={faAtom} />ENLIST</Button>
 
                 <div style={{ height: "50px", display: "flex", marginRight:"16px", border:"0px" }}>
                     <form action="https://www.paypal.com/donate" method="post" target="_top">

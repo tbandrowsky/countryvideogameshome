@@ -68,7 +68,7 @@ export default function ClassSearchForm(formProps) {
                             redoForm: '/Corona/ClassSearchForm',
                             redoMessage: 'Search failed.'
                         });
-                        setError({ success: response.success, message: response.message, inProgress: false });
+                        setError({ success: response.success, message: response.message, seconds: response.seconds, inProgress: false });
                         nav(response.form, { state: response.form_props });
                     }
                 }>SEARCH</Button>                
