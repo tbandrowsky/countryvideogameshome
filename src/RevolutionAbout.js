@@ -29,13 +29,12 @@ function Corona() {
 
     return (
         <div className="contentbackground" style={{ background: "radial-gradient(circle, #fe917b, #160d0fff)" }}>
-            <TitleBar title="REVOLUTION" style={{ backgroundColor: "black", color: "#A00A00" }} />
+            <TitleBar title="REVOLUTION" style={{ backgroundColor: "black", color: "#B0B0b0" }} />
             <div style={{ display: "grid", gridColumnTemplate: "30% 30% 30%", backgroundColor: "black" }} >
-                <Link style={{ paddingLeft: "16px", gridColumn: "1", textAlign: "left" }} to="/Revolution/Login">LOGIN OR ENLIST</Link>
+                <Link style={{ paddingLeft: "16px", gridColumn: "1", textAlign: "left" }} to="/Corona/Login">LOGIN OR ENLIST</Link>
                 <a style={{ paddingLeft: "16px", gridColumn: "2", textAlign: "left" }} href="downloads/">Downloads</a>
             </div>
-            <div className="contentwrapper" style={{ }}>
-                <div className="content" style={{marginTop:"16px"}}>
+                <div className="content" style={{margin:"auto", marginTop:"30px", height:"85%", width:"70%", minWidth:"300px", paddingBottom:"32px"}}>
                     <Swiper
                         // install Swiper modules
                         modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -47,9 +46,10 @@ function Corona() {
                         scrollbar={{ draggable: true }}
                         onSwiper={(swiper) => console.log(swiper)}
                         onSlideChange={() => console.log('slide change')}
+                        style={{ width:"80%", height:"80%"}}
                     >
                         <SwiperSlide>
-                            <Card image={colonize1} title="CREATE YOUR REVOLUTION">
+                            <Card image={colonize1} title="CREATE YOUR REVOLUTION" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{paddingLeft:"16px"}}>Low Code for Activists.</h3>
                                     <ul>
@@ -63,7 +63,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={govern1} title="FAMILY AND LAND">
+                            <Card image={govern1} title="FAMILY AND LAND" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{ paddingLeft: "16px" }}>Responsibilities.</h3>
                                     <ul>
@@ -77,7 +77,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colony1} title="CREATIVE POSSIBILITES">
+                            <Card image={colony1} title="CREATIVE POSSIBILITES" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{ paddingLeft: "16px" }}>Articles about anything.</h3>
                                     <ul>
@@ -91,7 +91,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colony1} title="ACTION IF YOU WANT IT">
+                            <Card image={colony1} title="ACTION IF YOU WANT IT" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{ paddingLeft: "16px" }}>Ticket system.</h3>
                                     <ul>
@@ -102,7 +102,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={govern1} title="GO LOCAL">
+                            <Card image={govern1} title="GO LOCAL" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{ paddingLeft: "16px" }}>Local networking.</h3>
                                     <ul>
@@ -114,7 +114,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={govern1} title="JUSTICE SYSTEM">
+                            <Card image={govern1} title="JUSTICE SYSTEM" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{ paddingLeft: "16px" }}>Court System.</h3>
                                     <ul>
@@ -128,7 +128,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={govern1} title="PLANS">
+                            <Card image={govern1} title="PLANS" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <h3 style={{ paddingLeft: "16px" }}>Create Timetables.</h3>
                                     <ul>
@@ -142,7 +142,7 @@ function Corona() {
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={survive1} title="SURVIVE THE OCCUPATION">
+                            <Card image={survive1} title="SURVIVE THE OCCUPATION" style={{width:"100%", height:"100%"}}>
                                 <div>
                                     <ul>
                                         <li>DONATE!  Every cent helps.</li>
@@ -156,7 +156,6 @@ function Corona() {
                     </Swiper>
                 </div>
             </div>
-        </div>
     );
 }
 

@@ -13,12 +13,11 @@ export default function Card(props)
     let nav = useNavigate();
     return (
         <div className="card" style={{
-            width: props.width ?? "90%",
-            height: props.height ?? "450px",
+            width: (props.style && props.style.width) ? props.style.width : "90%",
+            height: (props.style && props.style.height) ? props.style.height : "450px",
             display: "grid",
-            marginLeft:"60px",
-            gridTemplateColumns: "250px 1.0fr",
-            gridTemplateRows: "65px 1.0fr 80px",
+            gridTemplateColumns: "minmax(250px,30%) 1fr",
+            gridTemplateRows: "65px 1fr 80px",
             backgroundColor:"#FFFFFF",
             border: "4px solid black",
             boxShadow: "0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",

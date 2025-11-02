@@ -19,14 +19,13 @@ import Paper from '@mui/material/Paper';
 
 export default function ObjectSearchForm(props) {
 
-    const [childrenMap, setChildrenMap] = useState({});
-    const [classes, setClasses] = useState(props.classes||[]);
-    const [rows, setRows] = useState(props.rows||[]);
-    const [request, setRequest] = useState({});
-    const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
-
     let loc = useLocation();
     props = { ...props, ...loc.state };
+    let childrenMap = props.childrenMap || {};
+
+    const [classes, setClasses] = useState(props.classes||[]);
+    const [request, setRequest] = useState({});
+    const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
 
     console.log({ props, "title": "Search" });
 
@@ -85,10 +84,6 @@ export default function ObjectSearchForm(props) {
     }
 
     let nav = useNavigate();
-    let gridRows = [];
-    if (rows && Array.isArray(rows)) {
-        gridRows = rows;
-    }
 
     return (
         <div className="contentbackgroundformrevolution">
@@ -136,21 +131,23 @@ export default function ObjectSearchForm(props) {
                                     },
                                     props.formProps);
 
-                                    if (response.data && Array.isArray(response.data)) {
-                                        const newChildrenMap = {};
+                                    let nav_state = {};
+
+                                    if (response.success &&response.data && Array.isArray(response.data)) {
                                         const uniqueClassNames = new Set();
+
+                                        childrenMap = {};
 
                                         // First, build the children map and collect unique class names
                                         response.data.forEach((obj) => {
                                             if (obj.class_name) {
-                                                if (!(obj.class_name in newChildrenMap)) 
-                                                    newChildrenMap[obj.class_name] = [];
-                                                newChildrenMap[obj.class_name].push(obj);
+                                                if (!(obj.class_name in childrenMap)) {
+                                                    childrenMap[obj.class_name] = [];
+                                                }
+                                                childrenMap[obj.class_name].push(obj);
                                                 uniqueClassNames.add(obj.class_name);
                                             }
                                         });
-
-                                        setChildrenMap(newChildrenMap);
 
                                         // Then fetch class definitions for unique class names
                                         const classPromises = Array.from(uniqueClassNames).map(async (className) => {
@@ -176,10 +173,9 @@ export default function ObjectSearchForm(props) {
                                         setClasses(newClasses);
                                     }
                                     setError({ success: response.success, message: response.message, seconds:response.seconds, inProgress: false });
-                                    let nav_state = {};
                                     if (response.success) {
-                                        nav_state = { rows:response.data,...response, user:props.user, class:props.class };
-                                        setRows(response.data||[]);
+                                        nav_state = { rows:response.data,...response, user:props.user, class:props.class, childrenMap:childrenMap };
+                                        nav(response.form, { state: nav_state });
                                     } else {
                                         nav_state = {...props};
                                         nav(response.form, { state: nav_state });
@@ -200,7 +196,7 @@ export default function ObjectSearchForm(props) {
                             <Button key={index} id="createObject" variant='contained' color="primary" style={{width:"90%"}} onClick={
                                 async () => {
                                     setError({ success: true, message: "Create " + descendant, inProgress: true });
-                                    let response = await coronaEditObject({ class_name: descendant}, {
+                                    let response = await coronaEditObject({ class_name: descendant }, {
                                         successForm: '/Corona/ObjectEdit',
                                         redoForm: '/Corona/Home',
                                         redoMessage: 'Edit Object failed.',
@@ -224,7 +220,7 @@ export default function ObjectSearchForm(props) {
                 <div style={{ gridColumn: "2", width:"100%", height:"100%"}}>
                     <Paper style={{ width:"100%", height:"100%", marginTop:"16px",  paddingBottom:"16px", backgroundColor:"white", border:"var(--rock1) solid 1px", borderRadius:"5px"}}>
                     <h4 style={{  paddingTop:"10px", paddingLeft:"16px"}}>{class_name} Items</h4>
-                    <ObjectsList classes={classes} objects={gridRows} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
+                    <ObjectsList classes={classes} childrenMap={childrenMap} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
                     </Paper>
                 </div>
             </div>

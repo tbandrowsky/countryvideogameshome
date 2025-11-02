@@ -92,7 +92,7 @@ export default function HomeForm(formProps) {
                                 nav_state = { ...props };
                             }
 
-                            setError({ success: response.success, message: response.message, inProgress: false });
+                            setError({ success: response.success, seconds:response.seconds, message: response.message, inProgress: false });
                             nav(response.form, { state: nav_state });
                         }
                     }><FontAwesomeIcon icon={isSelected ? faCheck:faTeamspeak} style={{marginRight:"8px"}}/>{field}</Button>;
@@ -160,7 +160,7 @@ export default function HomeForm(formProps) {
                     return <Button variant="contained" sx={{backgroundColor:field.class_color}}  key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
-                            let response = await coronaEditObject(field, {
+                            let response = await coronaEditObject( {...field, "include_children":true}, {
                                 successForm: '/Corona/ObjectEdit',
                                 redoForm: '/Corona/Home',
                                 redoMessage: 'select failed.',
