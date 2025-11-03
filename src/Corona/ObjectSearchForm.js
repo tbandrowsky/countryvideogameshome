@@ -89,8 +89,8 @@ export default function ObjectSearchForm(props) {
         <div className="contentbackgroundformrevolution">
             <RevolutionBarControl applicationName={props.applicationName} formName={form_name} formNumber="FORM 007" />
             <ErrorControl {...error} />
-            <div style={{display: 'grid', gridTemplateColumns: '400px 1fr', gridTemplateRows:'1fr', marginRight:"16px"}}>
-                <div style={{ gridColumn: '1'}}>
+            <div style={{display: 'grid', gridTemplateColumns: '400px 1fr', gridTemplateRows:'70vh', marginRight:"16px", backgroundColor:"white", borderShadow:"var(--rock1) 0px 0px 4px", borderRadius:"5px", paddingBottom:"16px", paddingTop:"8px", paddingLeft:"16px" }}>
+                <div style={{ gridColumn: '1', gridRow:"1"}}>
                     <EditForm {...edit_props} error={error} style={{ gridColumn: '1' }} >
                     <h4 style={{ marginTop:"16px" }}>Search for {class_name}</h4>
                         <div className="buttonBar" style={{gap:"10px", display:"flex", flexDirection:"row", marginBottom:"16px" }}>
@@ -133,7 +133,7 @@ export default function ObjectSearchForm(props) {
 
                                     let nav_state = {};
 
-                                    if (response.success &&response.data && Array.isArray(response.data)) {
+                                    if (response.success && response.data && Array.isArray(response.data)) {
                                         const uniqueClassNames = new Set();
 
                                         childrenMap = {};
@@ -189,7 +189,7 @@ export default function ObjectSearchForm(props) {
                             }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
                         </div>
                     </EditForm>
-                    <Paper elevation={3} style={{ gridRow:"2", marginLeft:"16px", marginTop:"16px", marginRight:"16px", paddingTop:"4px", paddingBottom:"8px" }}>
+                    <Paper elevation={3} style={{ gridRow:"2", marginLeft:"16px", marginTop:"16px", marginRight:"16px", paddingTop:"4px", paddingBottom:"8px", height:"100%", overflow:"auto" }}>
                     <h4 style={{ marginLeft:"16px", marginTop:"16px", marginBottom:"0px"}}>Create new {class_name}</h4>
                         {classdef && classdef.descendants && classdef.descendants.map( (descendant, index) => (
                             <div key={index} style={{ margin:"8px"}}>
@@ -217,12 +217,10 @@ export default function ObjectSearchForm(props) {
 ))}
                     </Paper>
                 </div>
-                <div style={{ gridColumn: "2", width:"100%", height:"100%"}}>
-                    <Paper style={{ width:"100%", height:"100%", marginTop:"16px",  paddingBottom:"16px", backgroundColor:"white", border:"var(--rock1) solid 1px", borderRadius:"5px"}}>
+                <div style={{ gridColumn: "2", gridRow:"1" }}>
                     <h4 style={{  paddingTop:"10px", paddingLeft:"16px"}}>{class_name} Items</h4>
-                    <ObjectsList classes={classes} childrenMap={childrenMap} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
-                    </Paper>
-                </div>
+                    <ObjectsList classes={classes} childrenMap={childrenMap} user={props.user}  setError={setError} />
+               </div>
             </div>
         </div>
     );

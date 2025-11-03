@@ -40,7 +40,6 @@ export default function ObjectPanel(props) {
                 } style={{width:"250px", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/><ObjectCard field={props.object} use_field={props.use_field} classDef={props.classDef} /></Button>}
 
                 {props.objects && props.objects.map((obj, index) => {
-                    console.log({"panelobject": obj});
                     return <Button variant="contained" color={obj.class_color} key={index} 
                         onClick={
                             async () => {
