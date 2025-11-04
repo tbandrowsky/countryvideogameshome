@@ -244,14 +244,14 @@ export default function ObjectEditForm(props) {
                 auto_grid_rows = true;
             }
             if (class_edit_props.presentation.gridTemplateColumns == "" || class_edit_props.presentation.gridTemplateColumns == null) {
-                class_edit_props.presentation.gridTemplateColumns = "1.0fr";
+                class_edit_props.presentation.gridTemplateColumns = "400px auto";
             }
             edit_props_by_base[classdef.class_name] = class_edit_props;
             let row_id = 1;
 
             let new_edit_field = {
                 row: row_id, 
-                column: 1,
+                column: "1/2",
                 field_type: "chaptersubtitle",
                 text: classdef.class_description
             };
