@@ -121,7 +121,6 @@ export default function ObjectEditForm(props) {
                 field_type: "chaptersubtitle", 
                 text: class_description  };
 
-            class_edit_props.body_fields.push( new_edit_field );
             row_id += 1;
             if (auto_grid_rows) {
                 class_edit_props.presentation.gridTemplateRows = class_edit_props.presentation.gridTemplateRows +rowSize;
@@ -256,7 +255,6 @@ export default function ObjectEditForm(props) {
                 text: classdef.class_description
             };
 
-            class_edit_props.body_fields.push( new_edit_field );
             row_id += 1;
             if (auto_grid_rows) {
                 class_edit_props.presentation.gridTemplateRows = class_edit_props.presentation.gridTemplateRows +rowSize;
@@ -348,8 +346,8 @@ export default function ObjectEditForm(props) {
                                 {final_classes.map((classname, idx) => <Tab key={idx}>{classname}</Tab>)}
                                 {Object.keys(childFields).map((fieldName, idx) => <Tab key={idx}>{fieldName}</Tab>)}
                             </TabList>
-                                {final_classes.map((classname, idx) => <TabPanel key={idx}>                
-                                    <EditForm {...edit_props_by_base[classname]} error={error} style={{ gridColumn: '1', gridRow:"2" }} ></EditForm>
+                                {final_classes.map((classname, idx) => <TabPanel style={{ height:"100%", overflow:"auto" }}  key={idx}>                
+                                    <EditForm {...edit_props_by_base[classname]} error={error} ></EditForm>
                                 </TabPanel>)}
 
                                 {Object.keys(childFields).map((fieldName, idx) => {

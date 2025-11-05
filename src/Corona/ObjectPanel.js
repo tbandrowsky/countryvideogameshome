@@ -24,7 +24,7 @@ export default function ObjectPanel(props) {
                         let response = await coronaEditObject( { ...props.object, "include_children":true }, {
                             successForm: '/Corona/ObjectEdit',
                             redoForm: '/Corona/Home',
-                            redoMessage: 'select failed.',
+                            redoMessage: 'Edit failed.',
                             formProps: props
                         });
                         let nav_state = {};
@@ -37,17 +37,17 @@ export default function ObjectPanel(props) {
                         console.log({"edit object nav_state":nav_state});
                         nav(response.form, { state: nav_state });
                     }
-                } style={{width:"250px", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/><ObjectCard field={props.object} use_field={props.use_field} classDef={props.classDef} /></Button>}
+                } style={{width:"400x", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/><ObjectCard field={props.object} use_field={props.use_field} classDef={props.classDef} /></Button>}
 
                 {props.objects && props.objects.map((obj, index) => {
-                    return <Button variant="contained" color={obj.class_color} key={index} 
+                    return <Button variant="contained" color={obj.class_color} style={{marginLeft:"8px", justifyContent:"flex-start"}} key={index} 
                         onClick={
                             async () => {
                                 props.setError({ success: true, message: "Edit " + obj.class_name, inProgress: true });
                                 let response = await coronaEditObject({ ...obj, "include_children":true }, {
                                     successForm: '/Corona/ObjectEdit',
                                     redoForm: '/Corona/Home',
-                                    redoMessage: 'select failed.',
+                                    redoMessage: 'Edit failed.',
                                     formProps: props
                                 });
                                 let nav_state = {};
@@ -61,8 +61,7 @@ export default function ObjectPanel(props) {
                                 nav(response.form, { state: nav_state });
                             }
                         } 
-                        style={{width:"250px", marginBottom:"8px", marginRight:"18px"}}>
-                            <FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/>
+                        style={{width:"400px", marginBottom:"8px", marginRight:"18px"}}>
                             <ObjectCard use_field={props.use_field} obj={obj} classDef={props.classDef} />
                     </Button>
                 }
