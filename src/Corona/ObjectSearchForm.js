@@ -109,10 +109,10 @@ export default function ObjectSearchForm(props) {
                                             "class_name": "filter",
                                             "input":classdef.class_name,
                                             "condition": { 
-                                                    "class_name": "any", 
-                                                    "conditions" :[]
+                                                    "class_name": "all", 
+                                                    "conditions" :[ { class_name:"allow_all"}]
                                             },
-                                            "output": "result"
+                                            "name": "result"
                                         }]
                                     };
                                     let start = get_value("start_date");
