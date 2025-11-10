@@ -49,54 +49,56 @@ function Corona() {
                         style={{ width:"80%", height:"80%"}}
                     >
                         <SwiperSlide>
-                            <Card image={colonize1} title="CREATE YOUR REVOLUTION" style={{width:"100%", height:"100%"}}>
+                            <Card image={colonize1} title="EXPLORE YOUR COUNTY" style={{width:"100%", height:"100%"}}>
                                 <div>
-                                    <h3 style={{paddingLeft:"16px"}}>Low Code for Activists.</h3>
+                                    <h3 style={{paddingLeft:"16px"}}>County search.</h3>
                                     <ul>
-                                        <li>Create widespread teams with a shared goal.</li>
-                                        <li>Baked in query and analytics.</li>
-                                        <li>Geospatial resources.</li>
-                                        <li>Create any organization easily.</li>
-                                        <li>Modify instantly.</li>
+                                        <li>Search county demographics and grants.</li>
+                                        <li>Zip code database.</li>
+                                        <li>Population and education.</li>
+                                        <li>More data all the time.</li>
+                                        <li>Record your own stories.</li>
+                                        <li>Share how tos.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={govern1} title="FAMILY AND LAND" style={{width:"100%", height:"100%"}}>
+                            <Card image={govern1} title="FOLLOW THE MONEY" style={{width:"100%", height:"100%"}}>
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Responsibilities.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Candidates.</h3>
                                     <ul>
-                                        <li>Track your people from family to acquaintances</li> 
-                                        <li>Track you property, multiple buildings</li>
-                                        <li>Insure everything you have and you know</li>
-                                        <li>Integrated process from quote to claims.</li>
-                                        <li>Modify instantly.</li>
+                                        <li>Find out what candidates are in your county</li> 
+                                        <li>What committees support your candidates</li>
+                                        <li>Whose donating to these committees</li>
+                                        <li>Who donors are donating to.</li>
+                                        <li>Ticketing and stories.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colony1} title="CREATIVE POSSIBILITES" style={{width:"100%", height:"100%"}}>
+                            <Card image={colony1} title="MODELLING" style={{width:"100%", height:"100%"}}>
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Articles about anything.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Manage models.</h3>
                                     <ul>
-                                        <li>A number of predefined topics</li>
-                                        <li>define your own.</li>
-                                        <li>uses markdown.</li>
-                                        <li>comments on articles.</li>
-                                        <li>full text searchable.</li>
+                                        <li>EXE custom filters and classes</li>
+                                        <li>Models for anything.</li>
+                                        <li>Comments.</li>
+                                        <li>Ticketing and stories.</li>
                                     </ul>
                                 </div>
                             </Card>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Card image={colony1} title="ACTION IF YOU WANT IT" style={{width:"100%", height:"100%"}}>
+                            <Card image={colony1} title="COURT SYSTEM" style={{width:"100%", height:"100%"}}>
                                 <div>
-                                    <h3 style={{ paddingLeft: "16px" }}>Ticket system.</h3>
+                                    <h3 style={{ paddingLeft: "16px" }}>Court workflow.</h3>
                                     <ul>
-                                        <li>Tickets for each team, to and from</li>
-                                        <li>Old school timetable plans.</li>
+                                        <li>Lawyers, clients and staff</li>
+                                        <li>Pleas and motions</li>
+                                        <li>Case management</li>
+                                        <li>Issue arrest, search and seizure warrants</li>
                                     </ul>
                                 </div>
                             </Card>

@@ -42,7 +42,7 @@ export default function ObjectSearchForm(props) {
 
     let edit_props = {
         presentation: {
-            gridTemplateRows: "60px",
+            gridTemplateRows: "20px 20px auto",
             gridTemplateColumns: "40% 40%",
             gap: "20px"
         },
@@ -60,9 +60,6 @@ export default function ObjectSearchForm(props) {
 
     let edit_field_names = [];
 
-    edit_props.body_fields.push( { json_field_name: "search_text", row: 1, column:"1/3", field_type: "string", format: "", placeholder: "Search:", max_length: 200, min_length: 0 });
-    edit_props.body_fields.push( { json_field_name: "start_date", row: 2, column:'1', field_type: "datetime", format: "", placeholder: "From:", max_length: 200, min_length: 0 });
-    edit_props.body_fields.push( { json_field_name: "stop_date", row: 2, column:'2', field_type: "datetime", format: "", placeholder: "To:", max_length: 200, min_length: 0 });
 
     if (classdef) {
         // main fields
@@ -70,7 +67,11 @@ export default function ObjectSearchForm(props) {
         class_name = classdef.class_name;
         form_name = class_name.toUpperCase();
         class_description = classdef.description;
-        
+        edit_props.body_fields.push( { text: class_name + " (" + classdef.object_count + " objects)", row: 1, column:"1/3", field_type: "chaptersubtitle"  });
+        edit_props.body_fields.push( { json_field_name: "search_text", row: 2, column:"1/3", field_type: "string", format: "", placeholder: "Search:", max_length: 200, min_length: 0 });
+        edit_props.body_fields.push( { json_field_name: "start_date", row: 3, column:'1', field_type: "datetime", format: "", placeholder: "From:", max_length: 200, min_length: 0 });
+        edit_props.body_fields.push( { json_field_name: "stop_date", row:3, column:'2', field_type: "datetime", format: "", placeholder: "To:", max_length: 200, min_length: 0 });
+
         for (const fieldname in classdef.fields) {
             let field = classdef.fields[fieldname];
             edit_props.presentation.gridTemplateRows += "60px";

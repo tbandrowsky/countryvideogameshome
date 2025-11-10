@@ -46,27 +46,28 @@ export default function ObjectEditForm(props) {
 
 
     let rowSize = " 60px";
-    let childFields = {
-    };
 
     let form_name = "EDIT";
     let class_name = "object";
     let class_description = "This is an object"
     let class_order = [];
-    let edit_props_by_base = {
 
-    };
+    let this_object_tabs = [];
+    let child_object_tabs = [];
+    let query_tabs = [];    
 
     let all_classes = props.data.classes || {};
 
     let current_class = "";
     let number_of_classes = Object.keys(all_classes).length;
     
+
+    // this part deals with setting up edit tabs for "this_object"
     // find our class then work to the base.
 
     current_class = objdef.class_name;
 
-    let classorder = [  ];
+    let classorder = [ current_class ];
     let base_found = true;
     while (base_found) {
         base_found = false;
@@ -82,9 +83,14 @@ export default function ObjectEditForm(props) {
     let class_edit_props = {};
     let auto_grid_rows = false;
 
+    let object_tab = {};
+
     for (const classname of classorder) {
         let classdef = all_classes[classname];
         if (classdef) {
+
+
+            object_tab = { "name": classdef.class_name, "description": classdef.class_description, "edit_props": {} };
             // main fields
             // the last one is the base class so this works
             class_description = classdef.class_description;
@@ -112,7 +118,7 @@ export default function ObjectEditForm(props) {
             if (class_edit_props.presentation.gridTemplateColumns == "" || class_edit_props.presentation.gridTemplateColumns == null) {
                 class_edit_props.presentation.gridTemplateColumns = "1.0fr";
             }
-            edit_props_by_base[class_name] = class_edit_props;
+            object_tab.edit_props = class_edit_props;
             let row_id = 1;
 
             let new_edit_field = {
@@ -158,10 +164,17 @@ export default function ObjectEditForm(props) {
                         class_edit_props.presentation.gridTemplateRows = class_edit_props.presentation.gridTemplateRows +rowSize;
                     }
                 }
-                else if (field.field_type == "array" || field.field_type == "object" || field.field_type == "query") {
+                else if (field.field_type === "array" || field.field_type === "object" || field.field_type === "query") {
                     let item = objdef.hasOwnProperty(field.field_name) ? objdef[ field.field_name ] : [];
-                    childFields[field.field_name] =  { objects:item, childrenMap: {}, classes: props.data.child_classes };
-                    let childrenMap = childFields[field.field_name].childrenMap;
+                    let childrenMap ={};
+                    let child_tab = { name: field.label || field.field_name, description: field.description || "", edit_props: {}, objects:item, childrenMap: childrenMap, classes: props.data.child_classes }
+                    child_object_tabs.push( child_tab );
+
+                    if (field.child_objects && field.child_objects.base_constructors)
+                    {
+                        child_tab.tab_create = field.child_objects.base_constructors;
+                    }
+
                     if (Array.isArray(item)) {
                         for (let i = 0; i < item.length; i++) {
                             let childobj = item[i];
@@ -187,119 +200,15 @@ export default function ObjectEditForm(props) {
                     }
                 }
             }
+
+            if (object_tab.edit_props.body_fields.length > 0) {
+                this_object_tabs.push( object_tab );
+            }
+
             last_class_fields = classdef.fields;
         }
     }
 
-    classorder.reverse();
-    
-    let final_classes = [];
-    for (const classname of classorder) {
-
-        if (all_classes[classname].display == "none") {
-            continue;
-        }
-        let edit_props = edit_props_by_base[classname];
-        if (edit_props.body_fields.length == 1) {
-            // only the chapter title - skip
-            continue;
-        }
-        final_classes.push(classname);
-    }
-
-
-    for (const child_field of Object.keys(childFields)) {
-        if (childFields[child_field].objects.length === 1 && childFields[child_field].objects[0].class_name > '') {
-            let child_object = childFields[child_field];
-            auto_grid_rows = false;
-            let classdef = child_object.classes[ child_object.objects[0].class_name ];
-
-            const child_put_value = (json_field_name, value) => {
-                child_object.objects[0][json_field_name] = value;
-            };
-
-            const child_get_value = (json_field_name) => {
-                if (json_field_name in child_object.objects[0])
-                    return child_object.objects[0][json_field_name];
-                else
-                    return "";
-            }
-
-            class_edit_props = {
-                body_fields: [],
-                presentation: {
-                    "classdef": classdef,
-                    gridTemplateRows: child_object.grid_template_rows,
-                    gridTemplateColumns: child_object.grid_template_columns,
-                    gap: "10px",
-                    padding: "10px"
-                },
-                "put_value": child_put_value,
-                "get_value": child_get_value
-            };
-
-            if (class_edit_props.presentation.gridTemplateRows == "" || class_edit_props.presentation.gridTemplateRows == null) {
-                class_edit_props.presentation.gridTemplateRows = "";
-                auto_grid_rows = true;
-            }
-            if (class_edit_props.presentation.gridTemplateColumns == "" || class_edit_props.presentation.gridTemplateColumns == null) {
-                class_edit_props.presentation.gridTemplateColumns = "400px auto";
-            }
-            edit_props_by_base[classdef.class_name] = class_edit_props;
-            let row_id = 1;
-
-            let new_edit_field = {
-                row: row_id, 
-                column: "1/2",
-                field_type: "chaptersubtitle",
-                text: classdef.class_description
-            };
-
-            row_id += 1;
-            if (auto_grid_rows) {
-                class_edit_props.presentation.gridTemplateRows = class_edit_props.presentation.gridTemplateRows +rowSize;
-            }
-
-            for (const fieldname in classdef.fields) {
-
-                if (last_class_fields.hasOwnProperty(fieldname)) {
-                    // already processed in a base class
-                    continue;
-                }
-
-                let field = classdef.fields[fieldname];
-                let field_class = field.field_class;
-                
-                if (field.field_type === 'string' || field.field_type === 'number' ||field.field_type === 'double' || field.field_type === 'boolean' || field.field_type === 'datetime') {
-                    let new_edit_field = { json_field_name: field.field_name, 
-                        row: field.grid_row, 
-                        column: field.grid_column, 
-                        field_type: field.field_type, 
-                        format: field.field_format, 
-                        placeholder: field.placeholder || field.label || field.field_name, 
-                        max_length: field.max_length,                         
-                        min_length: field.min_length };
-
-                    if (field.grid_row =="" || field.grid_row == null) {
-                        new_edit_field.row = row_id;
-                    }
-                    if (field.grid_column =="" || field.grid_column == null) {
-                        new_edit_field.column = 1;
-                    }
-                    class_edit_props.body_fields.push( new_edit_field );
-                    row_id += 1;
-                    if (auto_grid_rows) {
-                        class_edit_props.presentation.gridTemplateRows = class_edit_props.presentation.gridTemplateRows +rowSize;
-                    }
-                }
-            }
-
-            child_object.edit_props = class_edit_props;
-
-        }
-    }
-
-    console.log({ childFields });
 
     let nav = useNavigate();
     let run_object = { "data" : request };
@@ -343,29 +252,23 @@ export default function ObjectEditForm(props) {
                     <Paper style={{ margin:"16px", paddingBottom:"16px", paddingTop:"16px", paddingLeft:"16px", paddingRight:"16px", height:"100%" }}>
                         <Tabs style={{width:"100%", height:"80%"}}>
                             <TabList>
-                                {final_classes.map((classname, idx) => <Tab key={idx}>{classname}</Tab>)}
-                                {Object.keys(childFields).map((fieldName, idx) => <Tab key={idx}>{fieldName}</Tab>)}
+                                {this_object_tabs.map((tab_data, idx) => <Tab key={idx}>{tab_data.name}</Tab>)}
+                                {child_object_tabs.map((tab_data, idx) => <Tab key={idx}>{tab_data.name}</Tab>)}
+                                {query_tabs.map((tab_data, idx) => <Tab key={idx}>{tab_data.name}</Tab>)}
                             </TabList>
-                                {final_classes.map((classname, idx) => <TabPanel style={{ height:"100%", overflow:"auto" }}  key={idx}>                
-                                    <EditForm {...edit_props_by_base[classname]} error={error} ></EditForm>
+                                {this_object_tabs.map((tab_data, idx) => 
+                                <TabPanel style={{ height:"75%", overflow:"auto" }}  key={idx}>                
+                                    <EditForm {...tab_data.edit_props} error={error} ></EditForm>
                                 </TabPanel>)}
 
-                                {Object.keys(childFields).map((fieldName, idx) => {
-                                let childObjects = childFields[fieldName];
-                                if (childObjects.objects.length == 1) {
-                                    return (
-                                        <TabPanel style={{ height:"100%", overflow:"auto" }} >
-                                            <EditForm {...childObjects.edit_props} error={error}  ></EditForm>
-                                        </TabPanel>
-                                    );
-                                }
-                                else return (
-                                        <TabPanel style={{ height:"100%", overflow:"auto" }} >
-                                        <div style={{ display:"flex", flexDirection:"row", flexGrow:1, flexWrap:"wrap", overflowY:"scroll" }}>
-                                            <ObjectsList classes={childObjects.classes} childrenMap={childObjects.childrenMap} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
-                                        </div>
-                                    </TabPanel>
-                            )}) }
+                                {child_object_tabs.map((tab_data, idx) => 
+                                <TabPanel style={{ height:"75%", overflow:"auto" }} >
+                                            <div key={idx} style={{ display:"flex", flexDirection:"row", flexGrow:1, flexWrap:"wrap", overflowY:"scroll" }}>
+                                                <ObjectsList classes={tab_data.classes} childrenMap={tab_data.childrenMap} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
+                                            </div>
+                                </TabPanel>
+                                )}
+
                         </Tabs>
                     </Paper>
                 </div>

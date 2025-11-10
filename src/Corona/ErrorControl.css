@@ -1,15 +1,15 @@
 
 .statusCommon {
     margin:0px;
-    background-color: #20202050;
-    border-color: #101010F0;
+    background-color: #202020D0;
+    border-color: #101010;
     padding:8px;
-    font-style: italic;
+    font-style: normal;
     font-family:"Arial";
     text-align: right;
     position:fixed;
-    right:14px;
-    bottom:24vh;
+    right:32px;
+    bottom:20vh;
     z-index:1000;
     width:30%;
     box-shadow: 0 4px 8px rgba(34, 34, 30, 0.2); /* subtle shadow */

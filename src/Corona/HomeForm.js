@@ -61,12 +61,21 @@ export default function HomeForm(formProps) {
             combinedPermissions.push(perm);
         });
     }
-    if (props.user.home_team && props.user.home_team.permissions) {
-        props.user.home_team.permissions.forEach(perm => {
-            combinedPermissions.push(perm);
-        });
-    }
+ 
+    
     let referenced_classes = {};
+    let filteredMap = [];
+
+    combinedPermissions.map((perm,index) => {
+        let tempFilteredMap = Object.keys(perm.all_granted_classes);
+        for (let i=0;i<tempFilteredMap.length;i++) {
+            let base_name = tempFilteredMap[i];
+            if (!(base_name in referenced_classes)) {
+                filteredMap.push(base_name);
+                referenced_classes[base_name] = perm;
+            }
+        }
+    });
 
     return (
         <div className="contentbackgroundformrevolution">
@@ -109,29 +118,24 @@ export default function HomeForm(formProps) {
                     <Tab>Data</Tab>
                     <Tab>Inventory</Tab>
                 </TabList>
-                    <TabPanel style={{overflow:"auto"}}>
-            {(combinedPermissions && combinedPermissions.length > 0) &&
-                <div className="sectionbuttons"> 
-                  {combinedPermissions.map((perm,index) => {
-                    let tempFilteredMap = Object.keys(perm.all_granted_classes);
-                    let filteredMap = [];                    
-                    for (let i=0;i<tempFilteredMap.length;i++) {
-                        let base_name = tempFilteredMap[i];
-                        if (!(base_name in referenced_classes)) {
-                            filteredMap.push(base_name);
-                            referenced_classes[base_name] = true;
-                        }
-                    }
-                    if (perm.put !== "any" && perm.put !== "team") filteredMap = [];
-                    return (
-                    <div key={index}>
-                        {filteredMap && filteredMap.map((base_name,index2) => {
-                            let fields = [];
-                            if (perm.all_granted_classes[base_name]) {
-                                fields = fields.concat(perm.all_granted_classes[base_name]);
+                    <TabPanel>
+            {(filteredMap && filteredMap.length > 0) &&
+                <div className="sectionbuttons" style={{height:"50vh", overflow:"auto"}}> 
+                    <div>
+                        {filteredMap.map((base_name,index2) => {
+                            let dataclasses = [ base_name];
+                            let perm = referenced_classes[base_name];
+                            if (perm) {
+                                let permkeys = perm.all_granted_classes[base_name];
+                                for (let i=0;i<permkeys.length;i++) {
+                                    let class_name = permkeys[i];
+                                    if (class_name != base_name) {
+                                        dataclasses.push(class_name);
+                                    }
+                                }
                             }
-                            return <div style={{flexDirection:"row", display:"flex", flexWrap:"wrap", gap:"8px"}}>
-                                {fields.map((field, index3) => {                            
+                            return <div key={index2} style={{flexDirection:"row", display:"flex", flexWrap:"wrap", gap:"8px"}}>
+                                {dataclasses.map((field, index3) => {                            
                                 return (<Button variant="contained" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} sx={{backgroundColor:(perm.class_colors && perm.class_colors.hasOwnProperty(base_name)) ? perm.class_colors[base_name] : props.user.home_team.class_color}}  onClick={
                                 async () => {
                                     setError({ success: true, message: "Editing " + field, inProgress: true });
@@ -149,10 +153,10 @@ export default function HomeForm(formProps) {
                                     }
                                     setError({ success: response.success, message: response.message, inProgress: false });
                                     nav(response.form, { state: nav_state });
-                                }}><FontAwesomeIcon icon={faDatabase} style={{marginRight:"8px"}}/>{field}</Button>);
+                                }}><FontAwesomeIcon icon={faDatabase} style={{marginRight:"8px"}}/>{field}</Button>);                                
                             })}</div>})}
-                    </div>)})}
-                  </div>}
+                      </div>
+                </div>}
                   </TabPanel>    
 <TabPanel style={{overflow:"auto"}}>
                       <div className="sectionbuttons">
