@@ -10,15 +10,11 @@ import ObjectsList from './ObjectsList.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical, faSquareCaretLeft, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faAdd, faSquareCaretLeft, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from "react-router-dom";
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Button';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { coronaRunObject } from './Service.js';
+import { coronaEditObject, coronaRunObject } from './Service.js';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
@@ -150,7 +146,8 @@ export default function ObjectEditForm(props) {
                         format: field.field_format, 
                         placeholder: field.placeholder || field.label || field.field_name, 
                         max_length: field.max_length,                         
-                        min_length: field.min_length };
+                        min_length: field.min_length,
+                        "display": field.display || ''};
 
                     if (field.grid_row =="" || field.grid_row == null) {
                         new_edit_field.row = row_id;
@@ -159,20 +156,36 @@ export default function ObjectEditForm(props) {
                         new_edit_field.column = 1;
                     }
                     class_edit_props.body_fields.push( new_edit_field );
-                    row_id += 1;
                     if (auto_grid_rows) {
+                        if (field.display === 'markdown') { 
+                            new_edit_field.grid_row = new_edit_field.row + " / span 4";
+                            row_id += 3;
+                        }
                         class_edit_props.presentation.gridTemplateRows = class_edit_props.presentation.gridTemplateRows +rowSize;
                     }
+                    row_id += 1;
                 }
                 else if (field.field_type === "array" || field.field_type === "object" || field.field_type === "query") {
                     let item = objdef.hasOwnProperty(field.field_name) ? objdef[ field.field_name ] : [];
                     let childrenMap ={};
                     let child_tab = { name: field.label || field.field_name, description: field.description || "", edit_props: {}, objects:item, childrenMap: childrenMap, classes: props.data.child_classes }
-                    child_object_tabs.push( child_tab );
 
-                    if (field.child_objects && field.child_objects.base_constructors)
+                    if (field.field_type === "query") {
+                        query_tabs.push( child_tab );
+                    } 
+                    else {
+                        child_object_tabs.push( child_tab );
+                    }
+
+                    if (field.child_objects)
                     {
-                        child_tab.tab_create = field.child_objects.base_constructors;
+                        child_tab.tab_create = [];
+                        let child_classes = Object.keys(field.child_objects);
+                        for (let i = 0; i < child_classes.length; i++) {
+                            let xclass_name = child_classes[i];
+                            child_tab.tab_create.push( field.child_objects[xclass_name] );
+                        }
+                        console.log( { "Child Object field": field, child_classes, child_tab });
                     }
 
                     if (Array.isArray(item)) {
@@ -209,6 +222,7 @@ export default function ObjectEditForm(props) {
         }
     }
 
+    console.log({ this_object_tabs, child_object_tabs,  query_tabs });
 
     let nav = useNavigate();
     let run_object = { "data" : request };
@@ -263,11 +277,40 @@ export default function ObjectEditForm(props) {
 
                                 {child_object_tabs.map((tab_data, idx) => 
                                 <TabPanel style={{ height:"75%", overflow:"auto" }} >
-                                            <div key={idx} style={{ display:"flex", flexDirection:"row", flexGrow:1, flexWrap:"wrap", overflowY:"scroll" }}>
-                                                <ObjectsList classes={tab_data.classes} childrenMap={tab_data.childrenMap} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
-                                            </div>
-                                </TabPanel>
-                                )}
+                                    <div className="button_bar" style={{ display:"flex", flexDirection:"row", flexWrap:"wrap", marginBottom:"8px" }}>
+                        {tab_data.tab_create && tab_data.tab_create.map( (child, index) => (                            
+                            <Button key={index} id="createObject" variant='contained' color="primary" style={{width:"250px"}} onClick={
+                                async () => {
+                                    setError({ success: true, message: "Create " + child.child_class_name, inProgress: true });
+                                    let response = await coronaEditObject({ class_name: child.child_class_name }, {
+                                        successForm: '/Corona/ObjectEdit',
+                                        redoForm: '/Corona/Home',
+                                        redoMessage: 'Edit Object failed.',
+                                        formProps: props
+                                    });
+                                    let nav_state = {};
+                                    if (response.success) {
+                                        nav_state = { user:props.user, ...response };
+                                    } else {
+                                        nav_state = { ...props };
+                                    }
+                                    setError({ success: response.success, message: response.message, inProgress: false });
+                                    console.log({"edit object nav_state":nav_state});
+                                    nav(response.form, { state: nav_state });
+                                }
+                            }><FontAwesomeIcon icon={faAdd} />{child.child_class_name}</Button>
+))}
+</div>
+</TabPanel>
+                        )}
+
+                        {query_tabs.map((tab_data, idx) => 
+                        <TabPanel style={{ height:"75%", overflow:"auto" }} >
+                                    <div key={idx} style={{ display:"flex", flexDirection:"row", flexGrow:1, flexWrap:"wrap", overflowY:"scroll" }}>
+                                        <ObjectsList classes={tab_data.classes} childrenMap={tab_data.childrenMap} user={props.user} style={{  overflowY:"auto", width:"calc(100% - 64px)", height:"calc(100% - 96px)" }} setError={setError} />
+                                    </div>
+                        </TabPanel>
+                        )}
 
                         </Tabs>
                     </Paper>

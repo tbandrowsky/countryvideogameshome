@@ -1,4 +1,3 @@
-
 import '../App.css'
 import '../index.css'
 import InputMask from 'react-input-mask';
@@ -6,7 +5,8 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import ValidationError from './ValidationError';
 import Input from '@mui/material/Input';
-
+import MDEditor from "@uiw/react-md-editor";
+import React from "react";
 export default function TextEditField(props)
 {
     let placeholder = '';
@@ -95,6 +95,14 @@ export default function TextEditField(props)
             />
             {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
         </div>;
+    }
+    else if ('display' in field_props && field_props.display === 'markdown') {
+            return <MDEditor.Markdown source={props.get_value(json_field_name)} style={{ width: '100%' }} 
+            onChange={(e) => {
+                props.put_value(json_field_name, e.target.value);
+            }}
+            />;
+            {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
     }
     else
     {
