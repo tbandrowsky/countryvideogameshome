@@ -11,35 +11,35 @@ import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faAdd, faSquareCaretLeft, faPlay } from '@fortawesome/free-solid-svg-icons';
-import { useLocation } from "react-router-dom";
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { coronaEditObject, coronaRunObject } from './Service.js';
+import { coronaGetCurrent, coronaGoHome, coronaEditObject, coronaGoFoward, coronaRunObject } from './Service.js';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
 
 
 export default function ObjectEditForm(props) {
 
-    let loc = useLocation();
-    props = { ...props, ...loc.state };
 
+    let current_state = coronaGetCurrent();
+    console.log({ 'ObjectEditForm': { props, current_state } });
 
-    const [request, setRequest] = useState({ ...props.data.object });
+    const [data, setData] = useState(current_state.data.object);
     const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
 
     const put_value = (json_field_name, value) => {
-        setRequest(prev => ({ ...prev, [json_field_name]: value }));
+        setData(prev => ({ ...prev, data: { ...prev.data, [json_field_name]: value } }));
     };
 
     const get_value = (json_field_name) => {
-        if (json_field_name in request)
-            return request[json_field_name];
+        if (json_field_name in data.data)
+            return data.data[json_field_name];
         else
             return "";
     }
 
-    let objdef = props.data.object;
+    console.log({ 'ObjectEditForm': { props, data } });
 
+    let objdef = data.data.object;
 
     let rowSize = " 60px";
 
@@ -52,16 +52,19 @@ export default function ObjectEditForm(props) {
     let child_object_tabs = [];
     let query_tabs = [];    
 
-    let all_classes = props.data.classes || {};
+    let all_classes = data.data.classes || {};
 
     let current_class = "";
     let number_of_classes = Object.keys(all_classes).length;
     
+    let edit_request = {};
 
     // this part deals with setting up edit tabs for "this_object"
     // find our class then work to the base.
 
     current_class = objdef.class_name;
+    let master_class_name = objdef.class_name;
+    let master_object_id = objdef.object_id;
 
     let classorder = [ current_class ];
     let base_found = true;
@@ -115,7 +118,8 @@ export default function ObjectEditForm(props) {
                 class_edit_props.presentation.gridTemplateColumns = "1.0fr";
             }
             object_tab.edit_props = class_edit_props;
-            let row_id = 1;
+            let row_id = 0;
+            let tab_index = 0;
 
             let new_edit_field = {
                 row: row_id, 
@@ -139,6 +143,7 @@ export default function ObjectEditForm(props) {
                 let field_class = field.field_class;
                 
                 if (field.field_type === 'string' || field.field_type === 'number' ||field.field_type === 'double' || field.field_type === 'boolean' || field.field_type === 'datetime') {
+                    tab_index += 1;
                     let new_edit_field = { json_field_name: field.field_name, 
                         row: field.grid_row, 
                         column: field.grid_column, 
@@ -147,6 +152,7 @@ export default function ObjectEditForm(props) {
                         placeholder: field.placeholder || field.label || field.field_name, 
                         max_length: field.max_length,                         
                         min_length: field.min_length,
+                        tab_index : field.tabindex || tab_index,
                         "display": field.display || ''};
 
                     if (field.grid_row =="" || field.grid_row == null) {
@@ -185,7 +191,6 @@ export default function ObjectEditForm(props) {
                             let xclass_name = child_classes[i];
                             child_tab.tab_create.push( field.child_objects[xclass_name] );
                         }
-                        console.log( { "Child Object field": field, child_classes, child_tab });
                     }
 
                     if (Array.isArray(item)) {
@@ -225,7 +230,7 @@ export default function ObjectEditForm(props) {
     console.log({ this_object_tabs, child_object_tabs,  query_tabs });
 
     let nav = useNavigate();
-    let run_object = { "data" : request };
+    let run_object = { "data" : objdef };
 
     return (
         <div className="contentbackgroundformrevolution">
@@ -243,20 +248,16 @@ export default function ObjectEditForm(props) {
                                     redoMessage: 'Run failed.',
                                     formProps: props
                                 });
-                                let nav_state = {};
                                 if (response.success) {
-                                    nav_state = { user:props.user, ...response };
-                                } else {
-                                    nav_state = { ...props };
-                                }
+                                    setData(response.data);
+                                } 
                                 setError({ success: response.success, message: response.message, inProgress: false });
-                                console.log({"edit object nav_state":nav_state});
-                                nav(response.form, { state: nav_state });
                             }
                         }><FontAwesomeIcon icon={faPlay} />RUN</Button>
                         <Button id="cancelButton" variant="contained" onClick={
                             async () => {
                                 console.log( {"cancel / home with":props});
+                                coronaGoHome({name: 'Home', type:'home',path:'/Corona/Home', response:{}});
                                 nav('/Corona/Home', {state:{...props} } );
                             }
                         }><FontAwesomeIcon icon={faSquareCaretLeft} />HOME</Button>
@@ -282,21 +283,24 @@ export default function ObjectEditForm(props) {
                             <Button key={index} id="createObject" variant='contained' color="primary" style={{width:"250px"}} onClick={
                                 async () => {
                                     setError({ success: true, message: "Create " + child.child_class_name, inProgress: true });
-                                    let response = await coronaEditObject({ class_name: child.child_class_name }, {
+                                    edit_request = { class_name: child.child_class_name };
+                                    if (child.copy_values) {
+                                        let temp = Object.keys( child.copy_values );
+                                        for (let i=0;i<temp.length;i++) {
+                                            let key = temp[i];
+                                            edit_request[key] = objdef[ child.copy_values[key] ];
+                                        }
+                                    }
+                                    let response = await coronaEditObject( {data:edit_request}, {
                                         successForm: '/Corona/ObjectEdit',
                                         redoForm: '/Corona/Home',
                                         redoMessage: 'Edit Object failed.',
                                         formProps: props
                                     });
-                                    let nav_state = {};
                                     if (response.success) {
-                                        nav_state = { user:props.user, ...response };
-                                    } else {
-                                        nav_state = { ...props };
-                                    }
+                                        coronaGoFoward({name: edit_request.class_name, type:'object', path:'/Corona/ObjectEdit', request: {data:edit_request}, data:response.data});
+                                    } 
                                     setError({ success: response.success, message: response.message, inProgress: false });
-                                    console.log({"edit object nav_state":nav_state});
-                                    nav(response.form, { state: nav_state });
                                 }
                             }><FontAwesomeIcon icon={faAdd} />{child.child_class_name}</Button>
 ))}

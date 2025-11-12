@@ -8,7 +8,7 @@ function MenuBar() {
         <div className="countryvideogamesnavigation" >
             <Caption />
             <div className="countrylinks2">
-                <Link to="/RevolutionAbout">REVOLUTION</Link>
+                <Link to="/DeveloperAbout">DEVELOPERS</Link>
                 <Link to="/ColorParty">COLOR PARTY</Link>
                 <Link to="/News">NEWS</Link>
                 <Link to="/Privacy">PRIVACY</Link>

@@ -5,8 +5,11 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import ValidationError from './ValidationError';
 import Input from '@mui/material/Input';
-import MDEditor from "@uiw/react-md-editor";
 import React from "react";
+import MDEditor, { selectWord } from "@uiw/react-md-editor";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+
 export default function TextEditField(props)
 {
     let placeholder = '';
@@ -69,7 +72,7 @@ export default function TextEditField(props)
     if ('enum' in field_props) {
         console.log("enum in props");
         let options = field_props.enum;
-        return <div style={div_style}><Typeahead
+        return <div style={div_style}><Typeahead tabIndex={props.tab_index}  
             id="basic-typeahead"
             selected={props.get_value(json_field_name)}
             onChange={(e) => {
@@ -84,7 +87,7 @@ export default function TextEditField(props)
     }
     else if ('input_mask' in field_props) {
         let input_mask = field_props.input_mask;
-        return <div style={div_style}><InputMask
+        return <div style={div_style}><InputMask tabIndex={props.tab_index} 
             mask={input_mask}
             placeholder={placeholder}
             value={props.get_value(json_field_name)}
@@ -97,16 +100,16 @@ export default function TextEditField(props)
         </div>;
     }
     else if ('display' in field_props && field_props.display === 'markdown') {
-            return <MDEditor.Markdown source={props.get_value(json_field_name)} style={{ width: '100%' }} 
-            onChange={(e) => {
-                props.put_value(json_field_name, e.target.value);
-            }}
-            />;
-            {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
+
+            console.log({ "Markdown TextEditField": props.get_value(json_field_name) });
+            return <div style={div_style}>
+                 <MDEditor tabIndex={props.tab_index} value={props.get_value(json_field_name)} onChange={(e) => {  props.put_value(json_field_name, e);}}/>
+                {(client_message || server_message) && <ValidationError client_message={client_message} server_message={server_message} />}
+            </div>;
     }
     else
     {
-        return <div style={div_style}><Input
+        return <div style={div_style}><Input tabIndex={props.tab_index} 
             type={input_type}
             placeholder={placeholder}
             max_length={max_length}

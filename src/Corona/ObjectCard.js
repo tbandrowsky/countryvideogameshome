@@ -28,6 +28,7 @@ export default function ObjectCard(props) {
         }
 
         return <table style={{border:"none"}}>
+            <tbody>
             {props.classDef.card_title && props.classDef.card_title >'' &&
                 <tr>
                     <td style={{fontWeight:"bold", paddingRight:"8px"}} colSpan="2">{props.obj[props.classDef.card_title]}</td>
@@ -38,6 +39,7 @@ export default function ObjectCard(props) {
                     <td style={{ fontWeight:"normal"}}>{cf.value}</td>
                 </tr>
             })}
+            </tbody>
         </table>;
 
     }

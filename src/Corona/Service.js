@@ -27,6 +27,62 @@ const callService = async function (url, request) {
     return response;
 }
 
+export const coronaGetTrail =  function () {
+
+    let trailString = sessionStorage.getItem("trail");
+    let trail = trailString ? JSON.parse(trailString) : [];
+    return trail;
+}
+
+export const coronaSetTrail =  function (trail) {
+
+    let trailString = JSON.stringify(trail);
+    sessionStorage.setItem("trail", trailString);
+}
+
+export const coronaGetCurrent =  function () {
+
+    let trail = coronaGetTrail();
+    return trail.length > 0 ? trail[trail.length - 1] : null;
+}
+
+export const coronaGoHome =  function (object_instance) {
+
+    let trail = coronaGetTrail();
+    if (trail.length > 0) {
+        trail = [trail[0]]; // Go back to the first item in the trail
+        coronaSetTrail(trail);
+    }
+    return trail[0] || null;
+}
+
+export const coronaGoStart =  function (object_instance) 
+{
+    let trail = [];
+    trail.push(object_instance);
+    coronaSetTrail(trail);
+    return object_instance;
+}
+
+export const coronaGoFoward =  function (object_instance) 
+{
+    let trail = coronaGetTrail();
+    trail.push(object_instance);
+    coronaSetTrail(trail);
+    return object_instance;
+}
+
+export const coronaGoBack =  function () 
+{
+    let trail = coronaGetTrail();
+    let object = {};
+    if (trail.length > 0) {
+        object = trail.pop();
+    }
+    coronaSetTrail(trail);
+    return object;
+}
+
 export const callCoronaService = async function (path, request, options) {
     const url = AppSettings.GetBaseUrl() + path;
     const response = await callService(url, request);

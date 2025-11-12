@@ -4,7 +4,7 @@ import '../index.css'
 import RevolutionBarControl from './RevolutionBarControl.js';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-import { coronaSetTeam, coronaEditObject, coronaGetClass } from './Service.js';
+import { coronaGoFoward,  coronaSetTeam, coronaEditObject, coronaGetClass } from './Service.js';
 import { useState } from "react";
 import ErrorControl from './ErrorControl.js';
 import ObjectsList from './ObjectsList.js';
@@ -22,7 +22,6 @@ export default function HomeForm(formProps) {
     let nav = useNavigate();
     let loc = useLocation();
     let props = { ...formProps, ...loc.state };
-    console.log({ props, "title": "Home" });
 
     let ticketColumns = [
         { key: 'class_name', name: 'Class' },
@@ -52,8 +51,6 @@ export default function HomeForm(formProps) {
     ];
 
     let inventoryMap = Object.fromEntries(props.user.inventory.map(obj => [obj.class_name, obj]));
-    console.log({'inventory':inventoryMap});
-
 
     let combinedPermissions = [];
     if (props.user.team && props.user.team.permissions) {
@@ -75,6 +72,7 @@ export default function HomeForm(formProps) {
                 referenced_classes[base_name] = perm;
             }
         }
+        return perm;
     });
 
     return (
@@ -148,6 +146,7 @@ export default function HomeForm(formProps) {
                                     let nav_state = {};
                                     if (response.success) {
                                         nav_state = { user:props.user, class:response.data, ...response };
+                                        coronaGoFoward({name: field.class_name, type:'search', path:'/Corona/ObjectSearch', response:response});
                                     } else {
                                         nav_state = { ...props, class:{}};
                                     }
@@ -158,13 +157,14 @@ export default function HomeForm(formProps) {
                       </div>
                 </div>}
                   </TabPanel>    
-<TabPanel style={{overflow:"auto"}}>
+                    <TabPanel style={{overflow:"auto"}}>
                       <div className="sectionbuttons">
                 {props.user.inventory && props.user.inventory.map((field, index) => {
                     return <Button variant="contained" sx={{backgroundColor:field.class_color}}  key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
-                            let response = await coronaEditObject( {...field, "include_children":true}, {
+                            let edit_request = {...field, "include_children":true};
+                            let response = await coronaEditObject(edit_request, {
                                 successForm: '/Corona/ObjectEdit',
                                 redoForm: '/Corona/Home',
                                 redoMessage: 'select failed.',
@@ -173,11 +173,11 @@ export default function HomeForm(formProps) {
                             let nav_state = {};
                             if (response.success) {
                                 nav_state = { user:props.user, ...response };
+                                coronaGoFoward({name: field.class_name, type:"object", path:'/Corona/ObjectEdit', request : response});                                
                             } else {
                                 nav_state = { ...props };
                             }
                             setError({ success: response.success, message: response.message, inProgress: false });
-                            console.log({"edit object nav_state":nav_state});
                             nav(response.form, { state: nav_state });
                         }
                     } style={{width:"250px", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/>{field.class_name}</Button>

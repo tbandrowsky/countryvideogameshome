@@ -3,7 +3,7 @@
 ## Project Architecture Overview
 
 This is a **React Static Web App** (`staticwebapp.config.json`) with a unique dual-purpose structure:
-- **Main Site**: Gaming/news content with pages like News, ColorParty, RevolutionAbout
+- **Main Site**: Gaming/news content with pages like News, ColorParty, DeveloperAbout
 - **Corona Subsystem**: A complete data management application with CRUD operations at `/Corona/*` routes
 
 ### Key Architectural Patterns

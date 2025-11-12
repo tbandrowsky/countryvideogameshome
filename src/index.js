@@ -9,7 +9,7 @@ import News from './News';
 import Privacy from './Privacy';
 import About from './About';
 import ColorParty from './ColorParty';
-import RevolutionAbout from './RevolutionAbout';
+import DeveloperAbout from './DeveloperAbout';
 import HomeForm from './Corona/HomeForm';
 import ClassSearchForm from './Corona/ClassSearchForm';
 import ClassEditForm from './Corona/ClassEditForm';
@@ -29,6 +29,7 @@ import '@fontsource/roboto/700.css';
 import { deepmerge } from '@mui/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import BreadCrumb from './BreadCrumb';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -43,6 +44,7 @@ const theme = createTheme({
 let google_client_id = "747129738820-elfisfvfplttiogamqur0b1vflljv5ib.apps.googleusercontent.com";
 
 root.render(
+
 <GoogleOAuthProvider clientId={google_client_id}>
     <BrowserRouter>
         <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
@@ -55,23 +57,23 @@ root.render(
             <MenuBar/>
             <div className="countryvideogamescontent">
                 <Routes>
-                    <Route exact path="/" element={<News />}/>
-                    <Route path="/News" element={<News />} />
-                    <Route path="/Privacy" element={<Privacy />} />
-                    <Route path="/RevolutionAbout" element={<RevolutionAbout />} />
-                    <Route path="/ColorParty" element={<ColorParty />} />
-                    <Route path="/About" element={<About />} />
-                    <Route path="/Corona/Home" element={<HomeForm />} />
-                    <Route path="/Corona/Login" element={<LoginForm  />} />
-                    <Route path="/Corona/CreateUser" element={<CreateUserForm />} />
-                    <Route path="/Corona/SetPassword" element={<SetPasswordForm />} />
-                    <Route path="/Corona/SendCode" element={<SendCodeForm />} />
-                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm />} />
-                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm />} />
-                    <Route path="/Corona/ClassEdit" element={<ClassEditForm />} />
-                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm />} />
-                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm />} />
-                    <Route path="/Corona/SsoLanding" element={<SsoLanding />} />
+                    <Route exact path="/" element={<News />} breadcrumb="Home"/>
+                    <Route path="/News" element={<News />}  breadcrumb="News"/>
+                    <Route path="/Privacy" element={<Privacy />} breadcrumb="Privacy" />
+                    <Route path="/DeveloperAbout" element={<DeveloperAbout />}  breadcrumb="Developers"/>
+                    <Route path="/ColorParty" element={<ColorParty />}   breadcrumb="Color Party"/>
+                    <Route path="/About" element={<About />}   breadcrumb="About"/>
+                    <Route path="/Corona/Home" element={<HomeForm />} breadcrumb="Corona Home" />
+                    <Route path="/Corona/Login" element={<LoginForm  />} breadcrumb="Login" />
+                    <Route path="/Corona/CreateUser" element={<CreateUserForm />}  breadcrumb="Create User"/>
+                    <Route path="/Corona/SetPassword" element={<SetPasswordForm />}  breadcrumb="Set Password"/>
+                    <Route path="/Corona/SendCode" element={<SendCodeForm />}  breadcrumb="Send Code" />
+                    <Route path="/Corona/ObjectEdit" element={<ObjectEditForm />}  breadcrumb="Object Edit"/>
+                    <Route path="/Corona/ObjectSearch" element={<ObjectSearchForm />}  breadcrumb="Object Search"/>
+                    <Route path="/Corona/ClassEdit" element={<ClassEditForm />}  breadcrumb="Class Edit"/>
+                    <Route path="/Corona/ClassSearch" element={<ClassSearchForm />}  breadcrumb="Class Search"/>
+                    <Route path="/Corona/ConfirmCode" element={<ConfirmCodeForm />}  breadcrumb="Confirm Code"/>
+                    <Route path="/Corona/SsoLanding" element={<SsoLanding />}  breadcrumb="SSO Landing"/>
                 </Routes>
             </div>
         </div>

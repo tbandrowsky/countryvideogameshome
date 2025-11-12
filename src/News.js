@@ -4,10 +4,10 @@ import TitleBar from "./TitleBar";
 
 let newsItems = [
     {
-        title: "Revolution",
-        info: "/RevolutionAbout",
+        title: "Developer",
+        info: "/DeveloperAbout",
         repo: "https://github.com/tbandrowsky/corona",
-        description: "You can log into Revolution now, or download it, and start your own.",
+        description: "Samples for our AI friendly API server.",
         download: "revolution.zip"
     },
     {

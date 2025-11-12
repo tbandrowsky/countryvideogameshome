@@ -59,7 +59,7 @@ export default function DoubleEditField(props) {
 
     if ('enum' in props) {
         let options = props.enum;
-        return <div style={div_style}><Typeahead
+        return <div style={div_style}><Typeahead tabIndex={props.tab_index} 
             id="basic-typeahead"
             onChange={(e) => {
                 if (props.onChange) {
@@ -75,7 +75,7 @@ export default function DoubleEditField(props) {
     }
     else if ('input_mask' in props) {
         let input_mask = props.input_mask;
-        return <div style={div_style}><InputMask mask={input_mask} placeholder={placeholder} onChange={(e) => {
+        return <div style={div_style}><InputMask  tabIndex={props.tab_index} mask={input_mask} placeholder={placeholder} onChange={(e) => {
             if (props.onChange) {
                 let v = tryParseDouble(e.target.value, 0);
                 props.update(json_field_name, v);
@@ -91,7 +91,7 @@ export default function DoubleEditField(props) {
         if ('match_pattern' in props) {
             match_pattern = props.match_pattern;
         }
-        return <div style={div_style}><input
+        return <div style={div_style}><input tabIndex={props.tab_index} 
             type="text"
             placeholder={placeholder}
             value={value}

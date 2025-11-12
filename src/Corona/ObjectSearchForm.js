@@ -5,7 +5,7 @@ import { useState } from "react";
 import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaQuery, coronaEditObject, coronaGetClass } from './Service.js';
+import { coronaGoFoward, coronaQuery, coronaEditObject, coronaGetClass } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,8 +26,6 @@ export default function ObjectSearchForm(props) {
     const [classes, setClasses] = useState(props.classes||[]);
     const [request, setRequest] = useState({});
     const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
-
-    console.log({ props, "title": "Search" });
 
     const put_value = (json_field_name, value) => {
         setRequest(prev => ({ ...prev, [json_field_name]: value }));
@@ -80,8 +78,6 @@ export default function ObjectSearchForm(props) {
                 edit_field_names.push(field.field_name);    
             }
         }
-
-        console.log( {"edit_props":edit_props});
     }
 
     let nav = useNavigate();
@@ -206,6 +202,7 @@ export default function ObjectSearchForm(props) {
                                     let nav_state = {};
                                     if (response.success) {
                                         nav_state = { user:props.user, ...response };
+                                        coronaGoFoward({name: descendant, type:'object', path:'/Corona/ObjectEdit', request: {data:response.data}});
                                     } else {
                                         nav_state = { ...props };
                                     }

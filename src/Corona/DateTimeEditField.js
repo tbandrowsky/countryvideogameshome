@@ -61,7 +61,7 @@ export default function DateTimeEditField(props) {
     }
 
     return <div style={div_style}>
-        <Input type="date"
+        <Input tabIndex={props.tab_index}  type="date"
             placeholder={placeholder}
             value={value}
             onChange={(e) => {

@@ -3,9 +3,6 @@ import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { faAtom } from '@fortawesome/free-solid-svg-icons';
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import { faWineBottle } from '@fortawesome/free-solid-svg-icons';
-import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import Button from '@mui/material/Button';
 
 export default function Card(props)

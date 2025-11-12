@@ -28,6 +28,7 @@
     "react-scripts": "5.0.1",
     "react-tabs": "^6.1.0",
     "swiper": "^12.0.2",
+    "use-react-router-breadcrumbs": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

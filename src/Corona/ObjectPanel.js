@@ -4,17 +4,14 @@ import '../index.css'
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
-import { coronaEditObject } from './Service.js';
+import { coronaGoFoward, coronaEditObject } from './Service.js';
 import ObjectCard from './ObjectCard.js';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
-
 export default function ObjectPanel(props) {
 
     let nav = useNavigate();
-
-    console.log({"ObjectPanel props":props});
     
     return ( <div className="sectionbuttons">
 
@@ -29,6 +26,7 @@ export default function ObjectPanel(props) {
                         });
                         let nav_state = {};
                         if (response.success) {
+                            coronaGoFoward({ name: props.object.class_name, path:'/Corona/ObjectEdit', response:response });
                             nav_state = { user:props.user, ...response };
                         } else {
                             nav_state = { ...props };
@@ -40,11 +38,11 @@ export default function ObjectPanel(props) {
                 } style={{width:"400x", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/><ObjectCard field={props.object} use_field={props.use_field} classDef={props.classDef} /></Button>}
 
                 {props.objects && props.objects.map((obj, index) => {
-                    return <Button variant="contained" color={obj.class_color} style={{marginLeft:"8px", justifyContent:"flex-start"}} key={index} 
+                    return <Button variant="contained" color={obj.class_color} key={index} style={{marginLeft:"8px", justifyContent:"flex-start"}}
                         onClick={
                             async () => {
                                 props.setError({ success: true, message: "Edit " + obj.class_name, inProgress: true });
-                                let response = await coronaEditObject({ ...obj, "include_children":true }, {
+                                let response = await coronaEditObject({ data: { ...obj }, "include_children":true }, {
                                     successForm: '/Corona/ObjectEdit',
                                     redoForm: '/Corona/Home',
                                     redoMessage: 'Edit failed.',
@@ -52,6 +50,7 @@ export default function ObjectPanel(props) {
                                 });
                                 let nav_state = {};
                                 if (response.success) {
+                                    coronaGoFoward({name: obj.class_name, type:'object', path:'/Corona/ObjectEdit', request: {data:obj}});
                                     nav_state = { user:props.user, ...response };
                                 } else {
                                     nav_state = { ...props };
@@ -61,7 +60,7 @@ export default function ObjectPanel(props) {
                                 nav(response.form, { state: nav_state });
                             }
                         } 
-                        style={{width:"400px", marginBottom:"8px", marginRight:"18px"}}>
+                        >
                             <ObjectCard use_field={props.use_field} obj={obj} classDef={props.classDef} />
                     </Button>
                 }
