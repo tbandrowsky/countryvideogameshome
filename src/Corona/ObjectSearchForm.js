@@ -5,7 +5,7 @@ import { useState } from "react";
 import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaGoFoward, coronaQuery, coronaEditObject, coronaGetClass } from './Service.js';
+import { coronaGoFoward, coronaGetCurrent, coronaQuery, coronaEditObject, coronaGetClass, coronaGetUser } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,12 +19,14 @@ import Paper from '@mui/material/Paper';
 
 export default function ObjectSearchForm(props) {
 
-    let loc = useLocation();
-    props = { ...props, ...loc.state };
-    let childrenMap = props.childrenMap || {};
+    let user = coronaGetUser();
+    let current_nav = coronaGetCurrent();
+    console.log({"search" :current_nav});
+    let current_class = current_nav.class;
 
-    const [classes, setClasses] = useState(props.classes||[]);
+    const [classes, setClasses] = useState([current_nav.class]);
     const [request, setRequest] = useState({});
+    const [results, setResults] = useState({});
     const [error, setError] = useState({ success: false, message: "", inProgress: false, field_errors: {} });
 
     const put_value = (json_field_name, value) => {
@@ -38,6 +40,8 @@ export default function ObjectSearchForm(props) {
             return "";
     }
 
+    let childrenMap = results || {};
+
     let edit_props = {
         presentation: {
             gridTemplateRows: "20px 20px auto",
@@ -50,7 +54,7 @@ export default function ObjectSearchForm(props) {
         get_value
     };
 
-    let classdef = props.class.class;
+    let classdef = current_class;
 
     let form_name = "SEARCH";
     let class_name = "object";
@@ -149,7 +153,7 @@ export default function ObjectSearchForm(props) {
                                         // Then fetch class definitions for unique class names
                                         const classPromises = Array.from(uniqueClassNames).map(async (className) => {
                                             try {
-                                                const classDef = await coronaGetClass({ class_name: className }, { user: props.user });
+                                                const classDef = await coronaGetClass({ class_name: className }, { user: user });
                                                 return { className, classDef };
                                             } catch (err) {
                                                 console.error(`Failed to fetch class ${className}:`, err);
@@ -167,16 +171,14 @@ export default function ObjectSearchForm(props) {
                                             }
                                         });
                                         
+                                        setResults(childrenMap);
                                         setClasses(newClasses);
                                     }
-                                    setError({ success: response.success, message: response.message, seconds:response.seconds, inProgress: false });
+                                    setError({ success: response.success, message: response.message, count: response?.data?.length ?? 0, seconds:response.seconds, inProgress: false });
                                     if (response.success) {
-                                        nav_state = { rows:response.data,...response, user:props.user, class:props.class, childrenMap:childrenMap };
-                                        nav(response.form, { state: nav_state });
-                                    } else {
-                                        nav_state = {...props};
-                                        nav(response.form, { state: nav_state });
-                                    }
+                                        nav_state = { rows:response.data,...response, user:user, class:props.class, childrenMap:childrenMap };
+                                        setResults(childrenMap);
+                                    } 
                                 }
                             }><FontAwesomeIcon icon={faSearch} />SEARCH</Button>
                             <Button id="cancelButton" variant='contained' color="success"  onClick={
@@ -193,32 +195,31 @@ export default function ObjectSearchForm(props) {
                             <Button key={index} id="createObject" variant='contained' color="primary" style={{width:"90%"}} onClick={
                                 async () => {
                                     setError({ success: true, message: "Create " + descendant, inProgress: true });
-                                    let response = await coronaEditObject({ class_name: descendant }, {
+                                    let response = await coronaEditObject({ data: { class_name: descendant }}, {
                                         successForm: '/Corona/ObjectEdit',
-                                        redoForm: '/Corona/Home',
+                                        redoForm: '/Corona/ObjectSearch',
                                         redoMessage: 'Edit Object failed.',
                                         formProps: props
                                     });
-                                    let nav_state = {};
                                     if (response.success) {
-                                        nav_state = { user:props.user, ...response };
-                                        coronaGoFoward({name: descendant, type:'object', path:'/Corona/ObjectEdit', request: {data:response.data}});
-                                    } else {
-                                        nav_state = { ...props };
+                                        coronaGoFoward({ type:"object", name: descendant, path:'/Corona/ObjectEdit', navigation:response });
+                                        nav(response.form);
                                     }
                                     setError({ success: response.success, message: response.message, inProgress: false });
-                                    console.log({"edit object nav_state":nav_state});
-                                    nav(response.form, { state: nav_state });
                                 }
                             }><FontAwesomeIcon icon={faAdd} />{descendant}</Button>
                             </div>
-))}
+                            ))}
                     </Paper>
                 </div>
                 <div style={{ gridColumn: "2", gridRow:"1" }}>
                     <h4 style={{  paddingTop:"10px", paddingLeft:"16px"}}>{class_name} Items</h4>
-                    <ObjectsList classes={classes} childrenMap={childrenMap} user={props.user}  setError={setError} />
-               </div>
+                    <ObjectsList classes={classes} childrenMap={childrenMap} user={user}  setError={setError} 
+                        onNavigate={(response)=> {
+                            console.log({"NAVIGATE": response});
+                            nav('/Corona/ObjectEdit');
+                        }} />
+                </div>
             </div>
         </div>
     );

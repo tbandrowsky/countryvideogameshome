@@ -5,6 +5,7 @@ import InputMask from 'react-input-mask';
 import ValidationError from './ValidationError';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
+import Input from '@mui/material/Input';
 
 function tryParseDouble(value, defaultValue) {
     const parsed = parseFloat(value);
@@ -62,9 +63,9 @@ export default function DoubleEditField(props) {
         return <div style={div_style}><Typeahead tabIndex={props.tab_index} 
             id="basic-typeahead"
             onChange={(e) => {
-                if (props.onChange) {
+                if (props.put_value) {
                     let v = tryParseDouble(e.target.value, 0);
-                    props.update(json_field_name, v);
+                    props.put_value(json_field_name, v);
                 }
             }}
             options={options}
@@ -76,9 +77,9 @@ export default function DoubleEditField(props) {
     else if ('input_mask' in props) {
         let input_mask = props.input_mask;
         return <div style={div_style}><InputMask  tabIndex={props.tab_index} mask={input_mask} placeholder={placeholder} onChange={(e) => {
-            if (props.onChange) {
+            if (props.put_value) {
                 let v = tryParseDouble(e.target.value, 0);
-                props.update(json_field_name, v);
+                props.put_value(json_field_name, v);
             }
         }}
         />
@@ -91,14 +92,14 @@ export default function DoubleEditField(props) {
         if ('match_pattern' in props) {
             match_pattern = props.match_pattern;
         }
-        return <div style={div_style}><input tabIndex={props.tab_index} 
+        return <div style={div_style}><Input tabIndex={props.tab_index} 
             type="text"
             placeholder={placeholder}
-            value={value}
+            value={props.get_value(json_field_name).toString()}
             onChange={(e) => {
-                if (props.update) {
+                if (props.put_value) {
                     let v = tryParseDouble(e.target.value, 0);
-                    props.update(json_field_name, v);
+                    props.put_value(json_field_name, v);
                 }
             }}
             pattern={match_pattern} />

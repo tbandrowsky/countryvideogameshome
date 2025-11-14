@@ -5,7 +5,7 @@ import { useState } from "react";
 import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
-import { coronaGoFoward, coronaGoStart, coronaLoginUser, coronaLoginUserSso  } from './Service.js';
+import { coronaGoFoward, coronaGoStart, coronaLoginUser, coronaLoginUserSso, coronaSetUser  } from './Service.js';
 import { useNavigate } from "react-router";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,6 +34,10 @@ export default function LoginForm(props) {
         else
             return "";
     }
+
+
+    coronaGoStart({ name:"Login", path:"/Corona/Login", type:"login"}); 
+
 
     let edit_props = {
         presentation: {
@@ -75,6 +79,7 @@ export default function LoginForm(props) {
                                 console.log({ 'login_form_props': response.form_props });
                                 let nav_state = {};
                                 if (response.success) {
+                                    coronaSetUser(response.data);
                                     nav_state = { user: response.data, ...response };
                                 } else {
                                     nav_state = {};
@@ -100,6 +105,7 @@ export default function LoginForm(props) {
                             let nav_state = {};
                             if (response.success) {
                                 nav_state = { user:response.data,...response };
+                                coronaSetUser(response.data);
                                 coronaGoStart({name: 'Home', type:'home', path:'/Corona/Home', navigation:nav_state});
                             } else {
                                 nav_state = {};

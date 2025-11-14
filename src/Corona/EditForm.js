@@ -57,7 +57,7 @@ export default function EditForm(props) {
         <Paper elevation={3} style={paper_styles} >
             <div style={form_styles}>
             {editProps.body_fields.map((field, index) => {
-                return <EditField key={index} field={field} get_value={get_value} put_value={put_value} get_error={get_error} />;
+                return <EditField key={index} field={field} get_value={get_value} put_value={put_value} get_error={get_error} tab_index={field.tab_index}/>;
             }
             )}
             </div>

@@ -7,7 +7,7 @@ export const AppSettings = {
         if (path && path.length > 0) {
             return path;
         }
-        return "http://localhost:5678/revolution";
+        return "https://mightyware.com:443/revolution";
     },
     GetApplicationName: function () {
         let path = sessionStorage.getItem("CoronaApplicationName");

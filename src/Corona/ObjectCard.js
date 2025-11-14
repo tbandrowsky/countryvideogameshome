@@ -13,7 +13,7 @@ export default function ObjectCard(props) {
             nameFields.forEach(nf => {
                 let field = props.classDef.fields[nf];
                 let field_pretty = nf.hasOwnProperty("label") ? field.label : nf;
-                card_field = { "name":field_pretty, "value":props.obj[nf]  };
+                card_field = { "name":field_pretty, "value":props.obj[nf]?.toString()  };
                 card_fields.push(card_field);
             });
         }
@@ -22,7 +22,7 @@ export default function ObjectCard(props) {
             nameFields.forEach(nf => {
                 let field = props.classDef.fields[nf];
                 let field_pretty = nf.hasOwnProperty("label") ? field.label : nf;
-                card_field = { "name":field_pretty, "value":props.obj[nf]  };
+                card_field = { "name":field_pretty, "value":props.obj[nf]?.toString()  };
                 card_fields.push(card_field);
             });
         }
@@ -31,12 +31,12 @@ export default function ObjectCard(props) {
             <tbody>
             {props.classDef.card_title && props.classDef.card_title >'' &&
                 <tr>
-                    <td style={{fontWeight:"bold", paddingRight:"8px"}} colSpan="2">{props.obj[props.classDef.card_title]}</td>
+                    <td style={{fontWeight:"bold", paddingRight:"8px", textAlign:"left"}} colSpan="2" >{props.obj[props.classDef.card_title]}</td>
                 </tr>}
             {card_fields.map((cf, index) => {
                 return <tr key={index}>
-                    <td style={{ fontWeight:"normal", paddingRight:"8px"}}>{cf.name}</td>
-                    <td style={{ fontWeight:"normal"}}>{cf.value}</td>
+                    <td style={{ fontWeight:"normal", paddingRight:"8px", textAlign:"left"}}>{cf.name}</td>
+                    <td style={{ fontWeight:"normal", textAlign:"left"}}>{cf.value}</td>
                 </tr>
             })}
             </tbody>

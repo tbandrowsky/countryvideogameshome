@@ -10,8 +10,6 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 export default function ObjectPanel(props) {
-
-    let nav = useNavigate();
     
     return ( <div className="sectionbuttons">
 
@@ -24,16 +22,13 @@ export default function ObjectPanel(props) {
                             redoMessage: 'Edit failed.',
                             formProps: props
                         });
-                        let nav_state = {};
                         if (response.success) {
-                            coronaGoFoward({ name: props.object.class_name, path:'/Corona/ObjectEdit', response:response });
-                            nav_state = { user:props.user, ...response };
-                        } else {
-                            nav_state = { ...props };
-                        }
+                            coronaGoFoward({ type:"object",name: props.object.class_name, path:'/Corona/ObjectEdit', navigation:response });
+                            if (props.onNavigate) {
+                                props.onNavigate(response);
+                            }
+                        } 
                         props.setError({ success: response.success, message: response.message, inProgress: false });
-                        console.log({"edit object nav_state":nav_state});
-                        nav(response.form, { state: nav_state });
                     }
                 } style={{width:"400x", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/><ObjectCard field={props.object} use_field={props.use_field} classDef={props.classDef} /></Button>}
 
@@ -44,24 +39,21 @@ export default function ObjectPanel(props) {
                                 props.setError({ success: true, message: "Edit " + obj.class_name, inProgress: true });
                                 let response = await coronaEditObject({ data: { ...obj }, "include_children":true }, {
                                     successForm: '/Corona/ObjectEdit',
-                                    redoForm: '/Corona/Home',
+                                    redoForm: '/Corona/ObjectEdit',
                                     redoMessage: 'Edit failed.',
                                     formProps: props
                                 });
-                                let nav_state = {};
                                 if (response.success) {
-                                    coronaGoFoward({name: obj.class_name, type:'object', path:'/Corona/ObjectEdit', request: {data:obj}});
-                                    nav_state = { user:props.user, ...response };
-                                } else {
-                                    nav_state = { ...props };
-                                }
-                                props.setError({ success: response.success, message: response.message, inProgress: false });
-                                console.log({"edit object nav_state":nav_state});
-                                nav(response.form, { state: nav_state });
+                                    coronaGoFoward({ type:"object", name: obj.class_name, path:'/Corona/ObjectEdit', navigation:response });
+                                    if (props.onNavigate) {
+                                        props.onNavigate(response);
+                                    }
+                                } 
+                               props.setError({ success: response.success, message: response.message, inProgress: false });
                             }
                         } 
                         >
-                            <ObjectCard use_field={props.use_field} obj={obj} classDef={props.classDef} />
+                        <ObjectCard use_field={props.use_field} obj={obj} classDef={props.classDef} />
                     </Button>
                 }
                 )}

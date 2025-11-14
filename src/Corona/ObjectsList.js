@@ -22,7 +22,7 @@ export default function ObjectsList(props) {
                 <React.Fragment key={idx}>
                     <div className="coronachaptersubtitle" style={{marginTop:"16px", width:"90%"}}>{className}</div>
                     {props.childrenMap[className] &&
-                        <ObjectPanel classDef={props.classes[className]} objects={props.childrenMap[className]} class_name={className} user={props.user} setError={props.setError} style={{width:"400px"}} />
+                        <ObjectPanel onNavigate={props.onNavigate} classDef={props.classes[className]} objects={props.childrenMap[className]} class_name={className} user={props.user} setError={props.setError} style={{width:"400px"}} />
                     }
                 </React.Fragment>
             ))}

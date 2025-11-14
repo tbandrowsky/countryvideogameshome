@@ -2,9 +2,10 @@
 import '../App.css'
 import '../index.css'
 import RevolutionBarControl from './RevolutionBarControl.js';
+import { AppSettings } from './AppSettings.js';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-import { coronaGoFoward,  coronaSetTeam, coronaEditObject, coronaGetClass } from './Service.js';
+import { coronaGoFoward,  coronaGetUser, coronaSetTeam, coronaEditObject, coronaGetClass, coronaSetUser } from './Service.js';
 import { useState } from "react";
 import ErrorControl from './ErrorControl.js';
 import ObjectsList from './ObjectsList.js';
@@ -20,8 +21,7 @@ export default function HomeForm(formProps) {
     const [error, setError] = useState({ success: false, message: "", inProgress: false, errors: [] });
 
     let nav = useNavigate();
-    let loc = useLocation();
-    let props = { ...formProps, ...loc.state };
+    let user = coronaGetUser();
 
     let ticketColumns = [
         { key: 'class_name', name: 'Class' },
@@ -50,11 +50,11 @@ export default function HomeForm(formProps) {
         { key: 'class_description', name: 'Description' }
     ];
 
-    let inventoryMap = Object.fromEntries(props.user.inventory.map(obj => [obj.class_name, obj]));
+    let inventoryMap = Object.fromEntries(user.inventory.map(obj => [obj.class_name, obj]));
 
     let combinedPermissions = [];
-    if (props.user.team && props.user.team.permissions) {
-        props.user.team.permissions.forEach(perm => {
+    if (user.team && user.team.permissions) {
+        user.team.permissions.forEach(perm => {
             combinedPermissions.push(perm);
         });
     }
@@ -77,30 +77,25 @@ export default function HomeForm(formProps) {
 
     return (
         <div className="contentbackgroundformrevolution">
-            <RevolutionBarControl applicationName={props.applicationName} formName="HOME" formNumber="FORM 005" />
+            <RevolutionBarControl applicationName={AppSettings.applicationName} formName="HOME" formNumber="FORM 005" />
             <ErrorControl {...error} />
             <div style={{display:"grid", gridTemplateRows:"auto auto", gridTemplateColumns:"1fr"}}>
             <Paper style={{ marginTop:"16px", marginRight:"16px", marginLeft:"16px",gap:"8px", display:"flex", flexDirection:"row", flexWrap:"wrap", padding:"8px", backgroundColor:"white", borderRadius:"5px", border:"var(--rock1) solid 1px"}}>
-                {props.user.allowed_teams.map((field, index) => {
-                    let isSelected = props.user.team.team_name === field;
+                {user.allowed_teams.map((field, index) => {
+                    let isSelected = user.team.team_name === field;
                     return <Button variant="contained" key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Selecting Team", inProgress: true });
                             let response = await coronaSetTeam({'team_name':field }, {
                                 successForm: '/Corona/Home',
                                 redoForm: '/Corona/Home',
-                                redoMessage: 'select failed.',
-                                formProps: props
+                                redoMessage: 'select failed.'
                             });
-                            let nav_state = {};
                             if (response.success) {
-                                nav_state = { user:response.data, ...response };
-                            } else {
-                                nav_state = { ...props };
+                                coronaSetUser(response.data);
                             }
 
                             setError({ success: response.success, seconds:response.seconds, message: response.message, inProgress: false });
-                            nav(response.form, { state: nav_state });
                         }
                     }><FontAwesomeIcon icon={isSelected ? faCheck:faTeamspeak} style={{marginRight:"8px"}}/>{field}</Button>;
                 }
@@ -109,7 +104,7 @@ export default function HomeForm(formProps) {
 
 
             <Paper style={{margin:"16px", height:"100%", border:"var(--rock1) solid 1px", borderRadius:"5px", padding:"8px",paddingTop:"0px", backgroundColor:"white"}}>
-            <h3 style={{marginLeft:"16px"}}>{props.user.team.team_name}</h3>           
+            <h3 style={{marginLeft:"16px"}}>{user.team.team_name}</h3>           
 
             <Tabs >
                 <TabList>
@@ -134,24 +129,19 @@ export default function HomeForm(formProps) {
                             }
                             return <div key={index2} style={{flexDirection:"row", display:"flex", flexWrap:"wrap", gap:"8px"}}>
                                 {dataclasses.map((field, index3) => {                            
-                                return (<Button variant="contained" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} sx={{backgroundColor:(perm.class_colors && perm.class_colors.hasOwnProperty(base_name)) ? perm.class_colors[base_name] : props.user.home_team.class_color}}  onClick={
+                                return (<Button variant="contained" key={index3} style={{width:"250px", marginBottom:"8px", marginRight:"18px"}} sx={{backgroundColor:(perm.class_colors && perm.class_colors.hasOwnProperty(base_name)) ? perm.class_colors[base_name] : user.home_team.class_color}}  onClick={
                                 async () => {
                                     setError({ success: true, message: "Editing " + field, inProgress: true });
                                     let response = await coronaGetClass({'class_name':field }, {
                                         successForm: '/Corona/ObjectSearch',
                                         redoForm: '/Corona/Home',
-                                        redoMessage: 'Create failed.',
-                                        formProps: props.formProps
+                                        redoMessage: 'Create failed.'
                                     });
-                                    let nav_state = {};
                                     if (response.success) {
-                                        nav_state = { user:props.user, class:response.data, ...response };
-                                        coronaGoFoward({name: field.class_name, type:'search', path:'/Corona/ObjectSearch', response:response});
-                                    } else {
-                                        nav_state = { ...props, class:{}};
-                                    }
+                                        coronaGoFoward({name: field + " search", type:'search', path:'/Corona/ObjectSearch', class:response.data.class});
+                                        nav(response.form);
+                                    } 
                                     setError({ success: response.success, message: response.message, inProgress: false });
-                                    nav(response.form, { state: nav_state });
                                 }}><FontAwesomeIcon icon={faDatabase} style={{marginRight:"8px"}}/>{field}</Button>);                                
                             })}</div>})}
                       </div>
@@ -159,7 +149,7 @@ export default function HomeForm(formProps) {
                   </TabPanel>    
                     <TabPanel style={{overflow:"auto"}}>
                       <div className="sectionbuttons">
-                {props.user.inventory && props.user.inventory.map((field, index) => {
+                {user.inventory && user.inventory.map((field, index) => {
                     return <Button variant="contained" sx={{backgroundColor:field.class_color}}  key={index} onClick={
                         async () => {
                             setError({ success: true, message: "Edit " + field.class_name, inProgress: true });
@@ -167,18 +157,13 @@ export default function HomeForm(formProps) {
                             let response = await coronaEditObject(edit_request, {
                                 successForm: '/Corona/ObjectEdit',
                                 redoForm: '/Corona/Home',
-                                redoMessage: 'select failed.',
-                                formProps: props
+                                redoMessage: 'select failed.'
                             });
-                            let nav_state = {};
                             if (response.success) {
-                                nav_state = { user:props.user, ...response };
-                                coronaGoFoward({name: field.class_name, type:"object", path:'/Corona/ObjectEdit', request : response});                                
-                            } else {
-                                nav_state = { ...props };
-                            }
-                            setError({ success: response.success, message: response.message, inProgress: false });
-                            nav(response.form, { state: nav_state });
+                                coronaGoFoward({name: field.class_name, type:"object", path:'/Corona/ObjectEdit', navigation : response});
+                                nav(response.form);
+                                setError({ success: response.success, message: response.message, inProgress: false });
+                            } 
                         }
                     } style={{width:"250px", marginBottom:"8px", marginRight:"18px"}}><FontAwesomeIcon icon={faFile} style={{marginRight:"8px"}}/>{field.class_name}</Button>
                 }

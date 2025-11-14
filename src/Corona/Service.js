@@ -40,10 +40,69 @@ export const coronaSetTrail =  function (trail) {
     sessionStorage.setItem("trail", trailString);
 }
 
+export const coronaUpdateCurrent =  function (object_instance) {
+
+    let trail = coronaGetTrail();
+    let n = -1;
+    for (let i = 0; i < trail.length; i++) {
+        let ti = trail[i];
+        if (ti.name === object_instance.name && ti.type === object_instance.type) {
+            trail[i] = object_instance;
+            console.log({ 'current set to ': object_instance });
+            break;
+        }
+    }
+    coronaSetTrail(trail);
+    return object_instance;
+}
+
+export const coronaPop =  function () {
+
+    let breadcrumb = undefined;
+    let trail = coronaGetTrail();
+    if (trail.length > 0) {
+        breadcrumb = trail.pop();
+    }
+    coronaSetTrail(trail);
+    return breadcrumb;
+}
+
+export const coronaSetCurrent =  function (object_instance) {
+
+    let trail = coronaGetTrail();
+    let n = -1;
+    for (let i = 0; i < trail.length; i++) {
+        let ti = trail[i];
+        if (ti.name === object_instance.name && ti.type === object_instance.type) {
+            n = i+1;
+            break;
+        }
+    }
+    if (n >= 0) {
+        trail.length = n;
+    }
+    coronaSetTrail(trail);
+    return object_instance;
+}
+
 export const coronaGetCurrent =  function () {
 
     let trail = coronaGetTrail();
     return trail.length > 0 ? trail[trail.length - 1] : null;
+}
+
+export const coronaGetUser =  function () {
+
+    let userString = sessionStorage.getItem("user");
+    let user = userString ? JSON.parse(userString) : [];
+    return user;
+}
+
+export const coronaSetUser =  function (user) {
+
+    let userString = JSON.stringify(user);
+    sessionStorage.setItem("user", userString);
+    return user;
 }
 
 export const coronaGoHome =  function (object_instance) {
@@ -59,7 +118,10 @@ export const coronaGoHome =  function (object_instance) {
 export const coronaGoStart =  function (object_instance) 
 {
     let trail = [];
-    trail.push(object_instance);
+    if (object_instance) 
+    {
+        trail.push(object_instance);
+    }
     coronaSetTrail(trail);
     return object_instance;
 }
