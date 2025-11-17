@@ -60,7 +60,7 @@ console.log(breadcrumbs);
             </div>            
             <div className="countrytitle2right" style={{color:"green", display:"flex", flexDirection:"row", overflow:"hidden", height:"50px", width:"100%"}}>
                 {breadcrumbs && breadcrumbs.map((breadcrumb, index) => (
-                    <div key={index} style={{marginRight: "10px"}}>
+                    <span key={index} style={{marginRight: "10px"}}>
                         {(index > 0) && <FontAwesomeIcon icon={faEllipsisVertical} />}
                         {breadcrumb.type == "object" &&<Button id="navButton" variant='contained' color="primary" onClick={
                             async () => {
@@ -91,7 +91,7 @@ console.log(breadcrumbs);
                             }><FontAwesomeIcon icon={faSquareCaretRight} />{breadcrumb.name}</Button>
                         }
 
-                    </div>
+                    </span>
                 ))}
             </div>
         </div>

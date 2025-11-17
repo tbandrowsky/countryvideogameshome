@@ -7,6 +7,7 @@ import RevolutionBarControl from './RevolutionBarControl.js';
 import EditForm from './EditForm.js';
 import ErrorControl from './ErrorControl.js';
 import ObjectsList from './ObjectsList.js';
+import ObjectCard from './ObjectCard.js';
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faSquareCaretLeft, faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -314,7 +315,8 @@ export default function ObjectEditForm(props) {
                     </Paper>
                 </div>
                 <div style={{ gridColumn:'1', gridRow:'2', height:"100%"  }}>
-                    <Paper style={{ margin:"16px", paddingBottom:"16px", paddingTop:"16px", paddingLeft:"16px", paddingRight:"16px", height:"100%" }}>
+                    <Paper style={{ margin: "16px", paddingBottom: "16px", paddingTop: "16px", paddingLeft: "16px", paddingRight: "16px", height: "100%" }}>
+                        <ObjectCard obj={data} layout="horizontal" classDef={all_classes[data.class_name]}   />
                         <Tabs selectedIndex={current_tab_index} onSelect={(index) => setTabIndex(index)} style={{width:"100%", height:"80%"}}>
                             <TabList>
                                 {this_object_tabs.map((tab_data, idx) => <Tab key={idx}>{tab_data.name}</Tab>)}

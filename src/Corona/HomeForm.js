@@ -19,6 +19,7 @@ import { faTeamspeak } from '@fortawesome/free-brands-svg-icons';
 
 export default function HomeForm(formProps) {
     const [error, setError] = useState({ success: false, message: "", inProgress: false, errors: [] });
+    const [show_all, set_show_all] = useState(false);
 
     let nav = useNavigate();
     let user = coronaGetUser();
@@ -52,14 +53,20 @@ export default function HomeForm(formProps) {
 
     let inventoryMap = Object.fromEntries(user.inventory.map(obj => [obj.class_name, obj]));
 
+    let top_level_classes = {};
+
     let combinedPermissions = [];
     if (user.team && user.team.permissions) {
         user.team.permissions.forEach(perm => {
             combinedPermissions.push(perm);
+            if (perm.root_classes) {
+                for (let i = 0; i < perm.root_classes.length; i++) {
+                    top_level_classes[perm.root_classes[i]] = true;
+                }
+            }
         });
     }
- 
-    
+     
     let referenced_classes = {};
     let filteredMap = [];
 
@@ -123,7 +130,9 @@ export default function HomeForm(formProps) {
                                 for (let i=0;i<permkeys.length;i++) {
                                     let class_name = permkeys[i];
                                     if (class_name != base_name) {
-                                        dataclasses.push(class_name);
+                                        if (show_all || (class_name in top_level_classes) === true) {
+                                            dataclasses.push(class_name);
+                                        }
                                     }
                                 }
                             }

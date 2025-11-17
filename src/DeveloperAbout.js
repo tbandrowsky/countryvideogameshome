@@ -36,13 +36,6 @@ function DeveloperAbout() {
             service_url:"https://mightyware.com:443/recipe"
         },
         {
-            title: "Shop",
-            description: "Job shop.",
-            image: colonize1,
-            schema: "shop_schema.json",
-            service_url:"https://mightyware.com:443/shop"
-        },
-        {
             title: "Azure",
             description: "Azure simulation.",
             image: colonize1,
